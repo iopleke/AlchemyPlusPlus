@@ -45,8 +45,8 @@ public class TileEntityPotionContainerRenderer extends TileEntitySpecialRenderer
          GL11.glRotatef(dir * (-90F), 0F, 1F, 0F);
          GL11.glTranslatef(-0.5F, 0, -0.5F);
      
-        if (AlchemyPP.alternativeTextures) func_110628_a(new ResourceLocation("AlchemyPP:textures/blocks/BottleAlt.png"));
-        else func_110628_a(new ResourceLocation("AlchemyPP:textures/blocks/Bottle.png"));
+        if (AlchemyPP.alternativeTextures) bindTexture(new ResourceLocation("AlchemyPP:textures/blocks/BottleAlt.png"));
+        else bindTexture(new ResourceLocation("AlchemyPP:textures/blocks/Bottle.png"));
         	
          float percentage = ((float)tl.containerHas)/tl.containerMax;
          int color = 0;

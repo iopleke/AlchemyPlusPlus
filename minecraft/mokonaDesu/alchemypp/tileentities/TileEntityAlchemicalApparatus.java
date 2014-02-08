@@ -26,7 +26,7 @@ public class TileEntityAlchemicalApparatus extends TileEntity {
         }
 
   public void onDataPacket(INetworkManager net, Packet132TileEntityData packet) {
-        readFromNBT(packet.customParam1);
+        readFromNBT(packet.data);
   }
         
   public void readFromNBT(NBTTagCompound tag)

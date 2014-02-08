@@ -45,8 +45,8 @@ public class TileEntityExtractorRenderer extends TileEntitySpecialRenderer {
          GL11.glRotatef(dir * (-90F), 0F, 1F, 0F);
          GL11.glTranslatef(-0.5F, 0, -0.5F);
      
-         if (AlchemyPP.alternativeTextures) func_110628_a(new ResourceLocation("AlchemyPP:textures/blocks/ExtractorAlt.png"));
-         else func_110628_a(new ResourceLocation("AlchemyPP:textures/blocks/Extractor.png"));
+         if (AlchemyPP.alternativeTextures) bindTexture(new ResourceLocation("AlchemyPP:textures/blocks/ExtractorAlt.png"));
+         else bindTexture(new ResourceLocation("AlchemyPP:textures/blocks/Extractor.png"));
         	 
          this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
        

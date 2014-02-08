@@ -66,7 +66,7 @@ public class BookPage {
 		
 		//Rendering images on the page
 		//First binding the texture
-		gui.getRenderEngine().func_110577_a(new ResourceLocation(texture));
+		gui.getRenderEngine().bindTexture(new ResourceLocation(texture));
 		//then render all the images from the list
 		for (PageImageData data : images) {
 			 gui.drawTexturedModalRect(data.page == 0 ? x0 + data.x : x1 + data.x , y0 + data.y, data.offX, data.offY, data.sizeX, data.sizeY);  

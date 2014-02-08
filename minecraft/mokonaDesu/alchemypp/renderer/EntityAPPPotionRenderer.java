@@ -38,7 +38,8 @@ public class EntityAPPPotionRenderer extends RenderSnowball {
 	            GL11.glTranslatef((float)d0, (float)d1, (float)d2);
 	            GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 	            GL11.glScalef(0.5F, 0.5F, 0.5F);
-	            this.func_110777_b(entity);
+	            this.doRender(entity, d0, d1, d2, f, f1);
+	            //func_110777_b(entity);
 	            Tessellator tessellator = Tessellator.instance;
 
 	            if (icon == ItemPotion.func_94589_d("bottle_splash"))
