@@ -1,0 +1,19 @@
+[
+{
+"modid": "AlchemyPlusPlus",
+"name": "Alchemy++",
+"description": "Extending Minecraft with new brewing methods, Alchemical ingridients and more!",
+"version": "release 1.1",
+"credits": "Created by mokonaModoki",
+"logoFile": "Logo.png",
+"mcversion": "1.6.2",
+"url": "",
+"updateUrl": "",
+"authors": [ "MokonaModoki" ],
+"parent":"",
+"screenshots": [],
+"dependencies": [
+"mod_MinecraftForge"
+]
+}
+]
