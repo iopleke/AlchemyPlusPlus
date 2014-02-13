@@ -116,7 +116,7 @@ public class ItemRegistry {
 	LanguageRegistry.addName(appItemBottleStand, "Bottle Stand");
 	
 	GameRegistry.registerItem(appItemSprayer, "sprayer");
-	LanguageRegistry.addName(appItemSprayer, "Sprayer");
+	LanguageRegistry.addName(appItemSprayer, "Diffuser");
 	
 	GameRegistry.registerItem(appItemFarina, "farina");
 	LanguageRegistry.addName(appItemFarina, "Farina");

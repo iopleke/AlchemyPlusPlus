@@ -28,7 +28,7 @@ public class ItemSprayer extends APPItem {
 				TileEntityAlchemicalApparatus entity = ((TileEntityAlchemicalApparatus)world.getBlockTileEntity(x, y, z));
 				if (entity.hasStand() && entity.stand instanceof ApparatusApplicationBottleStand) {
 				 ((TileEntityAlchemicalApparatus)world.getBlockTileEntity(x, y, z)).addUpper(new ApparatusApplicationSprayer(null));
-				 player.addChatMessage("Sprayer added");	
+				 player.addChatMessage("Diffuser added");	
 				 PacketDispatcher.sendPacketToAllPlayers(world.getBlockTileEntity(x, y, z).getDescriptionPacket());
 				 stack.stackSize = 0;
 				 return true;

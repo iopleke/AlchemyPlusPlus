@@ -99,7 +99,8 @@ public class ApparatusApplicationSprayer extends ApparatusApplicationUpperAccess
 
 	@Override
 	public String getStat() {
-		return " Has sprayer\n";
+		// Added a space at the beginning to line it up in chat
+		return " Diffuser attached\n";
 	}
 
 	@Override
