@@ -129,7 +129,7 @@ public class ItemRegistry {
 	if (AlchemyPP.potionOverride) {
 	ItemPotion p = Item.potion;
 	Item.itemsList[117] = null;
-	appItemPotion = new ItemAPPPotion(117, p).setUnlocalizedName("potion").func_111206_d("potion");
+	appItemPotion = new ItemAPPPotion(117, p).setUnlocalizedName("potion").setTextureName("potion");
 	Item.potion = (ItemPotion)appItemPotion;
 	GameRegistry.registerItem(appItemPotion, "potion");
 	}
