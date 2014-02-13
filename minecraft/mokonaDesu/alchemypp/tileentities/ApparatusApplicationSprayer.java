@@ -25,6 +25,7 @@ public class ApparatusApplicationSprayer extends ApparatusApplicationUpperAccess
 	public short activeTicks = 0;
 	public final short delay = 200;
 	public final short particleAmount = 10;
+	public boolean active = false;
 	
 	public ApparatusApplicationSprayer(TileEntityAlchemicalApparatus parent) {
 		this.parent = parent;
@@ -99,8 +100,7 @@ public class ApparatusApplicationSprayer extends ApparatusApplicationUpperAccess
 
 	@Override
 	public String getStat() {
-		// Added a space at the beginning to line it up in chat
-		return " Diffuser attached\n";
+		return "Diffuser attached\n";
 	}
 
 	@Override
@@ -121,6 +121,10 @@ public class ApparatusApplicationSprayer extends ApparatusApplicationUpperAccess
 	@Override
 	public int getItemID() {
 		return ItemRegistry.appItemSprayer.itemID;
+	}
+	
+	public Boolean isActive(){
+		return this.active;
 	}
 
 }

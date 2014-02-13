@@ -102,11 +102,8 @@ public class TileEntityAlchemicalApparatus extends TileEntity {
    
    
    public String getStat() {
-	   String stat = "";
-	  // stat += this.hasLamp() ? " Lamp: "+this.lamp.spirit + "/60 "+ (this.lamp.active ? "(Burning)" : "")+"\n" : "";
-	  // stat += this.hasStand() ? "Bottle temp: " + (int)this.stand.temperature + "K (" + this.stand.normalTemperature + "K)\n" : "";
-	  // stat += this.hasSprayer() ? "Has Sprayer" : "";
-	   if (this.upper != null) stat += this.upper.getStat();
+	   String stat = " ";
+	   if (this.upper != null && ! this.bottom.isActive()) stat += this.upper.getStat();
 	   if (this.stand != null) stat += this.stand.getStat();
 	   if (this.bottom != null) stat += this.bottom.getStat();
 	   
