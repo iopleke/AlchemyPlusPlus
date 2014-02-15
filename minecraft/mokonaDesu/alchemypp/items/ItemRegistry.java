@@ -25,17 +25,17 @@ public class ItemRegistry {
 	public static final Item appItemFilter = new ItemMixingFilter(APPIDManager.nextItemID(), AlchemyPP.alternativeTextures ? "AlchemyPP:AlchemicalFilterAlt" : "AlchemyPP:AlchemicalFilter", 600).setUnlocalizedName("filter");
 	
 	public static final Item appItemFesteringFlesh = new APPItemFood(APPIDManager.nextItemID(), "AlchemyPP:FesteringFlesh", 7, 100, 20)
-	.setUnlocalizedName("flesh").setCreativeTab(CreativeTabs.tabBrewing);
-	public static final Item appItemSquidEye = new APPItem(APPIDManager.nextItemID(), "AlchemyPP:SquidEye").setUnlocalizedName("squidEye").setCreativeTab(CreativeTabs.tabBrewing);
-	public static final Item appItemConfusion = new APPItem(APPIDManager.nextItemID(), "AlchemyPP:confusion").setUnlocalizedName("confusion").setCreativeTab(CreativeTabs.tabBrewing);
-	public static final Item appItemSpringyCord = new APPItem(APPIDManager.nextItemID(), "AlchemyPP:spring").setUnlocalizedName("spring").setCreativeTab(CreativeTabs.tabBrewing);
-	public static final Item appItemIronPowder = new APPItem(APPIDManager.nextItemID(), "AlchemyPP:ironDust").setUnlocalizedName("obsidian").setCreativeTab(CreativeTabs.tabBrewing);
-    public static final Item appItemFishOil = new ItemFishOil(APPIDManager.nextItemID()).setUnlocalizedName("fishoil").setCreativeTab(CreativeTabs.tabBrewing);
+	.setUnlocalizedName("flesh").setCreativeTab(AlchemyPP.alchemyPPTab);
+	public static final Item appItemSquidEye = new APPItem(APPIDManager.nextItemID(), "AlchemyPP:SquidEye").setUnlocalizedName("squidEye").setCreativeTab(AlchemyPP.alchemyPPTab);
+	public static final Item appItemConfusion = new APPItem(APPIDManager.nextItemID(), "AlchemyPP:confusion").setUnlocalizedName("confusion").setCreativeTab(AlchemyPP.alchemyPPTab);
+	public static final Item appItemSpringyCord = new APPItem(APPIDManager.nextItemID(), "AlchemyPP:spring").setUnlocalizedName("spring").setCreativeTab(AlchemyPP.alchemyPPTab);
+	public static final Item appItemIronPowder = new APPItem(APPIDManager.nextItemID(), "AlchemyPP:ironDust").setUnlocalizedName("obsidian").setCreativeTab(AlchemyPP.alchemyPPTab);
+    public static final Item appItemFishOil = new ItemFishOil(APPIDManager.nextItemID()).setUnlocalizedName("fishoil").setCreativeTab(AlchemyPP.alchemyPPTab);
 	public static final Item appItemOrichalcumOre = new APPItem(APPIDManager.nextItemID(), AlchemyPP.alternativeTextures ? "AlchemyPP:orichalcumOreAlt" : "AlchemyPP:orichalcumOre").setUnlocalizedName("orichalcum").setCreativeTab(CreativeTabs.tabMaterials);
 	public static final Item appItemOrichalcumBar = new APPItem(APPIDManager.nextItemID(), AlchemyPP.alternativeTextures ? "AlchemyPP:orichalcumBarAlt" : "AlchemyPP:orichalcumBar").setUnlocalizedName("orichalcumBar").setCreativeTab(CreativeTabs.tabMaterials);
-	public static final Item appItemPotionBottle = new ItemPotionBottle(APPIDManager.nextItemID()).setUnlocalizedName("potionBottle").setCreativeTab(CreativeTabs.tabBrewing);
-	public static final Item appItemExtractor = new ItemExtractor(APPIDManager.nextItemID(), AlchemyPP.alternativeTextures ? "AlchemyPP:ExtractorAlt" : "AlchemyPP:Extractor").setUnlocalizedName("extractorItem").setCreativeTab(CreativeTabs.tabBrewing);
-	public static final Item appItemLiquidMixer = new ItemLiquidMixer(APPIDManager.nextItemID(), "AlchemyPP:Mixer").setUnlocalizedName("mixerItem").setCreativeTab(CreativeTabs.tabBrewing);
+	public static final Item appItemPotionBottle = new ItemPotionBottle(APPIDManager.nextItemID()).setUnlocalizedName("potionBottle").setCreativeTab(AlchemyPP.alchemyPPTab);
+	public static final Item appItemExtractor = new ItemExtractor(APPIDManager.nextItemID(), AlchemyPP.alternativeTextures ? "AlchemyPP:ExtractorAlt" : "AlchemyPP:Extractor").setUnlocalizedName("extractorItem").setCreativeTab(AlchemyPP.alchemyPPTab);
+	public static final Item appItemLiquidMixer = new ItemLiquidMixer(APPIDManager.nextItemID(), "AlchemyPP:Mixer").setUnlocalizedName("mixerItem").setCreativeTab(AlchemyPP.alchemyPPTab);
 	
 
 	//version 1.1
@@ -44,18 +44,18 @@ public class ItemRegistry {
 	
 	public static Item appItemPotion = null;
 	
-	public static final Item appItemSpirit = new ItemSpirit(APPIDManager.nextItemID()).setCreativeTab(CreativeTabs.tabBrewing).setUnlocalizedName("spiritItem");
+	public static final Item appItemSpirit = new ItemSpirit(APPIDManager.nextItemID()).setCreativeTab(AlchemyPP.alchemyPPTab).setUnlocalizedName("spiritItem");
 	public static final Item appItemSpiritLamp = new ItemSpiritLamp(APPIDManager.nextItemID(), AlchemyPP.alternativeTextures ? "AlchemyPP:SpiritLampAlt" : "AlchemyPP:SpiritLamp")
 	.setUnlocalizedName("spiritlampItem").setCreativeTab(CreativeTabs.tabMaterials);
 	public static final Item appItemBottleStand = new ItemBottleStand(APPIDManager.nextItemID(), "AlchemyPP:BottleStand")
-	.setUnlocalizedName("bottleStandItem").setCreativeTab(CreativeTabs.tabBrewing);
+	.setUnlocalizedName("bottleStandItem").setCreativeTab(AlchemyPP.alchemyPPTab);
 	public static final Item appItemSprayer = new ItemSprayer(APPIDManager.nextItemID(), "AlchemyPP:Sprayer")
-	.setUnlocalizedName("sprayer").setCreativeTab(CreativeTabs.tabBrewing);
+	.setUnlocalizedName("sprayer").setCreativeTab(AlchemyPP.alchemyPPTab);
 	public static final Item appItemFarina = new APPItem(APPIDManager.nextItemID(), "AlchemyPP:Farina").setCreativeTab(CreativeTabs.tabMaterials);
 	
 	//version 1.1a
 	
-	public static final Item appItemGuide = new ItemAlchemicalGuide(APPIDManager.nextItemID(), "AlchemyPP:Farina").setCreativeTab(CreativeTabs.tabBrewing);
+	public static final Item appItemGuide = new ItemAlchemicalGuide(APPIDManager.nextItemID(), "AlchemyPP:Farina").setCreativeTab(AlchemyPP.alchemyPPTab);
 	
 	/* 
     public static final int digSpeedID = APPIDManager.nextItemID();	 //placeholder

@@ -20,10 +20,10 @@ public class BlockRegistry {
 	public static final Block appBlockPotionContainer = new BlockPotionContainer(APPIDManager.nextBlockID());
 	public static final Block appBlockLiquidMixer = new BlockLiquidMixer(APPIDManager.nextBlockID());
 	public static final Block appBlockOrichalcum = new APPBlock(APPIDManager.nextBlockID(), Material.iron, AlchemyPP.alternativeTextures ? "AlchemyPP:OrichalcumBlockAlt" : "AlchemyPP:OrichalcumBlock")
-	.setCreativeTab(CreativeTabs.tabBlock).setHardness(3.0F).setResistance(5.0F).setUnlocalizedName("orichalcumBlock");
+	.setCreativeTab(AlchemyPP.alchemyPPTab).setHardness(3.0F).setResistance(5.0F).setUnlocalizedName("orichalcumBlock");
 	public static final Block appBlockExtractor = new BlockExtractor(APPIDManager.nextBlockID());
 	public static final Block appBlockFlesh = new BlockFlesh(APPIDManager.nextBlockID(), Material.cloth)
-	.setCreativeTab(CreativeTabs.tabBlock).setHardness(3.0F).setResistance(5.0F).setUnlocalizedName("fleshBlock");
+	.setCreativeTab(AlchemyPP.alchemyPPTab).setHardness(3.0F).setResistance(5.0F).setUnlocalizedName("fleshBlock");
 	
 	//version 1.1
 	public static final Block appBlockAlchemicalApparatus = new BlockAlchemicalApparatus(APPIDManager.nextBlockID(), Material.piston)

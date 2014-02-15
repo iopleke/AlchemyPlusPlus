@@ -3,6 +3,7 @@ package mokonaDesu.alchemypp.items;
 import java.util.List;
 import java.util.Random;
 
+import mokonaDesu.alchemypp.AlchemyPP;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -18,7 +19,7 @@ public class ItemMixingFilter extends APPItem {
 		this.isDamageable();
 		this.maxStackSize = 1;
 		this.setNoRepair();
-		this.setCreativeTab(CreativeTabs.tabBrewing);
+		this.setCreativeTab(AlchemyPP.alchemyPPTab);
 	}
 
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)

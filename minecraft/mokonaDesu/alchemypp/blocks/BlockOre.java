@@ -27,7 +27,7 @@ public class BlockOre extends Block {
 			this.setHardness(3.0F);
 			this.setResistance(5.0F);
 			this.setStepSound(soundStoneFootstep);
-			this.setCreativeTab(CreativeTabs.tabBlock);
+			this.setCreativeTab(AlchemyPP.alchemyPPTab);
 			this.setUnlocalizedName("appBlockOre");
 			
 }
