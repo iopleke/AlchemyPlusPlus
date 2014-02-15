@@ -92,7 +92,7 @@ public void load(FMLInitializationEvent event) {
 	BlockRegistry.registerBlockRecipes();
 	ItemRegistry.registerItemRecipes();
 	
-	Book.loadAll();
+	//Book.loadAll();
 	
 	if (hardcoreAlchemy) ItemRegistry.registerHardcoreRecipes();
 	
