@@ -4,7 +4,7 @@ import java.util.Random;
 
 import mokonaDesu.alchemypp.AlchemyPP;
 import mokonaDesu.alchemypp.items.ItemRegistry;
-import mokonaDesu.alchemypp.tileentities.TileEntityExtractor;
+import mokonaDesu.alchemypp.tileentities.TileEntityDistillery;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.EffectRenderer;
@@ -17,14 +17,14 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockExtractor extends BlockContainer {
+public class BlockDistillery extends BlockContainer {
 
-    public BlockExtractor(int blockID) {
+    public BlockDistillery(int blockID) {
         super(blockID, Material.piston);
         this.setHardness(1.0F);
         this.setResistance(3.0F);
         this.setStepSound(soundStoneFootstep);
-        this.setUnlocalizedName("appBlockExtractor");
+        this.setUnlocalizedName("appBlockDistillery");
     }
 
     @Override
@@ -34,14 +34,14 @@ public class BlockExtractor extends BlockContainer {
 
     @Override
     public TileEntity createNewTileEntity(World world) {
-        return new TileEntityExtractor();
+        return new TileEntityDistillery();
     }
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z,
             EntityPlayer player, int a, float b, float c, float g) {
         if (!world.isRemote)
-            player.openGui(AlchemyPP.instance, 1, world, x, y, z);
+            player.openGui(AlchemyPP.instance, 2, world, x, y, z);
         return true;
     }
 
@@ -56,7 +56,7 @@ public class BlockExtractor extends BlockContainer {
     public void randomDisplayTick(World par1World, int par2, int par3,
             int par4, Random par5Random) {
         super.randomDisplayTick(par1World, par2, par3, par4, par5Random);
-        TileEntityExtractor te = (TileEntityExtractor) par1World
+        TileEntityDistillery te = (TileEntityDistillery) par1World
                 .getBlockTileEntity(par2, par3, par4);
         if (te.isActive()) {
             par1World.spawnParticle("reddust",
@@ -86,13 +86,13 @@ public class BlockExtractor extends BlockContainer {
 
     @Override
     public int idDropped(int par1, Random par2Random, int par3) {
-        return ItemRegistry.appItemExtractor.itemID;
+        return ItemRegistry.appItemDistillery.itemID;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public int idPicked(World par1World, int par2, int par3, int par4) {
-        return ItemRegistry.appItemExtractor.itemID;
+        return ItemRegistry.appItemDistillery.itemID;
     }
 
 }

@@ -5,12 +5,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+import cpw.mods.fml.common.FMLLog;
 
-public class ItemExtractor extends APPItem {
+public class ItemDistillery extends APPItem {
 
-    public ItemExtractor(int id, String iconName) {
+    public ItemDistillery(int id, String iconName) {
         super(id, iconName);
-        this.maxStackSize = 64;
+        this.maxStackSize = 1;
     }
 
     @Override
@@ -18,7 +19,10 @@ public class ItemExtractor extends APPItem {
             int x, int y, int z, int par7, float par8, float par9, float par10) {
         if (world.isBlockSolidOnSide(x, y, z, ForgeDirection.UP)
                 && world.isAirBlock(x, y + 1, z)) {
-            world.setBlock(x, y + 1, z, BlockRegistry.appBlockExtractor.blockID);
+            world.setBlock(x, y + 1, z,
+                    BlockRegistry.appBlockDistillery.blockID);
+            FMLLog.info(Integer
+                    .toString(BlockRegistry.appBlockDistillery.blockID));
             stack.stackSize--;
             return true;
         } else

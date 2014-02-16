@@ -1,33 +1,27 @@
 package mokonaDesu.alchemypp;
 
-import java.util.Map;
-
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.ItemPotion;
-import net.minecraftforge.common.Configuration;
 import mokonaDesu.alchemypp.blocks.BlockRegistry;
 import mokonaDesu.alchemypp.client.APPClientPacketHandler;
 import mokonaDesu.alchemypp.gui.APPGuiHandler;
 import mokonaDesu.alchemypp.gui.AlchemyPPCreativeTab;
-import mokonaDesu.alchemypp.gui.Book;
-import mokonaDesu.alchemypp.gui.AlchemyPPCreativeTab;
 import mokonaDesu.alchemypp.items.ItemRegistry;
 import mokonaDesu.alchemypp.tileentities.TileEntityAlchemicalApparatus;
+import mokonaDesu.alchemypp.tileentities.TileEntityDistillery;
 import mokonaDesu.alchemypp.tileentities.TileEntityExtractor;
 import mokonaDesu.alchemypp.tileentities.TileEntityLiquidMixer;
 import mokonaDesu.alchemypp.tileentities.TileEntityPotionContainer;
+import net.minecraft.creativetab.CreativeTabs;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.network.NetworkMod.SidedPacketHandler;
-import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.network.NetworkMod.SidedPacketHandler;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 
 @Mod(modid = "AlchemyPlusPlus", name = "AlchemyPlusPlus", version = "release 1.1")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, clientPacketHandlerSpec = @SidedPacketHandler(channels = { "Alchemy++" }, packetHandler = APPClientPacketHandler.class), serverPacketHandlerSpec = @SidedPacketHandler(channels = { "Alchemy++" }, packetHandler = APPServerPacketHandler.class))
@@ -91,6 +85,8 @@ public class AlchemyPP {
                 "LiquidMixerTE");
         GameRegistry.registerTileEntity(TileEntityExtractor.class,
                 "ExtractorTE");
+        GameRegistry.registerTileEntity(TileEntityDistillery.class,
+                "DistilleryTE");
         GameRegistry.registerTileEntity(TileEntityAlchemicalApparatus.class,
                 "AlchemicalApparatusTE");
 

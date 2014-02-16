@@ -66,6 +66,11 @@ public class ItemRegistry {
                     : "AlchemyPP:Extractor")
             .setUnlocalizedName("extractorItem").setCreativeTab(
                     AlchemyPP.alchemyPPTab);
+    public static final Item appItemDistillery = new ItemDistillery(
+            APPIDManager.nextItemID(),
+            AlchemyPP.alternativeTextures ? "AlchemyPP:DistilleryAlt"
+                    : "AlchemyPP:Distillery").setUnlocalizedName(
+            "distilleryItem").setCreativeTab(AlchemyPP.alchemyPPTab);
     public static final Item appItemLiquidMixer = new ItemLiquidMixer(
             APPIDManager.nextItemID(), "AlchemyPP:Mixer").setUnlocalizedName(
             "mixerItem").setCreativeTab(AlchemyPP.alchemyPPTab);
@@ -149,6 +154,9 @@ public class ItemRegistry {
         GameRegistry.registerItem(appItemExtractor, "extractorItem");
         LanguageRegistry.addName(appItemExtractor, "Essence Extractor");
 
+        GameRegistry.registerItem(appItemDistillery, "distilleryItem");
+        LanguageRegistry.addName(appItemDistillery, "Distillery");
+
         GameRegistry.registerItem(appItemLiquidMixer, "mixerItem");
         LanguageRegistry.addName(appItemLiquidMixer, "Liquid Mixer");
 
@@ -206,6 +214,14 @@ public class ItemRegistry {
                 Block.thinGlass), 'i', new ItemStack(Item.ingotIron), 'o',
                 oreDictOrichalcum, 'O', new ItemStack(
                         BlockRegistry.appBlockOrichalcum)));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(
+                appItemDistillery), "Bi ", "C b", "F S", 'B', new ItemStack(
+                Block.brewingStand), 'i', new ItemStack(Item.ingotIron), 'C',
+                new ItemStack(Block.cauldron), 'b', new ItemStack(
+                        appItemPotionBottle), 'F', new ItemStack(
+                        Block.furnaceIdle), 'S', new ItemStack(
+                        appItemBottleStand)));
 
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(
                 appItemExtractor), "iGi", "I O", "oOo", 'i', new ItemStack(
