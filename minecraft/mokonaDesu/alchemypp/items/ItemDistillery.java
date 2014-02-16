@@ -5,7 +5,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
-import cpw.mods.fml.common.FMLLog;
 
 public class ItemDistillery extends APPItem {
 
@@ -21,8 +20,6 @@ public class ItemDistillery extends APPItem {
                 && world.isAirBlock(x, y + 1, z)) {
             world.setBlock(x, y + 1, z,
                     BlockRegistry.appBlockDistillery.blockID);
-            FMLLog.info(Integer
-                    .toString(BlockRegistry.appBlockDistillery.blockID));
             stack.stackSize--;
             return true;
         } else
