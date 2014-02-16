@@ -57,11 +57,6 @@ public class AlchemyPP {
     public static boolean generateOrichalcum = true;
 
     /*
-     * Alternative orichalcum texture usage
-     */
-    public static boolean alternativeTextures = false;
-
-    /*
      * Adding the creative tab
      */
     public static CreativeTabs alchemyPPTab;

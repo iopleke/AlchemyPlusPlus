@@ -21,9 +21,7 @@ public class ItemRegistry {
 
     // version 1.0
     public static final Item appItemFilter = new ItemMixingFilter(
-            APPIDManager.nextItemID(),
-            AlchemyPP.alternativeTextures ? "AlchemyPP:AlchemicalFilterAlt"
-                    : "AlchemyPP:AlchemicalFilter", 600)
+            APPIDManager.nextItemID(), "AlchemyPP:AlchemicalFilter", 600)
             .setUnlocalizedName("filter");
 
     public static final Item appItemFesteringFlesh = new APPItemFood(
@@ -48,29 +46,24 @@ public class ItemRegistry {
             APPIDManager.nextItemID()).setUnlocalizedName("fishoil")
             .setCreativeTab(AlchemyPP.alchemyPPTab);
     public static final Item appItemOrichalcumOre = new APPItem(
-            APPIDManager.nextItemID(),
-            AlchemyPP.alternativeTextures ? "AlchemyPP:orichalcumOreAlt"
-                    : "AlchemyPP:orichalcumOre").setUnlocalizedName(
-            "orichalcum").setCreativeTab(CreativeTabs.tabMaterials);
+            APPIDManager.nextItemID(), "AlchemyPP:orichalcumOre")
+            .setUnlocalizedName("orichalcum").setCreativeTab(
+                    CreativeTabs.tabMaterials);
     public static final Item appItemOrichalcumBar = new APPItem(
-            APPIDManager.nextItemID(),
-            AlchemyPP.alternativeTextures ? "AlchemyPP:orichalcumBarAlt"
-                    : "AlchemyPP:orichalcumBar").setUnlocalizedName(
-            "orichalcumBar").setCreativeTab(CreativeTabs.tabMaterials);
+            APPIDManager.nextItemID(), "AlchemyPP:orichalcumBar")
+            .setUnlocalizedName("orichalcumBar").setCreativeTab(
+                    CreativeTabs.tabMaterials);
     public static final Item appItemPotionBottle = new ItemPotionBottle(
             APPIDManager.nextItemID()).setUnlocalizedName("potionBottle")
             .setCreativeTab(AlchemyPP.alchemyPPTab);
     public static final Item appItemExtractor = new ItemExtractor(
-            APPIDManager.nextItemID(),
-            AlchemyPP.alternativeTextures ? "AlchemyPP:ExtractorAlt"
-                    : "AlchemyPP:Extractor")
+            APPIDManager.nextItemID(), "AlchemyPP:Extractor")
             .setUnlocalizedName("extractorItem").setCreativeTab(
                     AlchemyPP.alchemyPPTab);
     public static final Item appItemDistillery = new ItemDistillery(
-            APPIDManager.nextItemID(),
-            AlchemyPP.alternativeTextures ? "AlchemyPP:DistilleryAlt"
-                    : "AlchemyPP:Distillery").setUnlocalizedName(
-            "distilleryItem").setCreativeTab(AlchemyPP.alchemyPPTab);
+            APPIDManager.nextItemID(), "AlchemyPP:Distillery")
+            .setUnlocalizedName("distilleryItem").setCreativeTab(
+                    AlchemyPP.alchemyPPTab);
     public static final Item appItemLiquidMixer = new ItemLiquidMixer(
             APPIDManager.nextItemID(), "AlchemyPP:Mixer").setUnlocalizedName(
             "mixerItem").setCreativeTab(AlchemyPP.alchemyPPTab);
@@ -85,10 +78,9 @@ public class ItemRegistry {
             APPIDManager.nextItemID()).setCreativeTab(AlchemyPP.alchemyPPTab)
             .setUnlocalizedName("spiritItem");
     public static final Item appItemSpiritLamp = new ItemSpiritLamp(
-            APPIDManager.nextItemID(),
-            AlchemyPP.alternativeTextures ? "AlchemyPP:SpiritLampAlt"
-                    : "AlchemyPP:SpiritLamp").setUnlocalizedName(
-            "spiritlampItem").setCreativeTab(CreativeTabs.tabMaterials);
+            APPIDManager.nextItemID(), "AlchemyPP:SpiritLamp")
+            .setUnlocalizedName("spiritlampItem").setCreativeTab(
+                    CreativeTabs.tabMaterials);
     public static final Item appItemBottleStand = new ItemBottleStand(
             APPIDManager.nextItemID(), "AlchemyPP:BottleStand")
             .setUnlocalizedName("bottleStandItem").setCreativeTab(

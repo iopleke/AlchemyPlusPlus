@@ -23,10 +23,9 @@ public class BlockRegistry {
             APPIDManager.nextBlockID());
     public static final Block appBlockOrichalcum = new APPBlock(
             APPIDManager.nextBlockID(), Material.iron,
-            AlchemyPP.alternativeTextures ? "AlchemyPP:OrichalcumBlockAlt"
-                    : "AlchemyPP:OrichalcumBlock")
-            .setCreativeTab(AlchemyPP.alchemyPPTab).setHardness(3.0F)
-            .setResistance(5.0F).setUnlocalizedName("orichalcumBlock");
+            "AlchemyPP:OrichalcumBlock").setCreativeTab(AlchemyPP.alchemyPPTab)
+            .setHardness(3.0F).setResistance(5.0F)
+            .setUnlocalizedName("orichalcumBlock");
     public static final Block appBlockDistillery = new BlockDistillery(
             APPIDManager.nextBlockID());
     public static final Block appBlockExtractor = new BlockExtractor(

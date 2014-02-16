@@ -24,12 +24,8 @@ public class BlockOre extends Block {
 
     @Override
     public void registerIcons(IconRegister iconRegister) {
-        if (AlchemyPP.alternativeTextures)
-            this.blockIcon = iconRegister
-                    .registerIcon("AlchemyPP:blockOrichalcumOreAlt");
-        else
-            this.blockIcon = iconRegister
-                    .registerIcon("AlchemyPP:blockOrichalcumOre");
+        this.blockIcon = iconRegister
+                .registerIcon("AlchemyPP:blockOrichalcumOre");
 
     }
 
