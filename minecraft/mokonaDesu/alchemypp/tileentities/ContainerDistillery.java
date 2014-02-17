@@ -17,10 +17,10 @@ public class ContainerDistillery extends Container {
             TileEntityDistillery distillery) {
         this.distillery = distillery;
 
-        this.addSlotToContainer(new Slot(distillery, 0, 80, 13)); // ingridient
-        this.addSlotToContainer(new Slot(distillery, 1, 67, 37)); // in
-        this.addSlotToContainer(new Slot(distillery, 2, 94, 37)); // out
-        this.addSlotToContainer(new SlotAlchemicalFuel(distillery, 3, 67, 56)); // fuel
+        this.addSlotToContainer(new Slot(distillery, 0, 62, 24)); // input
+        this.addSlotToContainer(new Slot(distillery, 1, 18, 24)); // waste
+        this.addSlotToContainer(new Slot(distillery, 2, 113, 56)); // output
+        this.addSlotToContainer(new SlotAlchemicalFuel(distillery, 3, 62, 57)); // fuel
 
         int i;
 
