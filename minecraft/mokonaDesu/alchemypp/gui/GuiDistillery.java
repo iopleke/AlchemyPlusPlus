@@ -40,8 +40,8 @@ public class GuiDistillery extends GuiContainer {
         int fuel = this.tileEntity.fuel;
         fuel /= 4;
 
-        this.drawTexturedModalRect(x + 86, y + 72 - ((int) (fuel * 0.16f)),
-                176, 38, 2, (int) (fuel * 0.16f));
+        this.drawTexturedModalRect(x + 63, y + 42, 176, 38, 14,
+                (int) (fuel * 0.16f));
 
         int percentage = (int) ((this.tileEntity.extractingTicks / 400f) * 100);
 

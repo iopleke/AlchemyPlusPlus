@@ -19,8 +19,8 @@ public class ContainerDistillery extends Container {
 
         this.addSlotToContainer(new Slot(distillery, 0, 62, 24)); // input
         this.addSlotToContainer(new Slot(distillery, 1, 18, 24)); // waste
-        this.addSlotToContainer(new Slot(distillery, 2, 113, 56)); // output
-        this.addSlotToContainer(new SlotAlchemicalFuel(distillery, 3, 62, 57)); // fuel
+        this.addSlotToContainer(new Slot(distillery, 2, 113, 58)); // output
+        this.addSlotToContainer(new Slot(distillery, 3, 62, 58)); // fuel
 
         int i;
 

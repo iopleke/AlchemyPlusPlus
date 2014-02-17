@@ -3,7 +3,6 @@ package mokonaDesu.alchemypp.tileentities;
 import mokonaDesu.alchemypp.MixingHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -11,6 +10,8 @@ import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
+import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class TileEntityDistillery extends TileEntity implements IInventory {
     private ItemStack[] distilleryInventory = new ItemStack[4];
@@ -145,7 +146,8 @@ public class TileEntityDistillery extends TileEntity implements IInventory {
     @Override
     public void updateEntity() {
         if (this.fuel == 0 && this.getStackInSlot(3) != null) {
-            this.fuel = 400;
+            this.fuel = GameRegistry.getFuelValue(this.getStackInSlot(3));
+            FMLLog.info(Integer.toString(this.fuel));
             this.decrStackSize(3, 1);
         }
 
@@ -188,7 +190,7 @@ public class TileEntityDistillery extends TileEntity implements IInventory {
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack) {
         if (slot == 3) {
-            if (stack.itemID == Item.blazePowder.itemID)
+            if (GameRegistry.getFuelValue(stack) > 0)
                 return true;
             else
                 return false;
