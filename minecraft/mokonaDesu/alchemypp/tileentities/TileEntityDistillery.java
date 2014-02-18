@@ -1,8 +1,10 @@
 package mokonaDesu.alchemypp.tileentities;
 
 import mokonaDesu.alchemypp.MixingHelper;
+import mokonaDesu.alchemypp.items.ItemRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -10,14 +12,14 @@ import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
-import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.tileentity.TileEntityFurnace;
 
 public class TileEntityDistillery extends TileEntity implements IInventory {
     private ItemStack[] distilleryInventory = new ItemStack[4];
 
-    public int extractingTicks = 0;
+    public int distillingTicks = 0;
     public int fuel = 0;
+    public int burntotal = 1;
 
     @Override
     public int getInventoryStackLimit() {
@@ -117,7 +119,7 @@ public class TileEntityDistillery extends TileEntity implements IInventory {
             }
         }
 
-        this.extractingTicks = par1NBTTagCompound.getShort("extractingTicks");
+        this.distillingTicks = par1NBTTagCompound.getShort("distillingTicks");
         this.fuel = par1NBTTagCompound.getShort("fuel");
 
     }
@@ -125,8 +127,8 @@ public class TileEntityDistillery extends TileEntity implements IInventory {
     @Override
     public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
         super.writeToNBT(par1NBTTagCompound);
-        par1NBTTagCompound.setShort("extractingTicks",
-                (short) this.extractingTicks);
+        par1NBTTagCompound.setShort("distillingTicks",
+                (short) this.distillingTicks);
         par1NBTTagCompound.setShort("fuel", (short) this.fuel);
         NBTTagList nbttaglist = new NBTTagList();
 
@@ -145,25 +147,29 @@ public class TileEntityDistillery extends TileEntity implements IInventory {
 
     @Override
     public void updateEntity() {
-        if (this.fuel == 0 && this.getStackInSlot(3) != null) {
-            this.fuel = GameRegistry.getFuelValue(this.getStackInSlot(3));
-            FMLLog.info(Integer.toString(this.fuel));
+        if (this.fuel == 0 && this.getStackInSlot(3) != null
+                && this.getStackInSlot(1) != null
+                && this.getStackInSlot(2) != null
+                && this.getStackInSlot(2).getItemDamage() != 100) {
+
+            this.fuel = TileEntityFurnace.getItemBurnTime(this
+                    .getStackInSlot(3));
+            this.burntotal = fuel;
             this.decrStackSize(3, 1);
         }
 
         if (fuel > 0) {
             if (MixingHelper.distillingPossible(this)) {
-                this.extractingTicks++;
-
-            } else
-                this.extractingTicks = 0;
-
-            if (this.extractingTicks == 400) {
+                this.distillingTicks++;
+            } else {
+                this.distillingTicks = 0;
+            }
+            if (this.distillingTicks == 400) {
                 MixingHelper.performDistillation(this);
-                this.extractingTicks = 0;
+                this.distillingTicks = 0;
             }
         } else {
-            this.extractingTicks = 0;
+            this.distillingTicks = 0;
         }
         this.fuel--;
         if (fuel < 0)
@@ -190,13 +196,19 @@ public class TileEntityDistillery extends TileEntity implements IInventory {
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack) {
         if (slot == 3) {
-            if (GameRegistry.getFuelValue(stack) > 0)
+            if (TileEntityFurnace.getItemBurnTime(stack) > 0) {
                 return true;
-            else
-                return false;
+            }
+        } else if (slot == 1) {
+            if (stack.itemID == 17) {
+                return true;
+            }
+        } else if (slot == 2) {
+            if (stack.itemID == Item.glassBottle.itemID
+                    || stack.itemID == ItemRegistry.appItemSpirit.itemID) {
+                return true;
+            }
         }
-
-        return true;
+        return false;
     }
-
 }

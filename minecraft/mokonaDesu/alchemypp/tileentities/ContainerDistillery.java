@@ -10,17 +10,18 @@ import net.minecraft.item.ItemStack;
 public class ContainerDistillery extends Container {
 
     private final TileEntityDistillery distillery;
-    private int extractingTicks = 0;
+    private int distillingTicks = 0;
     private int fuel = 0;
 
     public ContainerDistillery(InventoryPlayer playerInv,
             TileEntityDistillery distillery) {
         this.distillery = distillery;
 
-        this.addSlotToContainer(new Slot(distillery, 0, 62, 24)); // input
-        this.addSlotToContainer(new Slot(distillery, 1, 18, 24)); // waste
-        this.addSlotToContainer(new Slot(distillery, 2, 113, 58)); // output
-        this.addSlotToContainer(new Slot(distillery, 3, 62, 58)); // fuel
+        this.addSlotToContainer(new SlotDistilleryByproduct(distillery, 0, 18,
+                23)); // Byproduct
+        this.addSlotToContainer(new SlotDistilleryInput(distillery, 1, 62, 23)); // input
+        this.addSlotToContainer(new SlotDistilleryOutput(distillery, 2, 113, 58)); // output
+        this.addSlotToContainer(new SlotDistilleryFuel(distillery, 3, 62, 58)); // fuel
 
         int i;
 
@@ -41,7 +42,7 @@ public class ContainerDistillery extends Container {
     public void addCraftingToCrafters(ICrafting par1ICrafting) {
         super.addCraftingToCrafters(par1ICrafting);
         par1ICrafting.sendProgressBarUpdate(this, 0,
-                this.distillery.extractingTicks);
+                this.distillery.distillingTicks);
         par1ICrafting.sendProgressBarUpdate(this, 1, this.distillery.fuel);
     }
 
@@ -52,9 +53,9 @@ public class ContainerDistillery extends Container {
         for (int i = 0; i < this.crafters.size(); ++i) {
             ICrafting icrafting = (ICrafting) this.crafters.get(i);
 
-            if (this.extractingTicks != this.distillery.extractingTicks) {
+            if (this.distillingTicks != this.distillery.distillingTicks) {
                 icrafting.sendProgressBarUpdate(this, 0,
-                        this.distillery.extractingTicks);
+                        this.distillery.distillingTicks);
             }
 
             if (this.fuel != this.distillery.fuel) {
@@ -62,14 +63,14 @@ public class ContainerDistillery extends Container {
             }
         }
 
-        this.extractingTicks = this.distillery.extractingTicks;
+        this.distillingTicks = this.distillery.distillingTicks;
         this.fuel = this.distillery.fuel;
     }
 
     @Override
     public void updateProgressBar(int id, int value) {
         if (id == 0) {
-            this.distillery.extractingTicks = value;
+            this.distillery.distillingTicks = value;
         } else if (id == 1) {
             this.distillery.fuel = value;
         }
@@ -99,7 +100,7 @@ public class ContainerDistillery extends Container {
             }
             // places it into the tileEntity is possible since its in the player
             // inventory
-            else if (!this.mergeItemStack(stackInSlot, 0, 9, false)) {
+            else if (!this.mergeItemStack(stackInSlot, 1, 9, false)) {
                 return null;
             }
 

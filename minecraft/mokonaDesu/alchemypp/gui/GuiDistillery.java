@@ -37,42 +37,52 @@ public class GuiDistillery extends GuiContainer {
         int y = (height - ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
 
+        // The amount of fuel remaining for this particular burn
         int fuel = this.tileEntity.fuel;
+        // The total amount of fuel the burning item provides
+        int burntotal = this.tileEntity.burntotal;
+
+        int burnpercent = 0;
+        int burntextureheight = 0;
+        if (burntotal > 0 && fuel != 0) {
+            burnpercent = (int) (((double) fuel / (double) burntotal) * 100);
+            burntextureheight = (int) (14 * ((double) burnpercent / 100));
+        }
+
         fuel /= 4;
 
-        this.drawTexturedModalRect(x + 63, y + 42, 176, 38, 14,
-                (int) (fuel * 0.16f));
+        this.drawTexturedModalRect(x + 62, y + 55 - burntextureheight, 176,
+                52 - burntextureheight, 14, burntextureheight);
 
-        int percentage = (int) ((this.tileEntity.extractingTicks / 400f) * 100);
+        int processing = (int) ((this.tileEntity.distillingTicks / 400f) * 100);
 
-        if (percentage == 0)
+        if (processing == 0)
             return;
 
-        if (percentage <= 36)
-            this.drawTexturedModalRect(x + 70, y + 35 - (percentage / 2), 176,
-                    2, 1, (percentage / 2));
+        if (processing <= 36)
+            this.drawTexturedModalRect(x + 66, y + 8 - (processing / 2), 176,
+                    2, 1, (processing / 2));
         else
             this.drawTexturedModalRect(x + 70, y + 17, 176, 2, 1, 18);
 
-        if (percentage > 36 && percentage <= 50) {
+        if (processing > 36 && processing <= 50) {
             this.drawTexturedModalRect(x + 71, y + 15, 177, 0,
-                    (percentage - 36) / 2, 3);
-        } else if (percentage > 50) {
+                    (processing - 36) / 2, 3);
+        } else if (processing > 50) {
             this.drawTexturedModalRect(x + 71, y + 15, 177, 0, 7, 3);
         }
 
-        if (percentage > 50 && percentage <= 64) {
+        if (processing > 50 && processing <= 64) {
             this.drawTexturedModalRect(x + 98, y + 17, 176, 20,
-                    (percentage - 50) / 2, 1);
-        } else if (percentage > 64) {
+                    (processing - 50) / 2, 1);
+        } else if (processing > 64) {
             this.drawTexturedModalRect(x + 98, y + 17, 176, 20, 7, 1);
         }
 
-        if (percentage > 64) {
+        if (processing > 64) {
             this.drawTexturedModalRect(x + 105, y + 17, 183, 20, 3,
-                    (percentage - 64) / 2);
+                    (processing - 64) / 2);
         }
 
     }
-
 }

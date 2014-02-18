@@ -20,7 +20,7 @@ public class ContainerExtractor extends Container {
         this.addSlotToContainer(new Slot(extractor, 0, 80, 13)); // ingridient
         this.addSlotToContainer(new Slot(extractor, 1, 67, 37)); // in
         this.addSlotToContainer(new Slot(extractor, 2, 94, 37)); // out
-        this.addSlotToContainer(new SlotAlchemicalFuel(extractor, 3, 67, 56)); // fuel
+        this.addSlotToContainer(new Slot(extractor, 3, 67, 56)); // fuel
 
         int i;
 
