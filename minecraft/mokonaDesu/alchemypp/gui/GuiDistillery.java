@@ -56,6 +56,10 @@ public class GuiDistillery extends GuiContainer {
 
         int processing = (int) ((this.tileEntity.distillingTicks / 400f) * 100);
 
+        this.drawTexturedModalRect(x + 37 + 22
+                - (int) ((float) processing / 100 * 22), y + 23,
+                176 + 22 - (int) ((float) processing / 100 * 22), 42,
+                (int) ((float) processing / 100 * 22), 16);
         if (processing == 0)
             return;
 

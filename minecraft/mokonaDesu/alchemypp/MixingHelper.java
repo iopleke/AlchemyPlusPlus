@@ -131,6 +131,19 @@ public class MixingHelper {
             te.decrStackSize(1, 1);
             te.setInventorySlotContents(2, stack);
 
+            double byproductchance = Math.random() * 100;
+
+            if (byproductchance > 60) {
+                ItemStack byproduct = te.getStackInSlot(0);
+                if (byproduct == null) {
+                    byproduct = new ItemStack(Item.coal, 1, 1);
+                } else if (byproduct.itemID == 263
+                        && byproduct.getItemDamage() == 1) {
+                    byproduct.stackSize++;
+                }
+                te.setInventorySlotContents(0, byproduct);
+            }
+
         }
 
     }
