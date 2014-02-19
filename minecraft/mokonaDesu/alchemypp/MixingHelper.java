@@ -140,6 +140,9 @@ public class MixingHelper {
                 } else if (byproduct.itemID == 263
                         && byproduct.getItemDamage() == 1) {
                     byproduct.stackSize++;
+                    if (byproductchance > 95) {
+                        byproduct.stackSize++;
+                    }
                 }
                 te.setInventorySlotContents(0, byproduct);
             }
