@@ -29,6 +29,7 @@ public class BlockDistillery extends BlockContainer {
 
     @Override
     public void registerIcons(IconRegister iconRegister) {
+
         this.blockIcon = iconRegister.registerIcon("AlchemyPP:WIPLiquidMixer");
     }
 

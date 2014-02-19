@@ -51,37 +51,38 @@ public class GuiDistillery extends GuiContainer {
 
         fuel /= 4;
 
-        this.drawTexturedModalRect(x + 62, y + 55 - burntextureheight, 176,
-                52 - burntextureheight, 14, burntextureheight);
+        this.drawTexturedModalRect(x + 62, y + 55 - burntextureheight, 189,
+                14 - burntextureheight, 14, burntextureheight);
 
         int processing = (int) ((this.tileEntity.distillingTicks / 400f) * 100);
 
         if (processing == 0)
             return;
 
-        if (processing <= 36)
-            this.drawTexturedModalRect(x + 66, y + 8 - (processing / 2), 176,
+        if (processing <= 24) {
+            this.drawTexturedModalRect(x + 66, y + 21 - (processing / 2), 176,
                     2, 1, (processing / 2));
-        else
-            this.drawTexturedModalRect(x + 70, y + 17, 176, 2, 1, 18);
-
-        if (processing > 36 && processing <= 50) {
-            this.drawTexturedModalRect(x + 71, y + 15, 177, 0,
-                    (processing - 36) / 2, 3);
-        } else if (processing > 50) {
-            this.drawTexturedModalRect(x + 71, y + 15, 177, 0, 7, 3);
+        } else {
+            this.drawTexturedModalRect(x + 66, y + 9, 176, 2, 1, 12);
         }
 
-        if (processing > 50 && processing <= 64) {
-            this.drawTexturedModalRect(x + 98, y + 17, 176, 20,
-                    (processing - 50) / 2, 1);
-        } else if (processing > 64) {
-            this.drawTexturedModalRect(x + 98, y + 17, 176, 20, 7, 1);
+        if (processing > 24 && processing <= 48) {
+            this.drawTexturedModalRect(x + 67, y + 7, 177, 0,
+                    (processing - 24) / 2, 3);
+        } else if (processing > 48) {
+            this.drawTexturedModalRect(x + 67, y + 7, 177, 0, 12, 3);
         }
 
-        if (processing > 64) {
-            this.drawTexturedModalRect(x + 105, y + 17, 183, 20, 3,
-                    (processing - 64) / 2);
+        if (processing > 48 && processing <= 72) {
+            this.drawTexturedModalRect(x + 112, y + 9, 176, 14,
+                    (processing - 48) / 2, 1);
+        } else if (processing > 72) {
+            this.drawTexturedModalRect(x + 112, y + 9, 176, 14, 12, 1);
+        }
+
+        if (processing > 72) {
+            this.drawTexturedModalRect(x + 124, y + 9, 188, 14, 3,
+                    (processing - 72));
         }
 
     }

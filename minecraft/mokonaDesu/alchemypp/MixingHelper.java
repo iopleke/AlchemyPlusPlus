@@ -121,8 +121,8 @@ public class MixingHelper {
                 te.setInventorySlotContents(2, stack);
             }
 
-            int spiritbottlefull = te.getStackInSlot(2).getItemDamage() + 25;
-            if (te.getStackInSlot(2).getItemDamage() > 100) {
+            int spiritbottlefull = te.getStackInSlot(2).getItemDamage() + 2;
+            if (spiritbottlefull > 100) {
                 spiritbottlefull = 100;
             }
 
