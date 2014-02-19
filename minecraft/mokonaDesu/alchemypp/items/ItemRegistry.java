@@ -208,14 +208,6 @@ public class ItemRegistry {
                         BlockRegistry.appBlockOrichalcum)));
 
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(
-                appItemDistillery), "Bi ", "C b", "F S", 'B', new ItemStack(
-                Block.brewingStand), 'i', new ItemStack(Item.ingotIron), 'C',
-                new ItemStack(Block.cauldron), 'b', new ItemStack(
-                        appItemPotionBottle), 'F', new ItemStack(
-                        Block.furnaceIdle), 'S', new ItemStack(
-                        appItemBottleStand)));
-
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(
                 appItemExtractor), "iGi", "I O", "oOo", 'i', new ItemStack(
                 Block.blockGold), 'I', new ItemStack(Block.blockIron), 'g',
                 new ItemStack(Item.ingotGold), 'o', oreDictOrichalcum, 'O',
@@ -240,6 +232,15 @@ public class ItemRegistry {
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(
                 appItemBottleStand), "obo", "o-o", "o-o", 'o',
                 oreDictOrichalcum, 'b', new ItemStack(Block.fenceIron)));
+
+        GameRegistry.addRecipe(
+                new ItemStack(appItemDistillery, 1, 0),
+                new Object[] { "Bi-", "C-P", "F-S", Character.valueOf('B'),
+                        Item.brewingStand, Character.valueOf('i'),
+                        Item.ingotIron, Character.valueOf('C'), Item.cauldron,
+                        Character.valueOf('P'), appItemPotionBottle,
+                        Character.valueOf('F'), Block.furnaceIdle,
+                        Character.valueOf('S'), appItemBottleStand });
     }
 
     public static void registerHardcoreRecipes() {
