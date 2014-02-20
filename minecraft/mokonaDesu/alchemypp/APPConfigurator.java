@@ -27,14 +27,6 @@ public class APPConfigurator {
                 + "modifying vanilla recipes. (Best expirience achieved"
                 + " with naturalRegeneration - OFF gamerule)";
 
-        Property worldGenOre = alchemyPPConfig.get(
-                Configuration.CATEGORY_GENERAL, "generateOrichalcum", true);
-        AlchemyPP.generateOrichalcum = worldGenOre.getBoolean(true);
-        worldGenOre.comment = "Enables Alchemy++ generation of the Orichalcum ore. "
-                + "Turn this off only if you have some other replacement from Forge Ore Dictionary "
-                + "since Orichalcum "
-                + "is required in most of the Alchemy++ recipes.";
-
         APPIDManager.setup(alchemyPPConfig);
 
         alchemyPPConfig.save();

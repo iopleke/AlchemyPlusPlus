@@ -57,10 +57,6 @@ public class ItemRegistry {
             APPIDManager.nextItemID(), "AlchemyPP:Mixer").setUnlocalizedName(
             "mixerItem").setCreativeTab(AlchemyPP.alchemyPPTab);
 
-    // version 1.1
-
-    public static final String oreDictOrichalcum = "ingotOrichalcum";
-
     public static Item appItemPotion = null;
 
     public static final Item appItemSpirit = new ItemSpirit(
@@ -150,17 +146,17 @@ public class ItemRegistry {
 
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(
                 appItemPotionBottle), "gwg", "o o", "gog", 'g', new ItemStack(
-                Block.thinGlass), 'w', "logWood", 'o', oreDictOrichalcum));
+                Block.thinGlass), 'w', "logWood", 'o', Block.blockIron));
 
         GameRegistry.addRecipe(new ShapedOreRecipe(
                 new ItemStack(appItemFilter), " og", "oDo", "go ", 'g',
                 new ItemStack(Block.thinGlass), 'D',
-                new ItemStack(Item.diamond), 'o', oreDictOrichalcum));
+                new ItemStack(Item.diamond), 'o', Block.blockIron));
 
         GameRegistry.addRecipe(new ShapedOreRecipe(
                 new ItemStack(appItemFilter), "go ", "oDo", " og", 'g',
                 new ItemStack(Block.thinGlass), 'D',
-                new ItemStack(Item.diamond), 'o', oreDictOrichalcum));
+                new ItemStack(Item.diamond), 'o', Block.blockIron));
 
         GameRegistry.addShapelessRecipe(new ItemStack(appItemFishOil, 1, 0),
                 new ItemStack(Item.fishRaw), new ItemStack(Item.glassBottle));
@@ -168,27 +164,27 @@ public class ItemRegistry {
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(
                 appItemLiquidMixer), "x x", "xix", "oOo", 'x', new ItemStack(
                 Block.thinGlass), 'i', new ItemStack(Item.ingotIron), 'o',
-                oreDictOrichalcum, 'O', new ItemStack(Block.blockIron)));
+                Block.blockIron, 'O', new ItemStack(Block.blockIron)));
 
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(
                 appItemExtractor), "iGi", "I O", "oOo", 'i', new ItemStack(
                 Block.blockGold), 'I', new ItemStack(Block.blockIron), 'g',
-                new ItemStack(Item.ingotGold), 'o', oreDictOrichalcum, 'O',
+                new ItemStack(Item.ingotGold), 'o', Block.blockIron, 'O',
                 new ItemStack(Block.blockIron)));
 
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(
                 appItemSpiritLamp), "gog", "gsg", "gog", 'g', new ItemStack(
                 Block.thinGlass), 's', new ItemStack(Item.silk), 'o',
-                oreDictOrichalcum));
+                Block.blockIron));
 
         GameRegistry.addRecipe(new ShapedOreRecipe(
                 new ItemStack(appItemSprayer), "ofo", "-w-", "-w-", 'o',
-                oreDictOrichalcum, 'f', new ItemStack(appItemFilter), 'w',
+                Block.blockIron, 'f', new ItemStack(appItemFilter), 'w',
                 new ItemStack(Block.cloth)));
 
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(
-                appItemBottleStand), "obo", "o-o", "o-o", 'o',
-                oreDictOrichalcum, 'b', new ItemStack(Block.fenceIron)));
+                appItemBottleStand), "obo", "o-o", "o-o", 'o', Block.blockIron,
+                'b', new ItemStack(Block.fenceIron)));
 
         GameRegistry.addRecipe(
                 new ItemStack(appItemDistillery, 1, 0),

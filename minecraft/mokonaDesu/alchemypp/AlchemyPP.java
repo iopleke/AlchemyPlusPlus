@@ -30,7 +30,6 @@ public class AlchemyPP {
     @Instance("AlchemyPlusPlus")
     public static AlchemyPP instance = new AlchemyPP();
     public static APPGuiHandler guiHandler = new APPGuiHandler();
-    public static APPWorldGenerator worldGen = new APPWorldGenerator();
 
     @SidedProxy(clientSide = "mokonaDesu.alchemypp.client.ClientProxy", serverSide = "mokonaDesu.alchemypp.CommonProxy")
     public static CommonProxy proxy;
@@ -50,11 +49,6 @@ public class AlchemyPP {
      * Hardcore alchemy recipes
      */
     public static boolean hardcoreAlchemy = false;
-
-    /*
-     * Orichalcum generation enabled
-     */
-    public static boolean generateOrichalcum = true;
 
     /*
      * Adding the creative tab
@@ -98,7 +92,6 @@ public class AlchemyPP {
 
         NetworkRegistry.instance().registerGuiHandler(AlchemyPP.instance,
                 this.guiHandler);
-        GameRegistry.registerWorldGenerator(worldGen);
 
         APPEvents.registerEventHooks();
     }
