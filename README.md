@@ -11,7 +11,7 @@ I got permission form @mokonaDesu, screencap of it here: http://pics.jakimfett.c
 
 @todo - Add mod information, with crafting recipes, etc here.
 
-This code is licensed under the “Don’t be a jerk” non-commercial license. 
+This code is ©2014 jakimfett all rights reserved, and is licensed for use under the “Don’t be a jerk” non-commercial license.
 This means that you’re free to pretty much do what you like with the mod, including but not limited to:
 * Put the mod into your modpack
 * Download it for personal use
