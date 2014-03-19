@@ -6,9 +6,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
-public class ItemDistillery extends APPItem {
+public class ItemDiffuser extends APPItem {
 
-    public ItemDistillery(int id, String iconName) {
+    public ItemDiffuser(int id, String iconName) {
         super(id, iconName);
         this.maxStackSize = 1;
     }
@@ -18,7 +18,8 @@ public class ItemDistillery extends APPItem {
             int x, int y, int z, int par7, float par8, float par9, float par10) {
         if (world.isBlockSolidOnSide(x, y, z, ForgeDirection.UP)
                 && world.isAirBlock(x, y + 1, z)) {
-            world.setBlock(x, y + 1, z, BlockRegistry.appBlockDiffuser.blockID);
+            world.setBlock(x, y + 1, z,
+                    BlockRegistry.appBlockDistillery.blockID);
             stack.stackSize--;
             return true;
         } else

@@ -53,6 +53,10 @@ public class ItemRegistry {
             APPIDManager.nextItemID(), "AlchemyPP:Distillery")
             .setUnlocalizedName("distilleryItem").setCreativeTab(
                     AlchemyPP.alchemyPPTab);
+    public static final Item appItemDiffuser = new ItemDiffuser(
+            APPIDManager.nextItemID(), "AlchemyPP:Diffuser")
+            .setUnlocalizedName("diffuserItem").setCreativeTab(
+                    AlchemyPP.alchemyPPTab);
     public static final Item appItemLiquidMixer = new ItemLiquidMixer(
             APPIDManager.nextItemID(), "AlchemyPP:Mixer").setUnlocalizedName(
             "mixerItem").setCreativeTab(AlchemyPP.alchemyPPTab);
@@ -114,6 +118,9 @@ public class ItemRegistry {
 
         GameRegistry.registerItem(appItemDistillery, "distilleryItem");
         LanguageRegistry.addName(appItemDistillery, "Distillery");
+
+        GameRegistry.registerItem(appItemDiffuser, "diffuserItem");
+        LanguageRegistry.addName(appItemDiffuser, "Diffuser");
 
         GameRegistry.registerItem(appItemLiquidMixer, "mixerItem");
         LanguageRegistry.addName(appItemLiquidMixer, "Liquid Mixer");
@@ -194,14 +201,19 @@ public class ItemRegistry {
                         Character.valueOf('P'), appItemPotionBottle,
                         Character.valueOf('F'), Block.furnaceIdle,
                         Character.valueOf('S'), appItemBottleStand });
+
+        GameRegistry.addRecipe(new ItemStack(appItemDiffuser, 1, 0),
+                new Object[] { "--s", "-b-", "w--", Character.valueOf('s'),
+                        Item.silk, Character.valueOf('b'), Item.glassBottle,
+                        Character.valueOf('w'), Item.bowlEmpty });
     }
 
     public static void registerHardcoreRecipes() {
 
         System.out
-                .println("Alchemy++ is registering it's hardcore recipes! This requires modifyng vanilla recipe list.");
+                .println("Alchemy++ is registering its hardcore recipes! This requires modifyng vanilla recipe list.");
 
-        // first remove the standart vanilla ones!
+        // first remove the standard vanilla ones!
         ArrayList list = (ArrayList) CraftingManager.getInstance()
                 .getRecipeList();
 

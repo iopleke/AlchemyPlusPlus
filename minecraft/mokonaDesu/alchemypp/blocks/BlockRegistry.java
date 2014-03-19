@@ -16,6 +16,8 @@ public class BlockRegistry {
             APPIDManager.nextBlockID());
     public static final Block appBlockDistillery = new BlockDistillery(
             APPIDManager.nextBlockID());
+    public static final Block appBlockDiffuser = new BlockDiffuser(
+            APPIDManager.nextBlockID());
     public static final Block appBlockExtractor = new BlockExtractor(
             APPIDManager.nextBlockID());
     public static final Block appBlockFlesh = new BlockFlesh(
@@ -42,6 +44,9 @@ public class BlockRegistry {
 
         GameRegistry.registerBlock(appBlockDistillery, "blockDistillery");
         LanguageRegistry.addName(appBlockDistillery, "Distillery");
+
+        GameRegistry.registerBlock(appBlockDiffuser, "blockDiffuser");
+        LanguageRegistry.addName(appBlockDiffuser, "Diffuser");
 
         GameRegistry.registerBlock(appBlockFlesh, "blockFlesh");
         LanguageRegistry.addName(appBlockFlesh, "Block of Flesh");
