@@ -27,3 +27,21 @@ local.properties
 
 # PDT-specific
 .buildpath
+
+# Ignore the minecraft source files
+minecraft/Start.java
+minecraft/assets/forge/
+minecraft/cpw/
+minecraft/deobfuscation_data-1.6.4.lzma
+minecraft/fml_at.cfg
+minecraft/fml_marker.cfg
+minecraft/fmlversion.properties
+minecraft/forge_at.cfg
+minecraft/forge_logo.png
+minecraft/ibxm/
+minecraft/net/
+minecraft/paulscode/
+minecraft_server/
+
+# Ignore gedit backup files
+*.*~
