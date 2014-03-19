@@ -42,6 +42,7 @@ minecraft/ibxm/
 minecraft/net/
 minecraft/paulscode/
 minecraft_server/
+minecraft/mcpmod.info
 
 # Ignore gedit backup files
 *.*~
