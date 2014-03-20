@@ -1,94 +1,81 @@
 package mokonaDesu.alchemypp;
 
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import java.util.Arrays;
+
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
 
 public class APPIDManager {
+    private static String[] alchemyPPBlocks = { "distillery", "potionContainer", "diffuser", "liquidMixer", "flesh", "extractor" };
 
-	private static int currentBlockID = 1234;
-	private static int currentItemID = 12367;
-	private static int currentBlockIDHerbs = 1334;
-	private static int currentItemIDHerbs = 12467;
-	
-	public static void setup(Configuration config) {
+    private static int dynamicBlockID = 400;
+    private static int blockIDCounter = 0;
+    private static int[] usedBlockIDs = new int[alchemyPPBlocks.length];
 
-		 Property blockID = config.get(config.CATEGORY_GENERAL, "firstBlockID", "notFound");
-		 if (blockID.getString().equals("notFound")) {
-			blockID.set(currentBlockID);
-			
-			System.err.println("Alchemy++ could not load starting block ID" +
-					" from the config file! Default value of "
-					+ currentBlockID + " is set!");
-		 } else currentBlockID = blockID.getInt();
-			blockID.comment = "Starting block ID for all the blocks from Alchemy++ core." +
-					" (make sure to leave at least 10 free block ID's after first one" +
-					" for possible future updates)";
-		 
-		 Property itemID = config.get(config.CATEGORY_GENERAL, "firstItemID", "notFound");
-		 if (itemID.getString().equals("notFound")) {
-			 itemID.set(currentItemID);
-			 
-				System.err.println("Alchemy++ could not load starting item ID" +
-						" from the config file! Default value of "
-						+ currentItemID + " is set!");
-				
-		 } else currentItemID = itemID.getInt();
-			itemID.comment = "Starting item ID for all the items from Alchemy++ core." +
-					" (make sure to leave at least 30 free item ID's after first one" +
-					" for possible future updates)";
-		
-	}
-	
-	public static void setupHerbs(Configuration config) {
-		
-		Property herbsBlockID = config.get(config.CATEGORY_GENERAL, "firstHerbsBlockID", "notFound");
-		 if (herbsBlockID.getString().equals("notFound")) {
-			 herbsBlockID.set(currentBlockIDHerbs);
-				
-				System.err.println("Alchemy++ could not load starting block ID for herbs module" +
-						" from the config file! Default value of "
-						+ currentBlockIDHerbs + " is set!");
-			 } else currentBlockIDHerbs = herbsBlockID.getInt();
-			herbsBlockID.comment = "Starting block ID for all the blocks from Alchemy++ herbs module." +
-					" (make sure to leave at least 10 free block ID's after first one" +
-					" for possible future updates)";
-		
-		 Property herbsItemID = config.get(config.CATEGORY_GENERAL, "firstHerbsItemID", "notFound");
-		 
-		 if (herbsItemID.getString().equals("notFound")) {
-			 herbsItemID.set(currentItemIDHerbs);
-				
-				System.err.println("Alchemy++ could not load starting item ID for herbs module" +
-						" from the config file! Default value of "
-						+ currentItemIDHerbs + " is set!");
-			 } else currentItemIDHerbs = herbsItemID.getInt();
-			herbsItemID.comment = "Starting item ID for all the blocks from Alchemy++ herbs module." +
-					" (make sure to leave at least 10 free block ID's after first one" +
-					" for possible future updates)";
-		 
-	}
-	
-	public static int nextBlockID() {
-		currentBlockID++;
-		return currentBlockID - 1;
-	}
-	
-	public static int nextItemID() {
-		currentItemID++;
-		return currentItemID - 1;
-	}
-	
-	public static int nextBlockIDHerbs() {
-		currentBlockIDHerbs++;
-		return currentBlockIDHerbs - 1;
-	}
-	
-	public static int nextItemIDHerbs() {
-		currentItemIDHerbs++;
-		return currentItemIDHerbs - 1;
-	}
-	
-	
-	
+    private static int dynamicItemID = 2300;
+    private static int itemIDCounter = 0;
+    // @TODO - set the length of usedItemIDs dynamically
+    private static int[] usedItemIDs = new int[30];
+
+    public static void setup(Configuration config) {
+        Arrays.sort(alchemyPPBlocks);
+
+        for (String blockName : alchemyPPBlocks) {
+            // Attempt to get the default block ID from the config file
+            Property blockID = config.get(config.CATEGORY_BLOCK, blockName, 0);
+
+            if (blockID.getInt() == 0) {
+                System.err.println("Alchey++ did not find an ID for '" + blockName + "' in the config file!");
+
+                blockID.set(nextBlockID());
+            }
+        }
+
+    }
+
+    public static int nextBlockID() {
+        boolean blockIDInUse = checkIfBlockIDIsUsed(dynamicBlockID);
+        while (Block.blocksList[dynamicBlockID] != null || blockIDInUse) {
+            blockIDInUse = checkIfBlockIDIsUsed(dynamicBlockID);
+            System.err.println("Block ID '" + dynamicBlockID + "' is occupied, checking next ID...");
+            dynamicBlockID++;
+        }
+        System.err.println("Block ID set to " + dynamicBlockID);
+        usedBlockIDs[blockIDCounter] = dynamicBlockID;
+        blockIDCounter++;
+        return dynamicBlockID;
+    }
+
+    private static boolean checkIfBlockIDIsUsed(int blockIDToCheck) {
+        for (int singleUsedBlockID : usedBlockIDs) {
+            if (singleUsedBlockID == blockIDToCheck) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static int nextItemID() {
+        boolean itemIDInUse = checkIfItemIDIsUsed(dynamicItemID);
+        while (Item.itemsList[dynamicItemID] != null || itemIDInUse) {
+            itemIDInUse = checkIfItemIDIsUsed(dynamicItemID);
+            System.err.println("Item ID '" + dynamicItemID + "' is occupied, checking next ID...");
+            dynamicItemID++;
+        }
+        System.err.println("Item ID set to " + dynamicItemID);
+        usedItemIDs[itemIDCounter] = dynamicItemID;
+        itemIDCounter++;
+        return dynamicItemID;
+    }
+
+    private static boolean checkIfItemIDIsUsed(int itemIDToCheck) {
+        for (int singleUsedItemID : usedItemIDs) {
+            if (singleUsedItemID == itemIDToCheck) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
