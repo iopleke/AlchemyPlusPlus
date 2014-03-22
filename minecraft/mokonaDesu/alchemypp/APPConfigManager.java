@@ -99,13 +99,17 @@ public class APPConfigManager {
             appVanillaPotionOverride = appConfig.get(Configuration.CATEGORY_GENERAL, "appVanillaPotionOverride", false, "Enable this to override vanilla potion mechanics").getBoolean(false);
 
             // That wasn't so bad, now was it?
-            appConfig.save();
-
             setupCreativeTab();
 
         } catch (final Exception e) {
             System.err.println("Problem loading config");
 
+        } finally {
+            if (appConfig.hasChanged()) {
+                appConfig.save();
+            }
+
+            configLoaded = true;
         }
 
         // Use nextBlockID() to get the next possible block ID
