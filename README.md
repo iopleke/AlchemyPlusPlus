@@ -22,6 +22,3 @@ The above usage of the mod is granted to you as long as this licence remains int
 This licence also specifically requires that you do not try to make money off the code, derivatives of the code, compiled portions of the code, or anything having to do with the Alchemy++ mod. This specifically includes using AdFly and AdFly clones to get paid per click.
 Specific exceptions may be made if, for example, you make a cool tee-shirt design based off Alchemy++ and want to sell that, or are using Alchemy++ as a "donator perk" on your server, or other normal use cases.
 Ultimately, just don't be a jerk, and you'll be fine. I reserve the right to change this license at any time, although chances are I won't.
-
-
-JSONObject functionality is provided by JSON.simple, a simple java toolkit for JSON. Read more about JSON.simple on the google code site, at https://code.google.com/p/json-simple/
