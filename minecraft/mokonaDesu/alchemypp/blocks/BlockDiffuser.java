@@ -18,12 +18,15 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockDiffuser extends BlockContainer {
 
+    public boolean isDiffusing = false;
+
     public BlockDiffuser(int blockID) {
         super(blockID, Material.piston);
         this.setHardness(1.0F);
         this.setResistance(3.0F);
         this.setStepSound(soundStoneFootstep);
         this.setUnlocalizedName("appBlockDiffuser");
+        this.setBlockBounds(0.2F, 0F, 0.2F, 0.8F, 0.8F, 0.8F);
     }
 
     @Override
@@ -42,6 +45,13 @@ public class BlockDiffuser extends BlockContainer {
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int a, float b, float c, float g) {
         if (!world.isRemote) {
             // player.openGui(AlchemyPP.instance, 3, world, x, y, z);
+        }
+        if (player.isSneaking()) {
+            if (this.isDiffusing) {
+                this.isDiffusing = false;
+            } else {
+                this.isDiffusing = true;
+            }
         }
         return false;
     }
@@ -77,6 +87,11 @@ public class BlockDiffuser extends BlockContainer {
     @SideOnly(Side.CLIENT)
     public int idPicked(World par1World, int par2, int par3, int par4) {
         return ItemRegistry.appItemDiffuser.itemID;
+    }
+
+    @Override
+    public boolean renderAsNormalBlock() {
+        return false;
     }
 
 }

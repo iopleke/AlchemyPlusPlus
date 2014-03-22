@@ -18,6 +18,7 @@ public class TileEntityDiffuser extends TileEntity implements IInventory {
     public int diffusingTicks = 0;
 
     public int fluidLevel;
+    private boolean isDiffusing;
 
     @Override
     public int getInventoryStackLimit() {
@@ -149,7 +150,7 @@ public class TileEntityDiffuser extends TileEntity implements IInventory {
         }
     }
 
-    public boolean isActive() {
+    public boolean getFluidLevel() {
         return this.fluidLevel > 0;
     }
 
@@ -174,5 +175,9 @@ public class TileEntityDiffuser extends TileEntity implements IInventory {
             }
         }
         return false;
+    }
+
+    public boolean isDiffuserActive() {
+        return isDiffusing;
     }
 }

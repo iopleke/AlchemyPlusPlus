@@ -9,7 +9,8 @@ import net.minecraft.inventory.Slot;
 public class ContainerDiffuser extends Container {
 
     private final TileEntityDiffuser diffuser;
-    private final int fluidLevel = 0;
+    public final int fluidLevel = 0;
+    public final boolean isDiffusing = false;
 
     public ContainerDiffuser(InventoryPlayer playerInv, TileEntityDiffuser diffuser) {
         this.diffuser = diffuser;
