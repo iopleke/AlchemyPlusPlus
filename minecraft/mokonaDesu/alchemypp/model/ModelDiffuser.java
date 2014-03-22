@@ -6,57 +6,46 @@ import net.minecraft.entity.Entity;
 
 public class ModelDiffuser extends ModelBase {
 
-    ModelRenderer stand;
-    ModelRenderer boiler;
-    ModelRenderer tube;
-    ModelRenderer collecter;
+    ModelRenderer bowl;
+    ModelRenderer bottle;
+    ModelRenderer stopper;
 
     public ModelDiffuser() {
         textureWidth = 128;
         textureHeight = 32;
 
-        // Boiler. Eventually, will add copper and use that for construction
-        boiler = new ModelRenderer(this, 0, 0);
-        boiler.setTextureSize(textureWidth, textureHeight);
-        setRotation(boiler, 0F, 0F, 0F);
-        boiler.addBox(3, 9, 11, 2, 2, 2);
-        boiler.addBox(2, 3, 10, 4, 6, 4);
-        boiler.addBox(1, 4, 9, 6, 4, 6);
+        // Diffuser "bowl" base
+        bowl = new ModelRenderer(this, 0, 0);
+        bowl.setTextureSize(textureWidth, textureHeight);
+        setRotation(bowl, 0F, 0F, 0F);
+        bowl.addBox(5F, 0F, 5F, 6, 1, 6, 0.0F); // bottom layer
+        bowl.addBox(4F, 1F, 4F, 8, 2, 8, 0.0F); // middle layer
+        bowl.addBox(3F, 3F, 3F, 10, 2, 10, 0.0F); // top layer
+        // bowl.addBox(1, 4, 9, 6, 4, 6);
 
         // Stand for boiler
-        stand = new ModelRenderer(this, 24, 1);
-        stand.setTextureSize(textureWidth, textureHeight);
-        setRotation(stand, 0F, 0F, 0F);
-        stand.addBox(1, 0, 9, 6, 3, 6);
+        bottle = new ModelRenderer(this, 24, 1);
+        bottle.setTextureSize(textureWidth, textureHeight);
+        setRotation(bottle, 0F, 0F, 0F);
+        bottle.addBox(1, 0, 9, 6, 3, 6);
 
-        tube = new ModelRenderer(this, 0, 13);
-        tube.setTextureSize(textureWidth, textureHeight);
-        tube.setRotationPoint(5.7f, 13, 5);
-        setRotation(tube, 0F, 0.785f, 0F);
-        tube.addBox(-6, 0, 3, 10, 1, 1);
-        tube.addBox(-6, -3, 3, 1, 3, 1);
-        tube.addBox(3, -5, 3, 1, 5, 1);
-
-        collecter = new ModelRenderer(this, 58, 0);
-        collecter.setTextureSize(textureWidth, textureWidth);
-        setRotation(collecter, 0f, 0f, 0f);
-        collecter.addBox(9, 1, 3, 4, 1, 4);
-        collecter.addBox(8, 2, 2, 6, 3, 6);
-        collecter.addBox(9, 5, 3, 4, 1, 4);
-        collecter.addBox(10, 6, 4, 2, 2, 2);
-        collecter.addBox(9.5f, 7.5f, 3.5f, 3, 1, 3);
+        stopper = new ModelRenderer(this, 0, 13);
+        stopper.setTextureSize(textureWidth, textureHeight);
+        stopper.setRotationPoint(5.7f, 13, 5);
+        setRotation(stopper, 0F, 0.785f, 0F);
+        stopper.addBox(-6, 0, 3, 10, 1, 1);
+        stopper.addBox(-6, -3, 3, 1, 3, 1);
+        stopper.addBox(3, -5, 3, 1, 5, 1);
 
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3,
-            float f4, float f5) {
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         super.render(entity, f, f1, f2, f3, f4, f5);
         setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-        stand.render(f5);
-        boiler.render(f5);
-        tube.render(f5);
-        collecter.render(f5);
+        bowl.render(f5);
+        // bottle.render(f5);
+        // stopper.render(f5);
     }
 
     private void setRotation(ModelRenderer model, float x, float y, float z) {
@@ -66,8 +55,7 @@ public class ModelDiffuser extends ModelBase {
     }
 
     @Override
-    public void setRotationAngles(float f, float f1, float f2, float f3,
-            float f4, float f5, Entity e) {
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity e) {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, e);
     }
 
