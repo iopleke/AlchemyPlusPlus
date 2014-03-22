@@ -1,7 +1,7 @@
 package mokonaDesu.alchemypp.renderer;
 
 import mokonaDesu.alchemypp.blocks.BlockRegistry;
-import mokonaDesu.alchemypp.model.APPModel;
+import mokonaDesu.alchemypp.model.APPAlchemicalApparatusModel;
 import mokonaDesu.alchemypp.model.ModelBottleStand;
 import mokonaDesu.alchemypp.model.ModelLiquidMixer;
 import mokonaDesu.alchemypp.model.ModelSpiritlamp;
@@ -29,7 +29,7 @@ public class TileEntityAlchemicalApparatusRenderer extends TileEntitySpecialRend
 	//ModelBottleStand modelStand = new ModelBottleStand();
 	//ModelSprayer modelSprayer = new ModelSprayer();
 
-	APPModel[] modelList = {
+	APPAlchemicalApparatusModel[] modelList = {
 			new ModelSpiritlamp(),
 			new ModelBottleStand(),
 			new ModelSprayer()

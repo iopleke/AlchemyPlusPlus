@@ -8,7 +8,7 @@ import net.minecraft.potion.PotionHelper;
 
 import org.lwjgl.opengl.GL11;
 
-public class ModelBottleStand extends APPModel {
+public class ModelBottleStand extends APPAlchemicalApparatusModel {
 
     // fields
     ModelRenderer stand;
