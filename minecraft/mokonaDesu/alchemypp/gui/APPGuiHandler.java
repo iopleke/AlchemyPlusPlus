@@ -1,5 +1,7 @@
 package mokonaDesu.alchemypp.gui;
 
+import java.util.HashMap;
+
 import mokonaDesu.alchemypp.tileentities.ContainerDiffuser;
 import mokonaDesu.alchemypp.tileentities.ContainerDistillery;
 import mokonaDesu.alchemypp.tileentities.ContainerExtractor;
@@ -14,8 +16,11 @@ import cpw.mods.fml.common.network.IGuiHandler;
 
 public class APPGuiHandler implements IGuiHandler {
 
+    public static HashMap<String, Integer> guiHandlerRegistry = new HashMap<String, Integer>();
+
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+
         switch (ID) {
         case 0: { // Potion mixer
             TileEntityLiquidMixer entity = (TileEntityLiquidMixer) world.getBlockTileEntity(x, y, z);

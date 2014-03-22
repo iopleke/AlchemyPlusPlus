@@ -47,11 +47,9 @@ public class BlockDiffuser extends BlockContainer {
             // player.openGui(AlchemyPP.instance, 3, world, x, y, z);
         }
         if (player.isSneaking()) {
-            if (this.isDiffusing) {
-                this.isDiffusing = false;
-            } else {
-                this.isDiffusing = true;
-            }
+            TileEntityDiffuser entity = (TileEntityDiffuser) world.getBlockTileEntity(x, y, z);
+            world.setBlockMetadataWithNotify(x, y, z, 1, 3);
+            System.err.println("Diffuser is currently:" + entity.isDiffuserActive());
         }
         return false;
     }
@@ -92,6 +90,11 @@ public class BlockDiffuser extends BlockContainer {
     @Override
     public boolean renderAsNormalBlock() {
         return false;
+    }
+
+    @Override
+    public boolean hasTileEntity(int metadata) {
+        return true;
     }
 
 }

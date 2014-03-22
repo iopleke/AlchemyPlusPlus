@@ -18,7 +18,7 @@ public class TileEntityDiffuser extends TileEntity implements IInventory {
     public int diffusingTicks = 0;
 
     public int fluidLevel;
-    private boolean isDiffusing;
+    private boolean isDiffusing = false;
 
     @Override
     public int getInventoryStackLimit() {
@@ -125,6 +125,7 @@ public class TileEntityDiffuser extends TileEntity implements IInventory {
         super.writeToNBT(par1NBTTagCompound);
         par1NBTTagCompound.setShort("diffusingTicks", (short) this.diffusingTicks);
         par1NBTTagCompound.setShort("fluidLevel", (short) this.fluidLevel);
+        par1NBTTagCompound.setBoolean("isDiffusing", this.isDiffusing);
         NBTTagList nbttaglist = new NBTTagList();
 
         for (int i = 0; i < this.diffuserInventory.length; ++i) {
@@ -179,5 +180,9 @@ public class TileEntityDiffuser extends TileEntity implements IInventory {
 
     public boolean isDiffuserActive() {
         return isDiffusing;
+    }
+
+    public void toggleDiffusingState() {
+        isDiffusing = !isDiffusing;
     }
 }
