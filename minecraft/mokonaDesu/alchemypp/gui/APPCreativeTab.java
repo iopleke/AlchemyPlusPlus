@@ -7,8 +7,8 @@ import mokonaDesu.alchemypp.items.ItemRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class AlchemyPPCreativeTab extends CreativeTabs {
-    public AlchemyPPCreativeTab(int par1, String par2Str) {
+public class APPCreativeTab extends CreativeTabs {
+    public APPCreativeTab(int par1, String par2Str) {
         super(par1, par2Str);
     }
 

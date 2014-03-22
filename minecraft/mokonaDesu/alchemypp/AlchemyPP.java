@@ -3,14 +3,12 @@ package mokonaDesu.alchemypp;
 import mokonaDesu.alchemypp.blocks.BlockRegistry;
 import mokonaDesu.alchemypp.client.APPClientPacketHandler;
 import mokonaDesu.alchemypp.gui.APPGuiHandler;
-import mokonaDesu.alchemypp.gui.AlchemyPPCreativeTab;
 import mokonaDesu.alchemypp.items.ItemRegistry;
 import mokonaDesu.alchemypp.tileentities.TileEntityAlchemicalApparatus;
 import mokonaDesu.alchemypp.tileentities.TileEntityDistillery;
 import mokonaDesu.alchemypp.tileentities.TileEntityExtractor;
 import mokonaDesu.alchemypp.tileentities.TileEntityLiquidMixer;
 import mokonaDesu.alchemypp.tileentities.TileEntityPotionContainer;
-import net.minecraft.creativetab.CreativeTabs;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -35,32 +33,14 @@ public class AlchemyPP {
     public static CommonProxy proxy;
 
     /*
-     * Is base potion class overrided with APP potion class to provide extra
-     * functionality (WIP)
-     */
-    public static boolean potionOverride = false;
-
-    /*
      * Herbs addon loaded
      */
     public static boolean herbs = false;
 
-    /*
-     * Hardcore alchemy recipes
-     */
-    public static boolean hardcoreAlchemy = false;
-
-    /*
-     * Adding the creative tab
-     */
-    public static CreativeTabs alchemyPPTab;
-
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
 
-        APPConfigurator.loadConfig(event);
-        alchemyPPTab = new AlchemyPPCreativeTab(CreativeTabs.getNextID(),
-                "Alchemy++");
+        APPConfigManager.initialSetup(event.getSuggestedConfigurationFile());
 
     }
 
@@ -68,16 +48,11 @@ public class AlchemyPP {
     public void load(FMLInitializationEvent event) {
 
         proxy.registerRenderers();
-        GameRegistry.registerTileEntity(TileEntityPotionContainer.class,
-                "potionKegTE");
-        GameRegistry.registerTileEntity(TileEntityLiquidMixer.class,
-                "LiquidMixerTE");
-        GameRegistry.registerTileEntity(TileEntityExtractor.class,
-                "ExtractorTE");
-        GameRegistry.registerTileEntity(TileEntityDistillery.class,
-                "DistilleryTE");
-        GameRegistry.registerTileEntity(TileEntityAlchemicalApparatus.class,
-                "AlchemicalApparatusTE");
+        GameRegistry.registerTileEntity(TileEntityPotionContainer.class, "potionKegTE");
+        GameRegistry.registerTileEntity(TileEntityLiquidMixer.class, "LiquidMixerTE");
+        GameRegistry.registerTileEntity(TileEntityExtractor.class, "ExtractorTE");
+        GameRegistry.registerTileEntity(TileEntityDistillery.class, "DistilleryTE");
+        GameRegistry.registerTileEntity(TileEntityAlchemicalApparatus.class, "AlchemicalApparatusTE");
 
         BlockRegistry.registerBlocks();
         ItemRegistry.registerItems();
@@ -87,11 +62,10 @@ public class AlchemyPP {
 
         // Book.loadAll();
 
-        if (hardcoreAlchemy)
+        if (APPConfigManager.appHardcoreModeEnabled) {
             ItemRegistry.registerHardcoreRecipes();
-
-        NetworkRegistry.instance().registerGuiHandler(AlchemyPP.instance,
-                this.guiHandler);
+        }
+        NetworkRegistry.instance().registerGuiHandler(AlchemyPP.instance, this.guiHandler);
 
         APPEvents.registerEventHooks();
     }

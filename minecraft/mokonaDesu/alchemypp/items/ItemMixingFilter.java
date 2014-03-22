@@ -3,7 +3,7 @@ package mokonaDesu.alchemypp.items;
 import java.util.List;
 import java.util.Random;
 
-import mokonaDesu.alchemypp.AlchemyPP;
+import mokonaDesu.alchemypp.APPConfigManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -18,28 +18,15 @@ public class ItemMixingFilter extends APPItem {
         this.isDamageable();
         this.maxStackSize = 1;
         this.setNoRepair();
-        this.setCreativeTab(AlchemyPP.alchemyPPTab);
+        this.setCreativeTab(APPConfigManager.appCreativeTab);
     }
 
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List list,
-            boolean par4) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
         if (isRevealed(stack)) {
-            list.add((stack.getTagCompound().getFloat("DurationDegradeFactor") > 0.6f ? EnumChatFormatting.DARK_RED
-                    : stack.getTagCompound().getFloat("DurationDegradeFactor") > 0.3f ? EnumChatFormatting.GOLD
-                            : EnumChatFormatting.DARK_GREEN)
-                    + "Time degrade factor: "
-                    + ((int) (stack.getTagCompound().getFloat(
-                            "DurationDegradeFactor") * 100)) + "%");
+            list.add((stack.getTagCompound().getFloat("DurationDegradeFactor") > 0.6f ? EnumChatFormatting.DARK_RED : stack.getTagCompound().getFloat("DurationDegradeFactor") > 0.3f ? EnumChatFormatting.GOLD : EnumChatFormatting.DARK_GREEN) + "Time degrade factor: " + ((int) (stack.getTagCompound().getFloat("DurationDegradeFactor") * 100)) + "%");
 
-            list.add((stack.getTagCompound().getFloat("LevelDegradeFactor") > 0.6f ? EnumChatFormatting.DARK_RED
-                    : stack.getTagCompound().getFloat("LevelDegradeFactor") > 0.3f ? EnumChatFormatting.GOLD
-                            : EnumChatFormatting.DARK_GREEN)
-                    + "Level degrade factor: "
-                    + ((int) (stack.getTagCompound().getFloat(
-                            "LevelDegradeFactor") * 100))
-                    + "%"
-                    + EnumChatFormatting.RESET);
+            list.add((stack.getTagCompound().getFloat("LevelDegradeFactor") > 0.6f ? EnumChatFormatting.DARK_RED : stack.getTagCompound().getFloat("LevelDegradeFactor") > 0.3f ? EnumChatFormatting.GOLD : EnumChatFormatting.DARK_GREEN) + "Level degrade factor: " + ((int) (stack.getTagCompound().getFloat("LevelDegradeFactor") * 100)) + "%" + EnumChatFormatting.RESET);
             if (stack.getTagCompound().getBoolean("GoodBoost"))
                 list.add("Buff Booster");
             else if (stack.getTagCompound().getBoolean("BadBoost"))
@@ -92,13 +79,11 @@ public class ItemMixingFilter extends APPItem {
     }
 
     public static boolean hasCustomInfo(ItemStack stack) {
-        return (stack.hasTagCompound() && stack.getTagCompound().getBoolean(
-                "CustomFilterInfo"));
+        return (stack.hasTagCompound() && stack.getTagCompound().getBoolean("CustomFilterInfo"));
     }
 
     public static boolean isRevealed(ItemStack stack) {
-        return (stack.hasTagCompound() && stack.getTagCompound().getBoolean(
-                "Revealed"));
+        return (stack.hasTagCompound() && stack.getTagCompound().getBoolean("Revealed"));
     }
 
     public static float getTimeDegradeFactor(ItemStack stack) {
@@ -110,9 +95,7 @@ public class ItemMixingFilter extends APPItem {
     }
 
     @Override
-    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world,
-            int par4, int par5, int par6, int par7, float par8, float par9,
-            float par10) {
+    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int par4, int par5, int par6, int par7, float par8, float par9, float par10) {
         if (isRevealed(stack))
             return false;
         else {
