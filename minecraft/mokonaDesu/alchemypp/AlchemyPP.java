@@ -5,6 +5,7 @@ import mokonaDesu.alchemypp.client.APPClientPacketHandler;
 import mokonaDesu.alchemypp.gui.APPGuiHandler;
 import mokonaDesu.alchemypp.items.ItemRegistry;
 import mokonaDesu.alchemypp.tileentities.TileEntityAlchemicalApparatus;
+import mokonaDesu.alchemypp.tileentities.TileEntityDiffuser;
 import mokonaDesu.alchemypp.tileentities.TileEntityDistillery;
 import mokonaDesu.alchemypp.tileentities.TileEntityExtractor;
 import mokonaDesu.alchemypp.tileentities.TileEntityLiquidMixer;
@@ -52,6 +53,7 @@ public class AlchemyPP {
         GameRegistry.registerTileEntity(TileEntityLiquidMixer.class, "LiquidMixerTE");
         GameRegistry.registerTileEntity(TileEntityExtractor.class, "ExtractorTE");
         GameRegistry.registerTileEntity(TileEntityDistillery.class, "DistilleryTE");
+        GameRegistry.registerTileEntity(TileEntityDiffuser.class, "DiffuserTE");
         GameRegistry.registerTileEntity(TileEntityAlchemicalApparatus.class, "AlchemicalApparatusTE");
 
         BlockRegistry.registerBlocks();

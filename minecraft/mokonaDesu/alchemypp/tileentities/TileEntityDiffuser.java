@@ -11,18 +11,17 @@ import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityFurnace;
 
 public class TileEntityDiffuser extends TileEntity implements IInventory {
-    private ItemStack[] diffuserInventory = new ItemStack[4];
+    private ItemStack[] diffuserInventory = new ItemStack[1];
 
     public int diffusingTicks = 0;
-    public int fuel = 0;
-    public int burntotal = 1;
+
+    public int fluidLevel;
 
     @Override
     public int getInventoryStackLimit() {
-        return 64;
+        return 1;
     }
 
     @Override
@@ -92,8 +91,7 @@ public class TileEntityDiffuser extends TileEntity implements IInventory {
     public Packet getDescriptionPacket() {
         NBTTagCompound nbtTag = new NBTTagCompound();
         this.writeToNBT(nbtTag);
-        return new Packet132TileEntityData(this.xCoord, this.yCoord,
-                this.zCoord, 1, nbtTag);
+        return new Packet132TileEntityData(this.xCoord, this.yCoord, this.zCoord, 1, nbtTag);
     }
 
     @Override
@@ -108,27 +106,24 @@ public class TileEntityDiffuser extends TileEntity implements IInventory {
         this.diffuserInventory = new ItemStack[this.getSizeInventory()];
 
         for (int i = 0; i < nbttaglist.tagCount(); ++i) {
-            NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist
-                    .tagAt(i);
+            NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.tagAt(i);
             byte b0 = nbttagcompound1.getByte("Slot");
 
             if (b0 >= 0 && b0 < this.diffuserInventory.length) {
-                this.diffuserInventory[b0] = ItemStack
-                        .loadItemStackFromNBT(nbttagcompound1);
+                this.diffuserInventory[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
             }
         }
 
         this.diffusingTicks = par1NBTTagCompound.getShort("diffusingTicks");
-        this.fuel = par1NBTTagCompound.getShort("fuel");
+        this.fluidLevel = par1NBTTagCompound.getShort("fluidLevel");
 
     }
 
     @Override
     public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
         super.writeToNBT(par1NBTTagCompound);
-        par1NBTTagCompound.setShort("diffusingTicks",
-                (short) this.diffusingTicks);
-        par1NBTTagCompound.setShort("fuel", (short) this.fuel);
+        par1NBTTagCompound.setShort("diffusingTicks", (short) this.diffusingTicks);
+        par1NBTTagCompound.setShort("fluidLevel", (short) this.fluidLevel);
         NBTTagList nbttaglist = new NBTTagList();
 
         for (int i = 0; i < this.diffuserInventory.length; ++i) {
@@ -146,23 +141,16 @@ public class TileEntityDiffuser extends TileEntity implements IInventory {
 
     @Override
     public void updateEntity() {
-        if (this.fuel == 0 && this.getStackInSlot(3) != null
-                && this.getStackInSlot(1) != null
-                && this.getStackInSlot(2) != null
-                && this.getStackInSlot(2).getItemDamage() != 100) {
-
-            this.fuel = TileEntityFurnace.getItemBurnTime(this
-                    .getStackInSlot(3));
-            this.burntotal = fuel;
-            this.decrStackSize(3, 1);
+        if (this.fluidLevel != 100 && this.getStackInSlot(0) != null) {
+            // Check to see if it's a load-able fluid here
         }
-        this.fuel--;
-        if (fuel < 0)
-            fuel = 0;
+        if (fluidLevel < 0) {
+            fluidLevel = 0;
+        }
     }
 
     public boolean isActive() {
-        return this.fuel > 0;
+        return this.fluidLevel > 0;
     }
 
     @Override
@@ -180,17 +168,8 @@ public class TileEntityDiffuser extends TileEntity implements IInventory {
 
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack) {
-        if (slot == 3) {
-            if (TileEntityFurnace.getItemBurnTime(stack) > 0) {
-                return true;
-            }
-        } else if (slot == 1) {
-            if (stack.itemID == 17) {
-                return true;
-            }
-        } else if (slot == 2) {
-            if (stack.itemID == Item.glassBottle.itemID
-                    || stack.itemID == ItemRegistry.appItemSpirit.itemID) {
+        if (slot == 1) {
+            if (stack.itemID == Item.glassBottle.itemID || stack.itemID == ItemRegistry.appItemSpirit.itemID) {
                 return true;
             }
         }
