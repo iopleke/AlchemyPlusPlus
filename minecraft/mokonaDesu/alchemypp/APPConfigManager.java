@@ -54,6 +54,7 @@ public class APPConfigManager {
     public static Configuration appConfig;
     public static CreativeTabs appCreativeTab;
     private static boolean configLoaded;
+    public static boolean appDebugMode;
 
     public static void initialSetup(File config) {
 
@@ -97,6 +98,7 @@ public class APPConfigManager {
             appHardcoreModeEnabled = appConfig.get(Configuration.CATEGORY_GENERAL, "appHardcoreModeEnabled", false, "Enable hardcore game mechanic, making the game more challenging").getBoolean(false);
             appVanillaBrewingOverride = appConfig.get(Configuration.CATEGORY_GENERAL, "appVanillaBrewingOverride", false, "Enable this to override vanilla brewing mechanics").getBoolean(false);
             appVanillaPotionOverride = appConfig.get(Configuration.CATEGORY_GENERAL, "appVanillaPotionOverride", false, "Enable this to override vanilla potion mechanics").getBoolean(false);
+            appDebugMode = appConfig.get(Configuration.CATEGORY_GENERAL, "appDebugMode", false, "Enable extra logging (May spam your console. You've been warned.)").getBoolean(false);
 
             // That wasn't so bad, now was it?
             setupCreativeTab();
@@ -124,10 +126,14 @@ public class APPConfigManager {
         boolean blockIDInUse = usedBlockIDs.containsKey(dynamicBlockID);
         while (Block.blocksList[dynamicBlockID] != null || blockIDInUse) {
             blockIDInUse = usedBlockIDs.containsKey(dynamicBlockID);
-            System.err.println("Block ID '" + dynamicBlockID + "' is occupied, checking next ID...");
+            if (appDebugMode) {
+                System.err.println("Alchemy++: Block ID '" + dynamicBlockID + "' is occupied, checking next ID...");
+            }
             dynamicBlockID++;
         }
-        System.err.println("Block ID set to " + dynamicBlockID);
+        if (appDebugMode) {
+            System.err.println("Alchemy++: Block ID set to " + dynamicBlockID);
+        }
         usedBlockIDs.put(dynamicBlockID, true);
         return dynamicBlockID;
     }
@@ -136,10 +142,14 @@ public class APPConfigManager {
         boolean itemIDInUse = usedItemIDs.containsKey(dynamicItemID);
         while (Item.itemsList[dynamicItemID] != null || itemIDInUse) {
             itemIDInUse = usedItemIDs.containsKey(dynamicItemID);
-            System.err.println("Item ID '" + dynamicItemID + "' is occupied, checking next ID...");
+            if (appDebugMode) {
+                System.err.println("Alchemy++: Item ID '" + dynamicItemID + "' is occupied, checking next ID...");
+            }
             dynamicItemID++;
         }
-        System.err.println("Item ID set to " + dynamicItemID);
+        if (appDebugMode) {
+            System.err.println("Alchemy++: Item ID set to " + dynamicItemID);
+        }
         usedItemIDs.put(dynamicItemID, true);
         return dynamicItemID;
     }
