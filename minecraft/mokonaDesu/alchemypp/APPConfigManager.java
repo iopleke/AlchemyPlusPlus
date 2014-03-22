@@ -53,12 +53,12 @@ public class APPConfigManager {
     // Configuration variables
     public static Configuration appConfig;
     public static CreativeTabs appCreativeTab;
-    private static boolean configLoaded;
+    private static boolean appConfigLoaded;
     public static boolean appDebugMode;
 
     public static void initialSetup(File config) {
 
-        if (!configLoaded) {
+        if (!appConfigLoaded) {
             appConfig = new Configuration(config);
         }
 
@@ -111,7 +111,7 @@ public class APPConfigManager {
                 appConfig.save();
             }
 
-            configLoaded = true;
+            appConfigLoaded = true;
         }
 
         // Use nextBlockID() to get the next possible block ID
