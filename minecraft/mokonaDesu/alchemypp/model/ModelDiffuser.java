@@ -75,7 +75,7 @@ public class ModelDiffuser extends ModelBase {
 
         GL11.glColor3f(red, green, blue);
         // Don't render the liquid if the color is 0
-        if (potionColor > 0) {
+        if (potionColor != 0 && potionDamage != 0) {
             liquid.render(f5);
         }
         // Set the color back to 'white'
