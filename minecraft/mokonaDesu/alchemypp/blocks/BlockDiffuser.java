@@ -12,7 +12,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPotion;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionHelper;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
@@ -57,7 +56,7 @@ public class BlockDiffuser extends BlockContainer {
                     // player.openGui(AlchemyPP.instance, 3, world, x, y, z);
                 }
                 diffuserTE.potionStack = player.getHeldItem().copy();
-                diffuserTE.setBottleColorValue(PotionHelper.func_77915_a(diffuserTE.potionStack.getItemDamage(), false));
+                diffuserTE.setBottleColorValue(diffuserTE.potionStack.getItemDamage());
                 if (!player.capabilities.isCreativeMode && !player.isSneaking()) {
                     player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack(Item.glassBottle);
                 }

@@ -43,7 +43,7 @@ public class TileEntityDiffuserRenderer extends TileEntitySpecialRenderer {
 
         bindTexture(new ResourceLocation("AlchemyPP:textures/blocks/Diffuser.png"));
         this.diffuserModel.isDiffusing = diffuserTE.isDiffuserActive();
-        this.diffuserModel.potionColor = diffuserTE.bottleColor;
+        this.diffuserModel.potionDamage = diffuserTE.bottleColor;
         this.diffuserModel.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
         GL11.glPopMatrix();
     }

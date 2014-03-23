@@ -3,6 +3,7 @@ package mokonaDesu.alchemypp.model;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.potion.PotionHelper;
 
 import org.lwjgl.opengl.GL11;
 
@@ -14,6 +15,7 @@ public class ModelDiffuser extends ModelBase {
     ModelRenderer stopper;
     public int potionColor = 0;
     public boolean isDiffusing = false;
+    public int potionDamage = 0;
 
     public ModelDiffuser() {
         textureWidth = 128;
@@ -66,6 +68,7 @@ public class ModelDiffuser extends ModelBase {
         bowl.render(f5);
 
         // Calculate the colors
+        potionColor = PotionHelper.func_77915_a(potionDamage, false);
         red = (potionColor >> 16 & 255) / 255f;
         green = (potionColor >> 8 & 255) / 255f;
         blue = (potionColor >> 0 & 255) / 255f;
