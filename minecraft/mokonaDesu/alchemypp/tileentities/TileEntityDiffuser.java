@@ -14,7 +14,7 @@ import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityDiffuser extends TileEntity implements IInventory {
-    private ItemStack[] diffuserInventory = new ItemStack[1];
+    private final ItemStack[] diffuserInventory = new ItemStack[1];
 
     public int diffusingTicks = 0;
 
@@ -109,29 +109,38 @@ public class TileEntityDiffuser extends TileEntity implements IInventory {
     public void readFromNBT(NBTTagCompound diffuserNBTData) {
         super.readFromNBT(diffuserNBTData);
         NBTTagList nbttaglist = diffuserNBTData.getTagList("Items");
-        this.diffuserInventory = new ItemStack[this.getSizeInventory()];
-
-        for (int i = 0; i < nbttaglist.tagCount(); ++i) {
-            NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.tagAt(i);
-            byte b0 = nbttagcompound1.getByte("Slot");
-
-            if (b0 >= 0 && b0 < this.diffuserInventory.length) {
-                this.diffuserInventory[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
-            }
-        }
 
         this.diffusingTicks = diffuserNBTData.getShort("diffusingTicks");
         this.fluidLevel = diffuserNBTData.getShort("fluidLevel");
+
         this.isDiffusing = diffuserNBTData.getBoolean("isDiffusing");
 
+        System.err.println("The potionStackDamage is: " + diffuserNBTData.getInteger("potionStackDamage"));
+        potionStack = new ItemStack(Item.potion.itemID, 1, diffuserNBTData.getInteger("potionStackDamage"));
+        bottleColor = diffuserNBTData.getInteger("bottleColor");
+
+        // Without this check, diffusers give free water bottles
+        if (potionStack.getItemDamage() == 0) {
+            potionStack = null;
+            bottleColor = 0;
+        }
     }
 
     @Override
     public void writeToNBT(NBTTagCompound diffuserNBTData) {
         super.writeToNBT(diffuserNBTData);
+
         diffuserNBTData.setShort("diffusingTicks", (short) this.diffusingTicks);
         diffuserNBTData.setShort("fluidLevel", (short) this.fluidLevel);
         diffuserNBTData.setBoolean("isDiffusing", this.isDiffusing);
+
+        if (potionStack != null) {
+            diffuserNBTData.setInteger("potionStackDamage", potionStack.getItemDamage());
+        }
+
+        if (bottleColor != 0) {
+            diffuserNBTData.setInteger("bottleColor", bottleColor);
+        }
 
         NBTTagList nbttaglist = new NBTTagList();
 
