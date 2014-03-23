@@ -156,8 +156,12 @@ public class TileEntityDiffuser extends TileEntity implements IInventory {
         }
     }
 
-    public boolean getFluidLevel() {
+    public boolean hasFluidLevel() {
         return this.fluidLevel > 0;
+    }
+
+    public int getFluidLevel() {
+        return this.fluidLevel;
     }
 
     @Override

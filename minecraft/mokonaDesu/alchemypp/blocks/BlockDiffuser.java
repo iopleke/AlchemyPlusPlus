@@ -49,7 +49,7 @@ public class BlockDiffuser extends BlockContainer {
 
         TileEntityDiffuser diffuserTE = (TileEntityDiffuser) world.getBlockTileEntity(x, y, z);
 
-        if (player.getHeldItem() != null && player.getHeldItem().itemID == Item.potion.itemID) {
+        if (player.getHeldItem() != null && player.getHeldItem().itemID == Item.potion.itemID && player.getHeldItem().getItemDamage() != 0) {
             if (diffuserTE.potionStack == null) {
                 if (!world.isRemote) {
                     player.addChatMessage("You pour the potion into the diffuser.");
@@ -67,21 +67,37 @@ public class BlockDiffuser extends BlockContainer {
             } else {
 
                 if (!world.isRemote) {
-                    player.addChatMessage("The duffuser is too full to hold any more liquid");
+                    player.addChatMessage("The diffuser is too full to hold any more liquid");
                 }
             }
         } else if (player.getHeldItem() != null && player.getHeldItem().itemID == Item.glassBottle.itemID) {
 
             if (diffuserTE.potionStack != null) {
-                player.inventory.mainInventory[player.inventory.currentItem] = diffuserTE.potionStack;
+                if (diffuserTE.getFluidLevel() > 9) {
+                    player.inventory.mainInventory[player.inventory.currentItem] = diffuserTE.potionStack;
 
-                // Wiping the diffuser data
-                diffuserTE.potionStack = null;
-                diffuserTE.setBottleColorValue(0);
-                if (diffuserTE.isDiffuserActive()) {
-                    diffuserTE.toggleDiffusingState();
+                    // Wiping the diffuser data
+                    diffuserTE.potionStack = null;
+                    diffuserTE.setBottleColorValue(0);
+                    if (diffuserTE.isDiffuserActive()) {
+                        diffuserTE.toggleDiffusingState();
+                    }
+                } else {
+                    if (!world.isRemote) {
+                        player.addChatMessage("There doesn't seem to be enough to refill your bottle");
+                    }
                 }
             }
+        } else if (player.getHeldItem() != null && player.getHeldItem().itemID == Item.potion.itemID && player.getHeldItem().getItemDamage() == 0) {
+            if (!player.capabilities.isCreativeMode) {
+                player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack(Item.glassBottle);
+            }
+            diffuserTE.potionStack = null;
+            diffuserTE.setBottleColorValue(0);
+            if (diffuserTE.isDiffuserActive()) {
+                diffuserTE.toggleDiffusingState();
+            }
+
         } else if (diffuserTE.canDiffuse() || diffuserTE.isDiffuserActive()) {
             String action;
             if (diffuserTE.isDiffuserActive()) {
