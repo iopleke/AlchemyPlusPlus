@@ -3,6 +3,7 @@ package mokonaDesu.alchemypp.model;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.potion.PotionHelper;
 
 import org.lwjgl.opengl.GL11;
 
@@ -30,26 +31,27 @@ public class ModelDiffuser extends ModelBase {
         bowl.addBox(4, 1, 4, 8, 2, 8, 0); // middle layer
         bowl.addBox(3, 3, 3, 10, 2, 10, 0); // top layer
 
+        // Bottle liquid
+        liquid = new ModelRenderer(this, 0, 20);
+        liquid.setTextureSize(textureWidth, textureHeight);
+        setRotation(liquid, 0.4F, 0, 0);
+        liquid.addBox(6, 5, 3, 4, 5, 4);
+
         // Bottle
         bottle = new ModelRenderer(this, 40, 0);
         bottle.setTextureSize(textureWidth, textureHeight);
         setRotation(bottle, 0.4F, 0, 0);
         bottle.addBox(6, 4, 3, 4, 1, 4); // lower portion of the bottle
-        // bottle.addBox(5, 5, 2, 6, 4, 6); // middle portion of the bottle
-        bottle.addBox(6, 9, 3, 4, 1, 4); // top portion of the bottle
-        bottle.addBox(7, 10, 4, 2, 2, 2); // neck portion of the bottle
-        bottle.addBox(6, 12, 3, 4, 1, 4); // lip portion of the bottle
-
-        liquid = new ModelRenderer(this, 0, 20);
-        liquid.setTextureSize(this.textureWidth, this.textureHeight);
-        setRotation(liquid, 0.4F, 0, 0);
-        liquid.addBox(6, 5, 3, 4, 4, 4);
+        bottle.addBox(5, 5, 2, 6, 5, 6); // middle portion of the bottle
+        bottle.addBox(6, 10, 3, 4, 1, 4); // top portion of the bottle
+        bottle.addBox(7, 11, 4, 2, 2, 2); // neck portion of the bottle
+        bottle.addBox(6, 13, 3, 4, 1, 4); // lip portion of the bottle
 
         stopper = new ModelRenderer(this, 6, 6);
         stopper.setTextureSize(textureWidth, textureHeight);
         // stopper.setRotationPoint(5.7f, 13, 5);
         setRotation(stopper, 0.4F, 0, 0);
-        stopper.addBox(7, 12, 4, 2, 2, 2); // stopper portion of the bottle
+        stopper.addBox(7, 13, 4, 2, 2, 2); // stopper portion of the bottle
 
     }
 
@@ -63,18 +65,19 @@ public class ModelDiffuser extends ModelBase {
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
         bowl.render(f5);
-        bottle.render(f5);
 
-        // potionColor = PotionHelper.func_77915_a(potionStack, false);
+        potionColor = PotionHelper.func_77915_a(potionStack, false);
         float red, green, blue;
         red = (potionColor >> 16 & 255) / 255f;
         green = (potionColor >> 8 & 255) / 255f;
         blue = (potionColor >> 0 & 255) / 255f;
 
-        // GL11.glColor3f(red, green, blue);
-        GL11.glColor3f(0.5f, 0.5f, 1.0f);
+        GL11.glColor3f(red, green, blue);
         liquid.render(f5);
         GL11.glColor3f(1f, 1f, 1f);
+
+        // Bottle must render AFTER the liquid
+        bottle.render(f5);
 
         if (!isDiffusing) {
             stopper.render(f5);
