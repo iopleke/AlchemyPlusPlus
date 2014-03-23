@@ -13,7 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionHelper;
 
-public class ModelSprayer extends APPModel
+public class ModelSprayer extends APPAlchemicalApparatusModel
 {
 
 	//fields

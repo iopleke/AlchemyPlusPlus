@@ -1,0 +1,22 @@
+[
+{
+"modid": "AlchemyPlusPlus",
+"name": "Alchemy++",
+"description": "Extending Minecraft with new brewing methods, Alchemical ingridients and more!",
+"version": "release 1.1",
+"credits": "Created by mokonaModoki, updated and maintained by jakimfett",
+"logoFile": "AlchemyPlusPlus.png",
+"mcversion": "1.6.4",
+"url": "http://goo.gl/WUljK2",
+"updateUrl": "http://mc.picraft.com/build/job/Alchemy++/",
+"authors": [ "MokonaModoki", "jakimfett" ],
+"parent":"",
+"screenshots": [
+"creative_page.png",
+"distillery_mixer.png"
+],
+"dependencies": [
+"mod_MinecraftForge"
+]
+}
+]

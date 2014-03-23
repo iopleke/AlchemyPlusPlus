@@ -1,7 +1,7 @@
 package mokonaDesu.alchemypp.renderer;
 
 import mokonaDesu.alchemypp.blocks.BlockRegistry;
-import mokonaDesu.alchemypp.model.APPModel;
+import mokonaDesu.alchemypp.model.APPAlchemicalApparatusModel;
 import mokonaDesu.alchemypp.model.ModelBottleStand;
 import mokonaDesu.alchemypp.model.ModelLiquidMixer;
 import mokonaDesu.alchemypp.model.ModelSpiritlamp;
@@ -29,7 +29,7 @@ public class TileEntityAlchemicalApparatusRenderer extends TileEntitySpecialRend
 	//ModelBottleStand modelStand = new ModelBottleStand();
 	//ModelSprayer modelSprayer = new ModelSprayer();
 
-	APPModel[] modelList = {
+	APPAlchemicalApparatusModel[] modelList = {
 			new ModelSpiritlamp(),
 			new ModelBottleStand(),
 			new ModelSprayer()
@@ -59,7 +59,7 @@ public class TileEntityAlchemicalApparatusRenderer extends TileEntitySpecialRend
          GL11.glRotatef(dir * (-90F), 0F, 1F, 0F);
          GL11.glTranslatef(-0.5F, 0, -0.5F);
      
-         func_110628_a(new ResourceLocation("AlchemyPP:textures/blocks/Apparatus.png"));
+         bindTexture(new ResourceLocation("AlchemyPP:textures/blocks/Apparatus.png"));
 
          if (tl.bottom != null)
         	 this.modelList[tl.bottom.getModelCode()].render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, tl);

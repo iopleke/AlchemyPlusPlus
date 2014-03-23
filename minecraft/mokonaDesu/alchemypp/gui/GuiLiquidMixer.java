@@ -35,7 +35,7 @@ public class GuiLiquidMixer extends GuiContainer {
                         int par3) {
                 //draw your Gui here, only thing you need to change is the path
 
-                this.mc.renderEngine.func_110577_a(new ResourceLocation("AlchemyPP:textures/gui/mixer.png"));
+                this.mc.renderEngine.bindTexture(new ResourceLocation("AlchemyPP:textures/gui/mixer.png"));
                 int x = (width - xSize) / 2;
                 int y = (height - ySize) / 2;
                 this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);

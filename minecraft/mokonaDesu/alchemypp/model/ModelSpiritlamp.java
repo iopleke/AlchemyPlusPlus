@@ -12,7 +12,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionHelper;
 
-public class ModelSpiritlamp extends APPModel
+public class ModelSpiritlamp extends APPAlchemicalApparatusModel
 {
 
 	//fields

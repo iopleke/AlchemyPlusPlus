@@ -41,7 +41,7 @@ public class BlockAlchemicalApparatus extends BlockContainer {
 		this.blockIcon = iconRegister.registerIcon("AlchemyPP:WIPLiquidMixer");
 	}
 
-	
+
 	 @SideOnly(Side.CLIENT)
 	public boolean addBlockHitEffects(World worldObj, MovingObjectPosition target, EffectRenderer effectRenderer)
 	{
@@ -58,12 +58,12 @@ public class BlockAlchemicalApparatus extends BlockContainer {
 	{
 	   return false;
 	}
-	
+
 	public boolean shouldSideBeRendered(IBlockAccess iblockaccess, int i, int j, int k, int l)
 	{
 	   return false;
 	}
-	
+
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int a, float b, float c, float g) {
 		if (!world.isRemote) {
@@ -95,19 +95,18 @@ public class BlockAlchemicalApparatus extends BlockContainer {
 			}
 		return true;
 	}
-	
-	
+
+
 	@SideOnly(Side.CLIENT)
-	 public void randomDisplayTick(World world, int x, int y, int z, Random random)
-	    {
+	 public void randomDisplayTick(World world, int x, int y, int z, Random random)	    {
 TileEntityAlchemicalApparatus te = (TileEntityAlchemicalApparatus) world.getBlockTileEntity(x, y, z);
 		if (te.hasBottom() && te.bottom instanceof ApparatusApplicationSpiritLamp && ((ApparatusApplicationSpiritLamp)te.bottom).active) {
-			world.spawnParticle("flame", (double)(x + 0.5), (double)y + 0.375, (double)(z + 0.5), 0.0D, 0.0D, 0.0D);	
+			world.spawnParticle("flame", (double)(x + 0.5), (double)y + 0.375, (double)(z + 0.5), 0.0D, 0.0D, 0.0D);
 		}
-	            
+
 	    }
-	 
-	
+
+
 	 public void onBlockClicked(World world, int x, int y, int z, EntityPlayer player) {
 		 if (!world.isRemote) {
 			 TileEntityAlchemicalApparatus te = (TileEntityAlchemicalApparatus) world.getBlockTileEntity(x, y, z);
@@ -115,47 +114,47 @@ TileEntityAlchemicalApparatus te = (TileEntityAlchemicalApparatus) world.getBloc
 				 ((ApparatusApplicationBottleStand)((TileEntityAlchemicalApparatus)world.getBlockTileEntity(x, y, z)).stand).eject(player);
 				PacketDispatcher.sendPacketToAllPlayers(world.getBlockTileEntity(x, y, z).getDescriptionPacket());
 			 }
-			 
+
 			if (te.hasBottom() && te.bottom instanceof ApparatusApplicationSpiritLamp) {
 			    ((ApparatusApplicationSpiritLamp)te.bottom).setActive(false);
 			    PacketDispatcher.sendPacketToAllPlayers(world.getBlockTileEntity(x, y, z).getDescriptionPacket());
-			}	 
+			}
 		 }
 	 }
 
-	
+
     public int idDropped(int par1, Random par2Random, int par3)
     {
         return 0;
     }
-    
-    
+
+
     @Override
     public void breakBlock(World world, int x, int y, int z, int damage, int a) {
-    	
+
     	TileEntityAlchemicalApparatus te = (TileEntityAlchemicalApparatus) world.getBlockTileEntity(x, y, z);
     	Random random = new Random();
-    	
+
     	if (te == null) return;
-    	
-    	if (te.hasUpper() && te.upper.isSalvagable()) 
+
+    	if (te.hasUpper() && te.upper.isSalvagable())
     		ejectStack(new ItemStack(te.upper.getItemID(), 1, 0), x, y, z, world);
-                
+
     	if (te.hasStand() && te.stand.isSalvagable()) {
     		te.stand.eject(null);
     		ejectStack(new ItemStack(te.stand.getItemID(), 1, 0), x, y, z, world);
     	}
-    	
-    	if (te.hasBottom() && te.bottom.isSalvagable()) 
+
+    	if (te.hasBottom() && te.bottom.isSalvagable())
     		ejectStack(new ItemStack(te.bottom.getItemID(), 1, 0), x, y, z, world);
-    	
+
     	super.breakBlock(world, x, y, z, damage, a);
-    	
+
     }
 
     private void ejectStack(ItemStack stack, int x, int y, int z, World world) {
     	Random random = new Random();
-    	
+
     	float f = random.nextFloat() * 0.8F + 0.1F;
         float f1 = random.nextFloat() * 0.8F + 0.1F;
         float f2 = random.nextFloat() * 0.8F + 0.1F;
@@ -169,5 +168,5 @@ TileEntityAlchemicalApparatus te = (TileEntityAlchemicalApparatus) world.getBloc
         world.spawnEntityInWorld(entityitem);
     }
 
-	
+
 }

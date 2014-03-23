@@ -44,7 +44,7 @@ public class TileEntityLiquidMixerRenderer extends TileEntitySpecialRenderer {
          GL11.glRotatef(dir * (-90F), 0F, 1F, 0F);
          GL11.glTranslatef(-0.5F, 0, -0.5F);
      
-         func_110628_a(new ResourceLocation("AlchemyPP:textures/blocks/LiquidMixer.png"));
+         bindTexture(new ResourceLocation("AlchemyPP:textures/blocks/LiquidMixer.png"));
 
          this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, tl.mixerInventory);
        

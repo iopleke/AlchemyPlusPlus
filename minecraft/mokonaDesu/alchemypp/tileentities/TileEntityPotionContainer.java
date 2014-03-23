@@ -18,6 +18,12 @@ public class TileEntityPotionContainer extends TileEntity {
 	public int containerHas = 0;
 	public final int containerMax = 16;
 	
+	@Override
+    public boolean canUpdate()
+    {
+        return false;
+    }
+	
 	public void readFromNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.readFromNBT(par1NBTTagCompound);
@@ -42,7 +48,7 @@ public class TileEntityPotionContainer extends TileEntity {
 	        }
 
 	        public void onDataPacket(INetworkManager net, Packet132TileEntityData packet) {
-	        readFromNBT(packet.customParam1);
+	        readFromNBT(packet.data);
 	        }
 	        
 	  

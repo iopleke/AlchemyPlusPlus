@@ -25,6 +25,9 @@ public abstract class ApparatusApplication {
 	public abstract boolean isSalvagable();
 	
 	/* Used to get the itemID of Item representing this apparatus application */
-	public abstract int getItemID();
+	public abstract int getItemID();	
+	
+	/* Used to get whether the element is active */
+	public abstract Boolean isActive();
 	
 }

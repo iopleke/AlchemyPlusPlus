@@ -20,6 +20,7 @@ public class ApparatusApplicationBottleStand extends ApparatusApplicationStand {
 	public boolean normalTemperatureSet = false;
 	public float temperature = 0;
 	public float normalTemperature = 0;
+	public boolean active = false;
 	
 	public ApparatusApplicationBottleStand(TileEntityAlchemicalApparatus entity) {
 		this.parent = entity;
@@ -100,7 +101,10 @@ return (ArrayList)((ItemPotion) (this.stack.getItem())).getEffects(this.stack);
 
 	@Override
 	public String getStat() {
-		return this.temperature + " (" + this.normalTemperature + ")\n";
+		if ( this.temperature == this.normalTemperature ) {
+			return "Not heating\n";
+		}
+		return "Temp: " + java.lang.Math.round(this.temperature) + " kelvin\n";
 	}
 	
 	public boolean hasBottle() {
@@ -125,6 +129,10 @@ return (ArrayList)((ItemPotion) (this.stack.getItem())).getEffects(this.stack);
 	@Override
 	public int getItemID() {
 		return ItemRegistry.appItemBottleStand.itemID;
+	}
+	
+	public Boolean isActive(){
+		return this.active;
 	}
 	
 }

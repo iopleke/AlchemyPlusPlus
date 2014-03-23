@@ -1,15 +1,12 @@
 package mokonaDesu.alchemypp;
 
-import java.util.Map;
-
-import net.minecraft.item.ItemPotion;
-import net.minecraftforge.common.Configuration;
 import mokonaDesu.alchemypp.blocks.BlockRegistry;
 import mokonaDesu.alchemypp.client.APPClientPacketHandler;
 import mokonaDesu.alchemypp.gui.APPGuiHandler;
-import mokonaDesu.alchemypp.gui.Book;
 import mokonaDesu.alchemypp.items.ItemRegistry;
 import mokonaDesu.alchemypp.tileentities.TileEntityAlchemicalApparatus;
+import mokonaDesu.alchemypp.tileentities.TileEntityDiffuser;
+import mokonaDesu.alchemypp.tileentities.TileEntityDistillery;
 import mokonaDesu.alchemypp.tileentities.TileEntityExtractor;
 import mokonaDesu.alchemypp.tileentities.TileEntityLiquidMixer;
 import mokonaDesu.alchemypp.tileentities.TileEntityPotionContainer;
@@ -17,92 +14,66 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.network.NetworkMod.SidedPacketHandler;
-import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.network.NetworkMod.SidedPacketHandler;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
-
 
 @Mod(modid = "AlchemyPlusPlus", name = "AlchemyPlusPlus", version = "release 1.1")
-@NetworkMod(clientSideRequired = true, serverSideRequired = false,
-clientPacketHandlerSpec =
-@SidedPacketHandler(channels = {"Alchemy++"}, packetHandler = APPClientPacketHandler.class),
-serverPacketHandlerSpec =
-@SidedPacketHandler(channels = {"Alchemy++"}, packetHandler = APPServerPacketHandler.class))
-
-
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, clientPacketHandlerSpec = @SidedPacketHandler(channels = { "Alchemy++" }, packetHandler = APPClientPacketHandler.class), serverPacketHandlerSpec = @SidedPacketHandler(channels = { "Alchemy++" }, packetHandler = APPServerPacketHandler.class))
 public class AlchemyPP {
-@Instance("AlchemyPlusPlus")
-public static AlchemyPP instance = new AlchemyPP();
-public static APPGuiHandler guiHandler = new APPGuiHandler();
-public static APPWorldGenerator worldGen = new APPWorldGenerator();
 
-@SidedProxy(clientSide="mokonaDesu.alchemypp.client.ClientProxy", serverSide="mokonaDesu.alchemypp.CommonProxy")
-public static CommonProxy proxy;
+    @Instance("AlchemyPlusPlus")
+    public static AlchemyPP instance = new AlchemyPP();
+    public static APPGuiHandler guiHandler = new APPGuiHandler();
 
-/*
- * Is base potion class overrided with APP potion class
- * to provide extra functionality (WIP)
- */
-public static boolean potionOverride = false;
+    @SidedProxy(clientSide = "mokonaDesu.alchemypp.client.ClientProxy", serverSide = "mokonaDesu.alchemypp.CommonProxy")
+    public static CommonProxy proxy;
 
-/*
- * Herbs addon loaded
- */
-public static boolean herbs = false;
+    /*
+     * Herbs addon loaded
+     */
+    public static boolean herbs = false;
 
-/*
- * Hardcore alchemy recipes
- */
-public static boolean hardcoreAlchemy = false;
+    @EventHandler
+    public void preInit(FMLPreInitializationEvent event) {
 
-/*
- * Orichalcum generation enabled
- */
-public static boolean generateOrichalcum = true;
+        APPConfigManager.initialSetup(event.getSuggestedConfigurationFile());
 
-/*
- * Alternative orichalcum texture usage
- */
-public static boolean alternativeTextures = false;	
+    }
 
-@EventHandler
-public void preInit(FMLPreInitializationEvent event) {
+    @EventHandler
+    public void load(FMLInitializationEvent event) {
 
-APPConfigurator.loadConfig(event);
+        proxy.registerRenderers();
+        GameRegistry.registerTileEntity(TileEntityPotionContainer.class, "potionKegTE");
+        GameRegistry.registerTileEntity(TileEntityLiquidMixer.class, "LiquidMixerTE");
+        GameRegistry.registerTileEntity(TileEntityExtractor.class, "ExtractorTE");
+        GameRegistry.registerTileEntity(TileEntityDistillery.class, "DistilleryTE");
+        GameRegistry.registerTileEntity(TileEntityDiffuser.class, "DiffuserTE");
+        GameRegistry.registerTileEntity(TileEntityAlchemicalApparatus.class, "AlchemicalApparatusTE");
 
-}
+        BlockRegistry.registerBlocks();
+        ItemRegistry.registerItems();
 
-@EventHandler
-public void load(FMLInitializationEvent event) {
-		
-	proxy.registerRenderers();
-	GameRegistry.registerTileEntity(TileEntityPotionContainer.class, "potionKegTE");
-	GameRegistry.registerTileEntity(TileEntityLiquidMixer.class, "LiquidMixerTE");
-	GameRegistry.registerTileEntity(TileEntityExtractor.class, "ExtractorTE");
-	GameRegistry.registerTileEntity(TileEntityAlchemicalApparatus.class, "AlchemicalApparatusTE");
-	
-	BlockRegistry.registerBlocks();
-	ItemRegistry.registerItems();
-	
-	BlockRegistry.registerBlockRecipes();
-	ItemRegistry.registerItemRecipes();
-	
-	Book.loadAll();
-	
-	if (hardcoreAlchemy) ItemRegistry.registerHardcoreRecipes();
-	
-	NetworkRegistry.instance().registerGuiHandler(AlchemyPP.instance, this.guiHandler);
-	GameRegistry.registerWorldGenerator(worldGen);
-	
-	APPEvents.registerEventHooks();
-}
+        BlockRegistry.registerBlockRecipes();
+        ItemRegistry.registerItemRecipes();
 
-@EventHandler
-public void postInit(FMLPostInitializationEvent event) { }
+        // Book.loadAll();
+
+        if (APPConfigManager.appHardcoreModeEnabled) {
+            ItemRegistry.registerHardcoreRecipes();
+        }
+        NetworkRegistry.instance().registerGuiHandler(AlchemyPP.instance, this.guiHandler);
+
+        APPEvents.registerEventHooks();
+    }
+
+    @EventHandler
+    public void postInit(FMLPostInitializationEvent event) {
+    }
 
 }

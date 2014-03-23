@@ -77,7 +77,7 @@ public class ApparatusApplicationSpiritLamp extends ApparatusApplicationBottomAc
 
 	@Override
 	public String getStat() {
-		return "Spirit: " + this.spirit +"/60" + (this.active ? " (Burning)" : "");
+		return "Fuel: " + this.spirit +"/60" + (this.active ? " (Burning)" : "");
 	}
 
 	@Override
@@ -98,6 +98,10 @@ public class ApparatusApplicationSpiritLamp extends ApparatusApplicationBottomAc
 	@Override
 	public int getItemID() {
 		return ItemRegistry.appItemSpiritLamp.itemID;
+	}
+	
+	public Boolean isActive(){
+		return this.active;
 	}
 	
 }
