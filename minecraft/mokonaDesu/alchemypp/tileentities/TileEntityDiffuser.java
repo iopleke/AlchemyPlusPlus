@@ -23,6 +23,8 @@ public class TileEntityDiffuser extends TileEntity implements IInventory {
 
     public int bottleColor;
 
+    public ItemStack potionStack = null;
+
     @Override
     public int getInventoryStackLimit() {
         return 1;

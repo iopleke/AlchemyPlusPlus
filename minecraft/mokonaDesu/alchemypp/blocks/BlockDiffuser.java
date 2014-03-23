@@ -50,16 +50,37 @@ public class BlockDiffuser extends BlockContainer {
         TileEntityDiffuser diffuserTE = (TileEntityDiffuser) world.getBlockTileEntity(x, y, z);
 
         if (player.getHeldItem() != null && player.getHeldItem().itemID == Item.potion.itemID) {
-            if (!world.isRemote) {
-                player.addChatMessage("You pour the potion into the diffuser.");
-                // player.openGui(AlchemyPP.instance, 3, world, x, y, z);
+            if (diffuserTE.potionStack == null) {
+                if (!world.isRemote) {
+                    player.addChatMessage("You pour the potion into the diffuser.");
+                    // player.openGui(AlchemyPP.instance, 3, world, x, y, z);
+                }
+                diffuserTE.potionStack = player.getHeldItem().copy();
+                diffuserTE.setBottleColorValue(PotionHelper.func_77915_a(diffuserTE.potionStack.getItemDamage(), false));
+                if (!player.capabilities.isCreativeMode) {
+                    player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack(Item.glassBottle);
+                }
+                diffuserTE.fluidLevel = 10;
+                if (!diffuserTE.isDiffuserActive()) {
+                    diffuserTE.toggleDiffusingState();
+                }
+            } else {
+
+                if (!world.isRemote) {
+                    player.addChatMessage("The duffuser is too full to hold any more liquid");
+                }
             }
-            ItemStack potionStack = player.getHeldItem().copy();
-            diffuserTE.setBottleColorValue(PotionHelper.func_77915_a(potionStack.getItemDamage(), false));
-            player.getHeldItem().stackSize = 0;
-            diffuserTE.fluidLevel = 10;
-            if (!diffuserTE.isDiffuserActive()) {
-                diffuserTE.toggleDiffusingState();
+        } else if (player.getHeldItem() != null && player.getHeldItem().itemID == Item.glassBottle.itemID) {
+
+            if (diffuserTE.potionStack != null) {
+                player.inventory.mainInventory[player.inventory.currentItem] = diffuserTE.potionStack;
+
+                // Wiping the diffuser data
+                diffuserTE.potionStack = null;
+                diffuserTE.setBottleColorValue(0);
+                if (diffuserTE.isDiffuserActive()) {
+                    diffuserTE.toggleDiffusingState();
+                }
             }
         } else if (diffuserTE.canDiffuse() || diffuserTE.isDiffuserActive()) {
             String action;
