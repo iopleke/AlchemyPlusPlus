@@ -7,6 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.potion.PotionHelper;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -43,7 +44,7 @@ public class TileEntityDiffuserRenderer extends TileEntitySpecialRenderer {
 
         bindTexture(new ResourceLocation("AlchemyPP:textures/blocks/Diffuser.png"));
         this.model.isDiffusing = tl.isDiffuserActive();
-        this.model.potionStack = 2;
+        this.model.potionColor = PotionHelper.func_77915_a(2, false);
         this.model.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
 
         GL11.glPopMatrix();

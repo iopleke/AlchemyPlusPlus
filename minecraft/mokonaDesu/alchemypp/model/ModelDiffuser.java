@@ -3,7 +3,6 @@ package mokonaDesu.alchemypp.model;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.potion.PotionHelper;
 
 import org.lwjgl.opengl.GL11;
 
@@ -14,8 +13,7 @@ public class ModelDiffuser extends ModelBase {
     ModelRenderer liquid;
     ModelRenderer stopper;
 
-    public int potionColor = 3;
-    public int potionStack;
+    public int potionColor;
 
     public boolean isDiffusing = false;
 
@@ -36,6 +34,7 @@ public class ModelDiffuser extends ModelBase {
         liquid.setTextureSize(textureWidth, textureHeight);
         setRotation(liquid, 0.4F, 0, 0);
         liquid.addBox(6, 5, 3, 4, 5, 4);
+        liquid.addBox(7, 10, 4, 2, 1, 2);
 
         // Bottle
         bottle = new ModelRenderer(this, 40, 0);
@@ -58,6 +57,9 @@ public class ModelDiffuser extends ModelBase {
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         super.render(entity, f, f1, f2, f3, f4, f5);
+
+        float red, green, blue;
+
         setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 
         GL11.glEnable(GL11.GL_NORMALIZE);
@@ -66,8 +68,7 @@ public class ModelDiffuser extends ModelBase {
 
         bowl.render(f5);
 
-        potionColor = PotionHelper.func_77915_a(potionStack, false);
-        float red, green, blue;
+        // Calculate the colors
         red = (potionColor >> 16 & 255) / 255f;
         green = (potionColor >> 8 & 255) / 255f;
         blue = (potionColor >> 0 & 255) / 255f;
