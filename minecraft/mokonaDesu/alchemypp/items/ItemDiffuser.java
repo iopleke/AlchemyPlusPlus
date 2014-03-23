@@ -18,6 +18,7 @@ public class ItemDiffuser extends APPItem {
         // !par3World.getBlockMaterial(par4, par5, par6).isSolid() ||
         // !world.isBlockFullCube(x, y + 1, z)
         if (world.isBlockSolidOnSide(x, y, z, ForgeDirection.UP) && world.isAirBlock(x, y + 1, z)) {
+            // @todo - set block to face to the right when placed
             world.setBlock(x, y + 1, z, BlockRegistry.appBlockDiffuser.blockID);
             stack.stackSize--;
             return true;
