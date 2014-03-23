@@ -10,6 +10,7 @@ import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemPotion;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionHelper;
 import net.minecraft.tileentity.TileEntity;
@@ -49,7 +50,7 @@ public class BlockDiffuser extends BlockContainer {
 
         TileEntityDiffuser diffuserTE = (TileEntityDiffuser) world.getBlockTileEntity(x, y, z);
 
-        if (player.getHeldItem() != null && player.getHeldItem().itemID == Item.potion.itemID && player.getHeldItem().getItemDamage() != 0) {
+        if (player.getHeldItem() != null && player.getHeldItem().itemID == Item.potion.itemID && player.getHeldItem().getItemDamage() != 0 && !ItemPotion.isSplash(player.getHeldItem().getItemDamage())) {
             if (diffuserTE.potionStack == null) {
                 if (!world.isRemote) {
                     player.addChatMessage("You pour the potion into the diffuser");
