@@ -118,7 +118,7 @@ public class BlockDiffuser extends BlockContainer {
             }
         } else {
             if (!world.isRemote) {
-                player.addChatMessage("You uncork the diffuser, but nothing happens");
+                player.addChatMessage("Without a potion filling it, un-corking the diffuser seems pointless");
             }
 
         }
