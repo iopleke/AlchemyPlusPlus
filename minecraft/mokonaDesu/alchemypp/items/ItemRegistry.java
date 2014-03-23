@@ -125,7 +125,7 @@ public class ItemRegistry {
 
         GameRegistry.addRecipe(new ItemStack(appItemDistillery, 1, 0), new Object[] { "Bi-", "C-P", "F-S", Character.valueOf('B'), Item.brewingStand, Character.valueOf('i'), Item.ingotIron, Character.valueOf('C'), Item.cauldron, Character.valueOf('P'), appItemPotionBottle, Character.valueOf('F'), Block.furnaceIdle, Character.valueOf('S'), appItemBottleStand });
 
-        GameRegistry.addRecipe(new ItemStack(appItemDiffuser, 1, 0), new Object[] { "--s", "-b-", "w--", Character.valueOf('s'), Item.silk, Character.valueOf('b'), Item.glassBottle, Character.valueOf('w'), Item.bowlEmpty });
+        // GameRegistry.addRecipe(new ItemStack(appItemDiffuser, 1, 0), new Object[] { "--s", "-b-", "w--", Character.valueOf('s'), Item.silk, Character.valueOf('b'), Item.glassBottle, Character.valueOf('w'), Item.bowlEmpty });
     }
 
     public static void registerHardcoreRecipes() {
