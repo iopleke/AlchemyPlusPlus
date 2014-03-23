@@ -76,7 +76,7 @@ public class BlockDiffuser extends BlockContainer {
                 if (diffuserTE.getFluidLevel() > 9) {
 
                     // Allow creative mode players to override this by sneaking
-                    if (!player.capabilities.isCreativeMode && !player.isSneaking()) {
+                    if (!player.capabilities.isCreativeMode) {
                         player.inventory.mainInventory[player.inventory.currentItem] = diffuserTE.potionStack;
                     }
                     // Wiping the diffuser data
@@ -92,7 +92,7 @@ public class BlockDiffuser extends BlockContainer {
                 }
             }
         } else if (player.getHeldItem() != null && player.getHeldItem().itemID == Item.potion.itemID && player.getHeldItem().getItemDamage() == 0) {
-            if (!player.capabilities.isCreativeMode && !player.isSneaking()) {
+            if (!player.capabilities.isCreativeMode) {
                 player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack(Item.glassBottle);
             }
             diffuserTE.potionStack = null;
