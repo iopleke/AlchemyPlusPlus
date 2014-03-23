@@ -33,9 +33,9 @@ public class ModelDistillery extends ModelBase {
         tube.setTextureSize(textureWidth, textureHeight);
         tube.setRotationPoint(5.7f, 13, 5);
         setRotation(tube, 0F, 0.785f, 0F);
-        tube.addBox(-6, 0, 3, 10, 1, 1);
-        tube.addBox(-6, -3, 3, 1, 3, 1);
-        tube.addBox(3, -5, 3, 1, 5, 1);
+        tube.addBox(-6, -1, 3, 10, 1, 1);
+        tube.addBox(-6, -4, 3, 1, 3, 1);
+        tube.addBox(3, -6, 3, 1, 5, 1);
 
         collecter = new ModelRenderer(this, 58, 0);
         collecter.setTextureSize(textureWidth, textureWidth);
@@ -49,8 +49,7 @@ public class ModelDistillery extends ModelBase {
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3,
-            float f4, float f5) {
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         super.render(entity, f, f1, f2, f3, f4, f5);
         setRotationAngles(f, f1, f2, f3, f4, f5, entity);
         stand.render(f5);
@@ -66,8 +65,7 @@ public class ModelDistillery extends ModelBase {
     }
 
     @Override
-    public void setRotationAngles(float f, float f1, float f2, float f3,
-            float f4, float f5, Entity e) {
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity e) {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, e);
     }
 

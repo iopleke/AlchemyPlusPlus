@@ -25,6 +25,7 @@ public class BlockDistillery extends BlockContainer {
         this.setResistance(3.0F);
         this.setStepSound(soundStoneFootstep);
         this.setUnlocalizedName("appBlockDistillery");
+        this.setBlockBounds(0.05F, 0F, 0.15F, 0.85F, 0.8F, 0.95F);
     }
 
     @Override
@@ -39,44 +40,36 @@ public class BlockDistillery extends BlockContainer {
     }
 
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z,
-            EntityPlayer player, int a, float b, float c, float g) {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int a, float b, float c, float g) {
         if (!world.isRemote)
             player.openGui(AlchemyPP.instance, 2, world, x, y, z);
         return true;
     }
 
     @Override
-    public boolean shouldSideBeRendered(IBlockAccess iblockaccess, int i,
-            int j, int k, int l) {
+    public boolean shouldSideBeRendered(IBlockAccess iblockaccess, int i, int j, int k, int l) {
         return false;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World par1World, int par2, int par3,
-            int par4, Random par5Random) {
+    public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random) {
         super.randomDisplayTick(par1World, par2, par3, par4, par5Random);
-        TileEntityDistillery te = (TileEntityDistillery) par1World
-                .getBlockTileEntity(par2, par3, par4);
+        TileEntityDistillery te = (TileEntityDistillery) par1World.getBlockTileEntity(par2, par3, par4);
         if (te.isActive()) {
-            par1World.spawnParticle("reddust",
-                    (par2 + par5Random.nextFloat() / 2), (par3 + 0.1F),
-                    (par4 + par5Random.nextFloat() / 2), 1.0D, 0.5D, 0.0D);
+            par1World.spawnParticle("reddust", (par2 + par5Random.nextFloat() / 2), (par3 + 0.1F), (par4 + par5Random.nextFloat() / 2), 1.0D, 0.5D, 0.0D);
         }
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public boolean addBlockHitEffects(World worldObj,
-            MovingObjectPosition target, EffectRenderer effectRenderer) {
+    public boolean addBlockHitEffects(World worldObj, MovingObjectPosition target, EffectRenderer effectRenderer) {
         return true;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public boolean addBlockDestroyEffects(World world, int x, int y, int z,
-            int meta, EffectRenderer effectRenderer) {
+    public boolean addBlockDestroyEffects(World world, int x, int y, int z, int meta, EffectRenderer effectRenderer) {
         return true;
     }
 
