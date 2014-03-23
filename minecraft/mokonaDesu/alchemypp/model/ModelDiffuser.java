@@ -9,6 +9,7 @@ public class ModelDiffuser extends ModelBase {
     ModelRenderer bowl;
     ModelRenderer bottle;
     ModelRenderer stopper;
+    public boolean isDiffusing = false;
 
     public ModelDiffuser() {
         textureWidth = 128;
@@ -47,11 +48,9 @@ public class ModelDiffuser extends ModelBase {
         bowl.render(f5);
         bottle.render(f5);
 
-        int isDiffusing = entity.worldObj.getBlockMetadata(entity.serverPosX, entity.serverPosY, entity.serverPosZ);
-
         // @todo - set this to not render when diffusing
         // if (true) {
-        if (isDiffusing == 1) {
+        if (!isDiffusing) {
             stopper.render(f5);
         }
     }
