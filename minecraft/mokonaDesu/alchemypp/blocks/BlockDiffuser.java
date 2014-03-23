@@ -96,6 +96,7 @@ public class BlockDiffuser extends BlockContainer {
                 player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack(Item.glassBottle);
             }
             diffuserTE.potionStack = null;
+            diffuserTE.fluidLevel = 0;
             diffuserTE.setBottleColorValue(0);
             if (diffuserTE.isDiffuserActive()) {
                 diffuserTE.toggleDiffusingState();
