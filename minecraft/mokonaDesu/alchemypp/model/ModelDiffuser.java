@@ -13,7 +13,7 @@ public class ModelDiffuser extends ModelBase {
     ModelRenderer liquid;
     ModelRenderer stopper;
 
-    public int potionColor;
+    public int potionColor = 0;
 
     public boolean isDiffusing = false;
 
@@ -33,8 +33,8 @@ public class ModelDiffuser extends ModelBase {
         liquid = new ModelRenderer(this, 0, 20);
         liquid.setTextureSize(textureWidth, textureHeight);
         setRotation(liquid, 0.4F, 0, 0);
-        liquid.addBox(6, 5, 3, 4, 5, 4);
-        liquid.addBox(7, 10, 4, 2, 1, 2);
+        liquid.addBox(6, 5, 3, 4, 4, 4);
+        liquid.addBox(7, 9, 4, 2, 1, 2);
 
         // Bottle
         bottle = new ModelRenderer(this, 40, 0);
@@ -74,7 +74,9 @@ public class ModelDiffuser extends ModelBase {
         blue = (potionColor >> 0 & 255) / 255f;
 
         GL11.glColor3f(red, green, blue);
-        liquid.render(f5);
+        if (potionColor > 0) {
+            liquid.render(f5);
+        }
         GL11.glColor3f(1f, 1f, 1f);
 
         // Bottle must render AFTER the liquid

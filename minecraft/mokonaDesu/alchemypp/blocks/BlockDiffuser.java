@@ -10,6 +10,8 @@ import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionHelper;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
@@ -50,16 +52,26 @@ public class BlockDiffuser extends BlockContainer {
         if (player.getHeldItem() != null && player.getHeldItem().itemID == Item.potion.itemID) {
             if (!world.isRemote) {
                 player.addChatMessage("You pour the potion into the diffuser.");
-
                 // player.openGui(AlchemyPP.instance, 3, world, x, y, z);
             }
-            diffuserTE.placeBottle(player.getHeldItem().copy());
+            ItemStack potionStack = player.getHeldItem().copy();
+            diffuserTE.getBottleColorData(PotionHelper.func_77915_a(potionStack.getItemDamage(), false));
             player.getHeldItem().stackSize = 0;
+            diffuserTE.fluidLevel = 10;
             if (!diffuserTE.isDiffuserActive()) {
                 diffuserTE.toggleDiffusingState();
             }
         } else if (diffuserTE.canDiffuse() || diffuserTE.isDiffuserActive()) {
+            String action;
+            if (diffuserTE.isDiffuserActive()) {
+                action = "cork";
+            } else {
+                action = "un-cork";
+            }
             diffuserTE.toggleDiffusingState();
+            if (!world.isRemote) {
+                player.addChatMessage("You " + action + " the diffuser");
+            }
         } else {
             if (!world.isRemote) {
                 player.addChatMessage("You uncork the diffuser, but nothing happens.");
@@ -67,7 +79,6 @@ public class BlockDiffuser extends BlockContainer {
             }
 
         }
-        System.err.println("Diffuser is diffusing: " + diffuserTE.isDiffuserActive());
 
         return false;
     }

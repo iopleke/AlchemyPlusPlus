@@ -21,7 +21,7 @@ public class TileEntityDiffuser extends TileEntity implements IInventory {
     public int fluidLevel;
     private boolean isDiffusing = false;
 
-    public ItemStack stack;
+    public int bottleColor;
 
     @Override
     public int getInventoryStackLimit() {
@@ -204,7 +204,7 @@ public class TileEntityDiffuser extends TileEntity implements IInventory {
         return false;
     }
 
-    public void placeBottle(ItemStack stack) {
-        this.stack = stack;
+    public void getBottleColorData(int bottleColor) {
+        this.bottleColor = bottleColor;
     }
 }
