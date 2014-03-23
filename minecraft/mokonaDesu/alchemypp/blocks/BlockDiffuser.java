@@ -9,6 +9,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
@@ -43,15 +44,31 @@ public class BlockDiffuser extends BlockContainer {
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int a, float b, float c, float g) {
-        if (!world.isRemote) {
-            // player.openGui(AlchemyPP.instance, 3, world, x, y, z);
+
+        TileEntityDiffuser diffuserTE = (TileEntityDiffuser) world.getBlockTileEntity(x, y, z);
+
+        if (player.getHeldItem() != null && player.getHeldItem().itemID == Item.potion.itemID) {
+            if (!world.isRemote) {
+                player.addChatMessage("You pour the potion into the diffuser.");
+
+                // player.openGui(AlchemyPP.instance, 3, world, x, y, z);
+            }
+            diffuserTE.placeBottle(player.getHeldItem().copy());
+            player.getHeldItem().stackSize = 0;
+            if (!diffuserTE.isDiffuserActive()) {
+                diffuserTE.toggleDiffusingState();
+            }
+        } else if (diffuserTE.canDiffuse() || diffuserTE.isDiffuserActive()) {
+            diffuserTE.toggleDiffusingState();
+        } else {
+            if (!world.isRemote) {
+                player.addChatMessage("You uncork the diffuser, but nothing happens.");
+                player.addChatMessage("Perhaps if you filled it with a potion?");
+            }
+
         }
-        if (player.isSneaking()) {
-            TileEntityDiffuser entity = (TileEntityDiffuser) world.getBlockTileEntity(x, y, z);
-            world.setBlockMetadataWithNotify(x, y, z, 1, 3);
-            entity.toggleDiffusingState();
-            System.err.println("Diffuser is currently:" + entity.isDiffuserActive());
-        }
+        System.err.println("Diffuser is diffusing: " + diffuserTE.isDiffuserActive());
+
         return false;
     }
 

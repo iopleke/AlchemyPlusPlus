@@ -1,5 +1,6 @@
 package mokonaDesu.alchemypp.tileentities;
 
+import mokonaDesu.alchemypp.APPConfigManager;
 import mokonaDesu.alchemypp.items.ItemRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -19,6 +20,8 @@ public class TileEntityDiffuser extends TileEntity implements IInventory {
 
     public int fluidLevel;
     private boolean isDiffusing = false;
+
+    public ItemStack stack;
 
     @Override
     public int getInventoryStackLimit() {
@@ -183,6 +186,25 @@ public class TileEntityDiffuser extends TileEntity implements IInventory {
     }
 
     public void toggleDiffusingState() {
-        isDiffusing = !isDiffusing;
+        if (fluidLevel > 0) {
+            isDiffusing = !isDiffusing;
+        } else {
+            isDiffusing = false;
+        }
+        if (APPConfigManager.appDebugMode) {
+            System.err.println("Fluid level:" + fluidLevel);
+            System.err.println("Diffusing: " + isDiffusing);
+        }
+    }
+
+    public boolean canDiffuse() {
+        if (this.fluidLevel > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public void placeBottle(ItemStack stack) {
+        this.stack = stack;
     }
 }

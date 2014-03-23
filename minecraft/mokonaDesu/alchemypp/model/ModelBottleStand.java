@@ -24,8 +24,7 @@ public class ModelBottleStand extends APPAlchemicalApparatusModel {
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3,
-            float f4, float f5, TileEntityAlchemicalApparatus tileEntity) {
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5, TileEntityAlchemicalApparatus tileEntity) {
         super.render(entity, f, f1, f2, f3, f4, f5);
 
         GL11.glEnable(GL11.GL_NORMALIZE);
@@ -36,9 +35,7 @@ public class ModelBottleStand extends APPAlchemicalApparatusModel {
 
         if (((ApparatusApplicationBottleStand) tileEntity.stand).hasBottle()) {
 
-            int color = PotionHelper.func_77915_a(
-                    ((ApparatusApplicationBottleStand) tileEntity.stand).stack
-                            .getItemDamage(), false);
+            int color = PotionHelper.func_77915_a(((ApparatusApplicationBottleStand) tileEntity.stand).stack.getItemDamage(), false);
 
             float red, green, blue;
             red = (color >> 16 & 255) / 255f;
@@ -87,8 +84,7 @@ public class ModelBottleStand extends APPAlchemicalApparatusModel {
     }
 
     @Override
-    public void setRotationAngles(float f, float f1, float f2, float f3,
-            float f4, float f5, Entity e) {
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity e) {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, e);
     }
 
