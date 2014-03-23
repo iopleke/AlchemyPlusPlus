@@ -52,12 +52,12 @@ public class BlockDiffuser extends BlockContainer {
         if (player.getHeldItem() != null && player.getHeldItem().itemID == Item.potion.itemID && player.getHeldItem().getItemDamage() != 0) {
             if (diffuserTE.potionStack == null) {
                 if (!world.isRemote) {
-                    player.addChatMessage("You pour the potion into the diffuser.");
+                    player.addChatMessage("You pour the potion into the diffuser");
                     // player.openGui(AlchemyPP.instance, 3, world, x, y, z);
                 }
                 diffuserTE.potionStack = player.getHeldItem().copy();
                 diffuserTE.setBottleColorValue(PotionHelper.func_77915_a(diffuserTE.potionStack.getItemDamage(), false));
-                if (!player.capabilities.isCreativeMode) {
+                if (!player.capabilities.isCreativeMode && !player.isSneaking()) {
                     player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack(Item.glassBottle);
                 }
                 diffuserTE.fluidLevel = 10;
@@ -74,8 +74,11 @@ public class BlockDiffuser extends BlockContainer {
 
             if (diffuserTE.potionStack != null) {
                 if (diffuserTE.getFluidLevel() > 9) {
-                    player.inventory.mainInventory[player.inventory.currentItem] = diffuserTE.potionStack;
 
+                    // Allow creative mode players to override this by sneaking
+                    if (!player.capabilities.isCreativeMode && !player.isSneaking()) {
+                        player.inventory.mainInventory[player.inventory.currentItem] = diffuserTE.potionStack;
+                    }
                     // Wiping the diffuser data
                     diffuserTE.potionStack = null;
                     diffuserTE.setBottleColorValue(0);
@@ -89,13 +92,16 @@ public class BlockDiffuser extends BlockContainer {
                 }
             }
         } else if (player.getHeldItem() != null && player.getHeldItem().itemID == Item.potion.itemID && player.getHeldItem().getItemDamage() == 0) {
-            if (!player.capabilities.isCreativeMode) {
+            if (!player.capabilities.isCreativeMode && !player.isSneaking()) {
                 player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack(Item.glassBottle);
             }
             diffuserTE.potionStack = null;
             diffuserTE.setBottleColorValue(0);
             if (diffuserTE.isDiffuserActive()) {
                 diffuserTE.toggleDiffusingState();
+            }
+            if (!world.isRemote) {
+                player.addChatMessage("The diffuser is washed clean, ready for re-use");
             }
 
         } else if (diffuserTE.canDiffuse() || diffuserTE.isDiffuserActive()) {
@@ -111,8 +117,7 @@ public class BlockDiffuser extends BlockContainer {
             }
         } else {
             if (!world.isRemote) {
-                player.addChatMessage("You uncork the diffuser, but nothing happens.");
-                player.addChatMessage("Perhaps if you filled it with a potion?");
+                player.addChatMessage("You uncork the diffuser, but nothing happens");
             }
 
         }
