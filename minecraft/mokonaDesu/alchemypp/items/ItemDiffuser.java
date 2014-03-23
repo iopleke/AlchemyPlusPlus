@@ -19,7 +19,6 @@ public class ItemDiffuser extends APPItem {
         // !world.isBlockFullCube(x, y + 1, z)
         if (world.isBlockSolidOnSide(x, y, z, ForgeDirection.UP) && world.isAirBlock(x, y + 1, z)) {
             world.setBlock(x, y + 1, z, BlockRegistry.appBlockDiffuser.blockID);
-            world.setBlockMetadataWithNotify(x, y, z, 0, 3);
             stack.stackSize--;
             return true;
         } else
