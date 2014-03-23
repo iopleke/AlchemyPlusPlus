@@ -21,6 +21,10 @@ public class ItemDiffuser extends APPItem {
             // @todo - set block to face to the right when placed
             world.setBlock(x, y + 1, z, BlockRegistry.appBlockDiffuser.blockID);
             stack.stackSize--;
+            if (!world.isRemote) {
+                // @todo - make this only display once per user
+                player.addChatMessage("The diffuser is ready to be filled with a potion");
+            }
             return true;
         } else
             return false;
