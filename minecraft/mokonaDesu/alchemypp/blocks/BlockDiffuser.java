@@ -55,7 +55,7 @@ public class BlockDiffuser extends BlockContainer {
                 // player.openGui(AlchemyPP.instance, 3, world, x, y, z);
             }
             ItemStack potionStack = player.getHeldItem().copy();
-            diffuserTE.getBottleColorData(PotionHelper.func_77915_a(potionStack.getItemDamage(), false));
+            diffuserTE.setBottleColorValue(PotionHelper.func_77915_a(potionStack.getItemDamage(), false));
             player.getHeldItem().stackSize = 0;
             diffuserTE.fluidLevel = 10;
             if (!diffuserTE.isDiffuserActive()) {

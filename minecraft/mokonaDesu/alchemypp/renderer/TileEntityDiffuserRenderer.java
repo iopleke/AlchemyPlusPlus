@@ -15,18 +15,18 @@ import org.lwjgl.opengl.GL11;
 
 public class TileEntityDiffuserRenderer extends TileEntitySpecialRenderer {
 
-    ModelDiffuser model = new ModelDiffuser();
+    ModelDiffuser diffuserModel = new ModelDiffuser();
 
     @Override
-    public void renderTileEntityAt(TileEntity tileEntity, double d, double d1, double d2, float f) {
+    public void renderTileEntityAt(TileEntity diffuserTE, double d, double d1, double d2, float f) {
         GL11.glPushMatrix();
         GL11.glTranslatef((float) d, (float) d1, (float) d2);
-        TileEntityDiffuser tileEntityYour = (TileEntityDiffuser) tileEntity;
-        render(tileEntityYour, tileEntity.worldObj, tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, BlockRegistry.appBlockDiffuser);
+        TileEntityDiffuser tileEntityYour = (TileEntityDiffuser) diffuserTE;
+        render(tileEntityYour, diffuserTE.worldObj, diffuserTE.xCoord, diffuserTE.yCoord, diffuserTE.zCoord, BlockRegistry.appBlockDiffuser);
         GL11.glPopMatrix();
     }
 
-    public void render(TileEntityDiffuser tl, World world, int i, int j, int k, Block block) {
+    public void render(TileEntityDiffuser diffuserTE, World world, int i, int j, int k, Block block) {
 
         float f = block.getBlockBrightness(world, i, j, k);
         int l = world.getLightBrightnessForSkyBlocks(i, j, k, 0);
@@ -42,10 +42,9 @@ public class TileEntityDiffuserRenderer extends TileEntitySpecialRenderer {
         GL11.glTranslatef(-0.5F, 0, -0.5F);
 
         bindTexture(new ResourceLocation("AlchemyPP:textures/blocks/Diffuser.png"));
-        this.model.isDiffusing = tl.isDiffuserActive();
-        this.model.potionColor = tl.bottleColor;
-        this.model.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
-
+        this.diffuserModel.isDiffusing = diffuserTE.isDiffuserActive();
+        this.diffuserModel.potionColor = diffuserTE.bottleColor;
+        this.diffuserModel.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
         GL11.glPopMatrix();
     }
 }

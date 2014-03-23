@@ -204,7 +204,7 @@ public class TileEntityDiffuser extends TileEntity implements IInventory {
         return false;
     }
 
-    public void getBottleColorData(int bottleColor) {
+    public void setBottleColorValue(int bottleColor) {
         this.bottleColor = bottleColor;
     }
 }

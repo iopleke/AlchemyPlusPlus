@@ -8,13 +8,11 @@ import org.lwjgl.opengl.GL11;
 
 public class ModelDiffuser extends ModelBase {
 
-    ModelRenderer bowl;
     ModelRenderer bottle;
+    ModelRenderer bowl;
     ModelRenderer liquid;
     ModelRenderer stopper;
-
     public int potionColor = 0;
-
     public boolean isDiffusing = false;
 
     public ModelDiffuser() {
@@ -33,8 +31,8 @@ public class ModelDiffuser extends ModelBase {
         liquid = new ModelRenderer(this, 0, 20);
         liquid.setTextureSize(textureWidth, textureHeight);
         setRotation(liquid, 0.4F, 0, 0);
-        liquid.addBox(6, 5, 3, 4, 4, 4);
-        liquid.addBox(7, 9, 4, 2, 1, 2);
+        liquid.addBox(6, 5, 3, 4, 4, 4); // main part of liquid
+        liquid.addBox(7, 9, 4, 2, 1, 2); // top part of liquid
 
         // Bottle
         bottle = new ModelRenderer(this, 40, 0);
@@ -48,19 +46,18 @@ public class ModelDiffuser extends ModelBase {
 
         stopper = new ModelRenderer(this, 6, 6);
         stopper.setTextureSize(textureWidth, textureHeight);
-        // stopper.setRotationPoint(5.7f, 13, 5);
         setRotation(stopper, 0.4F, 0, 0);
-        stopper.addBox(7, 13, 4, 2, 2, 2); // stopper portion of the bottle
+        stopper.addBox(7, 13, 4, 2, 2, 2); // 'cork' in the top of the bottle
 
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-        super.render(entity, f, f1, f2, f3, f4, f5);
+    public void render(Entity diffuserEntity, float f, float f1, float f2, float f3, float f4, float f5) {
+        super.render(diffuserEntity, f, f1, f2, f3, f4, f5);
 
         float red, green, blue;
 
-        setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+        setRotationAngles(f, f1, f2, f3, f4, f5, diffuserEntity);
 
         GL11.glEnable(GL11.GL_NORMALIZE);
         GL11.glEnable(GL11.GL_BLEND);
@@ -74,14 +71,17 @@ public class ModelDiffuser extends ModelBase {
         blue = (potionColor >> 0 & 255) / 255f;
 
         GL11.glColor3f(red, green, blue);
+        // Don't render the liquid if the color is 0
         if (potionColor > 0) {
             liquid.render(f5);
         }
+        // Set the color back to 'white'
         GL11.glColor3f(1f, 1f, 1f);
 
         // Bottle must render AFTER the liquid
         bottle.render(f5);
 
+        // Don't render the stopper if the diffuser is active
         if (!isDiffusing) {
             stopper.render(f5);
         }
