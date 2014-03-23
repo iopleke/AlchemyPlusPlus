@@ -106,9 +106,9 @@ public class TileEntityDiffuser extends TileEntity implements IInventory {
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
-        super.readFromNBT(par1NBTTagCompound);
-        NBTTagList nbttaglist = par1NBTTagCompound.getTagList("Items");
+    public void readFromNBT(NBTTagCompound diffuserNBTData) {
+        super.readFromNBT(diffuserNBTData);
+        NBTTagList nbttaglist = diffuserNBTData.getTagList("Items");
         this.diffuserInventory = new ItemStack[this.getSizeInventory()];
 
         for (int i = 0; i < nbttaglist.tagCount(); ++i) {
@@ -120,17 +120,19 @@ public class TileEntityDiffuser extends TileEntity implements IInventory {
             }
         }
 
-        this.diffusingTicks = par1NBTTagCompound.getShort("diffusingTicks");
-        this.fluidLevel = par1NBTTagCompound.getShort("fluidLevel");
+        this.diffusingTicks = diffuserNBTData.getShort("diffusingTicks");
+        this.fluidLevel = diffuserNBTData.getShort("fluidLevel");
+        this.isDiffusing = diffuserNBTData.getBoolean("isDiffusing");
 
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
-        super.writeToNBT(par1NBTTagCompound);
-        par1NBTTagCompound.setShort("diffusingTicks", (short) this.diffusingTicks);
-        par1NBTTagCompound.setShort("fluidLevel", (short) this.fluidLevel);
-        par1NBTTagCompound.setBoolean("isDiffusing", this.isDiffusing);
+    public void writeToNBT(NBTTagCompound diffuserNBTData) {
+        super.writeToNBT(diffuserNBTData);
+        diffuserNBTData.setShort("diffusingTicks", (short) this.diffusingTicks);
+        diffuserNBTData.setShort("fluidLevel", (short) this.fluidLevel);
+        diffuserNBTData.setBoolean("isDiffusing", this.isDiffusing);
+
         NBTTagList nbttaglist = new NBTTagList();
 
         for (int i = 0; i < this.diffuserInventory.length; ++i) {
@@ -142,7 +144,7 @@ public class TileEntityDiffuser extends TileEntity implements IInventory {
             }
         }
 
-        par1NBTTagCompound.setTag("Items", nbttaglist);
+        diffuserNBTData.setTag("Items", nbttaglist);
 
     }
 
