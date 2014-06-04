@@ -1,36 +1,28 @@
-#################
-## Eclipse
-#################
-
-*.pydevproject
-.project
-.metadata
-bin/
-tmp/
-*.tmp
+# Eclipse
 *.bak
-*.swp
-*~.nib
-local.properties
-.classpath
-.settings/
-.loadpath
-
-# External tool builders
-.externalToolBuilders/
-
-# Locally stored "Eclipse launch configurations"
 *.launch
+*.swp
+*.tmp
+.classpath
+.loadpath
+.metadata
+.project
+.settings
+eclipse
+bin
+tmp
 
-# CDT-specific
-.cproject
-
-# PDT-specific
-.buildpath
-
-# Ignore gedit backup files
+# gedit
 *.*~
 
-# Ignore Netbeans project files
-nbproject
+# netbeans
+nbbuild
 build.xml
+nb-build.xml
+nbproject
+
+# gradle
+output
+.gradle
+build
+lib
