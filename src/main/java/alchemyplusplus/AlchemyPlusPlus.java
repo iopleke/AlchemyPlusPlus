@@ -1,17 +1,19 @@
 package alchemyplusplus;
 
+import alchemyplusplus.utility.EventManager;
+import alchemyplusplus.utility.ConfigManager;
 import alchemyplusplus.network.CommonProxy;
 import alchemyplusplus.network.PacketHandler;
-import alchemyplusplus.blocks.BlockRegistry;
-import alchemyplusplus.client.APPClientPacketHandler;
-import alchemyplusplus.gui.APPGuiHandler;
-import alchemyplusplus.items.ItemRegistry;
-import alchemyplusplus.tileentities.TileEntityAlchemicalApparatus;
-import alchemyplusplus.tileentities.TileEntityDiffuser;
-import alchemyplusplus.tileentities.TileEntityDistillery;
-import alchemyplusplus.tileentities.TileEntityExtractor;
-import alchemyplusplus.tileentities.TileEntityLiquidMixer;
-import alchemyplusplus.tileentities.TileEntityPotionContainer;
+import alchemyplusplus.utility.BlockRegistry;
+import alchemyplusplus.network.ClientPacketHandler;
+import alchemyplusplus.utility.GUIHandler;
+import alchemyplusplus.utility.ItemRegistry;
+import alchemyplusplus.tileentities.apparatus.TileEntityAlchemicalApparatus;
+import alchemyplusplus.tileentities.diffuser.TileEntityDiffuser;
+import alchemyplusplus.tileentities.distillery.TileEntityDistillery;
+import alchemyplusplus.tileentities.extractor.TileEntityExtractor;
+import alchemyplusplus.tileentities.mixer.TileEntityLiquidMixer;
+import alchemyplusplus.tileentities.potioncontainer.TileEntityPotionContainer;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -25,30 +27,31 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = "AlchemyPlusPlus", name = "AlchemyPlusPlus", version = "release 1.1")
-@NetworkMod(clientSideRequired = true, serverSideRequired = false, clientPacketHandlerSpec = @SidedPacketHandler(channels = { "Alchemy++" }, packetHandler = APPClientPacketHandler.class), serverPacketHandlerSpec = @SidedPacketHandler(channels = { "Alchemy++" }, packetHandler = PacketHandler.class))
-public class AlchemyPlusPlus {
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, clientPacketHandlerSpec = @SidedPacketHandler(channels =
+{
+    "Alchemy++"
+}, packetHandler = ClientPacketHandler.class), serverPacketHandlerSpec = @SidedPacketHandler(channels =
+{
+    "Alchemy++"
+}, packetHandler = PacketHandler.class))
+public class AlchemyPlusPlus
+{
 
-    @Instance("AlchemyPlusPlus")
-    public static AlchemyPlusPlus instance = new AlchemyPlusPlus();
-    public static APPGuiHandler guiHandler = new APPGuiHandler();
+    public static GUIHandler guiHandler = new GUIHandler();
 
-    @SidedProxy(clientSide = "alchemyplusplus.client.ClientProxy", serverSide = "alchemyplusplus.CommonProxy")
-    public static CommonProxy proxy;
 
     /*
      * Herbs addon loaded
      */
     public static boolean herbs = false;
+    @Instance(value = "AlchemyPlusPlus")
+    public static AlchemyPlusPlus instance = new AlchemyPlusPlus();
+    @SidedProxy(clientSide = "alchemyplusplus.client.ClientProxy", serverSide = "alchemyplusplus.CommonProxy")
+    public static CommonProxy proxy;
 
     @EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
-
-        APPConfigManager.initialSetup(event.getSuggestedConfigurationFile());
-
-    }
-
-    @EventHandler
-    public void load(FMLInitializationEvent event) {
+    public void load(FMLInitializationEvent event)
+    {
 
         proxy.registerRenderers();
         GameRegistry.registerTileEntity(TileEntityPotionContainer.class, "potionKegTE");
@@ -65,17 +68,26 @@ public class AlchemyPlusPlus {
         ItemRegistry.registerItemRecipes();
 
         // Book.loadAll();
-
-        if (APPConfigManager.appHardcoreModeEnabled) {
+        if (ConfigManager.appHardcoreModeEnabled)
+        {
             ItemRegistry.registerHardcoreRecipes();
         }
         NetworkRegistry.instance().registerGuiHandler(AlchemyPlusPlus.instance, this.guiHandler);
 
-        APPEvents.registerEventHooks();
+        EventManager.registerEventHooks();
     }
 
     @EventHandler
-    public void postInit(FMLPostInitializationEvent event) {
+    public void postInit(FMLPostInitializationEvent event)
+    {
+    }
+
+    @EventHandler
+    public void preInit(FMLPreInitializationEvent event)
+    {
+
+        ConfigManager.initialSetup(event.getSuggestedConfigurationFile());
+
     }
 
 }

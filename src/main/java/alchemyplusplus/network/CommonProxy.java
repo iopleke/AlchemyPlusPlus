@@ -1,9 +1,11 @@
 package alchemyplusplus.network;
 
-public class CommonProxy {
+public class CommonProxy
+{
 
-	public void registerRenderers() {
-				
-	}
+    public void registerRenderers()
+    {
+
+    }
 
 }
