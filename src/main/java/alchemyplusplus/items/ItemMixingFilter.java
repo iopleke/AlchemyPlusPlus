@@ -1,9 +1,9 @@
-package mokonaDesu.alchemypp.items;
+package alchemyplusplus.items;
 
 import java.util.List;
 import java.util.Random;
 
-import mokonaDesu.alchemypp.APPConfigManager;
+import alchemyplusplus.APPConfigManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

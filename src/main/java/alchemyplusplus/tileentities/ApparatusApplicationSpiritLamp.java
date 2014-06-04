@@ -1,7 +1,7 @@
-package mokonaDesu.alchemypp.tileentities;
+package alchemyplusplus.tileentities;
 
-import mokonaDesu.alchemypp.items.ItemRegistry;
-import mokonaDesu.alchemypp.model.ModelSpiritlamp;
+import alchemyplusplus.items.ItemRegistry;
+import alchemyplusplus.model.ModelSpiritlamp;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

@@ -1,8 +1,8 @@
-package mokonaDesu.alchemypp.items;
+package alchemyplusplus.items;
 
 import java.util.List;
 
-import mokonaDesu.alchemypp.AlchemyPP;
+import alchemyplusplus.AlchemyPlusPlus;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
@@ -15,7 +15,7 @@ public class ItemAlchemicalGuide extends APPItem {
 	}
 	
 	 public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-	 	 player.openGui(AlchemyPP.instance, 2, world, 0, 0, 0);
+	 	 player.openGui(AlchemyPlusPlus.instance, 2, world, 0, 0, 0);
 	 	 return stack; 
 	}
 	 

@@ -1,6 +1,6 @@
-package mokonaDesu.alchemypp.model;
+package alchemyplusplus.model;
 
-import mokonaDesu.alchemypp.tileentities.TileEntityAlchemicalApparatus;
+import alchemyplusplus.tileentities.TileEntityAlchemicalApparatus;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 

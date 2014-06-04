@@ -1,6 +1,6 @@
-package mokonaDesu.alchemypp.tileentities;
+package alchemyplusplus.tileentities;
 
-import mokonaDesu.alchemypp.items.ItemRegistry;
+import alchemyplusplus.items.ItemRegistry;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;

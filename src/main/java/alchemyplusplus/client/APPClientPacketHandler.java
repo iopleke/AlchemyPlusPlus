@@ -1,4 +1,4 @@
-package mokonaDesu.alchemypp.client;
+package alchemyplusplus.client;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;

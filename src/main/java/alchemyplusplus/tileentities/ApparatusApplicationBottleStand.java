@@ -1,10 +1,10 @@
-package mokonaDesu.alchemypp.tileentities;
+package alchemyplusplus.tileentities;
 
 import java.util.ArrayList;
 
-import mokonaDesu.alchemypp.MixingHelper;
-import mokonaDesu.alchemypp.items.ItemRegistry;
-import mokonaDesu.alchemypp.model.ModelBottleStand;
+import alchemyplusplus.MixingHelper;
+import alchemyplusplus.items.ItemRegistry;
+import alchemyplusplus.model.ModelBottleStand;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;

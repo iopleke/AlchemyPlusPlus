@@ -1,4 +1,4 @@
-package mokonaDesu.alchemypp.tileentities;
+package alchemyplusplus.tileentities;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.PacketDispatcher;

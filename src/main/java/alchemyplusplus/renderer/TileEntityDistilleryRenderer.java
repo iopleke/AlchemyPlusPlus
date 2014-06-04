@@ -1,8 +1,8 @@
-package mokonaDesu.alchemypp.renderer;
+package alchemyplusplus.renderer;
 
-import mokonaDesu.alchemypp.blocks.BlockRegistry;
-import mokonaDesu.alchemypp.model.ModelDistillery;
-import mokonaDesu.alchemypp.tileentities.TileEntityDistillery;
+import alchemyplusplus.blocks.BlockRegistry;
+import alchemyplusplus.model.ModelDistillery;
+import alchemyplusplus.tileentities.TileEntityDistillery;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -47,7 +47,7 @@ public class TileEntityDistilleryRenderer extends TileEntitySpecialRenderer {
         GL11.glTranslatef(-0.5F, 0, -0.5F);
 
         bindTexture(new ResourceLocation(
-                "AlchemyPP:textures/blocks/Distillery.png"));
+                "AlchemyPlusPlus:assets/alchemyplusplus/blocks/Distillery.png"));
 
         this.model
                 .render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);

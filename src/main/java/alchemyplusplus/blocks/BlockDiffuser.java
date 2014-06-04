@@ -1,9 +1,9 @@
-package mokonaDesu.alchemypp.blocks;
+package alchemyplusplus.blocks;
 
 import java.util.Random;
 
-import mokonaDesu.alchemypp.items.ItemRegistry;
-import mokonaDesu.alchemypp.tileentities.TileEntityDiffuser;
+import alchemyplusplus.items.ItemRegistry;
+import alchemyplusplus.tileentities.TileEntityDiffuser;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.EffectRenderer;
@@ -36,7 +36,7 @@ public class BlockDiffuser extends BlockContainer {
     public void registerIcons(IconRegister iconRegister) {
         // @TODO - figure out how to hide the dummy block in NEI
         // @TODO - change this from "WIPLiquidMixer" to something more generic
-        this.blockIcon = iconRegister.registerIcon("AlchemyPP:WIPLiquidMixer");
+        this.blockIcon = iconRegister.registerIcon("AlchemyPlusPlus:WIPLiquidMixer");
     }
 
     @Override
@@ -53,7 +53,7 @@ public class BlockDiffuser extends BlockContainer {
             if (diffuserTE.potionStack == null) {
                 if (!world.isRemote) {
                     player.addChatMessage("You pour the potion into the diffuser");
-                    // player.openGui(AlchemyPP.instance, 3, world, x, y, z);
+                    // player.openGui(AlchemyPlusPlus.instance, 3, world, x, y, z);
                 }
                 diffuserTE.potionStack = player.getHeldItem().copy();
                 diffuserTE.setBottleColorValue(diffuserTE.potionStack.getItemDamage());

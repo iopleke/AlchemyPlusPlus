@@ -1,9 +1,9 @@
-package mokonaDesu.alchemypp.gui;
+package alchemyplusplus.gui;
 
 import org.lwjgl.opengl.GL11;
 
-import mokonaDesu.alchemypp.tileentities.ContainerExtractor;
-import mokonaDesu.alchemypp.tileentities.TileEntityExtractor;
+import alchemyplusplus.tileentities.ContainerExtractor;
+import alchemyplusplus.tileentities.TileEntityExtractor;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -32,7 +32,7 @@ public class GuiExtractor extends GuiContainer {
         protected void drawGuiContainerBackgroundLayer(float par1, int par2,
                         int par3) {
 
-                this.mc.renderEngine.bindTexture(new ResourceLocation("AlchemyPP:textures/gui/extractor.png"));
+                this.mc.renderEngine.bindTexture(new ResourceLocation("AlchemyPlusPlus:assets/alchemyplusplus/gui/extractor.png"));
                 int x = (width - xSize) / 2;
                 int y = (height - ySize) / 2;
                 this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);

@@ -1,15 +1,17 @@
-package mokonaDesu.alchemypp;
+package alchemyplusplus;
 
-import mokonaDesu.alchemypp.blocks.BlockRegistry;
-import mokonaDesu.alchemypp.client.APPClientPacketHandler;
-import mokonaDesu.alchemypp.gui.APPGuiHandler;
-import mokonaDesu.alchemypp.items.ItemRegistry;
-import mokonaDesu.alchemypp.tileentities.TileEntityAlchemicalApparatus;
-import mokonaDesu.alchemypp.tileentities.TileEntityDiffuser;
-import mokonaDesu.alchemypp.tileentities.TileEntityDistillery;
-import mokonaDesu.alchemypp.tileentities.TileEntityExtractor;
-import mokonaDesu.alchemypp.tileentities.TileEntityLiquidMixer;
-import mokonaDesu.alchemypp.tileentities.TileEntityPotionContainer;
+import alchemyplusplus.network.CommonProxy;
+import alchemyplusplus.network.PacketHandler;
+import alchemyplusplus.blocks.BlockRegistry;
+import alchemyplusplus.client.APPClientPacketHandler;
+import alchemyplusplus.gui.APPGuiHandler;
+import alchemyplusplus.items.ItemRegistry;
+import alchemyplusplus.tileentities.TileEntityAlchemicalApparatus;
+import alchemyplusplus.tileentities.TileEntityDiffuser;
+import alchemyplusplus.tileentities.TileEntityDistillery;
+import alchemyplusplus.tileentities.TileEntityExtractor;
+import alchemyplusplus.tileentities.TileEntityLiquidMixer;
+import alchemyplusplus.tileentities.TileEntityPotionContainer;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -23,14 +25,14 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = "AlchemyPlusPlus", name = "AlchemyPlusPlus", version = "release 1.1")
-@NetworkMod(clientSideRequired = true, serverSideRequired = false, clientPacketHandlerSpec = @SidedPacketHandler(channels = { "Alchemy++" }, packetHandler = APPClientPacketHandler.class), serverPacketHandlerSpec = @SidedPacketHandler(channels = { "Alchemy++" }, packetHandler = APPServerPacketHandler.class))
-public class AlchemyPP {
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, clientPacketHandlerSpec = @SidedPacketHandler(channels = { "Alchemy++" }, packetHandler = APPClientPacketHandler.class), serverPacketHandlerSpec = @SidedPacketHandler(channels = { "Alchemy++" }, packetHandler = PacketHandler.class))
+public class AlchemyPlusPlus {
 
     @Instance("AlchemyPlusPlus")
-    public static AlchemyPP instance = new AlchemyPP();
+    public static AlchemyPlusPlus instance = new AlchemyPlusPlus();
     public static APPGuiHandler guiHandler = new APPGuiHandler();
 
-    @SidedProxy(clientSide = "mokonaDesu.alchemypp.client.ClientProxy", serverSide = "mokonaDesu.alchemypp.CommonProxy")
+    @SidedProxy(clientSide = "alchemyplusplus.client.ClientProxy", serverSide = "alchemyplusplus.CommonProxy")
     public static CommonProxy proxy;
 
     /*
@@ -67,7 +69,7 @@ public class AlchemyPP {
         if (APPConfigManager.appHardcoreModeEnabled) {
             ItemRegistry.registerHardcoreRecipes();
         }
-        NetworkRegistry.instance().registerGuiHandler(AlchemyPP.instance, this.guiHandler);
+        NetworkRegistry.instance().registerGuiHandler(AlchemyPlusPlus.instance, this.guiHandler);
 
         APPEvents.registerEventHooks();
     }

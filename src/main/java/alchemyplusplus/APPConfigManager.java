@@ -1,9 +1,9 @@
-package mokonaDesu.alchemypp;
+package alchemyplusplus;
 
 import java.io.File;
 import java.util.HashMap;
 
-import mokonaDesu.alchemypp.gui.APPCreativeTab;
+import alchemyplusplus.gui.APPCreativeTab;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;

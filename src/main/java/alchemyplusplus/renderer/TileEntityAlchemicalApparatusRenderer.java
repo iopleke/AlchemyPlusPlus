@@ -1,14 +1,14 @@
-package mokonaDesu.alchemypp.renderer;
+package alchemyplusplus.renderer;
 
-import mokonaDesu.alchemypp.blocks.BlockRegistry;
-import mokonaDesu.alchemypp.model.APPAlchemicalApparatusModel;
-import mokonaDesu.alchemypp.model.ModelBottleStand;
-import mokonaDesu.alchemypp.model.ModelLiquidMixer;
-import mokonaDesu.alchemypp.model.ModelSpiritlamp;
-import mokonaDesu.alchemypp.model.ModelSprayer;
-import mokonaDesu.alchemypp.tileentities.ApparatusApplicationSpiritLamp;
-import mokonaDesu.alchemypp.tileentities.TileEntityAlchemicalApparatus;
-import mokonaDesu.alchemypp.tileentities.TileEntityLiquidMixer;
+import alchemyplusplus.blocks.BlockRegistry;
+import alchemyplusplus.model.APPAlchemicalApparatusModel;
+import alchemyplusplus.model.ModelBottleStand;
+import alchemyplusplus.model.ModelLiquidMixer;
+import alchemyplusplus.model.ModelSpiritlamp;
+import alchemyplusplus.model.ModelSprayer;
+import alchemyplusplus.tileentities.ApparatusApplicationSpiritLamp;
+import alchemyplusplus.tileentities.TileEntityAlchemicalApparatus;
+import alchemyplusplus.tileentities.TileEntityLiquidMixer;
 import net.minecraft.block.Block;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -59,7 +59,7 @@ public class TileEntityAlchemicalApparatusRenderer extends TileEntitySpecialRend
          GL11.glRotatef(dir * (-90F), 0F, 1F, 0F);
          GL11.glTranslatef(-0.5F, 0, -0.5F);
      
-         bindTexture(new ResourceLocation("AlchemyPP:textures/blocks/Apparatus.png"));
+         bindTexture(new ResourceLocation("AlchemyPlusPlus:assets/alchemyplusplus/blocks/Apparatus.png"));
 
          if (tl.bottom != null)
         	 this.modelList[tl.bottom.getModelCode()].render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, tl);

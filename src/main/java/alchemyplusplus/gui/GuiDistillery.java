@@ -1,7 +1,7 @@
-package mokonaDesu.alchemypp.gui;
+package alchemyplusplus.gui;
 
-import mokonaDesu.alchemypp.tileentities.ContainerDistillery;
-import mokonaDesu.alchemypp.tileentities.TileEntityDistillery;
+import alchemyplusplus.tileentities.ContainerDistillery;
+import alchemyplusplus.tileentities.TileEntityDistillery;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -32,7 +32,7 @@ public class GuiDistillery extends GuiContainer {
             int par3) {
 
         this.mc.renderEngine.bindTexture(new ResourceLocation(
-                "AlchemyPP:textures/gui/distillery.png"));
+                "AlchemyPlusPlus:assets/alchemyplusplus/gui/distillery.png"));
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);

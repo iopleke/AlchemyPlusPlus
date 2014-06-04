@@ -1,4 +1,4 @@
-package mokonaDesu.alchemypp;
+package alchemyplusplus.network;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -19,7 +19,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import cpw.mods.fml.server.FMLServerHandler;
 
-public class APPServerPacketHandler implements IPacketHandler{
+public class PacketHandler implements IPacketHandler{
 @Override
 public void onPacketData(INetworkManager manager, Packet250CustomPayload payload, Player player) {
 ;

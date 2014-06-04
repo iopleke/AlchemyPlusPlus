@@ -1,7 +1,7 @@
-package mokonaDesu.alchemypp.model;
+package alchemyplusplus.model;
 
-import mokonaDesu.alchemypp.tileentities.ApparatusApplicationBottleStand;
-import mokonaDesu.alchemypp.tileentities.TileEntityAlchemicalApparatus;
+import alchemyplusplus.tileentities.ApparatusApplicationBottleStand;
+import alchemyplusplus.tileentities.TileEntityAlchemicalApparatus;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.potion.PotionHelper;

@@ -1,9 +1,9 @@
-package mokonaDesu.alchemypp.model;
+package alchemyplusplus.model;
 
 import org.lwjgl.opengl.GL11;
 
-import mokonaDesu.alchemypp.items.ItemRegistry;
-import mokonaDesu.alchemypp.tileentities.TileEntityLiquidMixer;
+import alchemyplusplus.items.ItemRegistry;
+import alchemyplusplus.tileentities.TileEntityLiquidMixer;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;

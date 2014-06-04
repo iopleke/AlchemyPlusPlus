@@ -1,8 +1,8 @@
-package mokonaDesu.alchemypp.renderer;
+package alchemyplusplus.renderer;
 
-import mokonaDesu.alchemypp.blocks.BlockRegistry;
-import mokonaDesu.alchemypp.model.ModelPotionContainer;
-import mokonaDesu.alchemypp.tileentities.TileEntityPotionContainer;
+import alchemyplusplus.blocks.BlockRegistry;
+import alchemyplusplus.model.ModelPotionContainer;
+import alchemyplusplus.tileentities.TileEntityPotionContainer;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -48,7 +48,7 @@ public class TileEntityPotionContainerRenderer extends
         GL11.glRotatef(dir * (-90F), 0F, 1F, 0F);
         GL11.glTranslatef(-0.5F, 0, -0.5F);
 
-        bindTexture(new ResourceLocation("AlchemyPP:textures/blocks/Bottle.png"));
+        bindTexture(new ResourceLocation("AlchemyPlusPlus:assets/alchemyplusplus/blocks/Bottle.png"));
 
         float percentage = ((float) tl.containerHas) / tl.containerMax;
         int color = 0;

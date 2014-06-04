@@ -1,6 +1,6 @@
-package mokonaDesu.alchemypp.blocks;
+package alchemyplusplus.blocks;
 
-import mokonaDesu.alchemypp.APPConfigManager;
+import alchemyplusplus.APPConfigManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;

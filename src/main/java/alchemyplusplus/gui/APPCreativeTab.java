@@ -1,9 +1,9 @@
-package mokonaDesu.alchemypp.gui;
+package alchemyplusplus.gui;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Item;
-import mokonaDesu.alchemypp.items.ItemRegistry;
+import alchemyplusplus.items.ItemRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -17,7 +17,7 @@ public class APPCreativeTab extends CreativeTabs {
     public ItemStack getIconItemStack() {
         // Set the creative tab icon
         return new ItemStack(
-                mokonaDesu.alchemypp.items.ItemRegistry.appItemPotionBottle, 1,
+                alchemyplusplus.items.ItemRegistry.appItemPotionBottle, 1,
                 0);
     }
 

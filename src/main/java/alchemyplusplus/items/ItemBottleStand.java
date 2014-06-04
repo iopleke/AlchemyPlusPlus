@@ -1,9 +1,9 @@
-package mokonaDesu.alchemypp.items;
+package alchemyplusplus.items;
 
 import cpw.mods.fml.common.network.PacketDispatcher;
-import mokonaDesu.alchemypp.blocks.BlockRegistry;
-import mokonaDesu.alchemypp.tileentities.ApparatusApplicationBottleStand;
-import mokonaDesu.alchemypp.tileentities.TileEntityAlchemicalApparatus;
+import alchemyplusplus.blocks.BlockRegistry;
+import alchemyplusplus.tileentities.ApparatusApplicationBottleStand;
+import alchemyplusplus.tileentities.TileEntityAlchemicalApparatus;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

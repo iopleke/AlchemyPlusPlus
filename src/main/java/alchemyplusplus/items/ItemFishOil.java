@@ -1,4 +1,4 @@
-package mokonaDesu.alchemypp.items;
+package alchemyplusplus.items;
 
 import java.util.List;
 
@@ -32,12 +32,12 @@ public class ItemFishOil extends Item {
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister)
     {
-    	this.percent0 = iconRegister.registerIcon("AlchemyPP:fishOil0");
-        this.percent20 = iconRegister.registerIcon("AlchemyPP:fishOil20");
-        this.percent40 = iconRegister.registerIcon("AlchemyPP:fishOil40");
-        this.percent60 = iconRegister.registerIcon("AlchemyPP:fishOil60");
-        this.percent80 = iconRegister.registerIcon("AlchemyPP:fishOil80");
-        this.percent100 = iconRegister.registerIcon("AlchemyPP:fishOil100");
+    	this.percent0 = iconRegister.registerIcon("AlchemyPlusPlus:fishOil0");
+        this.percent20 = iconRegister.registerIcon("AlchemyPlusPlus:fishOil20");
+        this.percent40 = iconRegister.registerIcon("AlchemyPlusPlus:fishOil40");
+        this.percent60 = iconRegister.registerIcon("AlchemyPlusPlus:fishOil60");
+        this.percent80 = iconRegister.registerIcon("AlchemyPlusPlus:fishOil80");
+        this.percent100 = iconRegister.registerIcon("AlchemyPlusPlus:fishOil100");
     }
     
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)

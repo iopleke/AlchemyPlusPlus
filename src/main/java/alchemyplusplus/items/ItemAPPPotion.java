@@ -1,4 +1,4 @@
-package mokonaDesu.alchemypp.items;
+package alchemyplusplus.items;
 
 import java.lang.reflect.Field;
 

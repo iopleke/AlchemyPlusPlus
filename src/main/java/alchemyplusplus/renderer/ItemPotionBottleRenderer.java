@@ -1,9 +1,9 @@
-package mokonaDesu.alchemypp.renderer;
+package alchemyplusplus.renderer;
 
 import org.lwjgl.opengl.GL11;
 
-import mokonaDesu.alchemypp.items.ItemPotionBottle;
-import mokonaDesu.alchemypp.items.ItemRegistry;
+import alchemyplusplus.items.ItemPotionBottle;
+import alchemyplusplus.items.ItemRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.Tessellator;

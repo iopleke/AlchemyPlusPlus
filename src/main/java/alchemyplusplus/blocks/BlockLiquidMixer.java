@@ -1,4 +1,4 @@
-package mokonaDesu.alchemypp.blocks;
+package alchemyplusplus.blocks;
 
 import java.util.List;
 import java.util.Random;
@@ -6,10 +6,10 @@ import java.util.Random;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import mokonaDesu.alchemypp.AlchemyPP;
-import mokonaDesu.alchemypp.client.ClientProxy;
-import mokonaDesu.alchemypp.items.ItemRegistry;
-import mokonaDesu.alchemypp.tileentities.TileEntityLiquidMixer;
+import alchemyplusplus.AlchemyPlusPlus;
+import alchemyplusplus.client.ClientProxy;
+import alchemyplusplus.items.ItemRegistry;
+import alchemyplusplus.tileentities.TileEntityLiquidMixer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -45,7 +45,7 @@ public class BlockLiquidMixer extends BlockContainer {
 		
 		@Override
 		public void registerIcons(IconRegister iconRegister) {
-			this.blockIcon = iconRegister.registerIcon("AlchemyPP:WIPLiquidMixer");
+			this.blockIcon = iconRegister.registerIcon("AlchemyPlusPlus:WIPLiquidMixer");
 		}
 
 
@@ -57,7 +57,7 @@ public class BlockLiquidMixer extends BlockContainer {
 		@Override
 		public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int a, float b, float c, float g) {
 			if (!world.isRemote)
-			player.openGui(AlchemyPP.instance, 0, world, x, y, z);
+			player.openGui(AlchemyPlusPlus.instance, 0, world, x, y, z);
 			return true;
 		}
 		

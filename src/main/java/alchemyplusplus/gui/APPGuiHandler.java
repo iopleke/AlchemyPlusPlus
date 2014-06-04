@@ -1,15 +1,15 @@
-package mokonaDesu.alchemypp.gui;
+package alchemyplusplus.gui;
 
 import java.util.HashMap;
 
-import mokonaDesu.alchemypp.tileentities.ContainerDiffuser;
-import mokonaDesu.alchemypp.tileentities.ContainerDistillery;
-import mokonaDesu.alchemypp.tileentities.ContainerExtractor;
-import mokonaDesu.alchemypp.tileentities.ContainerLiquidMixer;
-import mokonaDesu.alchemypp.tileentities.TileEntityDiffuser;
-import mokonaDesu.alchemypp.tileentities.TileEntityDistillery;
-import mokonaDesu.alchemypp.tileentities.TileEntityExtractor;
-import mokonaDesu.alchemypp.tileentities.TileEntityLiquidMixer;
+import alchemyplusplus.tileentities.ContainerDiffuser;
+import alchemyplusplus.tileentities.ContainerDistillery;
+import alchemyplusplus.tileentities.ContainerExtractor;
+import alchemyplusplus.tileentities.ContainerLiquidMixer;
+import alchemyplusplus.tileentities.TileEntityDiffuser;
+import alchemyplusplus.tileentities.TileEntityDistillery;
+import alchemyplusplus.tileentities.TileEntityExtractor;
+import alchemyplusplus.tileentities.TileEntityLiquidMixer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;

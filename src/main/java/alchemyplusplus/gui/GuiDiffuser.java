@@ -1,7 +1,7 @@
-package mokonaDesu.alchemypp.gui;
+package alchemyplusplus.gui;
 
-import mokonaDesu.alchemypp.tileentities.ContainerDiffuser;
-import mokonaDesu.alchemypp.tileentities.TileEntityDiffuser;
+import alchemyplusplus.tileentities.ContainerDiffuser;
+import alchemyplusplus.tileentities.TileEntityDiffuser;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -27,7 +27,7 @@ public class GuiDiffuser extends GuiContainer {
     @Override
     protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3) {
 
-        this.mc.renderEngine.bindTexture(new ResourceLocation("AlchemyPP:textures/gui/distillery.png"));
+        this.mc.renderEngine.bindTexture(new ResourceLocation("AlchemyPlusPlus:assets/alchemyplusplus/gui/distillery.png"));
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);

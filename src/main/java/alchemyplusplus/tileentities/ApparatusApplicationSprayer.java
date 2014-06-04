@@ -1,4 +1,4 @@
-package mokonaDesu.alchemypp.tileentities;
+package alchemyplusplus.tileentities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +8,9 @@ import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 
-import mokonaDesu.alchemypp.MixingHelper;
-import mokonaDesu.alchemypp.items.ItemRegistry;
-import mokonaDesu.alchemypp.model.ModelSprayer;
+import alchemyplusplus.MixingHelper;
+import alchemyplusplus.items.ItemRegistry;
+import alchemyplusplus.model.ModelSprayer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

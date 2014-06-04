@@ -1,6 +1,6 @@
-package mokonaDesu.alchemypp.items;
+package alchemyplusplus.items;
 
-import mokonaDesu.alchemypp.blocks.BlockRegistry;
+import alchemyplusplus.blocks.BlockRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

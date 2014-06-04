@@ -1,4 +1,4 @@
-package mokonaDesu.alchemypp;
+package alchemyplusplus.network;
 
 public class CommonProxy {
 

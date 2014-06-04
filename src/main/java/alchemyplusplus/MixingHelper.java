@@ -1,14 +1,14 @@
-package mokonaDesu.alchemypp;
+package alchemyplusplus;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import mokonaDesu.alchemypp.items.ItemMixingFilter;
-import mokonaDesu.alchemypp.items.ItemRegistry;
-import mokonaDesu.alchemypp.tileentities.TileEntityDistillery;
-import mokonaDesu.alchemypp.tileentities.TileEntityExtractor;
-import mokonaDesu.alchemypp.tileentities.TileEntityLiquidMixer;
+import alchemyplusplus.items.ItemMixingFilter;
+import alchemyplusplus.items.ItemRegistry;
+import alchemyplusplus.tileentities.TileEntityDistillery;
+import alchemyplusplus.tileentities.TileEntityExtractor;
+import alchemyplusplus.tileentities.TileEntityLiquidMixer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPotion;
 import net.minecraft.item.ItemStack;

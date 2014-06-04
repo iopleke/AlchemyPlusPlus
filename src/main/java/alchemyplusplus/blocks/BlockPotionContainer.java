@@ -1,4 +1,4 @@
-package mokonaDesu.alchemypp.blocks;
+package alchemyplusplus.blocks;
 
 import java.util.List;
 import java.util.Random;
@@ -8,10 +8,10 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import mokonaDesu.alchemypp.MixingHelper;
-import mokonaDesu.alchemypp.client.ClientProxy;
-import mokonaDesu.alchemypp.items.ItemRegistry;
-import mokonaDesu.alchemypp.tileentities.TileEntityPotionContainer;
+import alchemyplusplus.MixingHelper;
+import alchemyplusplus.client.ClientProxy;
+import alchemyplusplus.items.ItemRegistry;
+import alchemyplusplus.tileentities.TileEntityPotionContainer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -47,7 +47,7 @@ public class BlockPotionContainer extends BlockContainer {
 		
 		@Override
 		public void registerIcons(IconRegister iconRegister) {
-			this.blockIcon = iconRegister.registerIcon("AlchemyPP:PotionBottle");
+			this.blockIcon = iconRegister.registerIcon("AlchemyPlusPlus:PotionBottle");
 		}
 		
 		@Override

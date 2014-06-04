@@ -1,14 +1,14 @@
-package mokonaDesu.alchemypp.blocks;
+package alchemyplusplus.blocks;
 
 import java.util.Random;
 
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mokonaDesu.alchemypp.AlchemyPP;
-import mokonaDesu.alchemypp.tileentities.ApparatusApplicationBottleStand;
-import mokonaDesu.alchemypp.tileentities.ApparatusApplicationSpiritLamp;
-import mokonaDesu.alchemypp.tileentities.TileEntityAlchemicalApparatus;
+import alchemyplusplus.AlchemyPlusPlus;
+import alchemyplusplus.tileentities.ApparatusApplicationBottleStand;
+import alchemyplusplus.tileentities.ApparatusApplicationSpiritLamp;
+import alchemyplusplus.tileentities.TileEntityAlchemicalApparatus;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -38,7 +38,7 @@ public class BlockAlchemicalApparatus extends BlockContainer {
 	}
 
 	public void registerIcons(IconRegister iconRegister) {
-		this.blockIcon = iconRegister.registerIcon("AlchemyPP:WIPLiquidMixer");
+		this.blockIcon = iconRegister.registerIcon("AlchemyPlusPlus:WIPLiquidMixer");
 	}
 
 

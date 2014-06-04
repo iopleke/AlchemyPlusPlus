@@ -1,4 +1,4 @@
-package mokonaDesu.alchemypp.gui;
+package alchemyplusplus.gui;
 
 public class PageImageData {
 

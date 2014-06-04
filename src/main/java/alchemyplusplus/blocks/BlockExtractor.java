@@ -1,10 +1,10 @@
-package mokonaDesu.alchemypp.blocks;
+package alchemyplusplus.blocks;
 
 import java.util.Random;
 
-import mokonaDesu.alchemypp.AlchemyPP;
-import mokonaDesu.alchemypp.items.ItemRegistry;
-import mokonaDesu.alchemypp.tileentities.TileEntityExtractor;
+import alchemyplusplus.AlchemyPlusPlus;
+import alchemyplusplus.items.ItemRegistry;
+import alchemyplusplus.tileentities.TileEntityExtractor;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.EffectRenderer;
@@ -29,7 +29,7 @@ public class BlockExtractor extends BlockContainer {
 
     @Override
     public void registerIcons(IconRegister iconRegister) {
-        this.blockIcon = iconRegister.registerIcon("AlchemyPP:WIPLiquidMixer");
+        this.blockIcon = iconRegister.registerIcon("AlchemyPlusPlus:WIPLiquidMixer");
     }
 
     @Override
@@ -41,7 +41,7 @@ public class BlockExtractor extends BlockContainer {
     public boolean onBlockActivated(World world, int x, int y, int z,
             EntityPlayer player, int a, float b, float c, float g) {
         if (!world.isRemote)
-            player.openGui(AlchemyPP.instance, 1, world, x, y, z);
+            player.openGui(AlchemyPlusPlus.instance, 1, world, x, y, z);
         return true;
     }
 

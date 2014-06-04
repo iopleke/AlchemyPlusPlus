@@ -1,10 +1,10 @@
-package mokonaDesu.alchemypp.items;
+package alchemyplusplus.items;
 
 import java.util.List;
 
-import mokonaDesu.alchemypp.blocks.BlockRegistry;
-import mokonaDesu.alchemypp.tileentities.ApparatusApplicationSpiritLamp;
-import mokonaDesu.alchemypp.tileentities.TileEntityAlchemicalApparatus;
+import alchemyplusplus.blocks.BlockRegistry;
+import alchemyplusplus.tileentities.ApparatusApplicationSpiritLamp;
+import alchemyplusplus.tileentities.TileEntityAlchemicalApparatus;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -31,7 +31,7 @@ public class ItemSpirit extends Item {
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) {
         for (int i = 0; i < 6; i++) {
-            this.icons[i] = iconRegister.registerIcon("AlchemyPP:spirit"
+            this.icons[i] = iconRegister.registerIcon("AlchemyPlusPlus:spirit"
                     + (i * 20));
         }
     }

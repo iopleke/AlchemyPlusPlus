@@ -1,8 +1,8 @@
-package mokonaDesu.alchemypp.items;
+package alchemyplusplus.items;
 
 import java.util.ArrayList;
 
-import mokonaDesu.alchemypp.APPConfigManager;
+import alchemyplusplus.APPConfigManager;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPotion;
@@ -15,22 +15,22 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class ItemRegistry {
 
-    public static final Item appItemBottleStand = new ItemBottleStand(APPConfigManager.appItemBottleStand, "AlchemyPP:BottleStand").setUnlocalizedName("bottleStandItem").setCreativeTab(APPConfigManager.appCreativeTab);
-    public static final Item appItemConfusion = new APPItem(APPConfigManager.appItemConfusion, "AlchemyPP:confusion").setUnlocalizedName("confusion").setCreativeTab(APPConfigManager.appCreativeTab);
-    public static final Item appItemDiffuser = new ItemDiffuser(APPConfigManager.appItemDiffuser, "AlchemyPP:Diffuser").setUnlocalizedName("diffuserItem").setCreativeTab(APPConfigManager.appCreativeTab);
-    public static final Item appItemDistillery = new ItemDistillery(APPConfigManager.appItemDistillery, "AlchemyPP:Distillery").setUnlocalizedName("distilleryItem").setCreativeTab(APPConfigManager.appCreativeTab);
-    public static final Item appItemExtractor = new ItemExtractor(APPConfigManager.appItemExtractor, "AlchemyPP:Extractor").setUnlocalizedName("extractorItem").setCreativeTab(APPConfigManager.appCreativeTab);
-    public static final Item appItemFesteringFlesh = new APPItemFood(APPConfigManager.appItemFesteringFlesh, "AlchemyPP:FesteringFlesh", 7, 100, 20).setUnlocalizedName("flesh").setCreativeTab(APPConfigManager.appCreativeTab);
-    public static final Item appItemFilter = new ItemMixingFilter(APPConfigManager.appItemFilter, "AlchemyPP:AlchemicalFilter", 600).setUnlocalizedName("filter");
+    public static final Item appItemBottleStand = new ItemBottleStand(APPConfigManager.appItemBottleStand, "AlchemyPlusPlus:BottleStand").setUnlocalizedName("bottleStandItem").setCreativeTab(APPConfigManager.appCreativeTab);
+    public static final Item appItemConfusion = new APPItem(APPConfigManager.appItemConfusion, "AlchemyPlusPlus:confusion").setUnlocalizedName("confusion").setCreativeTab(APPConfigManager.appCreativeTab);
+    public static final Item appItemDiffuser = new ItemDiffuser(APPConfigManager.appItemDiffuser, "AlchemyPlusPlus:Diffuser").setUnlocalizedName("diffuserItem").setCreativeTab(APPConfigManager.appCreativeTab);
+    public static final Item appItemDistillery = new ItemDistillery(APPConfigManager.appItemDistillery, "AlchemyPlusPlus:Distillery").setUnlocalizedName("distilleryItem").setCreativeTab(APPConfigManager.appCreativeTab);
+    public static final Item appItemExtractor = new ItemExtractor(APPConfigManager.appItemExtractor, "AlchemyPlusPlus:Extractor").setUnlocalizedName("extractorItem").setCreativeTab(APPConfigManager.appCreativeTab);
+    public static final Item appItemFesteringFlesh = new APPItemFood(APPConfigManager.appItemFesteringFlesh, "AlchemyPlusPlus:FesteringFlesh", 7, 100, 20).setUnlocalizedName("flesh").setCreativeTab(APPConfigManager.appCreativeTab);
+    public static final Item appItemFilter = new ItemMixingFilter(APPConfigManager.appItemFilter, "AlchemyPlusPlus:AlchemicalFilter", 600).setUnlocalizedName("filter");
     public static final Item appItemFishOil = new ItemFishOil(APPConfigManager.appItemFishOil).setUnlocalizedName("fishoil").setCreativeTab(APPConfigManager.appCreativeTab);
-    public static final Item appItemIronPowder = new APPItem(APPConfigManager.appItemIronPowder, "AlchemyPP:ironDust").setUnlocalizedName("obsidian").setCreativeTab(APPConfigManager.appCreativeTab);
-    public static final Item appItemLiquidMixer = new ItemLiquidMixer(APPConfigManager.appItemLiquidMixer, "AlchemyPP:Mixer").setUnlocalizedName("mixerItem").setCreativeTab(APPConfigManager.appCreativeTab);
+    public static final Item appItemIronPowder = new APPItem(APPConfigManager.appItemIronPowder, "AlchemyPlusPlus:ironDust").setUnlocalizedName("obsidian").setCreativeTab(APPConfigManager.appCreativeTab);
+    public static final Item appItemLiquidMixer = new ItemLiquidMixer(APPConfigManager.appItemLiquidMixer, "AlchemyPlusPlus:Mixer").setUnlocalizedName("mixerItem").setCreativeTab(APPConfigManager.appCreativeTab);
     public static final Item appItemPotionBottle = new ItemPotionBottle(APPConfigManager.appItemPotionBottle).setUnlocalizedName("potionBottle").setCreativeTab(APPConfigManager.appCreativeTab);
     public static final Item appItemSpirit = new ItemSpirit(APPConfigManager.appItemSpirit).setCreativeTab(APPConfigManager.appCreativeTab).setUnlocalizedName("spiritItem");
-    public static final Item appItemSpiritLamp = new ItemSpiritLamp(APPConfigManager.appItemSpiritLamp, "AlchemyPP:SpiritLamp").setUnlocalizedName("spiritlampItem").setCreativeTab(APPConfigManager.appCreativeTab);
-    public static final Item appItemSprayer = new ItemSprayer(APPConfigManager.appItemSprayer, "AlchemyPP:Sprayer").setUnlocalizedName("sprayer").setCreativeTab(APPConfigManager.appCreativeTab);
-    public static final Item appItemSpringyCord = new APPItem(APPConfigManager.appItemSpringyCord, "AlchemyPP:spring").setUnlocalizedName("spring").setCreativeTab(APPConfigManager.appCreativeTab);
-    public static final Item appItemSquidEye = new APPItem(APPConfigManager.appItemSquidEye, "AlchemyPP:SquidEye").setUnlocalizedName("squidEye").setCreativeTab(APPConfigManager.appCreativeTab);
+    public static final Item appItemSpiritLamp = new ItemSpiritLamp(APPConfigManager.appItemSpiritLamp, "AlchemyPlusPlus:SpiritLamp").setUnlocalizedName("spiritlampItem").setCreativeTab(APPConfigManager.appCreativeTab);
+    public static final Item appItemSprayer = new ItemSprayer(APPConfigManager.appItemSprayer, "AlchemyPlusPlus:Sprayer").setUnlocalizedName("sprayer").setCreativeTab(APPConfigManager.appCreativeTab);
+    public static final Item appItemSpringyCord = new APPItem(APPConfigManager.appItemSpringyCord, "AlchemyPlusPlus:spring").setUnlocalizedName("spring").setCreativeTab(APPConfigManager.appCreativeTab);
+    public static final Item appItemSquidEye = new APPItem(APPConfigManager.appItemSquidEye, "AlchemyPlusPlus:SquidEye").setUnlocalizedName("squidEye").setCreativeTab(APPConfigManager.appCreativeTab);
     public static Item appItemPotion = null;
 
     /*

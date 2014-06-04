@@ -1,4 +1,4 @@
-package mokonaDesu.alchemypp.gui;
+package alchemyplusplus.gui;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -18,7 +18,7 @@ public class BookPage {
 	private String[] title = new String[2];
 	
 	//Using one texture sheet for all the book pages... For now
-	private static String texture = "AlchemyPP:textures/bookData/textureMap.png";
+	private static String texture = "AlchemyPlusPlus:assets/alchemyplusplus/bookData/textureMap.png";
 	
 	//Image data for this page
 	private ArrayList<PageImageData> images;

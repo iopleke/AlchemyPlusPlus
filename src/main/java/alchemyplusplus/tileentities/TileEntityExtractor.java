@@ -1,6 +1,6 @@
-package mokonaDesu.alchemypp.tileentities;
+package alchemyplusplus.tileentities;
 
-import mokonaDesu.alchemypp.MixingHelper;
+import alchemyplusplus.MixingHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;

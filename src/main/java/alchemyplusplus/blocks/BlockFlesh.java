@@ -1,6 +1,6 @@
-package mokonaDesu.alchemypp.blocks;
+package alchemyplusplus.blocks;
 
-import mokonaDesu.alchemypp.items.ItemRegistry;
+import alchemyplusplus.items.ItemRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -75,8 +75,8 @@ public class BlockFlesh extends Block {
     
     @Override
     public void registerIcons(IconRegister iconRegister) {
-    	this.iconNormal = iconRegister.registerIcon("AlchemyPP:flesh");
-    	this.iconFester = iconRegister.registerIcon("AlchemyPP:fleshFester");
+    	this.iconNormal = iconRegister.registerIcon("AlchemyPlusPlus:flesh");
+    	this.iconFester = iconRegister.registerIcon("AlchemyPlusPlus:fleshFester");
     }
         
     @SideOnly(Side.CLIENT)

@@ -1,10 +1,10 @@
-package mokonaDesu.alchemypp.items;
+package alchemyplusplus.items;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import mokonaDesu.alchemypp.blocks.BlockRegistry;
-import mokonaDesu.alchemypp.tileentities.TileEntityPotionContainer;
+import alchemyplusplus.blocks.BlockRegistry;
+import alchemyplusplus.tileentities.TileEntityPotionContainer;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -102,9 +102,9 @@ public class ItemPotionBottle extends Item {
 
     @Override
     public void registerIcons(IconRegister iconRegister) {
-        this.bottle = iconRegister.registerIcon("AlchemyPP:PotionBottle");
+        this.bottle = iconRegister.registerIcon("AlchemyPlusPlus:PotionBottle");
 
-        this.contents = iconRegister.registerIcon("AlchemyPP:BottleContents");
+        this.contents = iconRegister.registerIcon("AlchemyPlusPlus:BottleContents");
     }
 
     @Override

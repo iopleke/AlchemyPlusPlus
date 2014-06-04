@@ -1,10 +1,10 @@
-package mokonaDesu.alchemypp.model;
+package alchemyplusplus.model;
 
 import org.lwjgl.opengl.GL11;
 
-import mokonaDesu.alchemypp.items.ItemRegistry;
-import mokonaDesu.alchemypp.tileentities.TileEntityAlchemicalApparatus;
-import mokonaDesu.alchemypp.tileentities.ApparatusApplicationSpiritLamp;
+import alchemyplusplus.items.ItemRegistry;
+import alchemyplusplus.tileentities.TileEntityAlchemicalApparatus;
+import alchemyplusplus.tileentities.ApparatusApplicationSpiritLamp;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;

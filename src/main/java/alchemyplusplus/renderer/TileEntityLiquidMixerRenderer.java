@@ -1,8 +1,8 @@
-package mokonaDesu.alchemypp.renderer;
+package alchemyplusplus.renderer;
 
-import mokonaDesu.alchemypp.blocks.BlockRegistry;
-import mokonaDesu.alchemypp.model.ModelLiquidMixer;
-import mokonaDesu.alchemypp.tileentities.TileEntityLiquidMixer;
+import alchemyplusplus.blocks.BlockRegistry;
+import alchemyplusplus.model.ModelLiquidMixer;
+import alchemyplusplus.tileentities.TileEntityLiquidMixer;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
@@ -44,7 +44,7 @@ public class TileEntityLiquidMixerRenderer extends TileEntitySpecialRenderer {
          GL11.glRotatef(dir * (-90F), 0F, 1F, 0F);
          GL11.glTranslatef(-0.5F, 0, -0.5F);
      
-         bindTexture(new ResourceLocation("AlchemyPP:textures/blocks/LiquidMixer.png"));
+         bindTexture(new ResourceLocation("AlchemyPlusPlus:assets/alchemyplusplus/blocks/LiquidMixer.png"));
 
          this.model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, tl.mixerInventory);
        

@@ -1,4 +1,4 @@
-package mokonaDesu.alchemypp.items;
+package alchemyplusplus.items;
 
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;

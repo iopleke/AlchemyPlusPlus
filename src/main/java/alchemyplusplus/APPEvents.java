@@ -1,11 +1,11 @@
-package mokonaDesu.alchemypp;
+package alchemyplusplus;
 
 import java.util.Random;
 
 import cpw.mods.fml.relauncher.Side;
 
-import mokonaDesu.alchemypp.items.ItemRegistry;
-import mokonaDesu.alchemypp.tileentities.TileEntityPotionContainer;
+import alchemyplusplus.items.ItemRegistry;
+import alchemyplusplus.tileentities.TileEntityPotionContainer;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;

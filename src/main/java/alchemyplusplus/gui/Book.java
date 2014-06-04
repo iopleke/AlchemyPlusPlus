@@ -1,4 +1,4 @@
-package mokonaDesu.alchemypp.gui;
+package alchemyplusplus.gui;
 
 import java.io.BufferedReader;
 import java.io.File;

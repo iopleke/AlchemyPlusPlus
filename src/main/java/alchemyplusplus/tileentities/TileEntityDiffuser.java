@@ -1,7 +1,7 @@
-package mokonaDesu.alchemypp.tileentities;
+package alchemyplusplus.tileentities;
 
-import mokonaDesu.alchemypp.APPConfigManager;
-import mokonaDesu.alchemypp.items.ItemRegistry;
+import alchemyplusplus.APPConfigManager;
+import alchemyplusplus.items.ItemRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;

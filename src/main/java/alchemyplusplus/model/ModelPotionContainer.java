@@ -1,4 +1,4 @@
-package mokonaDesu.alchemypp.model;
+package alchemyplusplus.model;
 
 import org.lwjgl.opengl.GL11;
 
