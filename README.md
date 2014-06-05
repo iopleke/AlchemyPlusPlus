@@ -1,13 +1,12 @@
-Alchemy++
+AlchemyPlusPlus
 ==================
 
-Mod version 1.6.4-1.2.1
+For the latest builds, check the [Jenkins build server](http://mc.picraft.com/build/job/Alchemy++/).
 
-For the latest builds, check the <a href="http://mc.picraft.com/build/job/Alchemy++/">Jenkins build server</a>.
+See the [original mod topic](http://www.minecraftforum.net/topic/1909298-162152forge-alchemy-get-drunk-in-the-lab/) on the MinecraftForums, or check out the [new forum thread](http://goo.gl/vryzC4) for ongoing updates and discussion.
 
-See the <a href="http://www.minecraftforum.net/topic/1909298-162152forge-alchemy-get-drunk-in-the-lab/">original mod topic</a> on the MinecraftForums, or check out the <a href="http://goo.gl/vryzC4">new forum thread</a> for ongoing updates and discussion.
-
-I got permission form @mokonaDesu, <a href="https://github.com/jakimfett/AlchemyPlusPlusMod/blob/master/alchemypluspluspermission.png">screencap of it here</a>.
+I got permission form @mokonaDesu to take over the mod.
+![](https://raw.githubusercontent.com/jakimfett/AlchemyPlusPlus/master/alchemypluspluspermission.png)
 
 @todo - Add mod information, with crafting recipes, etc here.
 
