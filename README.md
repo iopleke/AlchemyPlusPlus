@@ -1,3 +1,4 @@
+![](http://jakimfett.com/minechem_alchemy_banner.jpg)
 AlchemyPlusPlus
 ==================
 
