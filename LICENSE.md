@@ -5,7 +5,6 @@ This means that you’re free to pretty much do what you like with the mod, incl
 * Download it for personal use
 * Fork the repository on github
 * Modify the source to fix bugs or add features
-* Concact me via Esper.net IRC if you don't understand something
 * Use portions of the code as examples in a presentation
 * Record portions of gameplay for display on YouTube or other video/media sites
 
