@@ -17,6 +17,8 @@ As this is a non-commercial license, you are expressly prohibited from making or
 This license specifically prohibits you from using AdFly or AdFly clones to get paid per click/download.
 Specific exceptions may be made if, for example, you make a cool tee-shirt design based off the mod and want to sell that, or are using portions of the mod as a "donator perk" on your server, or other normal use cases. Any exemptions not listed here require permission from the mod author.
 
+This license prohibits any attempt to hold the author liable for damages caused by usage of the mod. Bugs happen, so make backups, and don't complain if your world gets corrupted. Seriously, make backups.
+
 Ultimately, don't be a jerk, play nice, be polite, and you'll be fine.
 
 I reserve the right to change this license at any time, although chances are I won't, because legalese annoys me.
