@@ -11,4 +11,4 @@ I got permission form @mokonaDesu to take over the mod.
 
 @todo - Add mod information, with crafting recipes, etc here.
 
-See license.txt for licensing info.
+This mod is licensed under the [DBaJ non-commercial open source license](https://raw.githubusercontent.com/jakimfett/AlchemyPlusPlus/master/LICENSE.md)
