@@ -21,7 +21,7 @@ You are expressly prohibited from making or trying to make money from the code, 
 
 This license specifically prohibits you from using AdF.ly or AdF.ly clones to make money or attempt to make money for clicks or downloads.
 
-Specific exceptions may be made if, for example, you make a cool tee-shirt design based off the mod and want to sell that, or are using portions of the mod as a "donator perk" on your server, or other normal use cases. Any exemptions not listed here require permission from the mod author.
+Specific exceptions may be made if, for example, you make a cool tee-shirt design based off the mod and want to sell that, or are using the mod as part of a charity event, or other normal use cases. Any exemptions not listed here require permission from the mod author.
 
 This license prohibits any attempt to hold the author liable for damages caused by usage of the mod. Bugs happen, so make backups, and don't complain if your world gets corrupted. Seriously, make backups.
 
