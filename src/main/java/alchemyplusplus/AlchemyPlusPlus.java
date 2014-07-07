@@ -27,15 +27,14 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = "AlchemyPlusPlus", name = "AlchemyPlusPlus", version = "release 1.1")
-@NetworkMod(clientSideRequired = true, serverSideRequired = false, clientPacketHandlerSpec = @SidedPacketHandler(channels =
-{
-    "Alchemy++"
-}, packetHandler = ClientPacketHandler.class), serverPacketHandlerSpec = @SidedPacketHandler(channels =
-{
-    "Alchemy++"
-}, packetHandler = PacketHandler.class))
-public class AlchemyPlusPlus
-{
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, clientPacketHandlerSpec = @SidedPacketHandler(channels
+	= {
+	    "Alchemy++"
+	}, packetHandler = ClientPacketHandler.class), serverPacketHandlerSpec = @SidedPacketHandler(channels
+		= {
+	    "Alchemy++"
+	}, packetHandler = PacketHandler.class))
+public class AlchemyPlusPlus {
 
     public static GUIHandler guiHandler = new GUIHandler();
 
@@ -50,43 +49,39 @@ public class AlchemyPlusPlus
     public static CommonProxy proxy;
 
     @EventHandler
-    public void load(FMLInitializationEvent event)
-    {
+    public void load(FMLInitializationEvent event) {
 
-        proxy.registerRenderers();
-        GameRegistry.registerTileEntity(TileEntityPotionContainer.class, "potionKegTE");
-        GameRegistry.registerTileEntity(TileEntityLiquidMixer.class, "LiquidMixerTE");
-        GameRegistry.registerTileEntity(TileEntityExtractor.class, "ExtractorTE");
-        GameRegistry.registerTileEntity(TileEntityDistillery.class, "DistilleryTE");
-        GameRegistry.registerTileEntity(TileEntityDiffuser.class, "DiffuserTE");
-        GameRegistry.registerTileEntity(TileEntityAlchemicalApparatus.class, "AlchemicalApparatusTE");
+	proxy.registerRenderers();
+	GameRegistry.registerTileEntity(TileEntityPotionContainer.class, "potionKegTE");
+	GameRegistry.registerTileEntity(TileEntityLiquidMixer.class, "LiquidMixerTE");
+	GameRegistry.registerTileEntity(TileEntityExtractor.class, "ExtractorTE");
+	GameRegistry.registerTileEntity(TileEntityDistillery.class, "DistilleryTE");
+	GameRegistry.registerTileEntity(TileEntityDiffuser.class, "DiffuserTE");
+	GameRegistry.registerTileEntity(TileEntityAlchemicalApparatus.class, "AlchemicalApparatusTE");
 
-        BlockRegistry.registerBlocks();
-        ItemRegistry.registerItems();
+	BlockRegistry.registerBlocks();
+	ItemRegistry.registerItems();
 
-        BlockRegistry.registerBlockRecipes();
-        ItemRegistry.registerItemRecipes();
+	BlockRegistry.registerBlockRecipes();
+	ItemRegistry.registerItemRecipes();
 
-        // Book.loadAll();
-        if (ConfigManager.appHardcoreModeEnabled)
-        {
-            ItemRegistry.registerHardcoreRecipes();
-        }
-        NetworkRegistry.instance().registerGuiHandler(AlchemyPlusPlus.instance, this.guiHandler);
+	// Book.loadAll();
+	if (ConfigManager.appHardcoreModeEnabled) {
+	    ItemRegistry.registerHardcoreRecipes();
+	}
+	NetworkRegistry.instance().registerGuiHandler(AlchemyPlusPlus.instance, this.guiHandler);
 
-        EventManager.registerEventHooks();
+	EventManager.registerEventHooks();
     }
 
     @EventHandler
-    public void postInit(FMLPostInitializationEvent event)
-    {
+    public void postInit(FMLPostInitializationEvent event) {
     }
 
     @EventHandler
-    public void preInit(FMLPreInitializationEvent event)
-    {
+    public void preInit(FMLPreInitializationEvent event) {
 
-        ConfigManager.initialSetup(event.getSuggestedConfigurationFile());
+	ConfigManager.initialSetup(event.getSuggestedConfigurationFile());
 
     }
 
