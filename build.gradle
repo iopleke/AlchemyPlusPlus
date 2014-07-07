@@ -26,8 +26,8 @@ buildProps.withReader {
 }
  
 version = "MC${config.version.minecraft}-F${config.version.forge}_v${config.version.mod.major}.${config.version.mod.minor}${config.version.mod.revis}"
-group = "minechem"
-archivesBaseName = "ParticlePhysics"
+group = "alchemyplusplus"
+archivesBaseName = "AlchemyPlusPlus"
 
 minecraft {
     version = "${config.version.minecraft}-${config.version.forge}"
