@@ -46,7 +46,7 @@ public class AlchemyPlusPlus
     public static boolean herbs = false;
     @Instance(value = "AlchemyPlusPlus")
     public static AlchemyPlusPlus instance = new AlchemyPlusPlus();
-    @SidedProxy(clientSide = "alchemyplusplus.client.ClientProxy", serverSide = "alchemyplusplus.CommonProxy")
+    @SidedProxy(clientSide = "alchemyplusplus.network.ClientProxy", serverSide = "alchemyplusplus.network.CommonProxy")
     public static CommonProxy proxy;
 
     @EventHandler
