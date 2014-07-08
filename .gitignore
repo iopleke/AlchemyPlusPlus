@@ -20,6 +20,7 @@ nbbuild
 build.xml
 nb-build.xml
 nbproject
+buildfile
 
 # gradle
 output
