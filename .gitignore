@@ -27,3 +27,5 @@ output
 .gradle
 build
 lib
+/.nb-gradle/private/
+/.nb-gradle/profiles/private/
