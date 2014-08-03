@@ -32,7 +32,7 @@ public class TileEntityDiffuserRenderer extends TileEntitySpecialRenderer
         GL11.glRotatef(dir * (-90F), 0F, 1F, 0F);
         GL11.glTranslatef(-0.5F, 0, -0.5F);
 
-        bindTexture(new ResourceLocation("AlchemyPlusPlus:assets/alchemyplusplus/blocks/Diffuser.png"));
+        bindTexture(new ResourceLocation("AlchemyPlusPlus:textures/blocks/Diffuser.png"));
         this.diffuserModel.isDiffusing = diffuserTE.isDiffuserActive();
         this.diffuserModel.potionDamage = diffuserTE.bottleColor;
         this.diffuserModel.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);

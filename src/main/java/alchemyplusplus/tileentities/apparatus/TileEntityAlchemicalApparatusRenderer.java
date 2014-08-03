@@ -39,7 +39,7 @@ public class TileEntityAlchemicalApparatusRenderer extends TileEntitySpecialRend
         GL11.glRotatef(dir * (-90F), 0F, 1F, 0F);
         GL11.glTranslatef(-0.5F, 0, -0.5F);
 
-        bindTexture(new ResourceLocation("AlchemyPlusPlus:assets/alchemyplusplus/blocks/Apparatus.png"));
+        bindTexture(new ResourceLocation("AlchemyPlusPlus:textures/blocks/Apparatus.png"));
 
         if (tl.bottom != null)
         {

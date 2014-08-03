@@ -13,7 +13,7 @@ public class BookPage
 {
 
     //Using one texture sheet for all the book pages... For now
-    private static String texture = "AlchemyPlusPlus:assets/alchemyplusplus/bookData/textureMap.png";
+    private static String texture = "AlchemyPlusPlus:textures/bookData/textureMap.png";
 
     //Image data for this page
     private ArrayList<BookPageImage> images;

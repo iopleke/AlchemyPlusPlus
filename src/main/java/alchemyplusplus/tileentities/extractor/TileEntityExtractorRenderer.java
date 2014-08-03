@@ -34,7 +34,7 @@ public class TileEntityExtractorRenderer extends TileEntitySpecialRenderer
         GL11.glTranslatef(-0.5F, 0, -0.5F);
 
         bindTexture(new ResourceLocation(
-                "AlchemyPlusPlus:assets/alchemyplusplus/blocks/Extractor.png"));
+                "AlchemyPlusPlus:textures/blocks/Extractor.png"));
 
         this.model
                 .render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);

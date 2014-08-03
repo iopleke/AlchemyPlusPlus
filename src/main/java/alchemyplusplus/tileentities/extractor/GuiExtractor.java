@@ -21,7 +21,7 @@ public class GuiExtractor extends GuiContainer
     protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
     {
 
-        this.mc.renderEngine.bindTexture(new ResourceLocation("AlchemyPlusPlus:assets/alchemyplusplus/gui/extractor.png"));
+        this.mc.renderEngine.bindTexture(new ResourceLocation("AlchemyPlusPlus:textures/gui/extractor.png"));
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);

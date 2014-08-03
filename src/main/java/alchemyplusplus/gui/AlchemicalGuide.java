@@ -72,11 +72,11 @@ public class AlchemicalGuide extends GuiScreen
         this.drawDefaultBackground();
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         //Bind Left Texture
-        this.mc.renderEngine.bindTexture(new ResourceLocation("AlchemyPlusPlus:assets/alchemyplusplus/gui/bookLeft.png"));
+        this.mc.renderEngine.bindTexture(new ResourceLocation("AlchemyPlusPlus:textures/gui/bookLeft.png"));
         this.drawTexturedModalRect((this.width / 2) - xPage, (this.height - this.yPage) / 2, 0, 0, this.xPage, this.yPage);
 
         //Bind Right Texture
-        this.mc.renderEngine.bindTexture(new ResourceLocation("AlchemyPlusPlus:assets/alchemyplusplus/gui/bookRight.png"));
+        this.mc.renderEngine.bindTexture(new ResourceLocation("AlchemyPlusPlus:textures/gui/bookRight.png"));
         this.drawTexturedModalRect((this.width / 2), (this.height - this.yPage) / 2, 0, 0, this.xPage, this.yPage);
 
         if (Book.alchemicalGude.isLoaded())

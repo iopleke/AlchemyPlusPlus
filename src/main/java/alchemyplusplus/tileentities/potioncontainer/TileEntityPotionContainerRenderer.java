@@ -35,7 +35,7 @@ public class TileEntityPotionContainerRenderer extends
         GL11.glRotatef(dir * (-90F), 0F, 1F, 0F);
         GL11.glTranslatef(-0.5F, 0, -0.5F);
 
-        bindTexture(new ResourceLocation("AlchemyPlusPlus:assets/alchemyplusplus/blocks/Bottle.png"));
+        bindTexture(new ResourceLocation("AlchemyPlusPlus:textures/blocks/Bottle.png"));
 
         float percentage = ((float) tl.containerHas) / tl.containerMax;
         int color = 0;
