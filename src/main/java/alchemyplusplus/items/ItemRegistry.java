@@ -1,4 +1,4 @@
-package alchemyplusplus.utility;
+package alchemyplusplus.items;
 
 import alchemyplusplus.items.FoodTemplate;
 import alchemyplusplus.items.PotionTemplate;
@@ -14,6 +14,7 @@ import alchemyplusplus.tileentities.apparatus.ItemSpirit;
 import alchemyplusplus.tileentities.apparatus.ItemBottleStand;
 import alchemyplusplus.tileentities.apparatus.ItemSprayer;
 import alchemyplusplus.tileentities.apparatus.ItemSpiritLamp;
+import alchemyplusplus.utility.ConfigManager;
 import java.util.ArrayList;
 
 import net.minecraft.block.Block;

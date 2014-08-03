@@ -1,6 +1,6 @@
 package alchemyplusplus.tileentities.extractor;
 
-import alchemyplusplus.utility.BlockRegistry;
+import alchemyplusplus.block.BlockRegistry;
 import alchemyplusplus.items.ItemTemplate;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

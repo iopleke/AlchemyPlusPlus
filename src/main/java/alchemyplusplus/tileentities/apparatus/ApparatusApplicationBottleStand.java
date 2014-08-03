@@ -3,7 +3,7 @@ package alchemyplusplus.tileentities.apparatus;
 import java.util.ArrayList;
 
 import alchemyplusplus.utility.MixingHelper;
-import alchemyplusplus.utility.ItemRegistry;
+import alchemyplusplus.items.ItemRegistry;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemPotion;

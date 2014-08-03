@@ -1,4 +1,4 @@
-package alchemyplusplus.utility;
+package alchemyplusplus.block;
 
 import alchemyplusplus.block.BlockFlesh;
 import alchemyplusplus.tileentities.potioncontainer.BlockPotionContainer;
@@ -7,6 +7,7 @@ import alchemyplusplus.tileentities.extractor.BlockExtractor;
 import alchemyplusplus.tileentities.distillery.BlockDistillery;
 import alchemyplusplus.tileentities.diffuser.BlockDiffuser;
 import alchemyplusplus.tileentities.apparatus.BlockAlchemicalApparatus;
+import alchemyplusplus.utility.ConfigManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;

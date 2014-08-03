@@ -2,7 +2,7 @@ package alchemyplusplus.tileentities.apparatus;
 
 import java.util.List;
 
-import alchemyplusplus.utility.BlockRegistry;
+import alchemyplusplus.block.BlockRegistry;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;

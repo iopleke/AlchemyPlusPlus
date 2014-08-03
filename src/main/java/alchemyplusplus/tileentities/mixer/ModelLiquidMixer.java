@@ -2,7 +2,7 @@ package alchemyplusplus.tileentities.mixer;
 
 import org.lwjgl.opengl.GL11;
 
-import alchemyplusplus.utility.ItemRegistry;
+import alchemyplusplus.items.ItemRegistry;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;

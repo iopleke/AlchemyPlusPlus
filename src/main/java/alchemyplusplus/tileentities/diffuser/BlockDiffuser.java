@@ -2,7 +2,7 @@ package alchemyplusplus.tileentities.diffuser;
 
 import java.util.Random;
 
-import alchemyplusplus.utility.ItemRegistry;
+import alchemyplusplus.items.ItemRegistry;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.EffectRenderer;

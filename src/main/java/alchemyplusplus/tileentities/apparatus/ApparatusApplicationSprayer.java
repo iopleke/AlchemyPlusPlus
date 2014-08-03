@@ -6,7 +6,7 @@ import java.util.Random;
 import cpw.mods.fml.common.FMLCommonHandler;
 
 import alchemyplusplus.utility.MixingHelper;
-import alchemyplusplus.utility.ItemRegistry;
+import alchemyplusplus.items.ItemRegistry;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

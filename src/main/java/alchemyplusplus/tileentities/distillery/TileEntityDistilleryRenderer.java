@@ -1,6 +1,6 @@
 package alchemyplusplus.tileentities.distillery;
 
-import alchemyplusplus.utility.BlockRegistry;
+import alchemyplusplus.block.BlockRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

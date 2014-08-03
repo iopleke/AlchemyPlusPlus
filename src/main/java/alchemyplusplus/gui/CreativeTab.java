@@ -1,4 +1,4 @@
-package alchemyplusplus.utility;
+package alchemyplusplus.gui;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -18,7 +18,7 @@ public class CreativeTab extends CreativeTabs
     {
         // Set the creative tab icon
         return new ItemStack(
-                alchemyplusplus.utility.ItemRegistry.appItemPotionBottle, 1,
+                alchemyplusplus.items.ItemRegistry.appItemPotionBottle, 1,
                 0);
     }
 

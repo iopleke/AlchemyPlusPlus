@@ -1,6 +1,6 @@
 package alchemyplusplus.network;
 
-import alchemyplusplus.utility.ItemRegistry;
+import alchemyplusplus.items.ItemRegistry;
 import alchemyplusplus.renderer.PotionBottleRenderer;
 import alchemyplusplus.tileentities.apparatus.TileEntityAlchemicalApparatusRenderer;
 import alchemyplusplus.tileentities.diffuser.TileEntityDiffuserRenderer;

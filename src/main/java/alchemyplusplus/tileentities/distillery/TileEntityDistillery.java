@@ -1,7 +1,7 @@
 package alchemyplusplus.tileentities.distillery;
 
 import alchemyplusplus.utility.MixingHelper;
-import alchemyplusplus.utility.ItemRegistry;
+import alchemyplusplus.items.ItemRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;

@@ -1,4 +1,4 @@
-package alchemyplusplus.utility;
+package alchemyplusplus.gui;
 
 import alchemyplusplus.gui.AlchemicalGuide;
 import alchemyplusplus.tileentities.mixer.GuiLiquidMixer;

@@ -1,5 +1,6 @@
 package alchemyplusplus.utility;
 
+import alchemyplusplus.items.ItemRegistry;
 import java.util.Random;
 
 import net.minecraft.enchantment.EnchantmentHelper;
