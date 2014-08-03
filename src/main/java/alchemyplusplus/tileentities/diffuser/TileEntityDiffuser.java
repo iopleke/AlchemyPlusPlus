@@ -140,7 +140,7 @@ public class TileEntityDiffuser extends TileEntity implements IInventory
     {
         if (slot == 1)
         {
-            if (stack.itemID == Item.glassBottle.itemID || stack.itemID == ItemRegistry.appItemSpirit.itemID)
+            if (stack.itemID == Item.glassBottle.itemID)
             {
                 return true;
             }

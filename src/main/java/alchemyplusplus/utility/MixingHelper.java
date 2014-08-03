@@ -413,7 +413,7 @@ public class MixingHelper
         if (te.getStackInSlot(1).itemID == 17)
         {
             // Looks like we're making wood alcohol
-            ItemStack stack = new ItemStack(ItemRegistry.appItemSpirit.itemID,
+            ItemStack stack = new ItemStack(ItemRegistry.appPotionWoodAlcohol.itemID,
                     1, te.getStackInSlot(2).getItemDamage());
             if (te.getStackInSlot(2).itemID == Item.glassBottle.itemID)
             {
@@ -428,7 +428,7 @@ public class MixingHelper
                 spiritbottlefull = 100;
             }
 
-            stack = new ItemStack(ItemRegistry.appItemSpirit.itemID, 1,
+            stack = new ItemStack(ItemRegistry.appPotionWoodAlcohol.itemID, 1,
                     spiritbottlefull);
             te.decrStackSize(1, 1);
             te.setInventorySlotContents(2, stack);

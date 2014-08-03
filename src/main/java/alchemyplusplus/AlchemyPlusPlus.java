@@ -8,7 +8,6 @@ import alchemyplusplus.block.BlockRegistry;
 import alchemyplusplus.network.ClientPacketHandler;
 import alchemyplusplus.gui.GUIHandler;
 import alchemyplusplus.items.ItemRegistry;
-import alchemyplusplus.tileentities.apparatus.TileEntityAlchemicalApparatus;
 import alchemyplusplus.tileentities.diffuser.TileEntityDiffuser;
 import alchemyplusplus.tileentities.distillery.TileEntityDistillery;
 import alchemyplusplus.tileentities.extractor.TileEntityExtractor;
@@ -57,7 +56,6 @@ public class AlchemyPlusPlus {
 	GameRegistry.registerTileEntity(TileEntityExtractor.class, "ExtractorTE");
 	GameRegistry.registerTileEntity(TileEntityDistillery.class, "DistilleryTE");
 	GameRegistry.registerTileEntity(TileEntityDiffuser.class, "DiffuserTE");
-	GameRegistry.registerTileEntity(TileEntityAlchemicalApparatus.class, "AlchemicalApparatusTE");
 
 	BlockRegistry.registerBlocks();
 	ItemRegistry.registerItems();

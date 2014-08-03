@@ -1,12 +1,10 @@
 package alchemyplusplus.block;
 
-import alchemyplusplus.block.BlockFlesh;
 import alchemyplusplus.tileentities.potioncontainer.BlockPotionContainer;
 import alchemyplusplus.tileentities.mixer.BlockLiquidMixer;
 import alchemyplusplus.tileentities.extractor.BlockExtractor;
 import alchemyplusplus.tileentities.distillery.BlockDistillery;
 import alchemyplusplus.tileentities.diffuser.BlockDiffuser;
-import alchemyplusplus.tileentities.apparatus.BlockAlchemicalApparatus;
 import alchemyplusplus.utility.ConfigManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -17,7 +15,6 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class BlockRegistry
 {
-    public static final Block appBlockAlchemicalApparatus = new BlockAlchemicalApparatus(ConfigManager.appBlockAlchemicalApparatus, Material.piston).setUnlocalizedName("blockApparatus").setHardness(3.0F).setResistance(0.1F);
     public static final Block appBlockDiffuser = new BlockDiffuser(ConfigManager.appBlockDiffuser);
     public static final Block appBlockDistillery = new BlockDistillery(ConfigManager.appBlockDistillery);
     public static final Block appBlockExtractor = new BlockExtractor(ConfigManager.appBlockExtractor);
@@ -50,8 +47,6 @@ public class BlockRegistry
 
         GameRegistry.registerBlock(appBlockFlesh, "blockFlesh");
         LanguageRegistry.addName(appBlockFlesh, "Block of Flesh");
-
-        GameRegistry.registerBlock(appBlockAlchemicalApparatus, "blockApparatus");
     }
 
 }

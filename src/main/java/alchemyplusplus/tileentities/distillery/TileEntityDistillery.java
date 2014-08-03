@@ -131,8 +131,7 @@ public class TileEntityDistillery extends TileEntity implements IInventory
             }
         } else if (slot == 2)
         {
-            if (stack.itemID == Item.glassBottle.itemID
-                    || stack.itemID == ItemRegistry.appItemSpirit.itemID)
+            if (stack.itemID == Item.glassBottle.itemID)
             {
                 return true;
             }

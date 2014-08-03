@@ -10,10 +10,6 @@ import alchemyplusplus.tileentities.mixer.ItemLiquidMixer;
 import alchemyplusplus.tileentities.extractor.ItemExtractor;
 import alchemyplusplus.tileentities.distillery.ItemDistillery;
 import alchemyplusplus.tileentities.diffuser.ItemDiffuser;
-import alchemyplusplus.tileentities.apparatus.ItemSpirit;
-import alchemyplusplus.tileentities.apparatus.ItemBottleStand;
-import alchemyplusplus.tileentities.apparatus.ItemSprayer;
-import alchemyplusplus.tileentities.apparatus.ItemSpiritLamp;
 import alchemyplusplus.utility.ConfigManager;
 import java.util.ArrayList;
 
@@ -30,7 +26,6 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 public class ItemRegistry
 {
 
-    public static final Item appItemBottleStand = new ItemBottleStand(ConfigManager.appItemBottleStand, "AlchemyPlusPlus:BottleStand").setUnlocalizedName("bottleStandItem").setCreativeTab(ConfigManager.appCreativeTab);
     public static final Item appItemConfusion = new ItemTemplate(ConfigManager.appItemConfusion, "AlchemyPlusPlus:confusion").setUnlocalizedName("confusion").setCreativeTab(ConfigManager.appCreativeTab);
     public static final Item appItemDiffuser = new ItemDiffuser(ConfigManager.appItemDiffuser, "AlchemyPlusPlus:Diffuser").setUnlocalizedName("diffuserItem").setCreativeTab(ConfigManager.appCreativeTab);
     public static final Item appItemDistillery = new ItemDistillery(ConfigManager.appItemDistillery, "AlchemyPlusPlus:Distillery").setUnlocalizedName("distilleryItem").setCreativeTab(ConfigManager.appCreativeTab);
@@ -42,11 +37,9 @@ public class ItemRegistry
     public static final Item appItemLiquidMixer = new ItemLiquidMixer(ConfigManager.appItemLiquidMixer, "AlchemyPlusPlus:Mixer").setUnlocalizedName("mixerItem").setCreativeTab(ConfigManager.appCreativeTab);
     public static Item appItemPotion = null;
     public static final Item appItemPotionBottle = new ItemPotionBottle(ConfigManager.appItemPotionBottle).setUnlocalizedName("potionBottle").setCreativeTab(ConfigManager.appCreativeTab);
-    public static final Item appItemSpirit = new ItemSpirit(ConfigManager.appItemSpirit).setCreativeTab(ConfigManager.appCreativeTab).setUnlocalizedName("spiritItem");
-    public static final Item appItemSpiritLamp = new ItemSpiritLamp(ConfigManager.appItemSpiritLamp, "AlchemyPlusPlus:SpiritLamp").setUnlocalizedName("spiritlampItem").setCreativeTab(ConfigManager.appCreativeTab);
-    public static final Item appItemSprayer = new ItemSprayer(ConfigManager.appItemSprayer, "AlchemyPlusPlus:Sprayer").setUnlocalizedName("sprayer").setCreativeTab(ConfigManager.appCreativeTab);
     public static final Item appItemSpringyCord = new ItemTemplate(ConfigManager.appItemSpringyCord, "AlchemyPlusPlus:spring").setUnlocalizedName("spring").setCreativeTab(ConfigManager.appCreativeTab);
     public static final Item appItemSquidEye = new ItemTemplate(ConfigManager.appItemSquidEye, "AlchemyPlusPlus:SquidEye").setUnlocalizedName("squidEye").setCreativeTab(ConfigManager.appCreativeTab);
+    public static final Item appPotionWoodAlcohol = new MixingFilter(ConfigManager.appPotionWoodAlcohol, "AlchemyPlusPlus:WoodAlcohol", 600).setUnlocalizedName("woodalcohol");
 
     public static void registerHardcoreRecipes()
     {
@@ -74,26 +67,14 @@ public class ItemRegistry
     {
 
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(appItemPotionBottle), "gwg", "o o", "gog", 'g', new ItemStack(Block.thinGlass), 'w', "logWood", 'o', Block.blockIron));
-
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(appItemFilter), " og", "oDo", "go ", 'g', new ItemStack(Block.thinGlass), 'D', new ItemStack(Item.diamond), 'o', Block.blockIron));
-
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(appItemFilter), "go ", "oDo", " og", 'g', new ItemStack(Block.thinGlass), 'D', new ItemStack(Item.diamond), 'o', Block.blockIron));
-
         GameRegistry.addShapelessRecipe(new ItemStack(appItemFishOil, 1, 0), new ItemStack(Item.fishRaw), new ItemStack(Item.glassBottle));
-
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(appItemLiquidMixer), "x x", "xix", "oOo", 'x', new ItemStack(Block.thinGlass), 'i', new ItemStack(Item.ingotIron), 'o', Block.blockIron, 'O', new ItemStack(Block.blockIron)));
-
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(appItemExtractor), "iGi", "I O", "oOo", 'i', new ItemStack(Block.blockGold), 'I', new ItemStack(Block.blockIron), 'g', new ItemStack(Item.ingotGold), 'o', Block.blockIron, 'O', new ItemStack(Block.blockIron)));
-
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(appItemSpiritLamp), "gog", "gsg", "gog", 'g', new ItemStack(Block.thinGlass), 's', new ItemStack(Item.silk), 'o', Block.blockIron));
-
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(appItemSprayer), "ofo", "-w-", "-w-", 'o', Block.blockIron, 'f', new ItemStack(appItemFilter), 'w', new ItemStack(Block.cloth)));
-
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(appItemBottleStand), "obo", "o-o", "o-o", 'o', Block.blockIron, 'b', new ItemStack(Block.fenceIron)));
-
         GameRegistry.addRecipe(new ItemStack(appItemDistillery, 1, 0), new Object[]
         {
-            "Bi-", "C-P", "F-S", Character.valueOf('B'), Item.brewingStand, Character.valueOf('i'), Item.ingotIron, Character.valueOf('C'), Item.cauldron, Character.valueOf('P'), appItemPotionBottle, Character.valueOf('F'), Block.furnaceIdle, Character.valueOf('S'), appItemBottleStand
+            "Bi-", "C-P", "F-S", Character.valueOf('B'), Item.brewingStand, Character.valueOf('i'), Item.ingotIron, Character.valueOf('C'), Item.cauldron, Character.valueOf('P'), appItemPotionBottle, Character.valueOf('F'), Block.furnaceIdle, Character.valueOf('S'), Item.ingotIron
         });
 
         // GameRegistry.addRecipe(new ItemStack(appItemDiffuser, 1, 0), new Object[] { "--s", "-b-", "w--", Character.valueOf('s'), Item.silk, Character.valueOf('b'), Item.glassBottle, Character.valueOf('w'), Item.bowlEmpty });
@@ -112,6 +93,9 @@ public class ItemRegistry
 
         GameRegistry.registerItem(appItemFilter, "Filter");
         LanguageRegistry.addName(appItemFilter, "Filter");
+
+        GameRegistry.registerItem(appPotionWoodAlcohol, "woodAlcohol");
+        LanguageRegistry.addName(appPotionWoodAlcohol, "Wood Alcohol");
 
         GameRegistry.registerItem(appItemFesteringFlesh, "festeringFlesh");
         LanguageRegistry.addName(appItemFesteringFlesh, "Festering Flesh");
@@ -146,19 +130,7 @@ public class ItemRegistry
         GameRegistry.registerItem(appItemLiquidMixer, "mixerItem");
         LanguageRegistry.addName(appItemLiquidMixer, "Liquid Mixer");
 
-        GameRegistry.registerItem(appItemSpirit, "spiritItem");
-        LanguageRegistry.addName(appItemSpirit, "Spirit Bottle");
-
-        GameRegistry.registerItem(appItemSpiritLamp, "spiritlampItem");
-        LanguageRegistry.addName(appItemSpiritLamp, "Spirit Lamp");
-
-        GameRegistry.registerItem(appItemBottleStand, "bottleStandItem");
-        LanguageRegistry.addName(appItemBottleStand, "Bottle Stand");
-
-        GameRegistry.registerItem(appItemSprayer, "sprayer");
-        LanguageRegistry.addName(appItemSprayer, "Diffuser");
-        // TODO: overriding potion
-
+        // work in progress: override vanilla potions
         if (ConfigManager.appVanillaPotionOverride)
         {
             ItemPotion p = Item.potion;

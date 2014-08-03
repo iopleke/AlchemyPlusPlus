@@ -41,9 +41,7 @@ public class ConfigManager
     public static int appItemIronPowder;
     public static int appItemLiquidMixer;
     public static int appItemPotionBottle;
-    public static int appItemSpirit;
-    public static int appItemSpiritLamp;
-    public static int appItemSprayer;
+    public static int appPotionWoodAlcohol;
     public static int appItemSpringyCord;
     public static int appItemSquidEye;
 
@@ -91,9 +89,7 @@ public class ConfigManager
             appItemIronPowder = appConfig.get(Configuration.CATEGORY_ITEM, "appIronPowderID", nextItemID()).getInt(dynamicItemID);
             appItemLiquidMixer = appConfig.get(Configuration.CATEGORY_ITEM, "appLiquidMixerID", nextItemID()).getInt(dynamicItemID);
             appItemPotionBottle = appConfig.get(Configuration.CATEGORY_ITEM, "appPotionBottleID", nextItemID()).getInt(dynamicItemID);
-            appItemSpirit = appConfig.get(Configuration.CATEGORY_ITEM, "appSpiritID", nextItemID()).getInt(dynamicItemID);
-            appItemSpiritLamp = appConfig.get(Configuration.CATEGORY_ITEM, "appSpiritLampID", nextItemID()).getInt(dynamicItemID);
-            appItemSprayer = appConfig.get(Configuration.CATEGORY_ITEM, "appSprayerID", nextItemID()).getInt(dynamicItemID);
+            appPotionWoodAlcohol = appConfig.get(Configuration.CATEGORY_ITEM, "appPotionWoodAlcoholID", nextItemID()).getInt(dynamicItemID);
             appItemSpringyCord = appConfig.get(Configuration.CATEGORY_ITEM, "appSpringyCordID", nextItemID()).getInt(dynamicItemID);
             appItemSquidEye = appConfig.get(Configuration.CATEGORY_ITEM, "appSquidEyeID", nextItemID()).getInt(dynamicItemID);
 

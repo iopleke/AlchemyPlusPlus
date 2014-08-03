@@ -18,8 +18,7 @@ public class SlotDistilleryOutput extends Slot
     public boolean isItemValid(ItemStack stack)
     {
         // Set the valid items to be processed for this slot
-        if (stack.itemID == Item.glassBottle.itemID
-                || stack.itemID == ItemRegistry.appItemSpirit.itemID)
+        if (stack.itemID == Item.glassBottle.itemID)
         {
             return true;
         } else
