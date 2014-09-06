@@ -3,9 +3,7 @@ package alchemyplusplus;
 import alchemyplusplus.utility.EventManager;
 import alchemyplusplus.utility.ConfigManager;
 import alchemyplusplus.network.CommonProxy;
-import alchemyplusplus.network.PacketHandler;
 import alchemyplusplus.block.BlockRegistry;
-import alchemyplusplus.network.ClientPacketHandler;
 import alchemyplusplus.gui.GUIHandler;
 import alchemyplusplus.items.ItemRegistry;
 import alchemyplusplus.tileentities.diffuser.TileEntityDiffuser;
@@ -20,20 +18,32 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.network.NetworkMod;
-import cpw.mods.fml.common.network.NetworkMod.SidedPacketHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = "AlchemyPlusPlus", name = "AlchemyPlusPlus", version = "release 1.1")
-@NetworkMod(clientSideRequired = true, serverSideRequired = false, clientPacketHandlerSpec = @SidedPacketHandler(channels
-	= {
-	    "Alchemy++"
-	}, packetHandler = ClientPacketHandler.class), serverPacketHandlerSpec = @SidedPacketHandler(channels
-		= {
-	    "Alchemy++"
-	}, packetHandler = PacketHandler.class))
+@Mod(modid = AlchemyPlusPlus.ID, name = "AlchemyPlusPlus", version = "release 1.1")
 public class AlchemyPlusPlus {
+    
+    // Internal name for referring to the mod
+    public static final String ID = "alchemyplusplus";
+    // Set channel name for use in NetworkMod
+    public static final String CHANNEL_NAME = ID;
+    
+    // Human readible mod name
+    public static final String NAME = "AlchemyPlusPlus";
+    
+    public static final String V_MAJOR = "@MAJOR@";
+    public static final String V_MINOR = "@MINOR@";
+    public static final String V_REVIS = "@REVIS@";
+    public static final String V_BUILD = "@BUILD@";
+    public static final String VERSION_FULL = V_MAJOR + "." + V_MINOR + V_REVIS + "." + V_BUILD;
+    
+    // Texture basedir
+    public static final String textureBase = "minechem:";
+
+    // Instancing
+    @Instance(value = CHANNEL_NAME)
+    public static AlchemyPlusPlus INSTANCE;
 
     public static GUIHandler guiHandler = new GUIHandler();
 
@@ -67,7 +77,6 @@ public class AlchemyPlusPlus {
 	if (ConfigManager.appHardcoreModeEnabled) {
 	    ItemRegistry.registerHardcoreRecipes();
 	}
-	NetworkRegistry.instance().registerGuiHandler(AlchemyPlusPlus.instance, this.guiHandler);
 
 	EventManager.registerEventHooks();
     }
