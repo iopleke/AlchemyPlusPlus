@@ -1,6 +1,6 @@
 package alchemyplusplus.items;
 
-import net.minecraft.client.renderer.texture.IIIconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemFood;
 
 public class FoodTemplate extends ItemFood
@@ -16,7 +16,7 @@ public class FoodTemplate extends ItemFood
     }
 
     @Override
-    public void registerIIcons(IIIconRegister iconRegister)
+    public void registerIIcons(IIconRegister iconRegister)
     {
         this.itemIIcon = iconRegister.registerIIcon(icon);
     }

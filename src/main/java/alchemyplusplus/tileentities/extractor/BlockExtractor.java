@@ -7,7 +7,7 @@ import alchemyplusplus.items.ItemRegistry;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.EffectRenderer;
-import net.minecraft.client.renderer.texture.IIIconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MovingObjectPosition;
@@ -93,7 +93,7 @@ public class BlockExtractor extends BlockContainer
     }
 
     @Override
-    public void registerIIcons(IIIconRegister iconRegister)
+    public void registerIIcons(IIconRegister iconRegister)
     {
         this.blockIIcon = iconRegister.registerIIcon("AlchemyPlusPlus:WIPLiquidMixer");
     }

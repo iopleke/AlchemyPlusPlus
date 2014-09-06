@@ -4,7 +4,7 @@ import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.renderer.texture.IIIconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -79,7 +79,7 @@ public class FishOil extends Item
     }
 
     @SideOnly(Side.CLIENT)
-    public void registerIIcons(IIIconRegister iconRegister)
+    public void registerIIcons(IIconRegister iconRegister)
     {
         this.percent0 = iconRegister.registerIIcon("AlchemyPlusPlus:fishOil0");
         this.percent20 = iconRegister.registerIIcon("AlchemyPlusPlus:fishOil20");

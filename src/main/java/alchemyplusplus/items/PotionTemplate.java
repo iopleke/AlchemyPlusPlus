@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.renderer.texture.IIIconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityPotion;
 import net.minecraft.item.EnumAction;
@@ -108,7 +108,7 @@ public class PotionTemplate extends ItemPotion
     }
 
     @SideOnly(Side.CLIENT)
-    public void registerIIcons(IIIconRegister par1IIIconRegister)
+    public void registerIIcons(IIconRegister par1IIconRegister)
     {
         Class potionClass = potionReference.getClass();
 

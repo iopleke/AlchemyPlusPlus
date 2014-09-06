@@ -3,7 +3,7 @@ package alchemyplusplus.block;
 import alchemyplusplus.items.ItemRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIIconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.util.AxisAlignedBB;
@@ -28,10 +28,11 @@ public class BlockFlesh extends Block
         this.setTickRandomly(true);
     }
 
+    @Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
     {
         float f = 0.125F;
-        return AxisAlignedBB.getAABBPool().getAABB((double) par2, (double) par3, (double) par4, (double) (par2 + 1), (double) ((float) (par3 + 1) - f), (double) (par4 + 1));
+        return AxisAlignedBB.getBoundingBox((double) par2, (double) par3, (double) par4, (double) (par2 + 1), (double) ((float) (par3 + 1) - f), (double) (par4 + 1));
     }
 
     @SideOnly(Side.CLIENT)
@@ -68,7 +69,7 @@ public class BlockFlesh extends Block
     }
 
     @Override
-    public void registerIIcons(IIIconRegister iconRegister)
+    public void registerIIcons(IIconRegister iconRegister)
     {
         this.iconNormal = iconRegister.registerIIcon("AlchemyPlusPlus:flesh");
         this.iconFester = iconRegister.registerIIcon("AlchemyPlusPlus:fleshFester");

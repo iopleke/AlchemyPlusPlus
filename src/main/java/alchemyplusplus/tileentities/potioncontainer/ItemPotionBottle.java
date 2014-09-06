@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import alchemyplusplus.block.BlockRegistry;
-import net.minecraft.client.renderer.texture.IIIconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -120,7 +120,7 @@ public class ItemPotionBottle extends Item
     }
 
     @Override
-    public void registerIIcons(IIIconRegister iconRegister)
+    public void registerIIcons(IIconRegister iconRegister)
     {
         this.bottle = iconRegister.registerIIcon("AlchemyPlusPlus:PotionBottle");
 

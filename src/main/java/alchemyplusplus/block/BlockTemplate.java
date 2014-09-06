@@ -2,7 +2,7 @@ package alchemyplusplus.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIIconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 
 public class BlockTemplate extends Block
 {
@@ -17,7 +17,7 @@ public class BlockTemplate extends Block
     }
 
     @Override
-    public void registerIIcons(IIIconRegister iconRegister)
+    public void registerIIcons(IIconRegister iconRegister)
     {
         this.blockIIcon = iconRegister.registerIIcon(icon);
     }
