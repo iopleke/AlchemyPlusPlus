@@ -21,7 +21,7 @@ public class PotionTemplate extends ItemPotion
 
     ItemPotion potionReference;
 
-    public PotionTemplate(int id, ItemPotion potion)
+    public PotionTemplate(ItemPotion potion)
     {
         super();
         this.potionReference = potion;

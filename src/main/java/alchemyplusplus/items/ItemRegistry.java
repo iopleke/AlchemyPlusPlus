@@ -22,23 +22,25 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 
 public class ItemRegistry
 {
 
-    public static final Item appItemConfusion = new ItemTemplate(ConfigManager.appItemConfusion, "AlchemyPlusPlus:confusion").setUnlocalizedName("confusion").setCreativeTab(ConfigManager.appCreativeTab);
+    public static final Item appItemConfusion = new ItemTemplate("AlchemyPlusPlus:confusion").setUnlocalizedName("confusion").setCreativeTab(ConfigManager.appCreativeTab);
     public static final Item appItemDiffuser = new ItemDiffuser(ConfigManager.appItemDiffuser, "AlchemyPlusPlus:Diffuser").setUnlocalizedName("diffuserItem").setCreativeTab(ConfigManager.appCreativeTab);
     public static final Item appItemDistillery = new ItemDistillery(ConfigManager.appItemDistillery, "AlchemyPlusPlus:Distillery").setUnlocalizedName("distilleryItem").setCreativeTab(ConfigManager.appCreativeTab);
     public static final Item appItemExtractor = new ItemExtractor(ConfigManager.appItemExtractor, "AlchemyPlusPlus:Extractor").setUnlocalizedName("extractorItem").setCreativeTab(ConfigManager.appCreativeTab);
     public static final Item appItemFesteringFlesh = new FoodTemplate(ConfigManager.appItemFesteringFlesh, "AlchemyPlusPlus:FesteringFlesh", 7, 100, 20).setUnlocalizedName("flesh").setCreativeTab(ConfigManager.appCreativeTab);
     public static final Item appItemFilter = new MixingFilter(ConfigManager.appItemFilter, "AlchemyPlusPlus:AlchemicalFilter", 600).setUnlocalizedName("filter");
     public static final Item appItemFishOil = new FishOil(ConfigManager.appItemFishOil).setUnlocalizedName("fishoil").setCreativeTab(ConfigManager.appCreativeTab);
-    public static final Item appItemIronPowder = new ItemTemplate(ConfigManager.appItemIronPowder, "AlchemyPlusPlus:ironDust").setUnlocalizedName("obsidian").setCreativeTab(ConfigManager.appCreativeTab);
+    public static final Item appItemIronPowder = new ItemTemplate("AlchemyPlusPlus:ironDust").setUnlocalizedName("obsidian").setCreativeTab(ConfigManager.appCreativeTab);
     public static final Item appItemLiquidMixer = new ItemLiquidMixer(ConfigManager.appItemLiquidMixer, "AlchemyPlusPlus:Mixer").setUnlocalizedName("mixerItem").setCreativeTab(ConfigManager.appCreativeTab);
     public static Item appItemPotion = null;
     public static final Item appItemPotionBottle = new ItemPotionBottle(ConfigManager.appItemPotionBottle).setUnlocalizedName("potionBottle").setCreativeTab(ConfigManager.appCreativeTab);
-    public static final Item appItemSpringyCord = new ItemTemplate(ConfigManager.appItemSpringyCord, "AlchemyPlusPlus:spring").setUnlocalizedName("spring").setCreativeTab(ConfigManager.appCreativeTab);
-    public static final Item appItemSquidEye = new ItemTemplate(ConfigManager.appItemSquidEye, "AlchemyPlusPlus:SquidEye").setUnlocalizedName("squidEye").setCreativeTab(ConfigManager.appCreativeTab);
+    public static final Item appItemSpringyCord = new ItemTemplate("AlchemyPlusPlus:spring").setUnlocalizedName("spring").setCreativeTab(ConfigManager.appCreativeTab);
+    public static final Item appItemSquidEye = new ItemTemplate("AlchemyPlusPlus:SquidEye").setUnlocalizedName("squidEye").setCreativeTab(ConfigManager.appCreativeTab);
     public static final Item appPotionWoodAlcohol = new MixingFilter(ConfigManager.appPotionWoodAlcohol, "AlchemyPlusPlus:WoodAlcohol", 600).setUnlocalizedName("woodalcohol");
 
     public static void registerHardcoreRecipes()
@@ -51,7 +53,7 @@ public class ItemRegistry
 
         for (int i = 0; i < list.size(); i++)
         {
-            if (ItemStack.areItemStacksEqual(((IRecipe) list.get(i)).getRecipeOutput(), new ItemStack(Item.speckledMelon)))
+            if (ItemStack.areItemStacksEqual(((IRecipe) list.get(i)).getRecipeOutput(), new ItemStack(Items.speckled_melon)))
             {
                 System.out.println("Alchemy++ removes \"speckeledMelon\" recipe from the recipe list! Be advised!");
                 list.remove(i);
@@ -59,22 +61,22 @@ public class ItemRegistry
 
         }
 
-        GameRegistry.addRecipe(new ItemStack(Item.speckledMelon), "ggg", "gmg", "ggg", 'g', new ItemStack(Item.ingotGold), 'm', new ItemStack(Item.melon));
+        GameRegistry.addRecipe(new ItemStack(Items.speckled_melon), "ggg", "gmg", "ggg", 'g', new ItemStack(Items.gold_ingot), 'm', new ItemStack(Items.melon));
 
     }
 
     public static void registerItemRecipes()
     {
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(appItemPotionBottle), "gwg", "o o", "gog", 'g', new ItemStack(Block.thinGlass), 'w', "logWood", 'o', Block.blockIron));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(appItemFilter), " og", "oDo", "go ", 'g', new ItemStack(Block.thinGlass), 'D', new ItemStack(Item.diamond), 'o', Block.blockIron));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(appItemFilter), "go ", "oDo", " og", 'g', new ItemStack(Block.thinGlass), 'D', new ItemStack(Item.diamond), 'o', Block.blockIron));
-        GameRegistry.addShapelessRecipe(new ItemStack(appItemFishOil, 1, 0), new ItemStack(Item.fishRaw), new ItemStack(Item.glassBottle));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(appItemLiquidMixer), "x x", "xix", "oOo", 'x', new ItemStack(Block.thinGlass), 'i', new ItemStack(Item.ingotIron), 'o', Block.blockIron, 'O', new ItemStack(Block.blockIron)));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(appItemExtractor), "iGi", "I O", "oOo", 'i', new ItemStack(Block.blockGold), 'I', new ItemStack(Block.blockIron), 'g', new ItemStack(Item.ingotGold), 'o', Block.blockIron, 'O', new ItemStack(Block.blockIron)));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(appItemPotionBottle), "gwg", "o o", "gog", 'g', new ItemStack(Blocks.glass_pane), 'w', "logWood", 'o', Blocks.iron_block));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(appItemFilter), " og", "oDo", "go ", 'g', new ItemStack(Blocks.glass_pane), 'D', new ItemStack(Items.diamond), 'o', Blocks.iron_block));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(appItemFilter), "go ", "oDo", " og", 'g', new ItemStack(Blocks.glass_pane), 'D', new ItemStack(Items.diamond), 'o', Blocks.iron_block));
+        GameRegistry.addShapelessRecipe(new ItemStack(appItemFishOil, 1, 0), new ItemStack(Items.fish), new ItemStack(Items.glass_bottle));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(appItemLiquidMixer), "x x", "xix", "oOo", 'x', new ItemStack(Blocks.glass_pane), 'i', new ItemStack(Items.iron_ingot), 'o', Blocks.iron_block, 'O', new ItemStack(Blocks.iron_block)));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(appItemExtractor), "iGi", "I O", "oOo", 'i', new ItemStack(Blocks.gold_block), 'I', new ItemStack(Blocks.iron_block), 'g', new ItemStack(Items.gold_ingot), 'o', Blocks.iron_block, 'O', new ItemStack(Blocks.iron_block)));
         GameRegistry.addRecipe(new ItemStack(appItemDistillery, 1, 0), new Object[]
         {
-            "Bi-", "C-P", "F-S", Character.valueOf('B'), Item.brewingStand, Character.valueOf('i'), Item.ingotIron, Character.valueOf('C'), Item.cauldron, Character.valueOf('P'), appItemPotionBottle, Character.valueOf('F'), Block.furnaceIdle, Character.valueOf('S'), Item.ingotIron
+            "Bi-", "C-P", "F-S", Character.valueOf('B'), Items.brewing_stand, Character.valueOf('i'), Items.iron_ingot, Character.valueOf('C'), Items.cauldron, Character.valueOf('P'), appItemPotionBottle, Character.valueOf('F'), Blocks.furnace, Character.valueOf('S'), Items.iron_ingot
         });
 
         // GameRegistry.addRecipe(new ItemStack(appItemDiffuser, 1, 0), new Object[] { "--s", "-b-", "w--", Character.valueOf('s'), Item.silk, Character.valueOf('b'), Item.glassBottle, Character.valueOf('w'), Item.bowlEmpty });
@@ -133,11 +135,12 @@ public class ItemRegistry
         // work in progress: override vanilla potions
         if (ConfigManager.appVanillaPotionOverride)
         {
-            ItemPotion p = Item.potion;
-            Item.itemsList[117] = null;
-            appItemPotion = new PotionTemplate(117, p).setUnlocalizedName("potion").setTextureName("potion");
-            Item.potion = (ItemPotion) appItemPotion;
-            GameRegistry.registerItem(appItemPotion, "potion");
+            // @TODO - see if this is even still possible...maybe check how Railcraft does it?
+//            ItemPotion potion = Items.potionitem;
+//            Item.itemRegistry = null;
+//            appItemPotion = new PotionTemplate(potion).setUnlocalizedName("potion").setTextureName("potion");
+//            Items.potionitem = (ItemPotion) appItemPotion;
+//            GameRegistry.registerItem(appItemPotion, "potion");
         }
 
     }

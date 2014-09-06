@@ -6,6 +6,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -66,9 +67,9 @@ public class FishOil extends Item
         {
             return false;
         }
-        if (player.inventory.hasItem(Item.fishRaw.itemID))
+        if (player.inventory.hasItem(Items.fish))
         {
-            player.inventory.consumeInventoryItem(Item.fishRaw.itemID);
+            player.inventory.consumeInventoryItem(Items.fish);
             fill(stack, Item.itemRand.nextInt(5) + 1);
             return true;
         } else
@@ -79,7 +80,7 @@ public class FishOil extends Item
     }
 
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister iconRegister)
+    public void registerItemIcons(IIconRegister iconRegister)
     {
         this.percent0 = iconRegister.registerIcon("AlchemyPlusPlus:fishOil0");
         this.percent20 = iconRegister.registerIcon("AlchemyPlusPlus:fishOil20");
