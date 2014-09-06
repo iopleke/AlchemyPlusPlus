@@ -69,10 +69,10 @@ public class BlockFlesh extends Block
     }
 
     @Override
-    public void registerIIcons(IIconRegister iconRegister)
+    public void registerIcons(IIconRegister iconRegister)
     {
-        this.iconNormal = iconRegister.registerIIcon("AlchemyPlusPlus:flesh");
-        this.iconFester = iconRegister.registerIIcon("AlchemyPlusPlus:fleshFester");
+        this.iconNormal = iconRegister.registerIcon("AlchemyPlusPlus:flesh");
+        this.iconFester = iconRegister.registerIcon("AlchemyPlusPlus:fleshFester");
     }
 
     public void updateTick(World world, int x, int y, int z, Random random)

@@ -79,14 +79,14 @@ public class FishOil extends Item
     }
 
     @SideOnly(Side.CLIENT)
-    public void registerIIcons(IIconRegister iconRegister)
+    public void registerIcons(IIconRegister iconRegister)
     {
-        this.percent0 = iconRegister.registerIIcon("AlchemyPlusPlus:fishOil0");
-        this.percent20 = iconRegister.registerIIcon("AlchemyPlusPlus:fishOil20");
-        this.percent40 = iconRegister.registerIIcon("AlchemyPlusPlus:fishOil40");
-        this.percent60 = iconRegister.registerIIcon("AlchemyPlusPlus:fishOil60");
-        this.percent80 = iconRegister.registerIIcon("AlchemyPlusPlus:fishOil80");
-        this.percent100 = iconRegister.registerIIcon("AlchemyPlusPlus:fishOil100");
+        this.percent0 = iconRegister.registerIcon("AlchemyPlusPlus:fishOil0");
+        this.percent20 = iconRegister.registerIcon("AlchemyPlusPlus:fishOil20");
+        this.percent40 = iconRegister.registerIcon("AlchemyPlusPlus:fishOil40");
+        this.percent60 = iconRegister.registerIcon("AlchemyPlusPlus:fishOil60");
+        this.percent80 = iconRegister.registerIcon("AlchemyPlusPlus:fishOil80");
+        this.percent100 = iconRegister.registerIcon("AlchemyPlusPlus:fishOil100");
     }
 
 }

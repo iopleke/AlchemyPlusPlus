@@ -24,9 +24,9 @@ public class ItemTemplate extends Item
     }
 
     @Override
-    public void registerIIcons(IIconRegister iconRegister)
+    public void registerIcons(IIconRegister iconRegister)
     {
-        this.itemIIcon = iconRegister.registerIIcon(iconName);
+        this.itemIIcon = iconRegister.registerIcon(iconName);
     }
 
     public void setLifespan(int lifespan)

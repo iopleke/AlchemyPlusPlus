@@ -176,9 +176,9 @@ public class BlockPotionContainer extends BlockContainer
     }
 
     @Override
-    public void registerIIcons(IIconRegister iconRegister)
+    public void registerIcons(IIconRegister iconRegister)
     {
-        this.blockIIcon = iconRegister.registerIIcon("AlchemyPlusPlus:PotionBottle");
+        this.blockIIcon = iconRegister.registerIcon("AlchemyPlusPlus:PotionBottle");
     }
 
     public boolean shouldSideBeRendered(IBlockAccess iblockaccess, int i, int j, int k, int l)

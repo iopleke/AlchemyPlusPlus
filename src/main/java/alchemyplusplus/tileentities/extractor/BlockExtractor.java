@@ -93,9 +93,9 @@ public class BlockExtractor extends BlockContainer
     }
 
     @Override
-    public void registerIIcons(IIconRegister iconRegister)
+    public void registerIcons(IIconRegister iconRegister)
     {
-        this.blockIIcon = iconRegister.registerIIcon("AlchemyPlusPlus:WIPLiquidMixer");
+        this.blockIIcon = iconRegister.registerIcon("AlchemyPlusPlus:WIPLiquidMixer");
     }
 
     @Override

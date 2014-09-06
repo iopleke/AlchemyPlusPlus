@@ -120,11 +120,11 @@ public class ItemPotionBottle extends Item
     }
 
     @Override
-    public void registerIIcons(IIconRegister iconRegister)
+    public void registerIcons(IIconRegister iconRegister)
     {
-        this.bottle = iconRegister.registerIIcon("AlchemyPlusPlus:PotionBottle");
+        this.bottle = iconRegister.registerIcon("AlchemyPlusPlus:PotionBottle");
 
-        this.contents = iconRegister.registerIIcon("AlchemyPlusPlus:BottleContents");
+        this.contents = iconRegister.registerIcon("AlchemyPlusPlus:BottleContents");
     }
 
 }

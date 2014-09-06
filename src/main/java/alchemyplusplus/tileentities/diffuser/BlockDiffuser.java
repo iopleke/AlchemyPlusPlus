@@ -186,11 +186,11 @@ public class BlockDiffuser extends BlockContainer
     }
 
     @Override
-    public void registerIIcons(IIconRegister iconRegister)
+    public void registerIcons(IIconRegister iconRegister)
     {
         // @TODO - figure out how to hide the dummy block in NEI
         // @TODO - change this from "WIPLiquidMixer" to something more generic
-        this.blockIIcon = iconRegister.registerIIcon("AlchemyPlusPlus:WIPLiquidMixer");
+        this.blockIIcon = iconRegister.registerIcon("AlchemyPlusPlus:WIPLiquidMixer");
     }
 
     @Override
