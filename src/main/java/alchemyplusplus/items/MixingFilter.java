@@ -87,7 +87,7 @@ public class MixingFilter extends ItemTemplate
 
     public MixingFilter(int id, String iconName, int durability)
     {
-        super(id, iconName);
+        super(iconName);
         this.setMaxDamage(durability);
         this.isDamageable();
         this.maxStackSize = 1;

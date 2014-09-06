@@ -12,7 +12,7 @@ public class ItemDistillery extends ItemTemplate
 
     public ItemDistillery(int id, String iconName)
     {
-        super(id, iconName);
+        super(iconName);
         this.maxStackSize = 1;
     }
 

@@ -12,7 +12,7 @@ public class AlchemicalGuide extends ItemTemplate
 
     public AlchemicalGuide(int id, String iconName)
     {
-        super(id, iconName);
+        super(iconName);
     }
 
     public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List list, boolean par4)

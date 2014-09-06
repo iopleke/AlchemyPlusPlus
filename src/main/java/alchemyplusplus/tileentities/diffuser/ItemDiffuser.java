@@ -12,7 +12,7 @@ public class ItemDiffuser extends ItemTemplate
 
     public ItemDiffuser(int id, String iconName)
     {
-        super(id, iconName);
+        super(iconName);
         this.maxStackSize = 1;
     }
 

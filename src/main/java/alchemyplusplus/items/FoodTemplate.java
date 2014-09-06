@@ -10,7 +10,7 @@ public class FoodTemplate extends ItemFood
 
     public FoodTemplate(int id, String icon, int effectID, int amp, int duration)
     {
-        super(id, -5, -0.5f, false);
+        super(-5, -0.5f, false);
         this.setPotionEffect(effectID, duration, amp, 1f);
         this.icon = icon;
     }

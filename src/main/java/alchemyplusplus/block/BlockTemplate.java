@@ -11,7 +11,7 @@ public class BlockTemplate extends Block
 
     public BlockTemplate(int id, Material material, String icon)
     {
-        super(id, material);
+        super(material);
 
         this.icon = icon;
     }

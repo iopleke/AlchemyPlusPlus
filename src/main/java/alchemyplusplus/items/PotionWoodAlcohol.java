@@ -17,7 +17,7 @@ public class PotionWoodAlcohol extends PotionTemplate
 
     public PotionWoodAlcohol(int id, ItemPotion potion)
     {
-        super(id, potion);
+        super(potion);
     }
     
 }

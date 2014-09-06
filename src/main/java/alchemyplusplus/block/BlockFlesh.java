@@ -24,7 +24,7 @@ public class BlockFlesh extends Block
 
     public BlockFlesh(int id, Material material)
     {
-        super(id, material);
+        super(material);
         this.setTickRandomly(true);
     }
 

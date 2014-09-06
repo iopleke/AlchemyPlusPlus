@@ -12,7 +12,7 @@ public class ItemExtractor extends ItemTemplate
 
     public ItemExtractor(int id, String iconName)
     {
-        super(id, iconName);
+        super(iconName);
         this.maxStackSize = 64;
     }
 

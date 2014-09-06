@@ -12,7 +12,7 @@ public class ItemLiquidMixer extends ItemTemplate
 
     public ItemLiquidMixer(int id, String iconName)
     {
-        super(id, iconName);
+        super(iconName);
         this.maxStackSize = 64;
     }
 
