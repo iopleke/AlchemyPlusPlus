@@ -84,8 +84,8 @@ public class AlchemicalGuide extends GuiScreen
             Book.alchemicalGude.getPage(currentPage).drawPage(this);
         } else
         {
-            this.fontRenderer.drawString("All the pages", (this.width - this.xPage) / 2 - 15, this.height / 2, 0);
-            this.fontRenderer.drawString(" are empty...", (this.width - this.xPage) / 2, this.height / 2 + 8, 0);
+            this.fontRendererObj.drawString("All the pages", (this.width - this.xPage) / 2 - 15, this.height / 2, 0);
+            this.fontRendererObj.drawString(" are empty...", (this.width - this.xPage) / 2, this.height / 2 + 8, 0);
         }
 
         super.drawScreen(par1, par2, par3);
@@ -93,7 +93,7 @@ public class AlchemicalGuide extends GuiScreen
 
     public FontRenderer getFontRenderer()
     {
-        return this.fontRenderer;
+        return this.fontRendererObj;
     }
 
     public TextureManager getRenderEngine()
@@ -116,13 +116,13 @@ public class AlchemicalGuide extends GuiScreen
     {
         if (!Book.alchemicalGude.isLoaded())
         {
-            this.previousPage.drawButton = this.nextPage.drawButton = this.bookmarkPage.drawButton = false;
+            this.previousPage.visible = this.nextPage.visible = this.bookmarkPage.visible = false;
             return;
         }
 
-        this.previousPage.drawButton = !(this.currentPage == 0);
-        this.nextPage.drawButton = !(this.currentPage == Book.alchemicalGude.pageAmount - 1);
-        this.bookmarkPage.drawButton = this.bookmark != this.currentPage;
+        this.previousPage.visible = !(this.currentPage == 0);
+        this.nextPage.visible = !(this.currentPage == Book.alchemicalGude.pageAmount - 1);
+        this.bookmarkPage.visible = this.bookmark != this.currentPage;
     }
 
 }
