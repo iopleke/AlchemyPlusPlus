@@ -95,9 +95,9 @@ public class GuiDistillery extends GuiContainer
     protected void drawGuiContainerForegroundLayer(int param1, int param2)
     {
 
-        fontRenderer.drawString("Distillery", 8, 6, 4210752);
+        fontRendererObj.drawString("Distillery", 8, 6, 4210752);
 
-        fontRenderer.drawString(
+        fontRendererObj.drawString(
                 StatCollector.translateToLocal("container.inventory"), 8,
                 ySize - 96 + 2, 4210752);
     }

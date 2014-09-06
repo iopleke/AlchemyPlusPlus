@@ -35,7 +35,7 @@ public class FishOil extends Item
 
     public FishOil(int id)
     {
-        super(id);
+        super();
         this.setMaxStackSize(1);
         this.setHasSubtypes(true);
         this.setMaxDamage(0);

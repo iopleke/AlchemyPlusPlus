@@ -11,9 +11,9 @@ public class ItemTemplate extends Item
     String iconName;
     int lifespan = 6000;
 
-    public ItemTemplate(int id, String iconName)
+    public ItemTemplate(String iconName)
     {
-        super(id);
+        super();
         this.iconName = iconName;
     }
 
@@ -26,7 +26,7 @@ public class ItemTemplate extends Item
     @Override
     public void registerIcons(IIconRegister iconRegister)
     {
-        this.itemIIcon = iconRegister.registerIcon(iconName);
+        this.itemIcon = iconRegister.registerIcon(iconName);
     }
 
     public void setLifespan(int lifespan)

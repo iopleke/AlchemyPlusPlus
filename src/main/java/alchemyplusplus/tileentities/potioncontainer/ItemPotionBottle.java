@@ -27,7 +27,7 @@ public class ItemPotionBottle extends Item
 
     public ItemPotionBottle(int id)
     {
-        super(id);
+        super();
         this.maxStackSize = 1;
     }
 

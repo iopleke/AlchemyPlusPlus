@@ -18,7 +18,7 @@ public class FoodTemplate extends ItemFood
     @Override
     public void registerIcons(IIconRegister iconRegister)
     {
-        this.itemIIcon = iconRegister.registerIcon(icon);
+        this.itemIcon = iconRegister.registerIcon(icon);
     }
 
 }
