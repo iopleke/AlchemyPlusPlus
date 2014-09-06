@@ -77,7 +77,7 @@ public class BlockLiquidMixer extends BlockContainer
     @Override
     public void registerIcons(IIconRegister iconRegister)
     {
-        this.blockIIcon = iconRegister.registerIcon("AlchemyPlusPlus:WIPLiquidMixer");
+        this.blockIcon = iconRegister.registerIcon("AlchemyPlusPlus:WIPLiquidMixer");
     }
 
     public boolean shouldSideBeRendered(IBlockAccess iblockaccess, int i, int j, int k, int l)

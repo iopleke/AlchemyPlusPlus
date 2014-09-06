@@ -19,7 +19,7 @@ public class BlockTemplate extends Block
     @Override
     public void registerIcons(IIconRegister iconRegister)
     {
-        this.blockIIcon = iconRegister.registerIcon(icon);
+        this.blockIcon = iconRegister.registerIcon(icon);
     }
 
 }
