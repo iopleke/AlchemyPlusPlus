@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionHelper;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraftforge.client.IItemRenderer;
 
 public class PotionBottleRenderer implements IItemRenderer
@@ -21,15 +21,15 @@ public class PotionBottleRenderer implements IItemRenderer
         return type == ItemRenderType.INVENTORY;
     }
 
-    public void renderIconColored(int par1, int par2, Icon par3Icon, int par4, int par5, int color)
+    public void renderIIconColored(int par1, int par2, IIcon par3IIcon, int par4, int par5, int color)
     {
         Tessellator tessellator = Tessellator.instance;
         tessellator.startDrawingQuads();
         tessellator.setColorRGBA_F((color >> 16 & 255) / 255.0F, (color >> 8 & 255) / 255.0F, (color >> 0 & 255) / 255.0F, 1f);
-        tessellator.addVertexWithUV((double) (par1 + 0), (double) (par2 + par5), 0, (double) par3Icon.getMinU(), (double) par3Icon.getMaxV());
-        tessellator.addVertexWithUV((double) (par1 + par4), (double) (par2 + par5), 0, (double) par3Icon.getMaxU(), (double) par3Icon.getMaxV());
-        tessellator.addVertexWithUV((double) (par1 + par4), (double) (par2 + 0), 0, (double) par3Icon.getMaxU(), (double) par3Icon.getMinV());
-        tessellator.addVertexWithUV((double) (par1 + 0), (double) (par2 + 0), 0, (double) par3Icon.getMinU(), (double) par3Icon.getMinV());
+        tessellator.addVertexWithUV((double) (par1 + 0), (double) (par2 + par5), 0, (double) par3IIcon.getMinU(), (double) par3IIcon.getMaxV());
+        tessellator.addVertexWithUV((double) (par1 + par4), (double) (par2 + par5), 0, (double) par3IIcon.getMaxU(), (double) par3IIcon.getMaxV());
+        tessellator.addVertexWithUV((double) (par1 + par4), (double) (par2 + 0), 0, (double) par3IIcon.getMaxU(), (double) par3IIcon.getMinV());
+        tessellator.addVertexWithUV((double) (par1 + 0), (double) (par2 + 0), 0, (double) par3IIcon.getMinU(), (double) par3IIcon.getMinV());
         tessellator.draw();
     }
 
@@ -37,8 +37,8 @@ public class PotionBottleRenderer implements IItemRenderer
     public void renderItem(ItemRenderType type, ItemStack item, Object... data)
     {
 
-        Icon icon = ItemPotionBottle.bottle;
-        Icon icon2 = ItemPotionBottle.contents;
+        IIcon icon = ItemPotionBottle.bottle;
+        IIcon icon2 = ItemPotionBottle.contents;
 
         if (item.hasTagCompound())
         {
@@ -52,8 +52,8 @@ public class PotionBottleRenderer implements IItemRenderer
 
                 int color = item.getTagCompound().getShort("effectID");
                 int starting = 14 - ((int) (10.0f * (has / 16.0f)));
-                renderIconColored(0, starting, icon2, 16, 16 - starting, PotionHelper.func_77915_a(color, false));
-                renderer.renderIcon(0, 0, icon, 16, 16);
+                renderIIconColored(0, starting, icon2, 16, 16 - starting, PotionHelper.func_77915_a(color, false));
+                renderer.renderIIcon(0, 0, icon, 16, 16);
 
                 GL11.glDepthMask(true);
                 GL11.glDisable(GL11.GL_BLEND);
@@ -61,7 +61,7 @@ public class PotionBottleRenderer implements IItemRenderer
             }
         } else
         {
-            renderer.renderIcon(0, 0, icon, 16, 16);
+            renderer.renderIIcon(0, 0, icon, 16, 16);
         }
 
     }

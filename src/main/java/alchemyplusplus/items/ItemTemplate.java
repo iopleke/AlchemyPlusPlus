@@ -1,6 +1,6 @@
 package alchemyplusplus.items;
 
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -24,9 +24,9 @@ public class ItemTemplate extends Item
     }
 
     @Override
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIIcons(IIIconRegister iconRegister)
     {
-        this.itemIcon = iconRegister.registerIcon(iconName);
+        this.itemIIcon = iconRegister.registerIIcon(iconName);
     }
 
     public void setLifespan(int lifespan)

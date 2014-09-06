@@ -6,7 +6,7 @@ import alchemyplusplus.items.ItemRegistry;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.EffectRenderer;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPotion;
@@ -186,11 +186,11 @@ public class BlockDiffuser extends BlockContainer
     }
 
     @Override
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIIcons(IIIconRegister iconRegister)
     {
         // @TODO - figure out how to hide the dummy block in NEI
         // @TODO - change this from "WIPLiquidMixer" to something more generic
-        this.blockIcon = iconRegister.registerIcon("AlchemyPlusPlus:WIPLiquidMixer");
+        this.blockIIcon = iconRegister.registerIIcon("AlchemyPlusPlus:WIPLiquidMixer");
     }
 
     @Override

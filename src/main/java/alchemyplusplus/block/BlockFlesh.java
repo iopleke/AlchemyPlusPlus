@@ -3,11 +3,11 @@ package alchemyplusplus.block;
 import alchemyplusplus.items.ItemRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -18,8 +18,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockFlesh extends Block
 {
 
-    private Icon iconFester;
-    private Icon iconNormal;
+    private IIcon iconFester;
+    private IIcon iconNormal;
     private final Random random = new Random();
 
     public BlockFlesh(int id, Material material)
@@ -35,7 +35,7 @@ public class BlockFlesh extends Block
     }
 
     @SideOnly(Side.CLIENT)
-    public Icon getIcon(int side, int meta)
+    public IIcon getIIcon(int side, int meta)
     {
         return meta == 10 ? this.iconFester : this.iconNormal;
     }
@@ -68,10 +68,10 @@ public class BlockFlesh extends Block
     }
 
     @Override
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIIcons(IIIconRegister iconRegister)
     {
-        this.iconNormal = iconRegister.registerIcon("AlchemyPlusPlus:flesh");
-        this.iconFester = iconRegister.registerIcon("AlchemyPlusPlus:fleshFester");
+        this.iconNormal = iconRegister.registerIIcon("AlchemyPlusPlus:flesh");
+        this.iconFester = iconRegister.registerIIcon("AlchemyPlusPlus:fleshFester");
     }
 
     public void updateTick(World world, int x, int y, int z, Random random)

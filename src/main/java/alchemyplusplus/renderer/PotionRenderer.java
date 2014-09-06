@@ -10,7 +10,7 @@ import net.minecraft.entity.projectile.EntityPotion;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPotion;
 import net.minecraft.potion.PotionHelper;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 
 public class PotionRenderer extends RenderSnowball
 {
@@ -30,7 +30,7 @@ public class PotionRenderer extends RenderSnowball
             float f, float f1)
     {
 
-        Icon icon = this.item.getIconFromDamage(this.damage);
+        IIcon icon = this.item.getIIconFromDamage(this.damage);
         System.out.println("lol!");
         if (icon != null)
         {
@@ -62,12 +62,12 @@ public class PotionRenderer extends RenderSnowball
 
     }
 
-    private void func_77026_a(Tessellator par1Tessellator, Icon par2Icon)
+    private void func_77026_a(Tessellator par1Tessellator, IIcon par2IIcon)
     {
-        float f = par2Icon.getMinU();
-        float f1 = par2Icon.getMaxU();
-        float f2 = par2Icon.getMinV();
-        float f3 = par2Icon.getMaxV();
+        float f = par2IIcon.getMinU();
+        float f1 = par2IIcon.getMaxU();
+        float f2 = par2IIcon.getMinV();
+        float f3 = par2IIcon.getMaxV();
         float f4 = 1.0F;
         float f5 = 0.5F;
         float f6 = 0.25F;

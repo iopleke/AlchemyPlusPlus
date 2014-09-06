@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityPotion;
 import net.minecraft.item.EnumAction;
@@ -108,7 +108,7 @@ public class PotionTemplate extends ItemPotion
     }
 
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister par1IconRegister)
+    public void registerIIcons(IIIconRegister par1IIIconRegister)
     {
         Class potionClass = potionReference.getClass();
 
@@ -126,17 +126,17 @@ public class PotionTemplate extends ItemPotion
             Field icon3 = potionClass.getDeclaredField("field_94592_ct");
             icon3.setAccessible(true);
 
-            Field superIcon1 = this.getClass().getSuperclass().getDeclaredField("field_94591_c");
-            superIcon1.setAccessible(true);
-            superIcon1.set(this, icon1.get(potionReference));
+            Field superIIcon1 = this.getClass().getSuperclass().getDeclaredField("field_94591_c");
+            superIIcon1.setAccessible(true);
+            superIIcon1.set(this, icon1.get(potionReference));
 
-            Field superIcon2 = this.getClass().getSuperclass().getDeclaredField("field_94590_d");
-            superIcon2.setAccessible(true);
-            superIcon2.set(this, icon2.get(potionReference));
+            Field superIIcon2 = this.getClass().getSuperclass().getDeclaredField("field_94590_d");
+            superIIcon2.setAccessible(true);
+            superIIcon2.set(this, icon2.get(potionReference));
 
-            Field superIcon3 = this.getClass().getSuperclass().getDeclaredField("field_94592_ct");
-            superIcon3.setAccessible(true);
-            superIcon3.set(this, icon3.get(potionReference));
+            Field superIIcon3 = this.getClass().getSuperclass().getDeclaredField("field_94592_ct");
+            superIIcon3.setAccessible(true);
+            superIIcon3.set(this, icon3.get(potionReference));
 
         } catch (NoSuchFieldException e)
         {

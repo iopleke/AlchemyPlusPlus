@@ -4,11 +4,11 @@ import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 public class FishOil extends Item
@@ -26,12 +26,12 @@ public class FishOil extends Item
         }
     }
 
-    private Icon percent0;
-    private Icon percent100;
-    private Icon percent20;
-    private Icon percent40;
-    private Icon percent60;
-    private Icon percent80;
+    private IIcon percent0;
+    private IIcon percent100;
+    private IIcon percent20;
+    private IIcon percent40;
+    private IIcon percent60;
+    private IIcon percent80;
 
     public FishOil(int id)
     {
@@ -55,7 +55,7 @@ public class FishOil extends Item
     }
 
     @SideOnly(Side.CLIENT)
-    public Icon getIconFromDamage(int damage)
+    public IIcon getIIconFromDamage(int damage)
     {
         return damage < 20 ? this.percent0 : damage < 40 ? this.percent20 : damage < 60 ? this.percent40 : damage < 80 ? this.percent60 : damage < 100 ? this.percent80 : this.percent100;
     }
@@ -79,14 +79,14 @@ public class FishOil extends Item
     }
 
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIIcons(IIIconRegister iconRegister)
     {
-        this.percent0 = iconRegister.registerIcon("AlchemyPlusPlus:fishOil0");
-        this.percent20 = iconRegister.registerIcon("AlchemyPlusPlus:fishOil20");
-        this.percent40 = iconRegister.registerIcon("AlchemyPlusPlus:fishOil40");
-        this.percent60 = iconRegister.registerIcon("AlchemyPlusPlus:fishOil60");
-        this.percent80 = iconRegister.registerIcon("AlchemyPlusPlus:fishOil80");
-        this.percent100 = iconRegister.registerIcon("AlchemyPlusPlus:fishOil100");
+        this.percent0 = iconRegister.registerIIcon("AlchemyPlusPlus:fishOil0");
+        this.percent20 = iconRegister.registerIIcon("AlchemyPlusPlus:fishOil20");
+        this.percent40 = iconRegister.registerIIcon("AlchemyPlusPlus:fishOil40");
+        this.percent60 = iconRegister.registerIIcon("AlchemyPlusPlus:fishOil60");
+        this.percent80 = iconRegister.registerIIcon("AlchemyPlusPlus:fishOil80");
+        this.percent100 = iconRegister.registerIIcon("AlchemyPlusPlus:fishOil100");
     }
 
 }

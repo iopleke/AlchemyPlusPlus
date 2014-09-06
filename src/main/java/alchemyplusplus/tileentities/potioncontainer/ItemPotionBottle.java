@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import alchemyplusplus.block.BlockRegistry;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -12,7 +12,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionHelper;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
@@ -22,8 +22,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ItemPotionBottle extends Item
 {
 
-    public static Icon bottle;
-    public static Icon contents;
+    public static IIcon bottle;
+    public static IIcon contents;
 
     public ItemPotionBottle(int id)
     {
@@ -88,7 +88,7 @@ public class ItemPotionBottle extends Item
     }
 
     @Override
-    public Icon getIconFromDamage(int damage)
+    public IIcon getIIconFromDamage(int damage)
     {
         return this.bottle;
     }
@@ -120,11 +120,11 @@ public class ItemPotionBottle extends Item
     }
 
     @Override
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIIcons(IIIconRegister iconRegister)
     {
-        this.bottle = iconRegister.registerIcon("AlchemyPlusPlus:PotionBottle");
+        this.bottle = iconRegister.registerIIcon("AlchemyPlusPlus:PotionBottle");
 
-        this.contents = iconRegister.registerIcon("AlchemyPlusPlus:BottleContents");
+        this.contents = iconRegister.registerIIcon("AlchemyPlusPlus:BottleContents");
     }
 
 }

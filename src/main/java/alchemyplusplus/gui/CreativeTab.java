@@ -14,7 +14,7 @@ public class CreativeTab extends CreativeTabs
 
     @Override
     @SideOnly(Side.CLIENT)
-    public ItemStack getIconItemStack()
+    public ItemStack getIIconItemStack()
     {
         // Set the creative tab icon
         return new ItemStack(
