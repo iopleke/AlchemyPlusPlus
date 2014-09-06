@@ -17,7 +17,7 @@ public class BlockTemplate extends Block
     }
 
     @Override
-    public void registerIcons(IIconRegister iconRegister)
+    public void registerBlockIcons(IIconRegister iconRegister)
     {
         this.blockIcon = iconRegister.registerIcon(icon);
     }

@@ -1,6 +1,7 @@
 package alchemyplusplus.block;
 
 import alchemyplusplus.items.ItemRegistry;
+import alchemyplusplus.utility.ConfigManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -14,6 +15,7 @@ import java.util.Random;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.init.Items;
 
 public class BlockFlesh extends Block
 {
@@ -26,6 +28,9 @@ public class BlockFlesh extends Block
     {
         super(material);
         this.setTickRandomly(true);
+        this.setCreativeTab(ConfigManager.appCreativeTab);
+        this.setHardness(3.0F).setResistance(5.0F);
+        this.setBlockName("fleshBlock");
     }
 
     @Override
@@ -41,9 +46,9 @@ public class BlockFlesh extends Block
         return meta == 10 ? this.iconFester : this.iconNormal;
     }
 
-    public int idDropped(int meta, Random random, int fortune)
+    public Item itemDropped(int meta, Random random, int fortune)
     {
-        return meta == 10 ? ItemRegistry.appItemFesteringFlesh.itemID : Item.rottenFlesh.itemID;
+        return meta == 10 ? ItemRegistry.appItemFesteringFlesh : Items.rotten_flesh;
     }
 
     public void onEntityCollidedWithBlock(World par1World, int par2, int par3, int par4, Entity par5Entity)
@@ -61,7 +66,7 @@ public class BlockFlesh extends Block
     public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random)
     {
         super.randomDisplayTick(par1World, par2, par3, par4, par5Random);
-        
+
         if (par5Random.nextInt(10) == 0)
         {
             par1World.spawnParticle("townaura", (double) ((float) par2 + par5Random.nextFloat()), (double) ((float) par3 + 1.1F), (double) ((float) par4 + par5Random.nextFloat()), 0.0D, 0.0D, 0.0D);
@@ -69,7 +74,7 @@ public class BlockFlesh extends Block
     }
 
     @Override
-    public void registerIcons(IIconRegister iconRegister)
+    public void registerBlockIcons(IIconRegister iconRegister)
     {
         this.iconNormal = iconRegister.registerIcon("AlchemyPlusPlus:flesh");
         this.iconFester = iconRegister.registerIcon("AlchemyPlusPlus:fleshFester");
@@ -87,7 +92,7 @@ public class BlockFlesh extends Block
             {
                 world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z) + 1, 4);
             }
-            
+
         }
     }
 
