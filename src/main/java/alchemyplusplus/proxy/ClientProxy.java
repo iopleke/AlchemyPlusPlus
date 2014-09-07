@@ -1,4 +1,4 @@
-package alchemyplusplus.network;
+package alchemyplusplus.proxy;
 
 import alchemyplusplus.items.ItemRegistry;
 import alchemyplusplus.renderer.PotionBottleRenderer;
@@ -22,6 +22,6 @@ public class ClientProxy extends CommonProxy
         ClientRegistry.bindTileEntitySpecialRenderer(alchemyplusplus.tileentities.diffuser.TileEntityDiffuser.class, new TileEntityDiffuserRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(alchemyplusplus.tileentities.mixer.TileEntityLiquidMixer.class, new TileEntityLiquidMixerRenderer());
 
-        MinecraftForgeClient.registerItemRenderer(ItemRegistry.appItemPotionBottle.itemID, new PotionBottleRenderer());
+        MinecraftForgeClient.registerItemRenderer(ItemRegistry.appItemPotionBottle, new PotionBottleRenderer());
     }
 }
