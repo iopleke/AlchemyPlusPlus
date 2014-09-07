@@ -53,7 +53,7 @@ public class PotionBottleRenderer implements IItemRenderer
                 int color = item.getTagCompound().getShort("effectID");
                 int starting = 14 - ((int) (10.0f * (has / 16.0f)));
                 renderIIconColored(0, starting, icon2, 16, 16 - starting, PotionHelper.func_77915_a(color, false));
-                renderer.renderIIcon(0, 0, icon, 16, 16);
+                renderer.renderIcon(0, 0, icon, 16, 16);
 
                 GL11.glDepthMask(true);
                 GL11.glDisable(GL11.GL_BLEND);
@@ -61,7 +61,7 @@ public class PotionBottleRenderer implements IItemRenderer
             }
         } else
         {
-            renderer.renderIIcon(0, 0, icon, 16, 16);
+            renderer.renderIcon(0, 0, icon, 16, 16);
         }
 
     }

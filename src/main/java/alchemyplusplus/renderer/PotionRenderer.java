@@ -30,7 +30,7 @@ public class PotionRenderer extends RenderSnowball
             float f, float f1)
     {
 
-        IIcon icon = this.item.getIIconFromDamage(this.damage);
+        IIcon icon = this.item.getIconFromDamage(this.damage);
         System.out.println("lol!");
         if (icon != null)
         {
