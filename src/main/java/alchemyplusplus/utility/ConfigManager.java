@@ -2,11 +2,7 @@ package alchemyplusplus.utility;
 
 import alchemyplusplus.gui.CreativeTab;
 import java.io.File;
-import java.util.HashMap;
-
-import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import net.minecraftforge.common.config.Configuration;
 
 public class ConfigManager
