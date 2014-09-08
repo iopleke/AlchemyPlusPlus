@@ -36,6 +36,7 @@ gradle/
 /.nb-gradle/private/
 /.nb-gradle/profiles/private/
 /run
+/out
 build
 lib
 output
