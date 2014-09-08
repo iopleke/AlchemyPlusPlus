@@ -1,9 +1,8 @@
 package alchemyplusplus.tileentities.distillery;
 
-import alchemyplusplus.items.ItemRegistry;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class SlotDistilleryOutput extends Slot
@@ -18,14 +17,12 @@ public class SlotDistilleryOutput extends Slot
     public boolean isItemValid(ItemStack stack)
     {
         // Set the valid items to be processed for this slot
-        if (stack.itemID == Item.glassBottle.itemID)
+        if (stack.getItem() == Items.glass_bottle)
         {
             return true;
-        } else
-        {
-            return false;
-
         }
+        return false;
+
     }
 
 }

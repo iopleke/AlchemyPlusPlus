@@ -1,18 +1,19 @@
 package alchemyplusplus.tileentities.distillery;
 
 import alchemyplusplus.utility.MixingHelper;
-import alchemyplusplus.items.ItemRegistry;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.INetworkManager;
-import net.minecraft.network.packet.Packet;
-import net.minecraft.network.packet.Packet132TileEntityData;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
+import net.minecraftforge.common.util.Constants;
 
 public class TileEntityDistillery extends TileEntity implements IInventory
 {
@@ -23,7 +24,7 @@ public class TileEntityDistillery extends TileEntity implements IInventory
     public int fuel = 0;
 
     @Override
-    public void closeChest()
+    public void closeInventory()
     {
     }
 
@@ -61,12 +62,12 @@ public class TileEntityDistillery extends TileEntity implements IInventory
     {
         NBTTagCompound nbtTag = new NBTTagCompound();
         this.writeToNBT(nbtTag);
-        return new Packet132TileEntityData(this.xCoord, this.yCoord,
+        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord,
                 this.zCoord, 1, nbtTag);
     }
 
     @Override
-    public String getInvName()
+    public String getInventoryName()
     {
         return "Distillery";
     }
@@ -103,15 +104,15 @@ public class TileEntityDistillery extends TileEntity implements IInventory
         }
     }
 
+    @Override
+    public boolean hasCustomInventoryName()
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public boolean isActive()
     {
         return this.fuel > 0;
-    }
-
-    @Override
-    public boolean isInvNameLocalized()
-    {
-        return true;
     }
 
     @Override
@@ -125,13 +126,13 @@ public class TileEntityDistillery extends TileEntity implements IInventory
             }
         } else if (slot == 1)
         {
-            if (stack.itemID == 17)
+            if (stack.getItem() == Item.getItemFromBlock(Blocks.log) || stack.getItem() == Item.getItemFromBlock(Blocks.log2))
             {
                 return true;
             }
         } else if (slot == 2)
         {
-            if (stack.itemID == Item.glassBottle.itemID)
+            if (stack.getItem() == Items.glass_bottle)
             {
                 return true;
             }
@@ -146,13 +147,7 @@ public class TileEntityDistillery extends TileEntity implements IInventory
     }
 
     @Override
-    public void onDataPacket(INetworkManager net, Packet132TileEntityData packet)
-    {
-        readFromNBT(packet.data);
-    }
-
-    @Override
-    public void openChest()
+    public void openInventory()
     {
     }
 
@@ -160,13 +155,12 @@ public class TileEntityDistillery extends TileEntity implements IInventory
     public void readFromNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.readFromNBT(par1NBTTagCompound);
-        NBTTagList nbttaglist = par1NBTTagCompound.getTagList("Items");
+        NBTTagList nbttaglist = par1NBTTagCompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
         this.distilleryInventory = new ItemStack[this.getSizeInventory()];
 
         for (int i = 0; i < nbttaglist.tagCount(); ++i)
         {
-            NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist
-                    .tagAt(i);
+            NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.getCompoundTagAt(i);
             byte b0 = nbttagcompound1.getByte("Slot");
 
             if (b0 >= 0 && b0 < this.distilleryInventory.length)

@@ -5,7 +5,7 @@ import alchemyplusplus.items.ItemTemplate;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class ItemDistillery extends ItemTemplate
 {
@@ -19,9 +19,9 @@ public class ItemDistillery extends ItemTemplate
     @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int par7, float par8, float par9, float par10)
     {
-        if (world.isBlockSolidOnSide(x, y, z, ForgeDirection.UP) && world.isAirBlock(x, y + 1, z))
+        if (world.isSideSolid(x, y, z, ForgeDirection.UP) && world.isAirBlock(x, y + 1, z))
         {
-            world.setBlock(x, y + 1, z, BlockRegistry.appBlockDistillery.blockID);
+            world.setBlock(x, y + 1, z, BlockRegistry.appBlockDistillery);
             stack.stackSize--;
             return true;
         } else
