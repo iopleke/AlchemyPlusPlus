@@ -15,12 +15,12 @@ import net.minecraft.init.Items;
 
 public class BlockRegistry
 {
-    public static final Block appBlockDiffuser = new BlockDiffuser(ConfigManager.appBlockDiffuser);
-    public static final Block appBlockDistillery = new BlockDistillery(ConfigManager.appBlockDistillery);
-    public static final Block appBlockExtractor = new BlockExtractor(ConfigManager.appBlockExtractor);
-    public static final Block appBlockFlesh = new BlockFlesh(ConfigManager.appBlockFlesh, Material.cloth);
-    public static final Block appBlockLiquidMixer = new BlockLiquidMixer(ConfigManager.appBlockLiquidMixer);
-    public static final Block appBlockPotionContainer = new BlockPotionContainer(ConfigManager.appBlockPotionContainer);
+    public static Block appBlockDiffuser = new BlockDiffuser(ConfigManager.appBlockDiffuser);
+    public static Block appBlockDistillery = new BlockDistillery(ConfigManager.appBlockDistillery);
+    public static Block appBlockExtractor = new BlockExtractor(ConfigManager.appBlockExtractor);
+    public static Block appBlockFlesh;
+    public static Block appBlockLiquidMixer = new BlockLiquidMixer(ConfigManager.appBlockLiquidMixer);
+    public static Block appBlockPotionContainer = new BlockPotionContainer(ConfigManager.appBlockPotionContainer);
 
     public static void registerBlockRecipes()
     {
@@ -30,6 +30,8 @@ public class BlockRegistry
 
     public static void registerBlocks()
     {
+        appBlockFlesh = new BlockFlesh("fleshBlock");
+        
         GameRegistry.registerBlock(appBlockPotionContainer, "blockPotionContainer");
         LanguageRegistry.addName(appBlockPotionContainer, "Potion Bottle");
 

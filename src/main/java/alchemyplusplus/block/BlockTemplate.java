@@ -8,8 +8,8 @@ public class BlockTemplate extends Block
 {
 
     String icon;
-
-    public BlockTemplate(int id, Material material, String icon)
+    
+    public BlockTemplate(Material material, String icon)
     {
         super(material);
 

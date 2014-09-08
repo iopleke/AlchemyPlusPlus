@@ -1,9 +1,8 @@
 package alchemyplusplus.block;
 
 import alchemyplusplus.items.ItemRegistry;
+import alchemyplusplus.material.MaterialRegistry;
 import alchemyplusplus.utility.ConfigManager;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
@@ -17,20 +16,20 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.init.Items;
 
-public class BlockFlesh extends Block
+public class BlockFlesh extends BlockTemplate
 {
 
     private IIcon iconFester;
     private IIcon iconNormal;
     private final Random random = new Random();
 
-    public BlockFlesh(int id, Material material)
+    public BlockFlesh(String blockname)
     {
-        super(material);
+        super(MaterialRegistry.flesh, blockname);
+        this.setBlockName(blockname);
         this.setTickRandomly(true);
         this.setCreativeTab(ConfigManager.appCreativeTab);
         this.setHardness(3.0F).setResistance(5.0F);
-        this.setBlockName("fleshBlock");
     }
 
     @Override
@@ -41,7 +40,8 @@ public class BlockFlesh extends Block
     }
 
     @SideOnly(Side.CLIENT)
-    public IIcon getIIcon(int side, int meta)
+    @Override
+    public IIcon getIcon(int side, int meta)
     {
         return meta == 10 ? this.iconFester : this.iconNormal;
     }
