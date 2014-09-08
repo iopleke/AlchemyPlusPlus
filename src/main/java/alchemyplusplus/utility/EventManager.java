@@ -1,6 +1,7 @@
 package alchemyplusplus.utility;
 
 import alchemyplusplus.items.ItemRegistry;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import java.util.Random;
 
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -10,12 +11,12 @@ import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 
@@ -27,16 +28,16 @@ public class EventManager
         MinecraftForge.EVENT_BUS.register(new EventManager());
     }
 
-    @ForgeSubscribe
-    public void entityDies(LivingDeathEvent e)
+    @SubscribeEvent
+    public void onLivingDeath(LivingDeathEvent e)
     {
         if (e.entityLiving instanceof EntityPlayer && e.source == DamageSource.anvil)
         {
-            ItemStack stack = new ItemStack(ItemRegistry.appItemConfusion.itemID, 1, 0);
+            ItemStack stack = new ItemStack(ItemRegistry.appItemConfusion, 1, 0);
             Random random = new Random();
 
             stack.stackTagCompound = new NBTTagCompound();
-            stack.getTagCompound().setString("owner", ((EntityPlayer) e.entityLiving).username);
+            stack.getTagCompound().setString("owner", ((EntityPlayer) e.entityLiving).getDisplayName());
 
             float f = random.nextFloat() * 0.8F + 0.1F;
             float f1 = random.nextFloat() * 0.8F + 0.1F;
@@ -56,13 +57,13 @@ public class EventManager
             if (e.source.getSourceOfDamage() != null && e.source.getSourceOfDamage() instanceof EntityPlayer)
             {
                 ItemStack stack = (((EntityPlayer) e.source.getSourceOfDamage()).getHeldItem());
-                if (stack.itemID == Item.shears.itemID
+                if (stack.getItem() == Items.shears
                         && EnchantmentHelper.getSilkTouchModifier((EntityLivingBase) e.source.getSourceOfDamage())
                         && stack.hasDisplayName()
                         && stack.getDisplayName().toLowerCase().equals("eye choppa"))
                 {
 
-                    ItemStack eyeStack = new ItemStack(ItemRegistry.appItemSquidEye.itemID, 1, 0);
+                    ItemStack eyeStack = new ItemStack(ItemRegistry.appItemSquidEye, 1, 0);
                     Random random = new Random();
                     float f = random.nextFloat() * 0.8F + 0.1F;
                     float f1 = random.nextFloat() * 0.8F + 0.1F;
@@ -83,7 +84,7 @@ public class EventManager
         } else if (e.entityLiving instanceof EntitySlime && e.source == DamageSource.fall)
         {
 
-            ItemStack stack = new ItemStack(ItemRegistry.appItemSpringyCord.itemID, 1, 0);
+            ItemStack stack = new ItemStack(ItemRegistry.appItemSpringyCord, 1, 0);
             Random random = new Random();
             float f = random.nextFloat() * 0.8F + 0.1F;
             float f1 = random.nextFloat() * 0.8F + 0.1F;
@@ -106,7 +107,7 @@ public class EventManager
                 Random random = new Random();
                 if (random.nextFloat() >= 0.7f)
                 {
-                    ItemStack stack = new ItemStack(ItemRegistry.appItemIronPowder.itemID, 1, 0);
+                    ItemStack stack = new ItemStack(ItemRegistry.appItemIronPowder, 1, 0);
 
                     float f = random.nextFloat() * 0.8F + 0.1F;
                     float f1 = random.nextFloat() * 0.8F + 0.1F;
@@ -126,14 +127,14 @@ public class EventManager
 
     }
 
-    @ForgeSubscribe
+    @SubscribeEvent
     public void itemPickedUp(EntityItemPickupEvent e)
     {
         if (e.entityLiving instanceof EntityPlayer
-                && e.item.getEntityItem().itemID == ItemRegistry.appItemConfusion.itemID)
+                && e.item.getEntityItem().getItem() == ItemRegistry.appItemConfusion)
         {
             if (e.item.getEntityItem().hasTagCompound()
-                    && e.item.getEntityItem().getTagCompound().getString("owner").equals(((EntityPlayer) e.entityLiving).username))
+                    && e.item.getEntityItem().getTagCompound().getString("owner").equals(((EntityPlayer) e.entityLiving).getDisplayName()))
             {
                 e.setCanceled(true);
             }
