@@ -21,7 +21,7 @@ public class ItemDistillery extends ItemTemplate
     {
         if (world.isSideSolid(x, y, z, ForgeDirection.UP) && world.isAirBlock(x, y + 1, z))
         {
-            world.setBlock(x, y + 1, z, BlockRegistry.appBlockDistillery);
+            world.setBlock(x, y + 1, z, BlockRegistry.distillery);
             stack.stackSize--;
             return true;
         } else

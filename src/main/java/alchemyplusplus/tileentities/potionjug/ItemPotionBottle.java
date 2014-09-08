@@ -1,4 +1,4 @@
-package alchemyplusplus.tileentities.potioncontainer;
+package alchemyplusplus.tileentities.potionjug;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,7 +100,7 @@ public class ItemPotionBottle extends Item
                 && world.isAirBlock(x, y + 1, z))
         {
             world.setBlock(x, y + 1, z,
-                    BlockRegistry.appBlockPotionContainer);
+                    BlockRegistry.potionJug);
             if (stack.hasTagCompound()
                     && stack.getTagCompound().getShort("containerHas") > 0)
             {

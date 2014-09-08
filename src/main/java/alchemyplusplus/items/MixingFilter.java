@@ -85,14 +85,12 @@ public class MixingFilter extends ItemTemplate
         
     }
 
-    public MixingFilter(int id, String iconName, int durability)
+    public MixingFilter(String blockname)
     {
-        super(iconName);
-        this.setMaxDamage(durability);
-        this.isDamageable();
+        super(blockname);
+        this.setMaxDamage(600);
         this.maxStackSize = 1;
         this.setNoRepair();
-        this.setCreativeTab(ConfigManager.appCreativeTab);
     }
 
     @Override

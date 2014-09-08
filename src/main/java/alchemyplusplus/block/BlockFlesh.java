@@ -16,7 +16,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.init.Items;
 
-public class BlockFlesh extends BlockTemplate
+public class BlockFlesh extends BlockBasic
 {
 
     private IIcon iconFester;
@@ -46,23 +46,21 @@ public class BlockFlesh extends BlockTemplate
         return meta == 10 ? this.iconFester : this.iconNormal;
     }
 
-    public Item itemDropped(int meta, Random random, int fortune)
-    {
-        return meta == 10 ? ItemRegistry.appItemFesteringFlesh : Items.rotten_flesh;
-    }
-
+    @Override
     public void onEntityCollidedWithBlock(World par1World, int par2, int par3, int par4, Entity par5Entity)
     {
         par5Entity.motionX *= 0.4D;
         par5Entity.motionZ *= 0.4D;
     }
 
+    @Override
     public int quantityDropped(Random par1Random)
     {
         return random.nextInt(5) + 1;
     }
 
     @SideOnly(Side.CLIENT)
+    @Override
     public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random)
     {
         super.randomDisplayTick(par1World, par2, par3, par4, par5Random);

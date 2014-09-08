@@ -2,7 +2,7 @@ package alchemyplusplus.renderer;
 
 import org.lwjgl.opengl.GL11;
 
-import alchemyplusplus.tileentities.potioncontainer.ItemPotionBottle;
+import alchemyplusplus.tileentities.potionjug.ItemPotionBottle;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.ItemStack;

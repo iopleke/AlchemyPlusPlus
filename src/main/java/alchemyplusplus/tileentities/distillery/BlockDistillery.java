@@ -3,26 +3,23 @@ package alchemyplusplus.tileentities.distillery;
 import java.util.Random;
 
 import alchemyplusplus.AlchemyPlusPlus;
-import net.minecraft.block.BlockContainer;
+import alchemyplusplus.block.BlockComplex;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 
-public class BlockDistillery extends BlockContainer
+public class BlockDistillery extends BlockComplex
 {
 
-    public BlockDistillery(int blockID)
+    public BlockDistillery(String blockname)
     {
-        super(Material.piston);
-        this.setHardness(1.0F);
-        this.setResistance(3.0F);
+        super(Material.iron, blockname);
+        this.setBlockName(blockname);
         this.setStepSound(Block.soundTypeMetal);
-        this.setBlockName("appBlockDistillery");
         this.setBlockBounds(0.05F, 0F, 0.15F, 0.85F, 0.8F, 0.95F);
     }
 
@@ -59,11 +56,4 @@ public class BlockDistillery extends BlockContainer
             par1World.spawnParticle("reddust", (par2 + par5Random.nextFloat() / 2), (par3 + 0.1F), (par4 + par5Random.nextFloat() / 2), 1.0D, 0.5D, 0.0D);
         }
     }
-    
-    @Override
-    public boolean shouldSideBeRendered(IBlockAccess iblockaccess, int i, int j, int k, int l)
-    {
-        return false;
-    }
-
 }

@@ -32,7 +32,7 @@ public class EventManager
     {
         if (e.entityLiving instanceof EntityPlayer && e.source == DamageSource.anvil)
         {
-            ItemStack stack = new ItemStack(ItemRegistry.appItemConfusion, 1, 0);
+            ItemStack stack = new ItemStack(ItemRegistry.confusionPotion, 1, 0);
             Random random = new Random();
 
             stack.stackTagCompound = new NBTTagCompound();
@@ -62,7 +62,7 @@ public class EventManager
                         && stack.getDisplayName().toLowerCase().equals("eye choppa"))
                 {
 
-                    ItemStack eyeStack = new ItemStack(ItemRegistry.appItemSquidEye, 1, 0);
+                    ItemStack eyeStack = new ItemStack(ItemRegistry.squidEye, 1, 0);
                     Random random = new Random();
                     float f = random.nextFloat() * 0.8F + 0.1F;
                     float f1 = random.nextFloat() * 0.8F + 0.1F;
@@ -83,7 +83,7 @@ public class EventManager
         } else if (e.entityLiving instanceof EntitySlime && e.source == DamageSource.fall)
         {
 
-            ItemStack stack = new ItemStack(ItemRegistry.appItemSpringyCord, 1, 0);
+            ItemStack stack = new ItemStack(ItemRegistry.springyCord, 1, 0);
             Random random = new Random();
             float f = random.nextFloat() * 0.8F + 0.1F;
             float f1 = random.nextFloat() * 0.8F + 0.1F;
@@ -106,7 +106,7 @@ public class EventManager
                 Random random = new Random();
                 if (random.nextFloat() >= 0.7f)
                 {
-                    ItemStack stack = new ItemStack(ItemRegistry.appItemIronPowder, 1, 0);
+                    ItemStack stack = new ItemStack(ItemRegistry.ironPowder, 1, 0);
 
                     float f = random.nextFloat() * 0.8F + 0.1F;
                     float f1 = random.nextFloat() * 0.8F + 0.1F;
@@ -130,7 +130,7 @@ public class EventManager
     public void itemPickedUp(EntityItemPickupEvent e)
     {
         if (e.entityLiving instanceof EntityPlayer
-                && e.item.getEntityItem().getItem() == ItemRegistry.appItemConfusion)
+                && e.item.getEntityItem().getItem() == ItemRegistry.confusionPotion)
         {
             if (e.item.getEntityItem().hasTagCompound()
                     && e.item.getEntityItem().getTagCompound().getString("owner").equals(((EntityPlayer) e.entityLiving).getDisplayName()))

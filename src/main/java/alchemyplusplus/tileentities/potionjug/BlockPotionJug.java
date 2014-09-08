@@ -1,17 +1,16 @@
-package alchemyplusplus.tileentities.potioncontainer;
+package alchemyplusplus.tileentities.potionjug;
 
+import alchemyplusplus.block.BlockComplex;
+import alchemyplusplus.block.BlockRegistry;
 import java.util.List;
 import java.util.Random;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 
-import alchemyplusplus.items.ItemRegistry;
 import alchemyplusplus.network.PacketDispatcher;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -20,25 +19,21 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionHelper;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockPotionContainer extends BlockContainer
+public class BlockPotionJug extends BlockComplex
 {
 
-    public BlockPotionContainer(int blockID)
+    public BlockPotionJug(String blockname)
     {
-        super(Material.iron);
-        this.setHardness(3.0F);
-        this.setResistance(5.0F);
+        super(Material.glass, blockname);
         this.setStepSound(Block.soundTypeGlass);
-        this.setBlockName("appBlockPotionContainer");
     }
 
     @Override
     public void breakBlock(World world, int x, int y, int z, Block block, int meta)
     {
-        ItemStack stack = new ItemStack(ItemRegistry.appItemPotionBottle, 1, 0);
+        ItemStack stack = new ItemStack(BlockRegistry.potionJug, 1, 0);
         Random random = new Random();
 
         if (world.getTileEntity(x, y, z) != null)
@@ -86,12 +81,6 @@ public class BlockPotionContainer extends BlockContainer
     public boolean hasComparatorInputOverride()
     {
         return true;
-    }
-
-    @Override
-    public boolean isOpaqueCube()
-    {
-        return false;
     }
 
     @Override
@@ -151,16 +140,4 @@ public class BlockPotionContainer extends BlockContainer
         }
         return true;
     }
-
-    @Override
-    public void registerBlockIcons(IIconRegister iconRegister)
-    {
-        this.blockIcon = iconRegister.registerIcon("AlchemyPlusPlus:PotionBottle");
-    }
-
-    public boolean shouldSideBeRendered(IBlockAccess iblockaccess, int i, int j, int k, int l)
-    {
-        return false;
-    }
-
 }

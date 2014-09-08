@@ -1,11 +1,10 @@
 package alchemyplusplus.tileentities.mixer;
 
+import alchemyplusplus.AlchemyPlusPlus;
+import alchemyplusplus.block.BlockComplex;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
-import alchemyplusplus.AlchemyPlusPlus;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -15,40 +14,19 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockLiquidMixer extends BlockContainer
+public class BlockLiquidMixer extends BlockComplex
 {
 
-    public BlockLiquidMixer(int blockID)
+    public BlockLiquidMixer(String blockname)
     {
-        super(Material.piston);
-        this.setHardness(1.0F);
-        this.setResistance(3.0F);
-        this.setStepSound(Block.soundTypeMetal);
-        this.setBlockName("appBlockLiquidMixer");
-    }
-
-    @SideOnly(Side.CLIENT)
-    public boolean addBlockDestroyEffects(World world, int x, int y, int z, int meta, EffectRenderer effectRenderer)
-    {
-        return true;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public boolean addBlockHitEffects(World worldObj, MovingObjectPosition target, EffectRenderer effectRenderer)
-    {
-        return true;
+        super(Material.iron, blockname);
+        this.setStepSound(Block.soundTypeGlass);
     }
 
     @Override
     public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_)
     {
         return new TileEntityLiquidMixer();
-    }
-
-    @Override
-    public boolean isOpaqueCube()
-    {
-        return false;
     }
 
     @Override

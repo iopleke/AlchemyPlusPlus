@@ -1,52 +1,46 @@
 package alchemyplusplus.block;
 
-import alchemyplusplus.tileentities.potioncontainer.BlockPotionContainer;
+import alchemyplusplus.tileentities.potionjug.BlockPotionJug;
 import alchemyplusplus.tileentities.mixer.BlockLiquidMixer;
-import alchemyplusplus.tileentities.extractor.BlockExtractor;
 import alchemyplusplus.tileentities.distillery.BlockDistillery;
 import alchemyplusplus.tileentities.diffuser.BlockDiffuser;
-import alchemyplusplus.utility.ConfigManager;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 
 public class BlockRegistry
 {
-    public static Block appBlockDiffuser = new BlockDiffuser(ConfigManager.appBlockDiffuser);
-    public static Block appBlockDistillery = new BlockDistillery(ConfigManager.appBlockDistillery);
-    public static Block appBlockExtractor = new BlockExtractor(ConfigManager.appBlockExtractor);
-    public static Block appBlockFlesh;
-    public static Block appBlockLiquidMixer = new BlockLiquidMixer(ConfigManager.appBlockLiquidMixer);
-    public static Block appBlockPotionContainer = new BlockPotionContainer(ConfigManager.appBlockPotionContainer);
+    public static Block diffuser;
+    public static Block distillery;
+    public static Block fleshBlock;
+    public static Block liquidMixer;
+    public static Block potionJug;
 
     public static void registerBlockRecipes()
     {
-        GameRegistry.addRecipe(new ItemStack(appBlockFlesh, 1, 0), "xxx", "xsx", "xxx", 'x', new ItemStack(Items.rotten_flesh, 1, 0), 's', new ItemStack(Items.slime_ball, 1, 0));
+        GameRegistry.addRecipe(new ItemStack(fleshBlock, 1, 0), "xxx", "xsx", "xxx", 'x', new ItemStack(Items.rotten_flesh, 1, 0), 's', new ItemStack(Items.slime_ball, 1, 0));
 
     }
 
     public static void registerBlocks()
     {
-        appBlockFlesh = new BlockFlesh("fleshBlock");
         
-        GameRegistry.registerBlock(appBlockPotionContainer, "blockPotionContainer");
-        LanguageRegistry.addName(appBlockPotionContainer, "Potion Bottle");
-
-        GameRegistry.registerBlock(appBlockLiquidMixer, "blockLiquidMixer");
-        LanguageRegistry.addName(appBlockLiquidMixer, "Liquid Mixer");
-
-        GameRegistry.registerBlock(appBlockExtractor, "blockExtractor");
-        LanguageRegistry.addName(appBlockExtractor, "Essence Extractor");
-
-        GameRegistry.registerBlock(appBlockDistillery, "blockDistillery");
-        LanguageRegistry.addName(appBlockDistillery, "Distillery");
-
-        GameRegistry.registerBlock(appBlockDiffuser, "blockDiffuser");
-        LanguageRegistry.addName(appBlockDiffuser, "Diffuser");
-
-        GameRegistry.registerBlock(appBlockFlesh, appBlockFlesh.getUnlocalizedName());
+        diffuser = new BlockDiffuser("diffuser");
+        GameRegistry.registerBlock(diffuser, diffuser.getUnlocalizedName());
+        
+        distillery = new BlockDistillery("distillery");
+        GameRegistry.registerBlock(distillery, distillery.getUnlocalizedName());
+        
+        fleshBlock = new BlockFlesh("fleshBlock");
+        GameRegistry.registerBlock(fleshBlock, fleshBlock.getUnlocalizedName());
+        
+        liquidMixer = new BlockLiquidMixer("liquidMixer");
+        GameRegistry.registerBlock(liquidMixer, liquidMixer.getUnlocalizedName());
+        
+        potionJug = new BlockPotionJug("potionJug");
+        GameRegistry.registerBlock(potionJug, potionJug.getUnlocalizedName());
     }
 
 }

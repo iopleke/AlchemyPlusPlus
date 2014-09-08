@@ -21,7 +21,7 @@ public class ItemLiquidMixer extends ItemTemplate
     {
         if (world.isSideSolid(x, y, z, ForgeDirection.UP) && world.isAirBlock(x, y + 1, z))
         {
-            world.setBlock(x, y + 1, z, BlockRegistry.appBlockLiquidMixer);
+            world.setBlock(x, y + 1, z, BlockRegistry.liquidMixer);
             stack.stackSize--;
             return true;
         } else

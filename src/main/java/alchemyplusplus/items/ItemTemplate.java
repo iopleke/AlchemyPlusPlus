@@ -1,5 +1,6 @@
 package alchemyplusplus.items;
 
+import alchemyplusplus.utility.ConfigManager;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -11,10 +12,12 @@ public class ItemTemplate extends Item
     String iconName;
     int lifespan = 6000;
 
-    public ItemTemplate(String iconName)
+    public ItemTemplate(String itemname)
     {
         super();
-        this.iconName = iconName;
+        this.iconName = itemname;
+        this.setUnlocalizedName(itemname);
+        this.setCreativeTab(ConfigManager.appCreativeTab);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package alchemyplusplus.tileentities.potioncontainer;
+package alchemyplusplus.tileentities.potionjug;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;

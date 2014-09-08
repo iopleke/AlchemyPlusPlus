@@ -42,7 +42,7 @@ public class TileEntityLiquidMixerRenderer extends TileEntitySpecialRenderer
         GL11.glPushMatrix();
         GL11.glTranslatef((float) d, (float) d1, (float) d2);
         TileEntityLiquidMixer tileEntityYour = (TileEntityLiquidMixer) tileEntity;
-        render(tileEntityYour, tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, BlockRegistry.appBlockLiquidMixer);
+        render(tileEntityYour, tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, BlockRegistry.liquidMixer);
         GL11.glPopMatrix();
     }
 }

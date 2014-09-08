@@ -222,7 +222,7 @@ public class ModelLiquidMixer extends ModelBase
 
         GL11.glColor4f(1f, 1f, 1f, 1f);
         filterStand.render(f5);
-        if (stacks[2] != null && stacks[2].getItem() == ItemRegistry.appItemFilter)
+        if (stacks[2] != null && stacks[2].getItem() == ItemRegistry.mixingFilter)
         {
             filter.render(f5);
         }

@@ -1,4 +1,4 @@
-package alchemyplusplus.tileentities.potioncontainer;
+package alchemyplusplus.tileentities.potionjug;
 
 import org.lwjgl.opengl.GL11;
 

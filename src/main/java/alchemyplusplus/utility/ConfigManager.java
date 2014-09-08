@@ -12,6 +12,7 @@ public class ConfigManager
     private static boolean appConfigLoaded;
     public static CreativeTabs appCreativeTab;
     public static boolean appDebugMode;
+    
     // General settings
     public static boolean appHardcoreModeEnabled;
 

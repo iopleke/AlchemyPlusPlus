@@ -1,5 +1,6 @@
 package alchemyplusplus.utility;
 
+import alchemyplusplus.block.BlockRegistry;
 import alchemyplusplus.items.ItemRegistry;
 import java.util.ArrayList;
 import java.util.List;
@@ -215,7 +216,7 @@ public class MixingHelper
                 && (!te.getStackInSlot(1).hasTagCompound())
                 && (te.getStackInSlot(2).getItem() == Items.glass_bottle))
         {
-            if (te.getStackInSlot(0).getItem() == ItemRegistry.appItemFishOil)
+            if (te.getStackInSlot(0).getItem() == ItemRegistry.fishOil)
             {
                 return (te.getStackInSlot(0).getItemDamage() == 100);
             } else
@@ -248,8 +249,7 @@ public class MixingHelper
     public static boolean isIngridient(ItemStack itemstack)
     {
         Item item = itemstack.getItem();
-        if ((item == ItemRegistry.appItemFesteringFlesh && item == ItemRegistry.appItemFishOil)
-                || (item == Items.nether_star))
+        if (item == ItemRegistry.fishOil || (item == Items.nether_star))
         {
             return true;
         }
@@ -413,7 +413,7 @@ public class MixingHelper
         if (te.getStackInSlot(1).getItem() == Item.getItemFromBlock(Blocks.log) || te.getStackInSlot(1).getItem() == Item.getItemFromBlock(Blocks.log2))
         {
             // Looks like we're making wood alcohol
-            ItemStack stack = new ItemStack(ItemRegistry.appPotionWoodAlcohol,
+            ItemStack stack = new ItemStack(ItemRegistry.woodAlcohol,
                     1, te.getStackInSlot(2).getItemDamage());
             if (te.getStackInSlot(2).getItem() == Items.glass_bottle)
             {
@@ -428,7 +428,7 @@ public class MixingHelper
                 spiritbottlefull = 100;
             }
 
-            stack = new ItemStack(ItemRegistry.appPotionWoodAlcohol, 1,
+            stack = new ItemStack(ItemRegistry.woodAlcohol, 1,
                     spiritbottlefull);
             te.decrStackSize(1, 1);
             te.setInventorySlotContents(2, stack);
@@ -459,7 +459,7 @@ public class MixingHelper
     public static void performExtraction(TileEntityExtractor te)
     {
 
-        if (te.getStackInSlot(0).getItem() == ItemRegistry.appItemSquidEye)
+        if (te.getStackInSlot(0).getItem() == ItemRegistry.squidEye)
         {
             // Night vision I - 8230 || splash - 16422
             if (te.getStackInSlot(1).getItemDamage() == 8230
@@ -467,7 +467,7 @@ public class MixingHelper
             {
                 addEffect(te.getStackInSlot(1), new PotionEffect(15, 100));
             }
-        } else if (te.getStackInSlot(0).getItem() == ItemRegistry.appItemConfusion)
+        } else if (te.getStackInSlot(0).getItem() == ItemRegistry.confusionPotion)
         {
             // Slowness I - 8234 || splash - 16426
             if (te.getStackInSlot(1).getItemDamage() == 8234
@@ -475,7 +475,7 @@ public class MixingHelper
             {
                 addEffect(te.getStackInSlot(1), new PotionEffect(9, 100));
             }
-        } else if (te.getStackInSlot(0).getItem() == ItemRegistry.appItemSpringyCord)
+        } else if (te.getStackInSlot(0).getItem() == ItemRegistry.springyCord)
         {
             // Speed I - 8194 || splash - 16386
             if (te.getStackInSlot(1).getItemDamage() == 8194
@@ -483,7 +483,7 @@ public class MixingHelper
             {
                 addEffect(te.getStackInSlot(1), new PotionEffect(8, 100));
             }
-        } else if (te.getStackInSlot(0).getItem() == ItemRegistry.appItemIronPowder)
+        } else if (te.getStackInSlot(0).getItem() == ItemRegistry.ironPowder)
         {
             // Strength I - 8201 || splash - 16393
             if (te.getStackInSlot(1).getItemDamage() == 8201
@@ -491,7 +491,7 @@ public class MixingHelper
             {
                 addEffect(te.getStackInSlot(1), new PotionEffect(11, 100));
             }
-        } else if (te.getStackInSlot(0).getItem() == ItemRegistry.appItemFesteringFlesh)
+        } else if (te.getStackInSlot(0).getItem() == Item.getItemFromBlock(BlockRegistry.fleshBlock))
         {
             // Poison I - 8196 || splash - 16388
             if (te.getStackInSlot(1).getItemDamage() == 8196
@@ -499,7 +499,7 @@ public class MixingHelper
             {
                 addEffect(te.getStackInSlot(1), new PotionEffect(17, 100));
             }
-        } else if (te.getStackInSlot(0).getItem() == ItemRegistry.appItemFishOil)
+        } else if (te.getStackInSlot(0).getItem() == ItemRegistry.fishOil)
         {
             // Regen I - 8193 || splash 16385
             if (te.getStackInSlot(1).getItemDamage() == 8193

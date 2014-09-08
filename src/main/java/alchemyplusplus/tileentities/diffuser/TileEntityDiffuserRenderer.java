@@ -43,7 +43,7 @@ public class TileEntityDiffuserRenderer extends TileEntitySpecialRenderer
         GL11.glPushMatrix();
         GL11.glTranslatef((float) d, (float) d1, (float) d2);
         TileEntityDiffuser tileEntityYour = (TileEntityDiffuser) diffuserTE;
-        render(tileEntityYour, diffuserTE.getWorldObj(), diffuserTE.xCoord, diffuserTE.yCoord, diffuserTE.zCoord, BlockRegistry.appBlockDiffuser);
+        render(tileEntityYour, diffuserTE.getWorldObj(), diffuserTE.xCoord, diffuserTE.yCoord, diffuserTE.zCoord, BlockRegistry.diffuser);
         GL11.glPopMatrix();
     }
 }

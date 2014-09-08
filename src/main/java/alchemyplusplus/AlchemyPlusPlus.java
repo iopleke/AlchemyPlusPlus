@@ -10,7 +10,7 @@ import alchemyplusplus.tileentities.diffuser.TileEntityDiffuser;
 import alchemyplusplus.tileentities.distillery.TileEntityDistillery;
 import alchemyplusplus.tileentities.extractor.TileEntityExtractor;
 import alchemyplusplus.tileentities.mixer.TileEntityLiquidMixer;
-import alchemyplusplus.tileentities.potioncontainer.TileEntityPotionContainer;
+import alchemyplusplus.tileentities.potionjug.TileEntityPotionContainer;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;

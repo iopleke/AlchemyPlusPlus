@@ -48,7 +48,7 @@ public class TileEntityDistilleryRenderer extends TileEntitySpecialRenderer
         TileEntityDistillery tileEntityYour = (TileEntityDistillery) tileEntity;
         render(tileEntityYour, tileEntity.getWorldObj(), tileEntity.xCoord,
                 tileEntity.yCoord, tileEntity.zCoord,
-                BlockRegistry.appBlockDistillery);
+                BlockRegistry.distillery);
         GL11.glPopMatrix();
     }
 }

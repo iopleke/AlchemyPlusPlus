@@ -1,30 +1,25 @@
 package alchemyplusplus.tileentities.diffuser;
 
+import alchemyplusplus.block.BlockComplex;
 import alchemyplusplus.utility.NotificationManager;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemPotion;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.block.Block;
 import net.minecraft.init.Items;
 
-public class BlockDiffuser extends BlockContainer
+public class BlockDiffuser extends BlockComplex
 {
 
     public boolean isDiffusing = false;
 
-    public BlockDiffuser(int blockID)
+    public BlockDiffuser(String blockname)
     {
-        super(Material.piston);
-        this.setHardness(1.0F);
-        this.setResistance(3.0F);
+        super(Material.wood, blockname);
         this.setStepSound(Block.soundTypeWood);
-        this.setBlockName("appBlockDiffuser");
         this.setBlockBounds(0.2F, 0F, 0.2F, 0.8F, 0.8F, 0.8F);
     }
 
@@ -32,18 +27,6 @@ public class BlockDiffuser extends BlockContainer
     public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_)
     {
         return new TileEntityDiffuser();
-    }
-
-    @Override
-    public boolean hasTileEntity(int metadata)
-    {
-        return true;
-    }
-
-    @Override
-    public boolean isOpaqueCube()
-    {
-        return false;
     }
 
     @Override
@@ -151,25 +134,4 @@ public class BlockDiffuser extends BlockContainer
 
         return false;
     }
-
-    @Override
-    public void registerBlockIcons(IIconRegister iconRegister)
-    {
-        // @TODO - figure out how to hide the dummy block in NEI and/or don't use an item, just use the block
-        // @TODO - change this from "WIPLiquidMixer" to something more generic
-        this.blockIcon = iconRegister.registerIcon("AlchemyPlusPlus:WIPLiquidMixer");
-    }
-
-    @Override
-    public boolean renderAsNormalBlock()
-    {
-        return false;
-    }
-
-    @Override
-    public boolean shouldSideBeRendered(IBlockAccess iblockaccess, int i, int j, int k, int l)
-    {
-        return false;
-    }
-
 }

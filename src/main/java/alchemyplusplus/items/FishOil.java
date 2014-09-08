@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-public class FishOil extends Item
+public class FishOil extends ItemTemplate
 {
 
     public static void fill(ItemStack stack, int percent)
@@ -34,14 +34,14 @@ public class FishOil extends Item
     private IIcon percent60;
     private IIcon percent80;
 
-    public FishOil(int id)
+    public FishOil(String itemname)
     {
-        super();
-        this.setMaxStackSize(1);
+        super(itemname);
         this.setHasSubtypes(true);
         this.setMaxDamage(0);
     }
 
+    @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
         if (stack.getItemDamage() == 0)
