@@ -8,24 +8,25 @@
 .metadata
 .project
 .settings
-eclipse
 bin
+eclipse
 tmp
 
 # gedit
 *.*~
 
 # netbeans
-nbbuild
 build.xml
-nb-build.xml
-nbproject
 buildfile
+nb-build.xml
+nbbuild
+nbproject
 
 # gradle
-output
 .gradle
-build
-lib
 /.nb-gradle/private/
 /.nb-gradle/profiles/private/
+build
+lib
+output
+/run
