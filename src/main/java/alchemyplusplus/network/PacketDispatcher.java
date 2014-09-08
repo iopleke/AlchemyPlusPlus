@@ -10,7 +10,9 @@ import java.io.IOException;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.server.MinecraftServer;
 
 public class PacketDispatcher extends SimpleNetworkWrapper
 {
@@ -28,6 +30,10 @@ public class PacketDispatcher extends SimpleNetworkWrapper
     public void sendPacket(EntityPlayer player, IMessage message)
     {
         sendTo(message, (EntityPlayerMP) player);
+    }
+    
+    public static void sendPacketToAllPlayers(Packet packet){
+        MinecraftServer.getServer().getConfigurationManager().sendPacketToAllPlayers(packet);
     }
 
     public static abstract class AbstractPacket<T extends AbstractPacket<T>> implements IMessage, IMessageHandler<T, IMessage>
