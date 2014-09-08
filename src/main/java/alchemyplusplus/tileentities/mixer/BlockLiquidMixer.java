@@ -1,12 +1,10 @@
 package alchemyplusplus.tileentities.mixer;
 
-import java.util.Random;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import alchemyplusplus.AlchemyPlusPlus;
-import alchemyplusplus.items.ItemRegistry;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.EffectRenderer;
@@ -22,11 +20,11 @@ public class BlockLiquidMixer extends BlockContainer
 
     public BlockLiquidMixer(int blockID)
     {
-        super(blockID, Material.piston);
+        super(Material.piston);
         this.setHardness(1.0F);
         this.setResistance(3.0F);
-        this.setStepSound(soundStoneFootstep);
-        this.setUnlocalizedName("appBlockLiquidMixer");
+        this.setStepSound(Block.soundTypeMetal);
+        this.setBlockName("appBlockLiquidMixer");
     }
 
     @SideOnly(Side.CLIENT)
@@ -42,23 +40,12 @@ public class BlockLiquidMixer extends BlockContainer
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world)
+    public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_)
     {
         return new TileEntityLiquidMixer();
     }
 
     @Override
-    public int idDropped(int par1, Random par2Random, int par3)
-    {
-        return ItemRegistry.appItemLiquidMixer.itemID;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public int idPicked(World par1World, int par2, int par3, int par4)
-    {
-        return ItemRegistry.appItemLiquidMixer.itemID;
-    }
-
     public boolean isOpaqueCube()
     {
         return false;
@@ -75,11 +62,12 @@ public class BlockLiquidMixer extends BlockContainer
     }
 
     @Override
-    public void registerIcons(IIconRegister iconRegister)
+    public void registerBlockIcons(IIconRegister iconRegister)
     {
         this.blockIcon = iconRegister.registerIcon("AlchemyPlusPlus:WIPLiquidMixer");
     }
 
+    @Override
     public boolean shouldSideBeRendered(IBlockAccess iblockaccess, int i, int j, int k, int l)
     {
         return false;

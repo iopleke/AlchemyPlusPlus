@@ -6,6 +6,7 @@ import alchemyplusplus.items.ItemRegistry;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionHelper;
@@ -171,49 +172,49 @@ public class ModelLiquidMixer extends ModelBase
         tube3.render(f5);
         tube4.render(f5);
 
-        if (stacks[0] != null && stacks[0].itemID == Item.potion.itemID)
+        if (stacks[0] != null && stacks[0].getItem() == Items.potionitem)
         {
 
             float r, g, b;
             r = (PotionHelper.func_77915_a(stacks[0].getItemDamage(), false) >> 16 & 255) / 255.0F;
             g = (PotionHelper.func_77915_a(stacks[0].getItemDamage(), false) >> 8 & 255) / 255.0F;
-            b = (PotionHelper.func_77915_a(stacks[0].getItemDamage(), false) >> 0 & 255) / 255.0F;
+            b = (PotionHelper.func_77915_a(stacks[0].getItemDamage(), false) & 255) / 255.0F;
             GL11.glColor4f(r, g, b, 0.8f);
             potion1.render(f5);
 
         }
 
-        if (stacks[1] != null && stacks[1].itemID == Item.potion.itemID)
+        if (stacks[1] != null && stacks[1].getItem() == Items.potionitem)
         {
 
             float r, g, b;
             r = (PotionHelper.func_77915_a(stacks[1].getItemDamage(), false) >> 16 & 255) / 255.0F;
             g = (PotionHelper.func_77915_a(stacks[1].getItemDamage(), false) >> 8 & 255) / 255.0F;
-            b = (PotionHelper.func_77915_a(stacks[1].getItemDamage(), false) >> 0 & 255) / 255.0F;
+            b = (PotionHelper.func_77915_a(stacks[1].getItemDamage(), false) & 255) / 255.0F;
             GL11.glColor4f(r, g, b, 0.8f);
             potion2.render(f5);
 
         }
 
-        if (stacks[3] != null && stacks[3].itemID == Item.potion.itemID)
+        if (stacks[3] != null && stacks[3].getItem() == Items.potionitem)
         {
 
             float r, g, b;
             r = (PotionHelper.func_77915_a(stacks[3].getItemDamage(), false) >> 16 & 255) / 255.0F;
             g = (PotionHelper.func_77915_a(stacks[3].getItemDamage(), false) >> 8 & 255) / 255.0F;
-            b = (PotionHelper.func_77915_a(stacks[3].getItemDamage(), false) >> 0 & 255) / 255.0F;
+            b = (PotionHelper.func_77915_a(stacks[3].getItemDamage(), false) & 255) / 255.0F;
             GL11.glColor4f(r, g, b, 0.8f);
             potion3.render(f5);
 
         }
 
-        if (stacks[4] != null && stacks[4].itemID == Item.potion.itemID)
+        if (stacks[4] != null && stacks[4].getItem() == Items.potionitem)
         {
 
             float r, g, b;
             r = (PotionHelper.func_77915_a(stacks[4].getItemDamage(), false) >> 16 & 255) / 255.0F;
             g = (PotionHelper.func_77915_a(stacks[4].getItemDamage(), false) >> 8 & 255) / 255.0F;
-            b = (PotionHelper.func_77915_a(stacks[4].getItemDamage(), false) >> 0 & 255) / 255.0F;
+            b = (PotionHelper.func_77915_a(stacks[4].getItemDamage(), false) & 255) / 255.0F;
             GL11.glColor4f(r, g, b, 0.8f);
             potion4.render(f5);
 
@@ -221,7 +222,7 @@ public class ModelLiquidMixer extends ModelBase
 
         GL11.glColor4f(1f, 1f, 1f, 1f);
         filterStand.render(f5);
-        if (stacks[2] != null && stacks[2].itemID == ItemRegistry.appItemFilter.itemID)
+        if (stacks[2] != null && stacks[2].getItem() == ItemRegistry.appItemFilter)
         {
             filter.render(f5);
         }
@@ -239,6 +240,7 @@ public class ModelLiquidMixer extends ModelBase
         model.rotateAngleZ = z;
     }
 
+    @Override
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity e)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, e);

@@ -6,10 +6,11 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.INetworkManager;
-import net.minecraft.network.packet.Packet;
-import net.minecraft.network.packet.Packet132TileEntityData;
+import net.minecraft.network.INetHandler;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.util.Constants;
 
 public class TileEntityLiquidMixer extends TileEntity implements IInventory
 {
@@ -19,10 +20,11 @@ public class TileEntityLiquidMixer extends TileEntity implements IInventory
     public int mixingTicks = 0;
 
     @Override
-    public void closeChest()
+    public void closeInventory()
     {
     }
 
+    @Override
     public ItemStack decrStackSize(int slot, int amount)
     {
         if (this.mixerInventory[slot] != null)
@@ -51,18 +53,21 @@ public class TileEntityLiquidMixer extends TileEntity implements IInventory
         }
     }
 
+    @Override
     public Packet getDescriptionPacket()
     {
         NBTTagCompound nbtTag = new NBTTagCompound();
         this.writeToNBT(nbtTag);
-        return new Packet132TileEntityData(this.xCoord, this.yCoord, this.zCoord, 1, nbtTag);
+        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbtTag);
     }
 
-    public String getInvName()
+    @Override
+    public String getInventoryName()
     {
         return "Potion_Mixer";
     }
 
+    @Override
     public int getInventoryStackLimit()
     {
         return 64;
@@ -74,16 +79,19 @@ public class TileEntityLiquidMixer extends TileEntity implements IInventory
         return (int) (percentage * 34);
     }
 
+    @Override
     public int getSizeInventory()
     {
         return this.mixerInventory.length;
     }
 
+    @Override
     public ItemStack getStackInSlot(int slot)
     {
         return this.mixerInventory[slot];
     }
 
+    @Override
     public ItemStack getStackInSlotOnClosing(int slot)
     {
         if (this.mixerInventory[slot] != null)
@@ -95,6 +103,12 @@ public class TileEntityLiquidMixer extends TileEntity implements IInventory
         {
             return null;
         }
+    }
+
+    @Override
+    public boolean hasCustomInventoryName()
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public boolean isInvNameLocalized()
@@ -114,25 +128,26 @@ public class TileEntityLiquidMixer extends TileEntity implements IInventory
         return true;
     }
 
-    public void onDataPacket(INetworkManager net, Packet132TileEntityData packet)
+    public void onDataPacket(INetHandler net, net.minecraft.network.play.server.S35PacketUpdateTileEntity packet)
     {
-        readFromNBT(packet.data);
+        packet.processPacket(net);
     }
 
     @Override
-    public void openChest()
+    public void openInventory()
     {
     }
 
+    @Override
     public void readFromNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.readFromNBT(par1NBTTagCompound);
-        NBTTagList nbttaglist = par1NBTTagCompound.getTagList("Items");
+        NBTTagList nbttaglist = par1NBTTagCompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
         this.mixerInventory = new ItemStack[this.getSizeInventory()];
 
         for (int i = 0; i < nbttaglist.tagCount(); ++i)
         {
-            NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.tagAt(i);
+            NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.getCompoundTagAt(i);
             byte b0 = nbttagcompound1.getByte("Slot");
 
             if (b0 >= 0 && b0 < this.mixerInventory.length)
@@ -145,6 +160,7 @@ public class TileEntityLiquidMixer extends TileEntity implements IInventory
 
     }
 
+    @Override
     public void setInventorySlotContents(int slot, ItemStack stack)
     {
         this.mixerInventory[slot] = stack;
