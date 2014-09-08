@@ -6,11 +6,6 @@ import alchemyplusplus.block.BlockRegistry;
 import alchemyplusplus.gui.GUIHandler;
 import alchemyplusplus.items.ItemRegistry;
 import alchemyplusplus.proxy.CommonProxy;
-import alchemyplusplus.tileentities.diffuser.TileEntityDiffuser;
-import alchemyplusplus.tileentities.distillery.TileEntityDistillery;
-import alchemyplusplus.tileentities.extractor.TileEntityExtractor;
-import alchemyplusplus.tileentities.mixer.TileEntityLiquidMixer;
-import alchemyplusplus.tileentities.potionjug.TileEntityPotionJug;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -18,7 +13,6 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = AlchemyPlusPlus.ID, name = "AlchemyPlusPlus", version = "release 1.1")
 public class AlchemyPlusPlus {
@@ -60,11 +54,7 @@ public class AlchemyPlusPlus {
     public void load(FMLInitializationEvent event) {
 
 	proxy.registerRenderers();
-	GameRegistry.registerTileEntity(TileEntityPotionJug.class, "potionKegTE");
-	GameRegistry.registerTileEntity(TileEntityLiquidMixer.class, "LiquidMixerTE");
-	GameRegistry.registerTileEntity(TileEntityExtractor.class, "ExtractorTE");
-	GameRegistry.registerTileEntity(TileEntityDistillery.class, "DistilleryTE");
-	GameRegistry.registerTileEntity(TileEntityDiffuser.class, "DiffuserTE");
+    proxy.registerTileEntitys();
 
 	BlockRegistry.registerBlocks();
 	ItemRegistry.registerItems();
