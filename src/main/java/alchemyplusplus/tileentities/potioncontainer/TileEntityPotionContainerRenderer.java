@@ -20,8 +20,6 @@ public class TileEntityPotionContainerRenderer extends
 
     public void render(TileEntityPotionContainer tl, World world, int i, int j, int k, Block block)
     {
-
-        float f = block.getBlockBrightness(world, i, j, k);
         int l = world.getLightBrightnessForSkyBlocks(i, j, k, 0);
         int l1 = l % 65536;
         int l2 = l / 65536;
@@ -56,9 +54,7 @@ public class TileEntityPotionContainerRenderer extends
         GL11.glPushMatrix();
         GL11.glTranslatef((float) d, (float) d1, (float) d2);
         TileEntityPotionContainer tileEntityYour = (TileEntityPotionContainer) tileEntity;
-        render(tileEntityYour, tileEntity.worldObj, tileEntity.xCoord,
-                tileEntity.yCoord, tileEntity.zCoord,
-                BlockRegistry.appBlockPotionContainer);
+        render(tileEntityYour, tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, BlockRegistry.appBlockPotionContainer);
         GL11.glPopMatrix();
     }
 }

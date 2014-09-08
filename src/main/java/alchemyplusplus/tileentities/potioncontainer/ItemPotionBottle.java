@@ -15,9 +15,9 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class ItemPotionBottle extends Item
 {
@@ -88,7 +88,7 @@ public class ItemPotionBottle extends Item
     }
 
     @Override
-    public IIcon getIIconFromDamage(int damage)
+    public IIcon getIconFromDamage(int damage)
     {
         return this.bottle;
     }
@@ -96,16 +96,15 @@ public class ItemPotionBottle extends Item
     @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int par7, float par8, float par9, float par10)
     {
-        if (world.isBlockSolidOnSide(x, y, z, ForgeDirection.UP)
+        if (world.isSideSolid(x, y, z, ForgeDirection.UP)
                 && world.isAirBlock(x, y + 1, z))
         {
             world.setBlock(x, y + 1, z,
-                    BlockRegistry.appBlockPotionContainer.blockID);
+                    BlockRegistry.appBlockPotionContainer);
             if (stack.hasTagCompound()
                     && stack.getTagCompound().getShort("containerHas") > 0)
             {
-                TileEntityPotionContainer te = (TileEntityPotionContainer) world
-                        .getBlockTileEntity(x, y + 1, z);
+                TileEntityPotionContainer te = (TileEntityPotionContainer) world.getTileEntity(x, y + 1, z);
                 te.potionID = stack.getTagCompound().getShort("effectID");
                 te.containerHas = stack.getTagCompound().getShort(
                         "containerHas");

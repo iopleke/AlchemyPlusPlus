@@ -1,9 +1,9 @@
 package alchemyplusplus.tileentities.potioncontainer;
 
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.INetworkManager;
-import net.minecraft.network.packet.Packet;
-import net.minecraft.network.packet.Packet132TileEntityData;
+import net.minecraft.network.INetHandler;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityPotionContainer extends TileEntity
@@ -19,18 +19,20 @@ public class TileEntityPotionContainer extends TileEntity
         return false;
     }
 
+    @Override
     public Packet getDescriptionPacket()
     {
         NBTTagCompound nbtTag = new NBTTagCompound();
         this.writeToNBT(nbtTag);
-        return new Packet132TileEntityData(this.xCoord, this.yCoord, this.zCoord, 1, nbtTag);
+        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbtTag);
     }
 
-    public void onDataPacket(INetworkManager net, Packet132TileEntityData packet)
+    public void onDataPacket(INetHandler net, net.minecraft.network.play.server.S35PacketUpdateTileEntity packet)
     {
-        readFromNBT(packet.data);
+        packet.processPacket(net);
     }
 
+    @Override
     public void readFromNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.readFromNBT(par1NBTTagCompound);
@@ -40,6 +42,7 @@ public class TileEntityPotionContainer extends TileEntity
 
     }
 
+    @Override
     public void writeToNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.writeToNBT(par1NBTTagCompound);

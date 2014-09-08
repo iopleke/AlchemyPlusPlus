@@ -4,24 +4,22 @@ import java.util.List;
 import java.util.Random;
 
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 import alchemyplusplus.items.ItemRegistry;
+import alchemyplusplus.network.PacketDispatcher;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionHelper;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -30,34 +28,23 @@ public class BlockPotionContainer extends BlockContainer
 
     public BlockPotionContainer(int blockID)
     {
-        super(blockID, Material.iron);
+        super(Material.iron);
         this.setHardness(3.0F);
         this.setResistance(5.0F);
-        this.setStepSound(soundStoneFootstep);
-        this.setUnlocalizedName("appBlockPotionContainer");
+        this.setStepSound(Block.soundTypeGlass);
+        this.setBlockName("appBlockPotionContainer");
     }
 
-    @SideOnly(Side.CLIENT)
-    public boolean addBlockDestroyEffects(World world, int x, int y, int z, int meta, EffectRenderer effectRenderer)
+    @Override
+    public void breakBlock(World world, int x, int y, int z, Block block, int meta)
     {
-        return true;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public boolean addBlockHitEffects(World worldObj, MovingObjectPosition target, EffectRenderer effectRenderer)
-    {
-        return true;
-    }
-
-    public void breakBlock(World world, int x, int y, int z, int meta, int mmm)
-    {
-        ItemStack stack = new ItemStack(ItemRegistry.appItemPotionBottle.itemID, 1, 0);
+        ItemStack stack = new ItemStack(ItemRegistry.appItemPotionBottle, 1, 0);
         Random random = new Random();
 
-        if (world.getBlockTileEntity(x, y, z) != null)
+        if (world.getTileEntity(x, y, z) != null)
         {
-            int potionID = (((TileEntityPotionContainer) world.getBlockTileEntity(x, y, z)).potionID);
-            int has = (((TileEntityPotionContainer) world.getBlockTileEntity(x, y, z)).containerHas);
+            int potionID = (((TileEntityPotionContainer) world.getTileEntity(x, y, z)).potionID);
+            int has = (((TileEntityPotionContainer) world.getTileEntity(x, y, z)).containerHas);
             if (potionID != 0 && has != 0)
             {
                 stack.stackTagCompound = new NBTTagCompound();
@@ -79,18 +66,19 @@ public class BlockPotionContainer extends BlockContainer
 
         world.spawnEntityInWorld(entityitem);
 
-        super.breakBlock(world, x, y, z, meta, mmm);
+        super.breakBlock(world, x, y, z, block, meta);
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world)
+    public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_)
     {
         return new TileEntityPotionContainer();
     }
 
+    @Override
     public int getComparatorInputOverride(World world, int x, int y, int z, int par5)
     {
-        TileEntityPotionContainer te = (TileEntityPotionContainer) world.getBlockTileEntity(x, y, z);
+        TileEntityPotionContainer te = (TileEntityPotionContainer) world.getTileEntity(x, y, z);
         return (int) Math.floor(te.containerHas * 16f / te.containerMax);
     }
 
@@ -101,17 +89,6 @@ public class BlockPotionContainer extends BlockContainer
     }
 
     @Override
-    public int idDropped(int par1, Random par2Random, int par3)
-    {
-        return 0;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public int idPicked(World par1World, int par2, int par3, int par4)
-    {
-        return ItemRegistry.appItemPotionBottle.itemID;
-    }
-
     public boolean isOpaqueCube()
     {
         return false;
@@ -120,63 +97,63 @@ public class BlockPotionContainer extends BlockContainer
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int a, float b, float c, float g)
     {
-        world.notifyBlockChange(x, y, z, 0);
+        world.notifyBlockChange(x, y, z, this);
 
         if (player.isSneaking())
         {
 
-            if (((TileEntityPotionContainer) world.getBlockTileEntity(x, y, z)).containerHas > 0)
+            if (((TileEntityPotionContainer) world.getTileEntity(x, y, z)).containerHas > 0)
             {
-                ((TileEntityPotionContainer) world.getBlockTileEntity(x, y, z)).containerHas--;
+                ((TileEntityPotionContainer) world.getTileEntity(x, y, z)).containerHas--;
 
-                List effectList = PotionHelper.getPotionEffects(((TileEntityPotionContainer) world.getBlockTileEntity(x, y, z)).potionID, true);
+                List effectList = PotionHelper.getPotionEffects(((TileEntityPotionContainer) world.getTileEntity(x, y, z)).potionID, true);
                 for (int i = 0; i < effectList.size(); i++)
                 {
                     player.addPotionEffect((PotionEffect) effectList.get(i));
                 }
                 if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER)
                 {
-                    PacketDispatcher.sendPacketToAllPlayers(world.getBlockTileEntity(x, y, z).getDescriptionPacket());
+                    PacketDispatcher.sendPacketToAllPlayers(world.getTileEntity(x, y, z).getDescriptionPacket());
                 }
 
             }
         }
 
         ItemStack stack = player.getCurrentEquippedItem();
-        TileEntityPotionContainer te = (TileEntityPotionContainer) world.getBlockTileEntity(x, y, z);
+        TileEntityPotionContainer te = (TileEntityPotionContainer) world.getTileEntity(x, y, z);
         if (stack == null)
         {
             return true;
         }
-        if (stack.itemID == Item.glassBottle.itemID && stack.getItemDamage() == 0)
+        if (stack.getItem() == Items.glass_bottle && stack.getItemDamage() == 0)
         {
             if (te.containerHas > 0)
             {
                 stack.stackSize--;
                 te.containerHas--;
-                ItemStack potion = new ItemStack(Item.potion.itemID, 1, te.potionID);
+                ItemStack potion = new ItemStack(Items.potionitem, 1, te.potionID);
                 player.inventory.addItemStackToInventory(potion);
             }
-        } else if (stack.itemID == Item.potion.itemID && stack.getItemDamage() > 0 && !stack.hasTagCompound())
+        } else if (stack.getItem() == Items.potionitem && stack.getItemDamage() > 0 && !stack.hasTagCompound())
         {		//Custom potions are not allowed!
             if (te.containerHas == 0 || (stack.getItemDamage() == te.potionID && (te.containerHas < te.containerMax)))
             {
                 te.containerHas++;
                 te.potionID = stack.getItemDamage();
                 stack.stackSize--;
-                ItemStack potion = new ItemStack(Item.glassBottle, 1, 0);
+                ItemStack potion = new ItemStack(Items.glass_bottle, 1, 0);
                 player.inventory.addItemStackToInventory(potion);
             }
         }
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER)
         {
-            PacketDispatcher.sendPacketToAllPlayers(world.getBlockTileEntity(x, y, z).getDescriptionPacket());
+            PacketDispatcher.sendPacketToAllPlayers(world.getTileEntity(x, y, z).getDescriptionPacket());
         }
         return true;
     }
 
     @Override
-    public void registerIcons(IIconRegister iconRegister)
+    public void registerBlockIcons(IIconRegister iconRegister)
     {
         this.blockIcon = iconRegister.registerIcon("AlchemyPlusPlus:PotionBottle");
     }
