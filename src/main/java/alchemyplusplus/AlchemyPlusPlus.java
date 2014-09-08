@@ -10,7 +10,7 @@ import alchemyplusplus.tileentities.diffuser.TileEntityDiffuser;
 import alchemyplusplus.tileentities.distillery.TileEntityDistillery;
 import alchemyplusplus.tileentities.extractor.TileEntityExtractor;
 import alchemyplusplus.tileentities.mixer.TileEntityLiquidMixer;
-import alchemyplusplus.tileentities.potionjug.TileEntityPotionContainer;
+import alchemyplusplus.tileentities.potionjug.TileEntityPotionJug;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -60,7 +60,7 @@ public class AlchemyPlusPlus {
     public void load(FMLInitializationEvent event) {
 
 	proxy.registerRenderers();
-	GameRegistry.registerTileEntity(TileEntityPotionContainer.class, "potionKegTE");
+	GameRegistry.registerTileEntity(TileEntityPotionJug.class, "potionKegTE");
 	GameRegistry.registerTileEntity(TileEntityLiquidMixer.class, "LiquidMixerTE");
 	GameRegistry.registerTileEntity(TileEntityExtractor.class, "ExtractorTE");
 	GameRegistry.registerTileEntity(TileEntityDistillery.class, "DistilleryTE");
