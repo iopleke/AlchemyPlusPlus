@@ -2,10 +2,11 @@ package alchemyplusplus.tileentities.diffuser;
 
 import alchemyplusplus.block.BlockRegistry;
 import alchemyplusplus.items.ItemTemplate;
+import alchemyplusplus.utility.NotificationManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class ItemDiffuser extends ItemTemplate
 {
@@ -21,15 +22,15 @@ public class ItemDiffuser extends ItemTemplate
     {
         // !par3World.getBlockMaterial(par4, par5, par6).isSolid() ||
         // !world.isBlockFullCube(x, y + 1, z)
-        if (world.isBlockSolidOnSide(x, y, z, ForgeDirection.UP) && world.isAirBlock(x, y + 1, z))
+        if (world.isSideSolid(x, y, z, ForgeDirection.UP) && world.isAirBlock(x, y + 1, z))
         {
             // @todo - set block to face to the right when placed
-            world.setBlock(x, y + 1, z, BlockRegistry.appBlockDiffuser.blockID);
+            world.setBlock(x, y + 1, z, BlockRegistry.appBlockDiffuser);
             stack.stackSize--;
             if (!world.isRemote)
             {
                 // @todo - make this only display once per user
-                player.addChatMessage("The diffuser is ready to be filled with a potion");
+                NotificationManager.sendChatMessage(player, "The diffuser is ready to be filled with a potion");
             }
             return true;
         } else

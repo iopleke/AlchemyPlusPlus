@@ -1,17 +1,16 @@
 package alchemyplusplus.tileentities.diffuser;
 
 import alchemyplusplus.utility.ConfigManager;
-import alchemyplusplus.items.ItemRegistry;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.INetworkManager;
-import net.minecraft.network.packet.Packet;
-import net.minecraft.network.packet.Packet132TileEntityData;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.util.Constants;
 
 public class TileEntityDiffuser extends TileEntity implements IInventory
 {
@@ -35,8 +34,9 @@ public class TileEntityDiffuser extends TileEntity implements IInventory
     }
 
     @Override
-    public void closeChest()
+    public void closeInventory()
     {
+        
     }
 
     @Override
@@ -73,7 +73,7 @@ public class TileEntityDiffuser extends TileEntity implements IInventory
     {
         NBTTagCompound nbtTag = new NBTTagCompound();
         this.writeToNBT(nbtTag);
-        return new Packet132TileEntityData(this.xCoord, this.yCoord, this.zCoord, 1, nbtTag);
+        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbtTag);
     }
 
     public int getFluidLevel()
@@ -82,8 +82,10 @@ public class TileEntityDiffuser extends TileEntity implements IInventory
     }
 
     @Override
-    public String getInvName()
+    public String getInventoryName()
     {
+        // @TODO - set blockname in initialization
+        // return this.blockName;
         return "Diffuser";
     }
 
@@ -119,6 +121,12 @@ public class TileEntityDiffuser extends TileEntity implements IInventory
         }
     }
 
+    @Override
+    public boolean hasCustomInventoryName()
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public boolean hasFluidLevel()
     {
         return this.fluidLevel > 0;
@@ -130,17 +138,11 @@ public class TileEntityDiffuser extends TileEntity implements IInventory
     }
 
     @Override
-    public boolean isInvNameLocalized()
-    {
-        return true;
-    }
-
-    @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack)
     {
         if (slot == 1)
         {
-            if (stack.itemID == Item.glassBottle.itemID)
+            if (stack.getItem() == Items.glass_bottle)
             {
                 return true;
             }
@@ -155,13 +157,7 @@ public class TileEntityDiffuser extends TileEntity implements IInventory
     }
 
     @Override
-    public void onDataPacket(INetworkManager net, Packet132TileEntityData packet)
-    {
-        readFromNBT(packet.data);
-    }
-
-    @Override
-    public void openChest()
+    public void openInventory()
     {
     }
 
@@ -169,7 +165,7 @@ public class TileEntityDiffuser extends TileEntity implements IInventory
     public void readFromNBT(NBTTagCompound diffuserNBTData)
     {
         super.readFromNBT(diffuserNBTData);
-        NBTTagList nbttaglist = diffuserNBTData.getTagList("Items");
+        NBTTagList nbttaglist = diffuserNBTData.getTagList("Items", Constants.NBT.TAG_COMPOUND);
 
         this.diffusingTicks = diffuserNBTData.getShort("diffusingTicks");
         this.fluidLevel = diffuserNBTData.getShort("fluidLevel");
@@ -177,7 +173,7 @@ public class TileEntityDiffuser extends TileEntity implements IInventory
         this.isDiffusing = diffuserNBTData.getBoolean("isDiffusing");
 
         System.err.println("The potionStackDamage is: " + diffuserNBTData.getInteger("potionStackDamage"));
-        potionStack = new ItemStack(Item.potion.itemID, 1, diffuserNBTData.getInteger("potionStackDamage"));
+        potionStack = new ItemStack(Items.potionitem, 1, diffuserNBTData.getInteger("potionStackDamage"));
         bottleColor = diffuserNBTData.getInteger("bottleColor");
 
         // Without this check, diffusers give free water bottles

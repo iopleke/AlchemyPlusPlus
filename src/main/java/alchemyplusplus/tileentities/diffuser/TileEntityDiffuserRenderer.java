@@ -18,8 +18,6 @@ public class TileEntityDiffuserRenderer extends TileEntitySpecialRenderer
 
     public void render(TileEntityDiffuser diffuserTE, World world, int i, int j, int k, Block block)
     {
-
-        float f = block.getBlockBrightness(world, i, j, k);
         int l = world.getLightBrightnessForSkyBlocks(i, j, k, 0);
         int l1 = l % 65536;
         int l2 = l / 65536;
@@ -45,7 +43,7 @@ public class TileEntityDiffuserRenderer extends TileEntitySpecialRenderer
         GL11.glPushMatrix();
         GL11.glTranslatef((float) d, (float) d1, (float) d2);
         TileEntityDiffuser tileEntityYour = (TileEntityDiffuser) diffuserTE;
-        render(tileEntityYour, diffuserTE.worldObj, diffuserTE.xCoord, diffuserTE.yCoord, diffuserTE.zCoord, BlockRegistry.appBlockDiffuser);
+        render(tileEntityYour, diffuserTE.getWorldObj(), diffuserTE.xCoord, diffuserTE.yCoord, diffuserTE.zCoord, BlockRegistry.appBlockDiffuser);
         GL11.glPopMatrix();
     }
 }
