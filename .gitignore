@@ -22,8 +22,17 @@ nb-build.xml
 nbbuild
 nbproject
 
+## idea
+/.idea
+*.iml
+*.ipr
+*.iws
+
 # gradle
 .gradle
+gradlew
+gradlew.bat
+gradle/
 /.nb-gradle/private/
 /.nb-gradle/profiles/private/
 /run
