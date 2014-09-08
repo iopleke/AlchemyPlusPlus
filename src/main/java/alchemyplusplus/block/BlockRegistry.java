@@ -47,8 +47,7 @@ public class BlockRegistry
         GameRegistry.registerBlock(appBlockDiffuser, "blockDiffuser");
         LanguageRegistry.addName(appBlockDiffuser, "Diffuser");
 
-        GameRegistry.registerBlock(appBlockFlesh, "blockFlesh");
-        LanguageRegistry.addName(appBlockFlesh, "Block of Flesh");
+        GameRegistry.registerBlock(appBlockFlesh, appBlockFlesh.getUnlocalizedName());
     }
 
 }
