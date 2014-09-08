@@ -18,8 +18,6 @@ public class TileEntityExtractorRenderer extends TileEntitySpecialRenderer
 
     public void render(TileEntityExtractor tl, World world, int i, int j, int k, Block block)
     {
-
-        float f = block.getBlockBrightness(world, i, j, k);
         int l = world.getLightBrightnessForSkyBlocks(i, j, k, 0);
         int l1 = l % 65536;
         int l2 = l / 65536;
@@ -48,7 +46,7 @@ public class TileEntityExtractorRenderer extends TileEntitySpecialRenderer
         GL11.glPushMatrix();
         GL11.glTranslatef((float) d, (float) d1, (float) d2);
         TileEntityExtractor tileEntityYour = (TileEntityExtractor) tileEntity;
-        render(tileEntityYour, tileEntity.worldObj, tileEntity.xCoord,
+        render(tileEntityYour, tileEntity.getWorldObj(), tileEntity.xCoord,
                 tileEntity.yCoord, tileEntity.zCoord,
                 BlockRegistry.appBlockExtractor);
         GL11.glPopMatrix();
