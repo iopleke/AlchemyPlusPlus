@@ -7,7 +7,6 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.INetHandler;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -133,16 +132,12 @@ public class TileEntityExtractor extends TileEntity implements IInventory
         return true;
     }
 
-    public void onDataPacket(INetHandler net, S35PacketUpdateTileEntity packet)
-    {
-        packet.processPacket(net);
-    }
-
     @Override
     public void openInventory()
     {
     }
 
+    @Override
     public void readFromNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.readFromNBT(par1NBTTagCompound);

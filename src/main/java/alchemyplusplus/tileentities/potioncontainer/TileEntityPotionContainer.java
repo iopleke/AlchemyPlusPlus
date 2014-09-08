@@ -1,7 +1,6 @@
 package alchemyplusplus.tileentities.potioncontainer;
 
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.INetHandler;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -25,11 +24,6 @@ public class TileEntityPotionContainer extends TileEntity
         NBTTagCompound nbtTag = new NBTTagCompound();
         this.writeToNBT(nbtTag);
         return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbtTag);
-    }
-
-    public void onDataPacket(INetHandler net, net.minecraft.network.play.server.S35PacketUpdateTileEntity packet)
-    {
-        packet.processPacket(net);
     }
 
     @Override

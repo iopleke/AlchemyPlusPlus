@@ -6,7 +6,6 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.INetHandler;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -126,11 +125,6 @@ public class TileEntityLiquidMixer extends TileEntity implements IInventory
     public boolean isUseableByPlayer(EntityPlayer entityplayer)
     {
         return true;
-    }
-
-    public void onDataPacket(INetHandler net, net.minecraft.network.play.server.S35PacketUpdateTileEntity packet)
-    {
-        packet.processPacket(net);
     }
 
     @Override
