@@ -7,7 +7,7 @@ import java.util.HashMap;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.config.Configuration;
 
 public class ConfigManager
 {
@@ -51,8 +51,6 @@ public class ConfigManager
     // Set the starting block and item IDs
     private static int dynamicBlockID = 400;
     private static int dynamicItemID = 2300;
-    private static HashMap<Integer, Boolean> usedBlockIDs = new HashMap<Integer, Boolean>();
-    private static HashMap<Integer, Boolean> usedItemIDs = new HashMap<Integer, Boolean>();
 
     public static void initialSetup(File config)
     {
@@ -67,31 +65,6 @@ public class ConfigManager
 
             // And so it begins...
             appConfig.load();
-
-            // Setting all the block IDs
-            appBlockAlchemicalApparatus = appConfig.get(Configuration.CATEGORY_BLOCK, "appAlchemicalApparatusID", nextBlockID()).getInt(dynamicBlockID);
-            appBlockDiffuser = appConfig.get(Configuration.CATEGORY_BLOCK, "appDiffuserID", nextBlockID()).getInt(dynamicBlockID);
-            appBlockDistillery = appConfig.get(Configuration.CATEGORY_BLOCK, "appDistilleryID", nextBlockID()).getInt(dynamicBlockID);
-            appBlockExtractor = appConfig.get(Configuration.CATEGORY_BLOCK, "appExtractorID", nextBlockID()).getInt(dynamicBlockID);
-            appBlockFlesh = appConfig.get(Configuration.CATEGORY_BLOCK, "appBlockFleshID", nextBlockID()).getInt(dynamicBlockID);
-            appBlockLiquidMixer = appConfig.get(Configuration.CATEGORY_BLOCK, "appBlockLiquidMixerID", nextBlockID()).getInt(dynamicBlockID);
-            appBlockPotionContainer = appConfig.get(Configuration.CATEGORY_BLOCK, "appPotionContainerID", nextBlockID()).getInt(dynamicBlockID);
-
-            // Setting all the item IDs
-            appItemBottleStand = appConfig.get(Configuration.CATEGORY_ITEM, "appBottleStandID", nextItemID()).getInt(dynamicItemID);
-            appItemConfusion = appConfig.get(Configuration.CATEGORY_ITEM, "appConfusionID", nextItemID()).getInt(dynamicItemID);
-            appItemDiffuser = appConfig.get(Configuration.CATEGORY_ITEM, "appDiffuserID", nextItemID()).getInt(dynamicItemID);
-            appItemDistillery = appConfig.get(Configuration.CATEGORY_ITEM, "appDistilleryID", nextItemID()).getInt(dynamicItemID);
-            appItemExtractor = appConfig.get(Configuration.CATEGORY_ITEM, "appExtractorID", nextItemID()).getInt(dynamicItemID);
-            appItemFesteringFlesh = appConfig.get(Configuration.CATEGORY_ITEM, "appFesteringFleshID", nextItemID()).getInt(dynamicItemID);
-            appItemFilter = appConfig.get(Configuration.CATEGORY_ITEM, "appFilterID", nextItemID()).getInt(dynamicItemID);
-            appItemFishOil = appConfig.get(Configuration.CATEGORY_ITEM, "appFishOilID", nextItemID()).getInt(dynamicItemID);
-            appItemIronPowder = appConfig.get(Configuration.CATEGORY_ITEM, "appIronPowderID", nextItemID()).getInt(dynamicItemID);
-            appItemLiquidMixer = appConfig.get(Configuration.CATEGORY_ITEM, "appLiquidMixerID", nextItemID()).getInt(dynamicItemID);
-            appItemPotionBottle = appConfig.get(Configuration.CATEGORY_ITEM, "appPotionBottleID", nextItemID()).getInt(dynamicItemID);
-            appPotionWoodAlcohol = appConfig.get(Configuration.CATEGORY_ITEM, "appPotionWoodAlcoholID", nextItemID()).getInt(dynamicItemID);
-            appItemSpringyCord = appConfig.get(Configuration.CATEGORY_ITEM, "appSpringyCordID", nextItemID()).getInt(dynamicItemID);
-            appItemSquidEye = appConfig.get(Configuration.CATEGORY_ITEM, "appSquidEyeID", nextItemID()).getInt(dynamicItemID);
 
             // Setting the general options
             appHardcoreModeEnabled = appConfig.get(Configuration.CATEGORY_GENERAL, "appHardcoreModeEnabled", false, "Enable hardcore game mechanic, making the game more challenging").getBoolean(false);
