@@ -89,52 +89,11 @@ public class ConfigManager
             appConfigLoaded = true;
         }
 
-        // Use nextBlockID() to get the next possible block ID
-    }
-
-    public static int nextBlockID()
-    {
-        boolean blockIDInUse = usedBlockIDs.containsKey(dynamicBlockID);
-        while (Block.blocksList[dynamicBlockID] != null || blockIDInUse)
-        {
-            blockIDInUse = usedBlockIDs.containsKey(dynamicBlockID);
-            if (appDebugMode)
-            {
-                System.err.println("Alchemy++: Block ID '" + dynamicBlockID + "' is occupied, checking next ID...");
-            }
-            dynamicBlockID++;
-        }
-        if (appDebugMode)
-        {
-            System.err.println("Alchemy++: Block ID set to " + dynamicBlockID);
-        }
-        usedBlockIDs.put(dynamicBlockID, true);
-        return dynamicBlockID;
-    }
-
-    public static int nextItemID()
-    {
-        boolean itemIDInUse = usedItemIDs.containsKey(dynamicItemID);
-        while (Item.itemsList[dynamicItemID] != null || itemIDInUse)
-        {
-            itemIDInUse = usedItemIDs.containsKey(dynamicItemID);
-            if (appDebugMode)
-            {
-                System.err.println("Alchemy++: Item ID '" + dynamicItemID + "' is occupied, checking next ID...");
-            }
-            dynamicItemID++;
-        }
-        if (appDebugMode)
-        {
-            System.err.println("Alchemy++: Item ID set to " + dynamicItemID);
-        }
-        usedItemIDs.put(dynamicItemID, true);
-        return dynamicItemID;
     }
 
     public static void setupCreativeTab()
     {
         // Set the creative tab
-        appCreativeTab = new CreativeTab(CreativeTabs.getNextID(), "Alchemy++");
+        appCreativeTab = new CreativeTab("AlchemyPlusPlus");
     }
 }
