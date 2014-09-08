@@ -29,7 +29,37 @@ buildProps.withReader {
     prop.load(it)
     ext.config = new ConfigSlurper().parse prop
 }
- 
+
+repositories {
+    maven {
+	name 'Calclavia Maven'
+	url 'http://calclavia.com/maven'
+    }
+    maven {
+	name = "forge"
+	url = "http://files.minecraftforge.net/maven"
+    }
+    maven { // the repo from which to get NEI and stuff
+	name 'CB Repo'
+	url "http://chickenbones.net/maven"
+    }
+    ivy {
+	name 'FMP'
+	artifactPattern "http://files.minecraftforge.net/[module]/[module]-dev-[revision].[ext]"
+    }
+}
+
+dependencies {
+    
+    // Would really like to switch to using the new method, so I can update to gradle 2
+    //compile group: 'universalelectricity', name: 'Universal-Electricity', version: "${config.version.universalelectricity}", ext: 'jar', classifier: "dev"
+    compile 'dev.calclavia.universalelectricity:universal-electricity:+:dev'
+    
+    compile group: 'codechicken', name: 'NotEnoughItems', version: "${config.version.minecraft}-${config.version.nei}", ext: 'jar', classifier: "dev"
+    compile group: 'codechicken', name: 'CodeChickenCore', version: "${config.version.minecraft}-${config.version.cccore}", ext: 'jar', classifier: "dev"
+    compile group: 'codechicken', name: 'CodeChickenLib', version: "${config.version.minecraft}-${config.version.cclib}", ext: 'jar', classifier: "dev"
+}
+
 version = "MC${config.version.minecraft}-F${config.version.forge}_v${config.version.mod.major}.${config.version.mod.minor}${config.version.mod.revis}"
 group = "alchemyplusplus"
 archivesBaseName = "AlchemyPlusPlus"
@@ -67,34 +97,8 @@ allprojects {
     
     if (System.getenv("BUILD_NUMBER") != null)
     version += ".${System.getenv("BUILD_NUMBER")}"
-        
-    repositories {
-        maven {
-            name 'Calclavia Maven'
-            url 'http://calclavia.com/maven'
-        }
-        maven {
-            name = "forge"
-            url = "http://files.minecraftforge.net/maven"
-        }
-        ivy {
-            name 'FMP'
-            artifactPattern "http://files.minecraftforge.net/[module]/[module]-dev-[revision].[ext]"
-        }
-        ivy {
-            artifactPattern "http://www.chickenbones.craftsaddle.org/Files/New_Versions/1.6.4/[module]-dev%20[revision].[ext]"
-        }
-        mavenCentral()
-    }
-    
-    dependencies {
-        compile name: 'CodeChickenLib', version: "${config.version.minecraft}-${config.version.cclib}", ext: 'jar'
-        compile name: 'NotEnoughItems', version: "${config.version.nei}", ext: 'jar'
-        compile name: 'CodeChickenCore', version: "${config.version.cccore}", ext: 'jar'
-    }
     
     jar {
-		
         dependsOn ":copyBuildXml"
         destinationDir = file (rootProject.getRootDir().getPath() + '/output')
     }
