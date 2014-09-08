@@ -12,13 +12,13 @@ import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
 
-public class TileEntityPotionContainerRenderer extends
+public class TileEntityPotionJugRenderer extends
         TileEntitySpecialRenderer
 {
 
-    ModelPotionContainer model = new ModelPotionContainer();
+    ModelPotionJug model = new ModelPotionJug();
 
-    public void render(TileEntityPotionContainer tl, World world, int i, int j, int k, Block block)
+    public void render(TileEntityPotionJug tl, World world, int i, int j, int k, Block block)
     {
         int l = world.getLightBrightnessForSkyBlocks(i, j, k, 0);
         int l1 = l % 65536;
@@ -33,7 +33,7 @@ public class TileEntityPotionContainerRenderer extends
         GL11.glRotatef(dir * (-90F), 0F, 1F, 0F);
         GL11.glTranslatef(-0.5F, 0, -0.5F);
 
-        bindTexture(new ResourceLocation("AlchemyPlusPlus:textures/blocks/Bottle.png"));
+        bindTexture(new ResourceLocation("AlchemyPlusPlus:textures/blocks/potionJug.png"));
 
         float percentage = ((float) tl.containerHas) / tl.containerMax;
         int color = 0;
@@ -53,7 +53,7 @@ public class TileEntityPotionContainerRenderer extends
     {
         GL11.glPushMatrix();
         GL11.glTranslatef((float) d, (float) d1, (float) d2);
-        TileEntityPotionContainer tileEntityYour = (TileEntityPotionContainer) tileEntity;
+        TileEntityPotionJug tileEntityYour = (TileEntityPotionJug) tileEntity;
         render(tileEntityYour, tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, BlockRegistry.potionJug);
         GL11.glPopMatrix();
     }

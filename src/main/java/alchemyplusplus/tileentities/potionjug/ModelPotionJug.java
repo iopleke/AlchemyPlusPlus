@@ -6,7 +6,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelPotionContainer extends ModelBase
+public class ModelPotionJug extends ModelBase
 {
 
 	//fields
@@ -15,7 +15,7 @@ public class ModelPotionContainer extends ModelBase
     ModelRenderer liquid;
     ModelRenderer neck;
 
-    public ModelPotionContainer()
+    public ModelPotionJug()
     {
         textureWidth = 64;
         textureHeight = 32;

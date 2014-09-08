@@ -5,7 +5,7 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityPotionContainer extends TileEntity
+public class TileEntityPotionJug extends TileEntity
 {
 
     public int containerHas = 0;

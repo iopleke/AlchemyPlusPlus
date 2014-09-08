@@ -19,13 +19,13 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class ItemPotionBottle extends Item
+public class ItemPotionJug extends Item
 {
 
     public static IIcon bottle;
     public static IIcon contents;
 
-    public ItemPotionBottle(int id)
+    public ItemPotionJug(int id)
     {
         super();
         this.maxStackSize = 1;
@@ -104,7 +104,7 @@ public class ItemPotionBottle extends Item
             if (stack.hasTagCompound()
                     && stack.getTagCompound().getShort("containerHas") > 0)
             {
-                TileEntityPotionContainer te = (TileEntityPotionContainer) world.getTileEntity(x, y + 1, z);
+                TileEntityPotionJug te = (TileEntityPotionJug) world.getTileEntity(x, y + 1, z);
                 te.potionID = stack.getTagCompound().getShort("effectID");
                 te.containerHas = stack.getTagCompound().getShort(
                         "containerHas");

@@ -38,8 +38,8 @@ public class BlockPotionJug extends BlockComplex
 
         if (world.getTileEntity(x, y, z) != null)
         {
-            int potionID = (((TileEntityPotionContainer) world.getTileEntity(x, y, z)).potionID);
-            int has = (((TileEntityPotionContainer) world.getTileEntity(x, y, z)).containerHas);
+            int potionID = (((TileEntityPotionJug) world.getTileEntity(x, y, z)).potionID);
+            int has = (((TileEntityPotionJug) world.getTileEntity(x, y, z)).containerHas);
             if (potionID != 0 && has != 0)
             {
                 stack.stackTagCompound = new NBTTagCompound();
@@ -67,13 +67,13 @@ public class BlockPotionJug extends BlockComplex
     @Override
     public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_)
     {
-        return new TileEntityPotionContainer();
+        return new TileEntityPotionJug();
     }
 
     @Override
     public int getComparatorInputOverride(World world, int x, int y, int z, int par5)
     {
-        TileEntityPotionContainer te = (TileEntityPotionContainer) world.getTileEntity(x, y, z);
+        TileEntityPotionJug te = (TileEntityPotionJug) world.getTileEntity(x, y, z);
         return (int) Math.floor(te.containerHas * 16f / te.containerMax);
     }
 
@@ -91,11 +91,11 @@ public class BlockPotionJug extends BlockComplex
         if (player.isSneaking())
         {
 
-            if (((TileEntityPotionContainer) world.getTileEntity(x, y, z)).containerHas > 0)
+            if (((TileEntityPotionJug) world.getTileEntity(x, y, z)).containerHas > 0)
             {
-                ((TileEntityPotionContainer) world.getTileEntity(x, y, z)).containerHas--;
+                ((TileEntityPotionJug) world.getTileEntity(x, y, z)).containerHas--;
 
-                List effectList = PotionHelper.getPotionEffects(((TileEntityPotionContainer) world.getTileEntity(x, y, z)).potionID, true);
+                List effectList = PotionHelper.getPotionEffects(((TileEntityPotionJug) world.getTileEntity(x, y, z)).potionID, true);
                 for (int i = 0; i < effectList.size(); i++)
                 {
                     player.addPotionEffect((PotionEffect) effectList.get(i));
@@ -109,7 +109,7 @@ public class BlockPotionJug extends BlockComplex
         }
 
         ItemStack stack = player.getCurrentEquippedItem();
-        TileEntityPotionContainer te = (TileEntityPotionContainer) world.getTileEntity(x, y, z);
+        TileEntityPotionJug te = (TileEntityPotionJug) world.getTileEntity(x, y, z);
         if (stack == null)
         {
             return true;
