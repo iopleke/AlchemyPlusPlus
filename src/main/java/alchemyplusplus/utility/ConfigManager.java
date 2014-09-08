@@ -11,16 +11,6 @@ import net.minecraftforge.common.config.Configuration;
 
 public class ConfigManager
 {
-    // Major thanks to micdoodle for configuration help
-
-    // Defining the block ID variables
-    public static int appBlockAlchemicalApparatus;
-    public static int appBlockDiffuser;
-    public static int appBlockDistillery;
-    public static int appBlockExtractor;
-    public static int appBlockFlesh;
-    public static int appBlockLiquidMixer;
-    public static int appBlockPotionContainer;
     // Configuration variables
     public static Configuration appConfig;
     private static boolean appConfigLoaded;
@@ -29,28 +19,8 @@ public class ConfigManager
     // General settings
     public static boolean appHardcoreModeEnabled;
 
-    // Defining the item ID variables
-    public static int appItemBottleStand;
-    public static int appItemConfusion;
-    public static int appItemDiffuser;
-    public static int appItemDistillery;
-    public static int appItemExtractor;
-    public static int appItemFesteringFlesh;
-    public static int appItemFilter;
-    public static int appItemFishOil;
-    public static int appItemIronPowder;
-    public static int appItemLiquidMixer;
-    public static int appItemPotionBottle;
-    public static int appPotionWoodAlcohol;
-    public static int appItemSpringyCord;
-    public static int appItemSquidEye;
-
     public static boolean appVanillaBrewingOverride;
     public static boolean appVanillaPotionOverride;
-
-    // Set the starting block and item IDs
-    private static int dynamicBlockID = 400;
-    private static int dynamicItemID = 2300;
 
     public static void initialSetup(File config)
     {
