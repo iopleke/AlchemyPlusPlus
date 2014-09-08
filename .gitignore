@@ -26,7 +26,7 @@ nbproject
 .gradle
 /.nb-gradle/private/
 /.nb-gradle/profiles/private/
+/run
 build
 lib
 output
-/run
