@@ -1,6 +1,9 @@
 package alchemyplusplus.items;
 
+import alchemyplusplus.AlchemyPlusPlus;
 import alchemyplusplus.utility.ConfigManager;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -15,7 +18,7 @@ public class ItemTemplate extends Item
     public ItemTemplate(String itemname)
     {
         super();
-        this.iconName = itemname;
+        this.iconName = AlchemyPlusPlus.ID + ":" + itemname;
         this.setUnlocalizedName(itemname);
         this.setCreativeTab(ConfigManager.appCreativeTab);
     }
@@ -27,6 +30,7 @@ public class ItemTemplate extends Item
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iconRegister)
     {
         this.itemIcon = iconRegister.registerIcon(iconName);

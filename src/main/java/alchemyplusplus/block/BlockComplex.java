@@ -2,6 +2,8 @@ package alchemyplusplus.block;
 
 import alchemyplusplus.AlchemyPlusPlus;
 import alchemyplusplus.utility.ConfigManager;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -13,14 +15,13 @@ import net.minecraft.world.World;
 public class BlockComplex extends BlockContainer
 {
 
-    String blockname;
+    String icon;
     
     public BlockComplex(Material material, String blockname)
     {
         super(material);
         this.setBlockName(blockname);
-        this.blockname = blockname;
-        
+        this.icon = AlchemyPlusPlus.ID + ":" + blockname + "Icon";
         this.setCreativeTab(ConfigManager.appCreativeTab);
     }
 
@@ -31,9 +32,10 @@ public class BlockComplex extends BlockContainer
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister)
     {
-        this.blockIcon = iconRegister.registerIcon(blockname);
+        this.blockIcon = iconRegister.registerIcon(icon);
     }    
 
     @Override

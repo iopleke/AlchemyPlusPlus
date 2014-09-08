@@ -79,15 +79,17 @@ public class FishOil extends ItemTemplate
 
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
-    public void registerItemIcons(IIconRegister iconRegister)
+    public void registerIcons(IIconRegister iconRegister)
     {
-        this.percent0 = iconRegister.registerIcon("AlchemyPlusPlus:fishOil0");
-        this.percent20 = iconRegister.registerIcon("AlchemyPlusPlus:fishOil20");
-        this.percent40 = iconRegister.registerIcon("AlchemyPlusPlus:fishOil40");
-        this.percent60 = iconRegister.registerIcon("AlchemyPlusPlus:fishOil60");
-        this.percent80 = iconRegister.registerIcon("AlchemyPlusPlus:fishOil80");
-        this.percent100 = iconRegister.registerIcon("AlchemyPlusPlus:fishOil100");
+        this.itemIcon = iconRegister.registerIcon(iconName);
+        this.percent0 = iconRegister.registerIcon(iconName + "0");
+        this.percent20 = iconRegister.registerIcon(iconName + "20");
+        this.percent40 = iconRegister.registerIcon(iconName + "40");
+        this.percent60 = iconRegister.registerIcon(iconName + "60");
+        this.percent80 = iconRegister.registerIcon(iconName + "80");
+        this.percent100 = iconRegister.registerIcon(iconName + "100");
     }
 
 }

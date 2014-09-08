@@ -1,5 +1,6 @@
 package alchemyplusplus.gui;
 
+import alchemyplusplus.block.BlockRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
@@ -18,6 +19,6 @@ public class CreativeTab extends CreativeTabs
     @SideOnly(Side.CLIENT)
     public Item getTabIconItem()
     {
-        return Items.potionitem;
+        return Item.getItemFromBlock(BlockRegistry.fleshBlock);
     }
 }

@@ -1,11 +1,10 @@
 package alchemyplusplus.block;
 
-import alchemyplusplus.items.ItemRegistry;
+import alchemyplusplus.AlchemyPlusPlus;
 import alchemyplusplus.material.MaterialRegistry;
 import alchemyplusplus.utility.ConfigManager;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
-import net.minecraft.item.Item;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
@@ -14,7 +13,6 @@ import java.util.Random;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.init.Items;
 
 public class BlockFlesh extends BlockBasic
 {
