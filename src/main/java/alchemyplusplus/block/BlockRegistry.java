@@ -7,7 +7,6 @@ import alchemyplusplus.tileentities.distillery.BlockDistillery;
 import alchemyplusplus.tileentities.diffuser.BlockDiffuser;
 import alchemyplusplus.utility.ConfigManager;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
