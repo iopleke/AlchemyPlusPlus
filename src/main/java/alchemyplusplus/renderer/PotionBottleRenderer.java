@@ -2,7 +2,7 @@ package alchemyplusplus.renderer;
 
 import org.lwjgl.opengl.GL11;
 
-import alchemyplusplus.tileentities.potionjug.ItemPotionBottle;
+import alchemyplusplus.tileentities.potionjug.ItemPotionJug;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.ItemStack;
@@ -37,8 +37,8 @@ public class PotionBottleRenderer implements IItemRenderer
     public void renderItem(ItemRenderType type, ItemStack item, Object... data)
     {
 
-        IIcon icon = ItemPotionBottle.bottle;
-        IIcon icon2 = ItemPotionBottle.contents;
+        IIcon icon = ItemPotionJug.bottle;
+        IIcon icon2 = ItemPotionJug.contents;
 
         if (item.hasTagCompound())
         {
