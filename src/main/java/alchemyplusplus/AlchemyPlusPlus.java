@@ -2,10 +2,10 @@ package alchemyplusplus;
 
 import alchemyplusplus.utility.EventManager;
 import alchemyplusplus.utility.ConfigManager;
-import alchemyplusplus.network.CommonProxy;
 import alchemyplusplus.block.BlockRegistry;
 import alchemyplusplus.gui.GUIHandler;
 import alchemyplusplus.items.ItemRegistry;
+import alchemyplusplus.proxy.CommonProxy;
 import alchemyplusplus.tileentities.diffuser.TileEntityDiffuser;
 import alchemyplusplus.tileentities.distillery.TileEntityDistillery;
 import alchemyplusplus.tileentities.extractor.TileEntityExtractor;
@@ -18,7 +18,6 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = AlchemyPlusPlus.ID, name = "AlchemyPlusPlus", version = "release 1.1")
