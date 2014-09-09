@@ -5,3 +5,14 @@ language.code=en_US
 
 tile.fleshBlock.name=Block of Flesh
 tile.potionJug.name=Potion Jug
+tile.diffuser.name=Diffuser
+tile.distillery.name=Distillery
+tile.liquidMixer.name=Liquid Mixer
+
+item.confusionPotion.name=Confusion Potion
+item.fishOil.name=Fish Oil
+item.ironPowder.name=Iron Powder
+item.mixingFilter.name=Mixing Filter
+item.springyCord.name=Springy Cord
+item.squidEye.name=Squid Eye
+item.woodAlcohol.name=Wood Alcohol
