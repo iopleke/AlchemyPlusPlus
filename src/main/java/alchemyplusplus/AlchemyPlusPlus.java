@@ -76,7 +76,6 @@ public class AlchemyPlusPlus {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-
 	ConfigManager.initialSetup(event.getSuggestedConfigurationFile());
 
     }

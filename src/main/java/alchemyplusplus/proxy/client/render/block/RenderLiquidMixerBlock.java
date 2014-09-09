@@ -1,6 +1,8 @@
-package alchemyplusplus.tileentities.mixer;
+package alchemyplusplus.proxy.client.render.block;
 
 import alchemyplusplus.block.BlockRegistry;
+import alchemyplusplus.tileentities.mixer.ModelLiquidMixer;
+import alchemyplusplus.tileentities.mixer.TileEntityLiquidMixer;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -10,7 +12,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 
-public class TileEntityLiquidMixerRenderer extends TileEntitySpecialRenderer
+public class RenderLiquidMixerBlock extends TileEntitySpecialRenderer
 {
 
     ModelLiquidMixer model = new ModelLiquidMixer();

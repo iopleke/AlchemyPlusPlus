@@ -1,6 +1,8 @@
-package alchemyplusplus.tileentities.diffuser;
+package alchemyplusplus.proxy.client.render.block;
 
 import alchemyplusplus.block.BlockRegistry;
+import alchemyplusplus.tileentities.diffuser.ModelDiffuser;
+import alchemyplusplus.tileentities.diffuser.TileEntityDiffuser;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -11,7 +13,7 @@ import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
 
-public class TileEntityDiffuserRenderer extends TileEntitySpecialRenderer
+public class RenderDiffuserBlock extends TileEntitySpecialRenderer
 {
 
     ModelDiffuser diffuserModel = new ModelDiffuser();

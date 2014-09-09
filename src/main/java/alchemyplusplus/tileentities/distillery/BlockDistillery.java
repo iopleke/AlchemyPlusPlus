@@ -14,7 +14,6 @@ import net.minecraft.block.Block;
 
 public class BlockDistillery extends BlockComplex
 {
-
     public BlockDistillery(String blockname)
     {
         super(Material.iron, blockname);

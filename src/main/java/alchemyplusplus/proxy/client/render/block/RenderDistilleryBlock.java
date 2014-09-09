@@ -1,6 +1,9 @@
-package alchemyplusplus.tileentities.distillery;
+package alchemyplusplus.proxy.client.render.block;
 
+import alchemyplusplus.AlchemyPlusPlus;
 import alchemyplusplus.block.BlockRegistry;
+import alchemyplusplus.tileentities.distillery.ModelDistillery;
+import alchemyplusplus.tileentities.distillery.TileEntityDistillery;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -11,7 +14,7 @@ import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
 
-public class TileEntityDistilleryRenderer extends TileEntitySpecialRenderer
+public class RenderDistilleryBlock extends TileEntitySpecialRenderer
 {
 
     ModelDistillery model = new ModelDistillery();
@@ -30,9 +33,8 @@ public class TileEntityDistilleryRenderer extends TileEntitySpecialRenderer
         GL11.glTranslatef(0.5F, 0, 0.5F);
         GL11.glRotatef(dir * (-90F), 0F, 1F, 0F);
         GL11.glTranslatef(-0.5F, 0, -0.5F);
-
-        bindTexture(new ResourceLocation(
-                "AlchemyPlusPlus:textures/blocks/Distillery.png"));
+        
+        bindTexture(new ResourceLocation(AlchemyPlusPlus.ID + ":textures/blocks/distilleryModelTexture.png"));
 
         this.model
                 .render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
