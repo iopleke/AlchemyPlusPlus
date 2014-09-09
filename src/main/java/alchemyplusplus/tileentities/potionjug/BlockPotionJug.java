@@ -1,5 +1,6 @@
 package alchemyplusplus.tileentities.potionjug;
 
+import alchemyplusplus.AlchemyPlusPlus;
 import alchemyplusplus.block.BlockComplex;
 import alchemyplusplus.block.BlockRegistry;
 import java.util.List;
@@ -9,8 +10,12 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 
 import alchemyplusplus.network.PacketDispatcher;
+import alchemyplusplus.utility.ConfigManager;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -21,13 +26,21 @@ import net.minecraft.potion.PotionHelper;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockPotionJug extends BlockComplex
+public class BlockPotionJug extends BlockContainer
 {
-
     public BlockPotionJug(String blockname)
     {
-        super(Material.glass, blockname);
+        super(Material.glass);
         this.setStepSound(Block.soundTypeGlass);
+        this.setBlockName(blockname);
+        this.setCreativeTab(ConfigManager.appCreativeTab);
+        this.setBlockTextureName(AlchemyPlusPlus.ID + ":potionJugIcon");
+    }
+
+    @Override
+    public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_)
+    {
+        return new TileEntityPotionJug();
     }
 
     @Override
@@ -62,12 +75,6 @@ public class BlockPotionJug extends BlockComplex
         world.spawnEntityInWorld(entityitem);
 
         super.breakBlock(world, x, y, z, block, meta);
-    }
-
-    @Override
-    public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_)
-    {
-        return new TileEntityPotionJug();
     }
 
     @Override
@@ -139,5 +146,23 @@ public class BlockPotionJug extends BlockComplex
             PacketDispatcher.sendPacketToAllPlayers(world.getTileEntity(x, y, z).getDescriptionPacket());
         }
         return true;
+    }
+
+    @Override
+    public boolean renderAsNormalBlock()
+    {
+        return false;
+    }
+
+    @Override
+    public int getRenderType()
+    {
+        return -1;
+    }
+
+    @Override
+    public boolean isOpaqueCube()
+    {
+        return false;
     }
 }

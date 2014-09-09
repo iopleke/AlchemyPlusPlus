@@ -15,8 +15,7 @@ import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
 
-public class RenderPotionJugBlock extends
-        TileEntitySpecialRenderer
+public class RenderPotionJugBlock extends TileEntitySpecialRenderer
 {
 
     ModelPotionJug model = new ModelPotionJug();
@@ -36,6 +35,7 @@ public class RenderPotionJugBlock extends
         GL11.glRotatef(dir * (-90F), 0F, 1F, 0F);
         GL11.glTranslatef(-0.5F, 0, -0.5F);
 
+        // @TODO - add this ResourceLocation to the reference class per https://github.com/jakimfett/AlchemyPlusPlus/issues/6
         bindTexture(new ResourceLocation(AlchemyPlusPlus.ID + ":textures/blocks/potionJugModelTexture.png"));
 
         float percentage = ((float) tl.containerHas) / tl.containerMax;
