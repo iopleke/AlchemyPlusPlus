@@ -172,7 +172,6 @@ public class TileEntityDiffuser extends TileEntity implements IInventory
 
         this.isDiffusing = diffuserNBTData.getBoolean("isDiffusing");
 
-        System.err.println("The potionStackDamage is: " + diffuserNBTData.getInteger("potionStackDamage"));
         potionStack = new ItemStack(Items.potionitem, 1, diffuserNBTData.getInteger("potionStackDamage"));
         bottleColor = diffuserNBTData.getInteger("bottleColor");
 
