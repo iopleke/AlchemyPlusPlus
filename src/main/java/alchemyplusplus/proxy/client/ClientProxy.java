@@ -1,6 +1,7 @@
-package alchemyplusplus.proxy;
+package alchemyplusplus.proxy.client;
 
 import alchemyplusplus.items.ItemRegistry;
+import alchemyplusplus.proxy.CommonProxy;
 import alchemyplusplus.renderer.PotionBottleRenderer;
 import alchemyplusplus.tileentities.diffuser.TileEntityDiffuserRenderer;
 import alchemyplusplus.tileentities.distillery.TileEntityDistilleryRenderer;
