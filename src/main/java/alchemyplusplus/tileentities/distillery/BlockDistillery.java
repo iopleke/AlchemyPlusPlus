@@ -1,16 +1,16 @@
 package alchemyplusplus.tileentities.distillery;
 
-import java.util.Random;
-
 import alchemyplusplus.AlchemyPlusPlus;
 import alchemyplusplus.block.BlockComplex;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
+
+import java.util.Random;
 
 public class BlockDistillery extends BlockComplex
 {

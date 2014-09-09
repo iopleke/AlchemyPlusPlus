@@ -1,23 +1,19 @@
 package alchemyplusplus.gui;
 
+import alchemyplusplus.AlchemyPlusPlus;
 import alchemyplusplus.block.BlockRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
-public class CreativeTab extends CreativeTabs
+public class CreativeTab
 {
 
-    public CreativeTab(String tabName)
+    public static CreativeTabs APP_TAB = new CreativeTabs(AlchemyPlusPlus.ID)
     {
-        super(tabName);
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public Item getTabIconItem()
-    {
-        return Item.getItemFromBlock(BlockRegistry.potionJug);
-    }
+        @Override
+        public Item getTabIconItem()
+        {
+            return Item.getItemFromBlock(BlockRegistry.potionJug);
+        }
+    };
 }

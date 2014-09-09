@@ -1,21 +1,14 @@
 package alchemyplusplus.tileentities.potionjug;
 
 import alchemyplusplus.AlchemyPlusPlus;
-import alchemyplusplus.block.BlockComplex;
 import alchemyplusplus.block.BlockRegistry;
-import java.util.List;
-import java.util.Random;
-
+import alchemyplusplus.gui.CreativeTab;
+import alchemyplusplus.network.PacketDispatcher;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
-
-import alchemyplusplus.network.PacketDispatcher;
-import alchemyplusplus.utility.ConfigManager;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -26,6 +19,9 @@ import net.minecraft.potion.PotionHelper;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
+import java.util.List;
+import java.util.Random;
+
 public class BlockPotionJug extends BlockContainer
 {
     public BlockPotionJug(String blockname)
@@ -33,7 +29,7 @@ public class BlockPotionJug extends BlockContainer
         super(Material.glass);
         this.setStepSound(Block.soundTypeGlass);
         this.setBlockName(blockname);
-        this.setCreativeTab(ConfigManager.appCreativeTab);
+        this.setCreativeTab(CreativeTab.APP_TAB);
         this.setBlockTextureName(AlchemyPlusPlus.ID + ":potionJugIcon");
     }
 

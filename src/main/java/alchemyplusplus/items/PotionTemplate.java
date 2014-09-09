@@ -1,7 +1,5 @@
 package alchemyplusplus.items;
 
-import java.lang.reflect.Field;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -14,6 +12,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
+
+import java.lang.reflect.Field;
 
 //Extended ItemPotion to add ability to charge-throw splash potions.
 public class PotionTemplate extends ItemPotion

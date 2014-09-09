@@ -1,16 +1,14 @@
 package alchemyplusplus.utility;
 
-import alchemyplusplus.gui.CreativeTab;
-import java.io.File;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.config.Configuration;
+
+import java.io.File;
 
 public class ConfigManager
 {
     // Configuration variables
     public static Configuration appConfig;
     private static boolean appConfigLoaded;
-    public static CreativeTabs appCreativeTab;
     public static boolean appDebugMode;
     
     // General settings
@@ -39,9 +37,6 @@ public class ConfigManager
             appVanillaPotionOverride = appConfig.get(Configuration.CATEGORY_GENERAL, "appVanillaPotionOverride", false, "Enable this to override vanilla potion mechanics").getBoolean(false);
             appDebugMode = appConfig.get(Configuration.CATEGORY_GENERAL, "appDebugMode", false, "Enable extra logging (May spam your console. You've been warned.)").getBoolean(false);
 
-            // That wasn't so bad, now was it?
-            setupCreativeTab();
-
         } catch (final Exception e)
         {
             System.err.println("Problem loading config");
@@ -58,9 +53,4 @@ public class ConfigManager
 
     }
 
-    public static void setupCreativeTab()
-    {
-        // Set the creative tab
-        appCreativeTab = new CreativeTab("AlchemyPlusPlus");
-    }
 }

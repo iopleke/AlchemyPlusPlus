@@ -1,7 +1,7 @@
 package alchemyplusplus.tileentities.mixer;
 
+import alchemyplusplus.reference.Textures;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;
 
@@ -23,7 +23,7 @@ public class GuiLiquidMixer extends GuiContainer
     {
             //draw your Gui here, only thing you need to change is the path
 
-        this.mc.renderEngine.bindTexture(new ResourceLocation("AlchemyPlusPlus:textures/gui/mixer.png"));
+        this.mc.renderEngine.bindTexture(Textures.Gui.MIXER);
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);

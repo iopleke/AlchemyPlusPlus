@@ -1,9 +1,10 @@
 package alchemyplusplus.network.packet;
 
 import alchemyplusplus.network.PacketDispatcher;
-import java.io.IOException;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;
+
+import java.io.IOException;
 
 
 public class DiffuserPacketUpdate extends PacketDispatcher.AbstractPacket<DiffuserPacketUpdate>

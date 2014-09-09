@@ -1,14 +1,13 @@
 package alchemyplusplus.items;
 
-import java.util.List;
-import java.util.Random;
-
-import alchemyplusplus.utility.ConfigManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
+
+import java.util.List;
+import java.util.Random;
 
 public class MixingFilter extends ItemTemplate
 {

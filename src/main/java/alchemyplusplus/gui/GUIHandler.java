@@ -1,21 +1,21 @@
 package alchemyplusplus.gui;
 
-import alchemyplusplus.tileentities.mixer.GuiLiquidMixer;
-import alchemyplusplus.tileentities.extractor.GuiExtractor;
-import alchemyplusplus.tileentities.distillery.GuiDistillery;
-import java.util.HashMap;
-
 import alchemyplusplus.tileentities.diffuser.ContainerDiffuser;
-import alchemyplusplus.tileentities.distillery.ContainerDistillery;
-import alchemyplusplus.tileentities.extractor.ContainerExtractor;
-import alchemyplusplus.tileentities.mixer.ContainerLiquidMixer;
 import alchemyplusplus.tileentities.diffuser.TileEntityDiffuser;
+import alchemyplusplus.tileentities.distillery.ContainerDistillery;
+import alchemyplusplus.tileentities.distillery.GuiDistillery;
 import alchemyplusplus.tileentities.distillery.TileEntityDistillery;
+import alchemyplusplus.tileentities.extractor.ContainerExtractor;
+import alchemyplusplus.tileentities.extractor.GuiExtractor;
 import alchemyplusplus.tileentities.extractor.TileEntityExtractor;
+import alchemyplusplus.tileentities.mixer.ContainerLiquidMixer;
+import alchemyplusplus.tileentities.mixer.GuiLiquidMixer;
 import alchemyplusplus.tileentities.mixer.TileEntityLiquidMixer;
+import cpw.mods.fml.common.network.IGuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-import cpw.mods.fml.common.network.IGuiHandler;
+
+import java.util.HashMap;
 
 public class GUIHandler implements IGuiHandler
 {

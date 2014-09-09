@@ -1,11 +1,11 @@
 package alchemyplusplus.items;
 
-import java.util.List;
-
 import alchemyplusplus.AlchemyPlusPlus;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class AlchemicalGuide extends ItemTemplate
 {

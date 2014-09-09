@@ -1,13 +1,14 @@
 package alchemyplusplus.block;
 
-import alchemyplusplus.tileentities.potionjug.BlockPotionJug;
-import alchemyplusplus.tileentities.mixer.BlockLiquidMixer;
-import alchemyplusplus.tileentities.distillery.BlockDistillery;
+import alchemyplusplus.reference.Names;
 import alchemyplusplus.tileentities.diffuser.BlockDiffuser;
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemStack;
+import alchemyplusplus.tileentities.distillery.BlockDistillery;
+import alchemyplusplus.tileentities.mixer.BlockLiquidMixer;
+import alchemyplusplus.tileentities.potionjug.BlockPotionJug;
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.block.Block;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 
 public class BlockRegistry
 {
@@ -26,19 +27,19 @@ public class BlockRegistry
     public static void registerBlocks()
     {
         
-        diffuser = new BlockDiffuser("diffuser");
+        diffuser = new BlockDiffuser(Names.Blocks.DIFFUSER);
         GameRegistry.registerBlock(diffuser, diffuser.getUnlocalizedName());
         
-        distillery = new BlockDistillery("distillery");
+        distillery = new BlockDistillery(Names.Blocks.DISTILLERY);
         GameRegistry.registerBlock(distillery, distillery.getUnlocalizedName());
         
-        fleshBlock = new BlockFlesh("fleshBlock");
+        fleshBlock = new BlockFlesh(Names.Blocks.FLESH);
         GameRegistry.registerBlock(fleshBlock, fleshBlock.getUnlocalizedName());
         
-        liquidMixer = new BlockLiquidMixer("liquidMixer");
+        liquidMixer = new BlockLiquidMixer(Names.Blocks.LIQUID_MIXER);
         GameRegistry.registerBlock(liquidMixer, liquidMixer.getUnlocalizedName());
         
-        potionJug = new BlockPotionJug("potionJug");
+        potionJug = new BlockPotionJug(Names.Blocks.POTION_JUG);
         GameRegistry.registerBlock(potionJug, potionJug.getUnlocalizedName());
     }
 

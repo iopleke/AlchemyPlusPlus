@@ -1,8 +1,9 @@
 package alchemyplusplus.block;
 
-import alchemyplusplus.AlchemyPlusPlus;
+import alchemyplusplus.gui.CreativeTab;
 import alchemyplusplus.material.MaterialRegistry;
-import alchemyplusplus.utility.ConfigManager;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.AxisAlignedBB;
@@ -10,9 +11,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 import java.util.Random;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockFlesh extends BlockBasic
 {
@@ -26,7 +24,7 @@ public class BlockFlesh extends BlockBasic
         super(MaterialRegistry.flesh, blockname);
         this.setBlockName(blockname);
         this.setTickRandomly(true);
-        this.setCreativeTab(ConfigManager.appCreativeTab);
+        this.setCreativeTab(CreativeTab.APP_TAB);
         this.setHardness(3.0F).setResistance(5.0F);
     }
 

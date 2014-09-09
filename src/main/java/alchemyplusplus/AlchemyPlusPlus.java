@@ -1,11 +1,11 @@
 package alchemyplusplus;
 
-import alchemyplusplus.utility.EventManager;
-import alchemyplusplus.utility.ConfigManager;
 import alchemyplusplus.block.BlockRegistry;
 import alchemyplusplus.gui.GUIHandler;
 import alchemyplusplus.items.ItemRegistry;
 import alchemyplusplus.proxy.CommonProxy;
+import alchemyplusplus.utility.ConfigManager;
+import alchemyplusplus.utility.EventManager;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;

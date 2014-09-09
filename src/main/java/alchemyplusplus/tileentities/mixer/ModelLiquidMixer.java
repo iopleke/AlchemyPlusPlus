@@ -1,15 +1,13 @@
 package alchemyplusplus.tileentities.mixer;
 
-import org.lwjgl.opengl.GL11;
-
 import alchemyplusplus.items.ItemRegistry;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionHelper;
+import org.lwjgl.opengl.GL11;
 
 public class ModelLiquidMixer extends ModelBase
 {

@@ -1,0 +1,18 @@
+itemGroup.alchemyplusplus=AlchemyPlusPlus
+language.name=Nederlands
+language.region=NL
+language.code=nl_NL
+
+tile.fleshBlock.name=Blok Vlees
+tile.potionJug.name=Drank Kruik
+tile.diffuser.name=Diffuser
+tile.distillery.name=Distilderij
+tile.liquidMixer.name=Vloeistof Menger
+
+item.confusionPotion.name=Verwarringsdrank
+item.fishOil.name=Visolie
+item.ironPowder.name=Ijzerpoeder
+item.mixingFilter.name=Mengfilter
+item.springyCord.name=Veerkrachtige koord
+item.squidEye.name=Inktvis Oog
+item.woodAlcohol.name=Hout Alcohol

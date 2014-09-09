@@ -1,20 +1,13 @@
 package alchemyplusplus.items.book;
 
 import alchemyplusplus.gui.AlchemicalGuide;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import alchemyplusplus.reference.Textures;
+
+import java.io.*;
 import java.util.ArrayList;
-import net.minecraft.util.ResourceLocation;
 
 public class BookPage
 {
-
-    //Using one texture sheet for all the book pages... For now
-    private static String texture = "AlchemyPlusPlus:textures/bookData/textureMap.png";
-
     //Image data for this page
     private ArrayList<BookPageImage> images;
     private String[] text = new String[32];
@@ -26,7 +19,7 @@ public class BookPage
 
         //Rendering images on the page
         //First binding the texture
-        gui.getRenderEngine().bindTexture(new ResourceLocation(texture));
+        gui.getRenderEngine().bindTexture(Textures.Pages.ALL);
         //then render all the images from the list
         for (BookPageImage data : images)
         {
