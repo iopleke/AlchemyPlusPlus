@@ -1,6 +1,7 @@
 package alchemyplusplus.items;
 
 import alchemyplusplus.block.BlockRegistry;
+import alchemyplusplus.reference.Names;
 import alchemyplusplus.utility.ConfigManager;
 import java.util.ArrayList;
 
@@ -35,25 +36,25 @@ public class ItemRegistry
      */
     public static void registerItems()
     {
-        confusionPotion = new ItemTemplate("confusionPotion");
+        confusionPotion = new ItemTemplate(Names.Items.CONFUSION_POTION);
         GameRegistry.registerItem(confusionPotion, confusionPotion.getUnlocalizedName());
         
-        fishOil = new FishOil("fishOil");
+        fishOil = new FishOil(Names.Items.FISH_OIL);
         GameRegistry.registerItem(fishOil, fishOil.getUnlocalizedName());
         
-        ironPowder = new ItemTemplate("ironPowder");
+        ironPowder = new ItemTemplate(Names.Items.IRON_POWDER);
         GameRegistry.registerItem(ironPowder, ironPowder.getUnlocalizedName());
         
-        mixingFilter = new MixingFilter("mixingFilter");
+        mixingFilter = new MixingFilter(Names.Items.MIXING_FILTER);
         GameRegistry.registerItem(mixingFilter, mixingFilter.getUnlocalizedName());
         
-        springyCord = new ItemTemplate("springyCord");
+        springyCord = new ItemTemplate(Names.Items.SPRINGY_CORD);
         GameRegistry.registerItem(springyCord, springyCord.getUnlocalizedName());
         
-        squidEye = new ItemTemplate("squidEye");
+        squidEye = new ItemTemplate(Names.Items.SQUID_EYE);
         GameRegistry.registerItem(squidEye, squidEye.getUnlocalizedName());
         
-        woodAlcohol = new MixingFilter("woodAlcohol");
+        woodAlcohol = new MixingFilter(Names.Items.WOOD_ALCOHOL);
         GameRegistry.registerItem(woodAlcohol, woodAlcohol.getUnlocalizedName());
 
         // work in progress: override vanilla potions

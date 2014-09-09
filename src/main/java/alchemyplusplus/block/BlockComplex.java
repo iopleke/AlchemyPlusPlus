@@ -1,6 +1,7 @@
 package alchemyplusplus.block;
 
 import alchemyplusplus.AlchemyPlusPlus;
+import alchemyplusplus.gui.CreativeTab;
 import alchemyplusplus.utility.ConfigManager;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -24,7 +25,7 @@ public class BlockComplex extends BlockContainer
         super(material);
         this.setBlockName(blockname);
         this.icon = AlchemyPlusPlus.ID + ":" + blockname + "Icon";
-        this.setCreativeTab(ConfigManager.appCreativeTab);
+        this.setCreativeTab(CreativeTab.APP_TAB);
     }
 
     @Override

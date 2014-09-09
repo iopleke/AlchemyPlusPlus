@@ -6,6 +6,7 @@ import alchemyplusplus.block.BlockRegistry;
 import java.util.List;
 import java.util.Random;
 
+import alchemyplusplus.gui.CreativeTab;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 
@@ -33,7 +34,7 @@ public class BlockPotionJug extends BlockContainer
         super(Material.glass);
         this.setStepSound(Block.soundTypeGlass);
         this.setBlockName(blockname);
-        this.setCreativeTab(ConfigManager.appCreativeTab);
+        this.setCreativeTab(CreativeTab.APP_TAB);
         this.setBlockTextureName(AlchemyPlusPlus.ID + ":potionJugIcon");
     }
 

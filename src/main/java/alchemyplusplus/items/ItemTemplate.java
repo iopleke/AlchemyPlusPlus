@@ -1,6 +1,7 @@
 package alchemyplusplus.items;
 
 import alchemyplusplus.AlchemyPlusPlus;
+import alchemyplusplus.gui.CreativeTab;
 import alchemyplusplus.utility.ConfigManager;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -20,7 +21,7 @@ public class ItemTemplate extends Item
         super();
         this.iconName = AlchemyPlusPlus.ID + ":" + itemname;
         this.setUnlocalizedName(itemname);
-        this.setCreativeTab(ConfigManager.appCreativeTab);
+        this.setCreativeTab(CreativeTab.APP_TAB);
     }
 
     @Override

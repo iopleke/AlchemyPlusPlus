@@ -1,6 +1,7 @@
 package alchemyplusplus.block;
 
 import alchemyplusplus.AlchemyPlusPlus;
+import alchemyplusplus.gui.CreativeTab;
 import alchemyplusplus.material.MaterialRegistry;
 import alchemyplusplus.utility.ConfigManager;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -26,7 +27,7 @@ public class BlockFlesh extends BlockBasic
         super(MaterialRegistry.flesh, blockname);
         this.setBlockName(blockname);
         this.setTickRandomly(true);
-        this.setCreativeTab(ConfigManager.appCreativeTab);
+        this.setCreativeTab(CreativeTab.APP_TAB);
         this.setHardness(3.0F).setResistance(5.0F);
     }
 
