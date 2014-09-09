@@ -4,4 +4,5 @@ language.region=US
 language.code=en_US
 
 tile.fleshBlock.name=Block of Flesh
+tile.potionJug.name=Potion Jug
 itemGroup.AlchemyPlusPlus=AlchemyPlusPlus
