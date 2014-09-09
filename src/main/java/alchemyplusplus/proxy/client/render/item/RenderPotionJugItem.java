@@ -1,11 +1,10 @@
 package alchemyplusplus.proxy.client.render.item;
 
-import alchemyplusplus.AlchemyPlusPlus;
+import alchemyplusplus.reference.Textures;
 import alchemyplusplus.tileentities.potionjug.ModelPotionJug;
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
 
@@ -25,7 +24,7 @@ public class RenderPotionJugItem implements IItemRenderer
         GL11.glTranslatef(0.4F, 1.4F, 0.3F);
         GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
         GL11.glScalef(0.07F, 0.07F, 0.07F);
-        FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(AlchemyPlusPlus.ID + ":textures/blocks/potionJugModelTexture.png"));
+        FMLClientHandler.instance().getClient().renderEngine.bindTexture(Textures.Model.POTION_JUG);
         
         this.modelPotionJug.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 1);
         

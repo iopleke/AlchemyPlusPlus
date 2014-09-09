@@ -1,9 +1,8 @@
 package alchemyplusplus.utility;
 
-import alchemyplusplus.gui.CreativeTab;
-import java.io.File;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.config.Configuration;
+
+import java.io.File;
 
 public class ConfigManager
 {

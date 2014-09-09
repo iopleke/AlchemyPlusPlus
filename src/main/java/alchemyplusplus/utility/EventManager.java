@@ -2,8 +2,6 @@ package alchemyplusplus.utility;
 
 import alchemyplusplus.items.ItemRegistry;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import java.util.Random;
-
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -18,6 +16,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
+
+import java.util.Random;
 
 public class EventManager
 {

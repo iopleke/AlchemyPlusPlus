@@ -11,9 +11,9 @@ import alchemyplusplus.tileentities.diffuser.TileEntityDiffuser;
 import alchemyplusplus.tileentities.distillery.TileEntityDistillery;
 import alchemyplusplus.tileentities.mixer.TileEntityLiquidMixer;
 import alchemyplusplus.tileentities.potionjug.TileEntityPotionJug;
-import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import net.minecraft.item.Item;
+import net.minecraftforge.client.MinecraftForgeClient;
 
 public class ClientProxy extends CommonProxy
 {

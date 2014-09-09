@@ -2,10 +2,6 @@ package alchemyplusplus.utility;
 
 import alchemyplusplus.block.BlockRegistry;
 import alchemyplusplus.items.ItemRegistry;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import alchemyplusplus.items.MixingFilter;
 import alchemyplusplus.tileentities.distillery.TileEntityDistillery;
 import alchemyplusplus.tileentities.extractor.TileEntityExtractor;
@@ -20,6 +16,10 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.common.util.Constants;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class MixingHelper
 {

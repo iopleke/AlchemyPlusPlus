@@ -1,9 +1,7 @@
 package alchemyplusplus.gui;
 
 import alchemyplusplus.items.book.Book;
-
-import org.lwjgl.opengl.GL11;
-
+import alchemyplusplus.reference.Textures;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -11,7 +9,7 @@ import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 public class AlchemicalGuide extends GuiScreen
 {
@@ -72,11 +70,11 @@ public class AlchemicalGuide extends GuiScreen
         this.drawDefaultBackground();
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         //Bind Left Texture
-        this.mc.renderEngine.bindTexture(new ResourceLocation("AlchemyPlusPlus:textures/gui/bookLeft.png"));
+        this.mc.renderEngine.bindTexture(Textures.Gui.BOOK_LEFT);
         this.drawTexturedModalRect((this.width / 2) - xPage, (this.height - this.yPage) / 2, 0, 0, this.xPage, this.yPage);
 
         //Bind Right Texture
-        this.mc.renderEngine.bindTexture(new ResourceLocation("AlchemyPlusPlus:textures/gui/bookRight.png"));
+        this.mc.renderEngine.bindTexture(Textures.Gui.BOOK_RIGHT);
         this.drawTexturedModalRect((this.width / 2), (this.height - this.yPage) / 2, 0, 0, this.xPage, this.yPage);
 
         if (Book.alchemicalGude.isLoaded())

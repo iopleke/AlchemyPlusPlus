@@ -1,12 +1,12 @@
 package alchemyplusplus.proxy.client.render.block;
 
 import alchemyplusplus.block.BlockRegistry;
+import alchemyplusplus.reference.Textures;
 import alchemyplusplus.tileentities.mixer.ModelLiquidMixer;
 import alchemyplusplus.tileentities.mixer.TileEntityLiquidMixer;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -31,7 +31,7 @@ public class RenderLiquidMixerBlock extends TileEntitySpecialRenderer
         GL11.glRotatef(dir * (-90F), 0F, 1F, 0F);
         GL11.glTranslatef(-0.5F, 0, -0.5F);
 
-        bindTexture(new ResourceLocation("AlchemyPlusPlus:textures/blocks/liquidMixer.png"));
+        bindTexture(Textures.Model.LIQUID_MIXER);
 
         this.model.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, tl.mixerInventory);
 

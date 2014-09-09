@@ -1,14 +1,14 @@
 package alchemyplusplus.block;
 
 import alchemyplusplus.reference.Names;
-import alchemyplusplus.tileentities.potionjug.BlockPotionJug;
-import alchemyplusplus.tileentities.mixer.BlockLiquidMixer;
-import alchemyplusplus.tileentities.distillery.BlockDistillery;
 import alchemyplusplus.tileentities.diffuser.BlockDiffuser;
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemStack;
+import alchemyplusplus.tileentities.distillery.BlockDistillery;
+import alchemyplusplus.tileentities.mixer.BlockLiquidMixer;
+import alchemyplusplus.tileentities.potionjug.BlockPotionJug;
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.block.Block;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 
 public class BlockRegistry
 {

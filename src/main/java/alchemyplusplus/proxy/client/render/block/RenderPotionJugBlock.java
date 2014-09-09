@@ -1,7 +1,7 @@
 package alchemyplusplus.proxy.client.render.block;
 
-import alchemyplusplus.AlchemyPlusPlus;
 import alchemyplusplus.block.BlockRegistry;
+import alchemyplusplus.reference.Textures;
 import alchemyplusplus.tileentities.potionjug.ModelPotionJug;
 import alchemyplusplus.tileentities.potionjug.TileEntityPotionJug;
 import net.minecraft.block.Block;
@@ -10,9 +10,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.potion.PotionHelper;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-
 import org.lwjgl.opengl.GL11;
 
 public class RenderPotionJugBlock extends TileEntitySpecialRenderer
@@ -35,8 +33,7 @@ public class RenderPotionJugBlock extends TileEntitySpecialRenderer
         GL11.glRotatef(dir * (-90F), 0F, 1F, 0F);
         GL11.glTranslatef(-0.5F, 0, -0.5F);
 
-        // @TODO - add this ResourceLocation to the reference class per https://github.com/jakimfett/AlchemyPlusPlus/issues/6
-        bindTexture(new ResourceLocation(AlchemyPlusPlus.ID + ":textures/blocks/potionJugModelTexture.png"));
+        bindTexture(Textures.Model.POTION_JUG);
 
         float percentage = ((float) tl.containerHas) / tl.containerMax;
         int color = 0;

@@ -2,14 +2,14 @@ package alchemyplusplus.tileentities.diffuser;
 
 import alchemyplusplus.block.BlockComplex;
 import alchemyplusplus.utility.NotificationManager;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemPotion;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraft.block.Block;
-import net.minecraft.init.Items;
 
 public class BlockDiffuser extends BlockComplex
 {
