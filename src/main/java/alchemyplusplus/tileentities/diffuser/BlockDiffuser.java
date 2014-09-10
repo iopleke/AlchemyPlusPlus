@@ -1,6 +1,8 @@
 package alchemyplusplus.tileentities.diffuser;
 
 import alchemyplusplus.block.BlockComplex;
+import alchemyplusplus.gui.CreativeTab;
+import alchemyplusplus.reference.Textures;
 import alchemyplusplus.utility.NotificationManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -20,7 +22,10 @@ public class BlockDiffuser extends BlockComplex
     {
         super(Material.wood, blockname);
         this.setStepSound(Block.soundTypeWood);
+        this.setBlockName(blockname);
+        this.setCreativeTab(CreativeTab.APP_TAB);
         this.setBlockBounds(0.2F, 0F, 0.2F, 0.8F, 0.8F, 0.8F);
+        this.setBlockTextureName(Textures.Icon.DIFFUSER);
     }
 
     @Override

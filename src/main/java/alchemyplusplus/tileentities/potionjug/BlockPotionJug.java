@@ -1,9 +1,9 @@
 package alchemyplusplus.tileentities.potionjug;
 
-import alchemyplusplus.AlchemyPlusPlus;
 import alchemyplusplus.block.BlockRegistry;
 import alchemyplusplus.gui.CreativeTab;
 import alchemyplusplus.network.PacketDispatcher;
+import alchemyplusplus.reference.Textures;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.block.Block;
@@ -30,7 +30,7 @@ public class BlockPotionJug extends BlockContainer
         this.setStepSound(Block.soundTypeGlass);
         this.setBlockName(blockname);
         this.setCreativeTab(CreativeTab.APP_TAB);
-        this.setBlockTextureName(AlchemyPlusPlus.ID + ":potionJugIcon");
+        this.setBlockTextureName(Textures.Icon.POTION_JUG);
     }
 
     @Override

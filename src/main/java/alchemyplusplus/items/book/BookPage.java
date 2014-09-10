@@ -19,7 +19,7 @@ public class BookPage
 
         //Rendering images on the page
         //First binding the texture
-        gui.getRenderEngine().bindTexture(Textures.Pages.ALL);
+        gui.getRenderEngine().bindTexture(Textures.Page.ALL);
         //then render all the images from the list
         for (BookPageImage data : images)
         {

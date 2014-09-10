@@ -1,6 +1,6 @@
 package alchemyplusplus.block;
 
-import alchemyplusplus.reference.Names;
+import alchemyplusplus.reference.Naming;
 import alchemyplusplus.tileentities.diffuser.BlockDiffuser;
 import alchemyplusplus.tileentities.distillery.BlockDistillery;
 import alchemyplusplus.tileentities.mixer.BlockLiquidMixer;
@@ -27,19 +27,19 @@ public class BlockRegistry
     public static void registerBlocks()
     {
         
-        diffuser = new BlockDiffuser(Names.Blocks.DIFFUSER);
+        diffuser = new BlockDiffuser(Naming.Blocks.DIFFUSER);
         GameRegistry.registerBlock(diffuser, diffuser.getUnlocalizedName());
         
-        distillery = new BlockDistillery(Names.Blocks.DISTILLERY);
+        distillery = new BlockDistillery(Naming.Blocks.DISTILLERY);
         GameRegistry.registerBlock(distillery, distillery.getUnlocalizedName());
         
-        fleshBlock = new BlockFlesh(Names.Blocks.FLESH);
+        fleshBlock = new BlockFlesh(Naming.Blocks.FLESH);
         GameRegistry.registerBlock(fleshBlock, fleshBlock.getUnlocalizedName());
         
-        liquidMixer = new BlockLiquidMixer(Names.Blocks.LIQUID_MIXER);
+        liquidMixer = new BlockLiquidMixer(Naming.Blocks.LIQUID_MIXER);
         GameRegistry.registerBlock(liquidMixer, liquidMixer.getUnlocalizedName());
         
-        potionJug = new BlockPotionJug(Names.Blocks.POTION_JUG);
+        potionJug = new BlockPotionJug(Naming.Blocks.POTION_JUG);
         GameRegistry.registerBlock(potionJug, potionJug.getUnlocalizedName());
     }
 

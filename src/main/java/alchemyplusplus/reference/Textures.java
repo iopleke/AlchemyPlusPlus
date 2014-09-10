@@ -1,5 +1,6 @@
 package alchemyplusplus.reference;
 
+import alchemyplusplus.AlchemyPlusPlus;
 import alchemyplusplus.utility.ResourceLocationHelper;
 import net.minecraft.util.ResourceLocation;
 
@@ -15,7 +16,7 @@ public class Textures
         public static final ResourceLocation MIXER = ResourceLocationHelper.getResourceLocation(GUI_SHEET_LOCATION + "mixer.png");
     }
 
-    public static class Pages
+    public static class Page
     {
         public static final String BOOK_DATA_LOCATION = "textures/bookData/";
         public static final ResourceLocation ALL = ResourceLocationHelper.getResourceLocation(BOOK_DATA_LOCATION + "textureMap.png");
@@ -25,8 +26,14 @@ public class Textures
     {
         public static final String MODEL_TEXTURE_LOCATION = "textures/models/";
         public static final ResourceLocation DIFFUSER = ResourceLocationHelper.getResourceLocation(MODEL_TEXTURE_LOCATION + "diffuser.png");
-        public static final ResourceLocation POTION_JUG = ResourceLocationHelper.getResourceLocation(MODEL_TEXTURE_LOCATION + "potionJug.png");
         public static final ResourceLocation DISTILLERY = ResourceLocationHelper.getResourceLocation(MODEL_TEXTURE_LOCATION + "distillery.png");
         public static final ResourceLocation LIQUID_MIXER = ResourceLocationHelper.getResourceLocation(MODEL_TEXTURE_LOCATION + "liquidMixer.png");
+        public static final ResourceLocation POTION_JUG = ResourceLocationHelper.getResourceLocation(MODEL_TEXTURE_LOCATION + "potionJug.png");
+    }
+    
+    public static class Icon {
+        public static final String ICON_SUFFIX = "Icon";
+        public static final String DIFFUSER = AlchemyPlusPlus.ID + ":" + Naming.Blocks.DIFFUSER + Textures.Icon.ICON_SUFFIX;
+        public static final String POTION_JUG = AlchemyPlusPlus.ID + ":" + Naming.Blocks.POTION_JUG + Textures.Icon.ICON_SUFFIX;
     }
 }

@@ -1,6 +1,6 @@
 package alchemyplusplus.reference;
 
-public class Names
+public class Naming
 {
     public static final class Blocks
     {
