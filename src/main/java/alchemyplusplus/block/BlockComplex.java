@@ -67,4 +67,10 @@ public class BlockComplex extends BlockContainer
     {
         return false;
     }
+
+    @Override
+    public int getRenderType()
+    {
+        return -1;
+    }
 }
