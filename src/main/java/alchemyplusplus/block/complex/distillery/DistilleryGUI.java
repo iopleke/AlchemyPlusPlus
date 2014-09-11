@@ -10,8 +10,7 @@ public class DistilleryGUI extends GuiContainer
 
     private final DistilleryTileEntity tileEntity;
 
-    public DistilleryGUI(InventoryPlayer inventoryPlayer,
-            DistilleryTileEntity tileEntity)
+    public DistilleryGUI(InventoryPlayer inventoryPlayer, DistilleryTileEntity tileEntity)
     {
         super(new DistilleryContainer(inventoryPlayer, tileEntity));
         this.tileEntity = tileEntity;

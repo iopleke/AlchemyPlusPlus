@@ -17,44 +17,142 @@ import net.minecraftforge.common.util.Constants;
 
 public class DistilleryTileEntity extends TileEntity implements IInventory
 {
-    public int burntotal = 1;
-    private ItemStack[] distilleryInventory = new ItemStack[4];
 
+    private ItemStack[] inventory;
+    public int burntotal = 1;
     public int distillingTicks = 0;
     public int fuel = 0;
 
-    @Override
-    public void closeInventory()
+    public DistilleryTileEntity()
     {
+        this.inventory = new ItemStack[4];
+    }
+
+    @Override
+    public int getSizeInventory()
+    {
+        return this.inventory.length;
+    }
+
+    @Override
+    public ItemStack getStackInSlot(int slot)
+    {
+        return this.inventory[slot];
+    }
+
+    @Override
+    public void setInventorySlotContents(int slot, ItemStack stack)
+    {
+        this.inventory[slot] = stack;
+
+        if (stack != null && stack.stackSize > this.getInventoryStackLimit())
+        {
+            stack.stackSize = this.getInventoryStackLimit();
+        }
     }
 
     @Override
     public ItemStack decrStackSize(int slot, int amount)
     {
-        if (this.distilleryInventory[slot] != null)
-        {
-            ItemStack itemstack;
+        ItemStack stack = this.getStackInSlot(slot);
 
-            if (this.distilleryInventory[slot].stackSize <= amount)
+        if (stack != null)
+        {
+            if (stack.stackSize <= amount)
             {
-                itemstack = this.distilleryInventory[slot];
-                this.distilleryInventory[slot] = null;
-                return itemstack;
+                this.setInventorySlotContents(slot, null);
             } else
             {
-                itemstack = this.distilleryInventory[slot].splitStack(amount);
+                stack = stack.splitStack(amount);
 
-                if (this.distilleryInventory[slot].stackSize == 0)
+                if (stack.stackSize == 0)
                 {
-                    this.distilleryInventory[slot] = null;
+                    this.setInventorySlotContents(slot, null);
                 }
-
-                return itemstack;
             }
-        } else
-        {
-            return null;
         }
+        return stack;
+    }
+
+    @Override
+    public ItemStack getStackInSlotOnClosing(int slot)
+    {
+        ItemStack stack = this.getStackInSlot(slot);
+        if (stack != null)
+        {
+            this.setInventorySlotContents(slot, null);
+        }
+        return stack;
+    }
+
+    @Override
+    public int getInventoryStackLimit()
+    {
+        return 64;
+    }
+
+    @Override
+    public boolean isUseableByPlayer(EntityPlayer entityplayer)
+    {
+        return worldObj.getTileEntity(xCoord, yCoord, zCoord) == this && entityplayer.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) < 64;
+    }
+
+    @Override
+    public void closeInventory()
+    {
+    }
+    
+    @Override
+    public void openInventory()
+    {
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound par1NBTTagCompound)
+    {
+        super.readFromNBT(par1NBTTagCompound);
+        NBTTagList nbttaglist = par1NBTTagCompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
+        this.inventory = new ItemStack[this.getSizeInventory()];
+
+        for (int i = 0; i < nbttaglist.tagCount(); ++i)
+        {
+            NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.getCompoundTagAt(i);
+            byte b0 = nbttagcompound1.getByte("Slot");
+
+            if (b0 >= 0 && b0 < this.inventory.length)
+            {
+                this.inventory[b0] = ItemStack
+                        .loadItemStackFromNBT(nbttagcompound1);
+            }
+        }
+
+        this.distillingTicks = par1NBTTagCompound.getShort("distillingTicks");
+        this.fuel = par1NBTTagCompound.getShort("fuel");
+
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound par1NBTTagCompound)
+    {
+        super.writeToNBT(par1NBTTagCompound);
+        par1NBTTagCompound.setShort("distillingTicks",
+                (short) this.distillingTicks);
+        par1NBTTagCompound.setShort("fuel", (short) this.fuel);
+        NBTTagList nbttaglist = new NBTTagList();
+
+        for (int i = 0; i < this.inventory.length; ++i)
+        {
+            if (this.inventory[i] != null)
+            {
+                NBTTagCompound nbttagcompound1 = new NBTTagCompound();
+                nbttagcompound1.setByte("Slot", (byte) i);
+                this.inventory[i].writeToNBT(nbttagcompound1);
+                nbttaglist.appendTag(nbttagcompound1);
+            }
+        }
+
+        par1NBTTagCompound.setTag("Items", nbttaglist);
+
     }
 
     @Override
@@ -73,41 +171,9 @@ public class DistilleryTileEntity extends TileEntity implements IInventory
     }
 
     @Override
-    public int getInventoryStackLimit()
-    {
-        return 64;
-    }
-
-    @Override
-    public int getSizeInventory()
-    {
-        return this.distilleryInventory.length;
-    }
-
-    @Override
-    public ItemStack getStackInSlot(int slot)
-    {
-        return this.distilleryInventory[slot];
-    }
-
-    @Override
-    public ItemStack getStackInSlotOnClosing(int slot)
-    {
-        if (this.distilleryInventory[slot] != null)
-        {
-            ItemStack itemstack = this.distilleryInventory[slot];
-            this.distilleryInventory[slot] = null;
-            return itemstack;
-        } else
-        {
-            return null;
-        }
-    }
-
-    @Override
     public boolean hasCustomInventoryName()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
     public boolean isActive()
@@ -138,52 +204,6 @@ public class DistilleryTileEntity extends TileEntity implements IInventory
             }
         }
         return false;
-    }
-
-    @Override
-    public boolean isUseableByPlayer(EntityPlayer entityplayer)
-    {
-        return true;
-    }
-
-    @Override
-    public void openInventory()
-    {
-    }
-
-    @Override
-    public void readFromNBT(NBTTagCompound par1NBTTagCompound)
-    {
-        super.readFromNBT(par1NBTTagCompound);
-        NBTTagList nbttaglist = par1NBTTagCompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
-        this.distilleryInventory = new ItemStack[this.getSizeInventory()];
-
-        for (int i = 0; i < nbttaglist.tagCount(); ++i)
-        {
-            NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.getCompoundTagAt(i);
-            byte b0 = nbttagcompound1.getByte("Slot");
-
-            if (b0 >= 0 && b0 < this.distilleryInventory.length)
-            {
-                this.distilleryInventory[b0] = ItemStack
-                        .loadItemStackFromNBT(nbttagcompound1);
-            }
-        }
-
-        this.distillingTicks = par1NBTTagCompound.getShort("distillingTicks");
-        this.fuel = par1NBTTagCompound.getShort("fuel");
-
-    }
-
-    @Override
-    public void setInventorySlotContents(int slot, ItemStack stack)
-    {
-        this.distilleryInventory[slot] = stack;
-
-        if (stack != null && stack.stackSize > this.getInventoryStackLimit())
-        {
-            stack.stackSize = this.getInventoryStackLimit();
-        }
     }
 
     @Override
@@ -224,29 +244,5 @@ public class DistilleryTileEntity extends TileEntity implements IInventory
         {
             fuel = 0;
         }
-    }
-
-    @Override
-    public void writeToNBT(NBTTagCompound par1NBTTagCompound)
-    {
-        super.writeToNBT(par1NBTTagCompound);
-        par1NBTTagCompound.setShort("distillingTicks",
-                (short) this.distillingTicks);
-        par1NBTTagCompound.setShort("fuel", (short) this.fuel);
-        NBTTagList nbttaglist = new NBTTagList();
-
-        for (int i = 0; i < this.distilleryInventory.length; ++i)
-        {
-            if (this.distilleryInventory[i] != null)
-            {
-                NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-                nbttagcompound1.setByte("Slot", (byte) i);
-                this.distilleryInventory[i].writeToNBT(nbttagcompound1);
-                nbttaglist.appendTag(nbttagcompound1);
-            }
-        }
-
-        par1NBTTagCompound.setTag("Items", nbttaglist);
-
     }
 }

@@ -11,12 +11,11 @@ import net.minecraft.item.ItemStack;
 public class DistilleryContainer extends Container
 {
 
-    private final DistilleryTileEntity distillery;
+    protected DistilleryTileEntity distillery;
     private int distillingTicks = 0;
     private int fuel = 0;
 
-    public DistilleryContainer(InventoryPlayer playerInv,
-            DistilleryTileEntity distillery)
+    public DistilleryContainer(InventoryPlayer playerInv, DistilleryTileEntity distillery)
     {
         this.distillery = distillery;
 
@@ -25,62 +24,24 @@ public class DistilleryContainer extends Container
         this.addSlotToContainer(new DistillerySlotOutput(distillery, 2, 113, 58)); // output
         this.addSlotToContainer(new DistillerySlotFuel(distillery, 3, 62, 58)); // fuel
 
-        int i;
-
-        for (i = 0; i < 3; ++i)
-        {
-            for (int j = 0; j < 9; ++j)
-            {
-                this.addSlotToContainer(new Slot(playerInv, j + i * 9 + 9,
-                        8 + j * 18, 84 + i * 18));
-            }
-        }
-
-        for (i = 0; i < 9; ++i)
-        {
-            this.addSlotToContainer(new Slot(playerInv, i, 8 + i * 18, 142));
-        }
+        this.bindPlayerInventory(playerInv);
 
     }
 
-    @Override
-    public void addCraftingToCrafters(ICrafting par1ICrafting)
+    private void bindPlayerInventory(InventoryPlayer inventoryPlayer)
     {
-        super.addCraftingToCrafters(par1ICrafting);
-        par1ICrafting.sendProgressBarUpdate(this, 0,
-                this.distillery.distillingTicks);
-        par1ICrafting.sendProgressBarUpdate(this, 1, this.distillery.fuel);
-    }
-
-    @Override
-    public boolean canInteractWith(EntityPlayer entityplayer)
-    {
-        return true;
-    }
-
-    @Override
-    public void detectAndSendChanges()
-    {
-        super.detectAndSendChanges();
-
-        for (int i = 0; i < this.crafters.size(); ++i)
+        for (int i = 0; i < 3; i++)
         {
-            ICrafting icrafting = (ICrafting) this.crafters.get(i);
-
-            if (this.distillingTicks != this.distillery.distillingTicks)
+            for (int j = 0; j < 9; j++)
             {
-                icrafting.sendProgressBarUpdate(this, 0,
-                        this.distillery.distillingTicks);
-            }
-
-            if (this.fuel != this.distillery.fuel)
-            {
-                icrafting.sendProgressBarUpdate(this, 1, this.distillery.fuel);
+                addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
             }
         }
 
-        this.distillingTicks = this.distillery.distillingTicks;
-        this.fuel = this.distillery.fuel;
+        for (int i = 0; i < 9; i++)
+        {
+            addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, 142));
+        }
     }
 
     @Override
@@ -127,6 +88,46 @@ public class DistilleryContainer extends Container
     }
 
     @Override
+    public void addCraftingToCrafters(ICrafting par1ICrafting)
+    {
+        super.addCraftingToCrafters(par1ICrafting);
+        par1ICrafting.sendProgressBarUpdate(this, 0,
+                this.distillery.distillingTicks);
+        par1ICrafting.sendProgressBarUpdate(this, 1, this.distillery.fuel);
+    }
+
+    @Override
+    public boolean canInteractWith(EntityPlayer entityplayer)
+    {
+        return true;
+    }
+
+    @Override
+    public void detectAndSendChanges()
+    {
+        super.detectAndSendChanges();
+
+        for (int i = 0; i < this.crafters.size(); ++i)
+        {
+            ICrafting icrafting = (ICrafting) this.crafters.get(i);
+
+            if (this.distillingTicks != this.distillery.distillingTicks)
+            {
+                icrafting.sendProgressBarUpdate(this, 0,
+                        this.distillery.distillingTicks);
+            }
+
+            if (this.fuel != this.distillery.fuel)
+            {
+                icrafting.sendProgressBarUpdate(this, 1, this.distillery.fuel);
+            }
+        }
+
+        this.distillingTicks = this.distillery.distillingTicks;
+        this.fuel = this.distillery.fuel;
+    }
+
+    @Override
     public void updateProgressBar(int id, int value)
     {
         if (id == 0)
@@ -138,5 +139,4 @@ public class DistilleryContainer extends Container
         }
 
     }
-
 }

@@ -12,9 +12,10 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import java.util.Arrays;
 
-@Mod(modid = AlchemyPlusPlus.ID, name = AlchemyPlusPlus.NAME, version = AlchemyPlusPlus.VERSION_FULL, useMetadata = false, acceptedMinecraftVersions="[1.7.10,)")
+@Mod(modid = AlchemyPlusPlus.ID, name = AlchemyPlusPlus.NAME, version = AlchemyPlusPlus.VERSION_FULL, useMetadata = false,guiFactory = "alchemyplusplus.gui.GUIFactory", acceptedMinecraftVersions = "[1.7.10,)")
 public class AlchemyPlusPlus
 {
 
@@ -50,7 +51,7 @@ public class AlchemyPlusPlus
     public static AlchemyPlusPlus instance = new AlchemyPlusPlus();
     @SidedProxy(clientSide = "alchemyplusplus.proxy.client.ClientProxy", serverSide = "alchemyplusplus.proxy.CommonProxy")
     public static CommonProxy proxy;
-    
+
     @Mod.Metadata(AlchemyPlusPlus.ID)
     public static ModMetadata metadata;
 
@@ -87,6 +88,12 @@ public class AlchemyPlusPlus
         }
 
         EventManager.registerEventHooks();
+    }
+
+    @EventHandler
+    public void init(FMLInitializationEvent event)
+    {
+        NetworkRegistry.INSTANCE.registerGuiHandler(this, new GUIHandler());
     }
 
     @EventHandler

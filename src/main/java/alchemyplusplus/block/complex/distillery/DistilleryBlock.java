@@ -23,25 +23,27 @@ public class DistilleryBlock extends BlockComplex
     }
 
     @Override
-    public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_)
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int meta, float b, float c, float g)
     {
-        return new DistilleryTileEntity();
-    }
+        TileEntity tileEntity = world.getTileEntity(x, y, z);
+        if (tileEntity != null && !player.isSneaking())
+        {
+            if (!world.isRemote)
+            {
+                System.out.println("Got to the block activation call");
+                player.openGui(AlchemyPlusPlus.instance, 0, world, x, y, z);
+                
+            }
+            return true;
+        }
 
-    @Override
-    public boolean isOpaqueCube()
-    {
         return false;
     }
 
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int a, float b, float c, float g)
+    public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_)
     {
-        if (!world.isRemote)
-        {
-            player.openGui(AlchemyPlusPlus.instance, 2, world, x, y, z);
-        }
-        return true;
+        return new DistilleryTileEntity();
     }
 
     @Override
