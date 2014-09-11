@@ -42,10 +42,6 @@ public class GUIHandler implements IGuiHandler
                 TileEntityDistillery entity = (TileEntityDistillery) world.getTileEntity(x, y, z);
                 return new GuiDistillery(player.inventory, entity);
             }
-            case 3:
-            { // Book
-                return new AlchemicalGuide(player, player.getHeldItem());
-            }
             default:
                 return null;
         }
