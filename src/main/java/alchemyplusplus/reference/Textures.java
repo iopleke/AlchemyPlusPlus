@@ -27,7 +27,7 @@ public class Textures
         public static final String MODEL_TEXTURE_LOCATION = "textures/models/";
         public static final ResourceLocation DIFFUSER = ResourceLocationHelper.getResourceLocation(MODEL_TEXTURE_LOCATION + "diffuser.png");
         public static final ResourceLocation DISTILLERY = ResourceLocationHelper.getResourceLocation(MODEL_TEXTURE_LOCATION + "distillery.png");
-        public static final ResourceLocation LIQUID_MIXER = ResourceLocationHelper.getResourceLocation(MODEL_TEXTURE_LOCATION + "liquidMixer.png");
+        public static final ResourceLocation FLUID_MIXER = ResourceLocationHelper.getResourceLocation(MODEL_TEXTURE_LOCATION + "fluidMixer.png");
         public static final ResourceLocation POTION_JUG = ResourceLocationHelper.getResourceLocation(MODEL_TEXTURE_LOCATION + "potionJug.png");
     }
     

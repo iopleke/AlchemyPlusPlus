@@ -31,7 +31,7 @@ public class FluidMixerBlockRender extends TileEntitySpecialRenderer
         GL11.glRotatef(dir * (-90F), 0F, 1F, 0F);
         GL11.glTranslatef(-0.5F, 0, -0.5F);
 
-        bindTexture(Textures.Model.LIQUID_MIXER);
+        bindTexture(Textures.Model.FLUID_MIXER);
 
         this.model.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, tl.mixerInventory);
 
@@ -44,7 +44,7 @@ public class FluidMixerBlockRender extends TileEntitySpecialRenderer
         GL11.glPushMatrix();
         GL11.glTranslatef((float) d, (float) d1, (float) d2);
         FluidMixerTileEntity tileEntityYour = (FluidMixerTileEntity) tileEntity;
-        render(tileEntityYour, tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, BlockRegistry.liquidMixer);
+        render(tileEntityYour, tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, BlockRegistry.fluidMixer);
         GL11.glPopMatrix();
     }
 }

@@ -16,7 +16,7 @@ public class BlockRegistry
     public static Block diffuser;
     public static Block distillery;
     public static Block fleshBlock;
-    public static Block liquidMixer;
+    public static Block fluidMixer;
     public static Block potionJug;
 
     public static void registerBlockRecipes()
@@ -37,8 +37,8 @@ public class BlockRegistry
         fleshBlock = new FleshBlock(Naming.Blocks.FLESH);
         GameRegistry.registerBlock(fleshBlock, fleshBlock.getUnlocalizedName());
         
-        liquidMixer = new FluidMixerBlock(Naming.Blocks.LIQUID_MIXER);
-        GameRegistry.registerBlock(liquidMixer, liquidMixer.getUnlocalizedName());
+        fluidMixer = new FluidMixerBlock(Naming.Blocks.FLUID_MIXER);
+        GameRegistry.registerBlock(fluidMixer, fluidMixer.getUnlocalizedName());
         
         potionJug = new PotionJugBlock(Naming.Blocks.POTION_JUG);
         GameRegistry.registerBlock(potionJug, potionJug.getUnlocalizedName());

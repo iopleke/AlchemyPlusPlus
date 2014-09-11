@@ -7,7 +7,7 @@ tile.fleshBlock.name=Blok Vlees
 tile.potionJug.name=Drank Kruik
 tile.diffuser.name=Diffuser
 tile.distillery.name=Distilderij
-tile.liquidMixer.name=Vloeistof Menger
+tile.fluidMixer.name=Vloeistof Menger
 
 item.confusionPotion.name=Verwarringsdrank
 item.fishOil.name=Visolie

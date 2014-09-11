@@ -7,7 +7,7 @@ public class Naming
         public static final String DIFFUSER = "diffuser";
         public static final String DISTILLERY = "distillery";
         public static final String FLESH = "fleshBlock";
-        public static final String LIQUID_MIXER = "liquidMixer";
+        public static final String FLUID_MIXER = "fluidMixer";
         public static final String POTION_JUG ="potionJug";
     }
 

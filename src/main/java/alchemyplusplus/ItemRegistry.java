@@ -101,7 +101,7 @@ public class ItemRegistry
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(mixingFilter), " og", "oDo", "go ", 'g', new ItemStack(Blocks.glass_pane), 'D', new ItemStack(Items.diamond), 'o', Blocks.iron_block));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(mixingFilter), "go ", "oDo", " og", 'g', new ItemStack(Blocks.glass_pane), 'D', new ItemStack(Items.diamond), 'o', Blocks.iron_block));
         GameRegistry.addShapelessRecipe(new ItemStack(fishOil, 1, 0), new ItemStack(Items.fish), new ItemStack(Items.glass_bottle));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockRegistry.liquidMixer), "x x", "xix", "oOo", 'x', new ItemStack(Blocks.glass_pane), 'i', new ItemStack(Items.iron_ingot), 'o', Blocks.iron_block, 'O', new ItemStack(Blocks.iron_block)));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockRegistry.fluidMixer), "x x", "xix", "oOo", 'x', new ItemStack(Blocks.glass_pane), 'i', new ItemStack(Items.iron_ingot), 'o', Blocks.iron_block, 'O', new ItemStack(Blocks.iron_block)));
         GameRegistry.addRecipe(new ItemStack(BlockRegistry.distillery, 1, 0), new Object[]
         {
             "Bi-", "C-P", "F-S", Character.valueOf('B'), Items.brewing_stand, Character.valueOf('i'), Items.iron_ingot, Character.valueOf('C'), Items.cauldron, Character.valueOf('P'), BlockRegistry.potionJug, Character.valueOf('F'), Blocks.furnace, Character.valueOf('S'), Items.iron_ingot
