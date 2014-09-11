@@ -4,6 +4,7 @@ import alchemyplusplus.block.complex.diffuser.DiffuserTileEntity;
 import alchemyplusplus.block.complex.distillery.DistilleryTileEntity;
 import alchemyplusplus.block.complex.fluidMixer.FluidMixerTileEntity;
 import alchemyplusplus.block.complex.potionJug.PotionJugTileEntity;
+import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -69,5 +70,10 @@ public class CommonProxy
     public String getItemDisplayName(ItemStack newStack)
     {
         return this.displayName;
+    }
+
+    public EntityPlayer getPlayer(MessageContext context)
+    {
+        return context.getServerHandler().playerEntity;
     }
 }

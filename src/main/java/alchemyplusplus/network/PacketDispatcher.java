@@ -1,5 +1,6 @@
 package alchemyplusplus.network;
 
+import alchemyplusplus.AlchemyPlusPlus;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -78,8 +79,7 @@ public class PacketDispatcher extends SimpleNetworkWrapper
         @Override
         public final IMessage onMessage(T message, MessageContext context)
         {
-            message.processPacket(context.side.isServer() ? context.getServerHandler().playerEntity
-                    : Minecraft.getMinecraft().thePlayer);
+            processPacket(AlchemyPlusPlus.proxy.getPlayer(context));
             return null;
         }
 
