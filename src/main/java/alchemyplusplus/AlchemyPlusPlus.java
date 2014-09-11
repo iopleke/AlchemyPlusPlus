@@ -31,7 +31,7 @@ public class AlchemyPlusPlus
     public static final String V_MINOR = "@MINOR@";
     public static final String V_REVIS = "@REVIS@";
     public static final String V_BUILD = "@BUILD@";
-    public static final String VERSION_FULL = V_MAJOR + "." + V_MINOR + V_REVIS + "." + V_BUILD;
+    public static final String VERSION_FULL = V_MAJOR + "." + V_MINOR + "." + V_REVIS + "." + V_BUILD;
 
     // Texture basedir
     public static final String textureBase = "minechem:";
