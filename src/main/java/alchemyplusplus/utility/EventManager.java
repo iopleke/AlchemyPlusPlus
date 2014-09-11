@@ -1,6 +1,6 @@
 package alchemyplusplus.utility;
 
-import alchemyplusplus.items.ItemRegistry;
+import alchemyplusplus.ItemRegistry;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;

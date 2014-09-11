@@ -1,16 +1,16 @@
 package alchemyplusplus.gui;
 
-import alchemyplusplus.tileentities.diffuser.ContainerDiffuser;
-import alchemyplusplus.tileentities.diffuser.TileEntityDiffuser;
-import alchemyplusplus.tileentities.distillery.ContainerDistillery;
-import alchemyplusplus.tileentities.distillery.GuiDistillery;
-import alchemyplusplus.tileentities.distillery.TileEntityDistillery;
-import alchemyplusplus.tileentities.extractor.ContainerExtractor;
-import alchemyplusplus.tileentities.extractor.GuiExtractor;
-import alchemyplusplus.tileentities.extractor.TileEntityExtractor;
-import alchemyplusplus.tileentities.mixer.ContainerLiquidMixer;
-import alchemyplusplus.tileentities.mixer.GuiLiquidMixer;
-import alchemyplusplus.tileentities.mixer.TileEntityLiquidMixer;
+import alchemyplusplus.block.complex.diffuser.DiffuserContainer;
+import alchemyplusplus.block.complex.diffuser.DiffuserTileEntity;
+import alchemyplusplus.block.complex.distillery.DistilleryContainer;
+import alchemyplusplus.block.complex.distillery.DistilleryGUI;
+import alchemyplusplus.block.complex.distillery.DistilleryTileEntity;
+import alchemyplusplus.block.complex.extractor.ExtractorContainer;
+import alchemyplusplus.block.complex.extractor.ExtractorGUI;
+import alchemyplusplus.block.complex.extractor.ExtractorTileEntity;
+import alchemyplusplus.block.complex.fluidMixer.FluidMixerContainer;
+import alchemyplusplus.block.complex.fluidMixer.FluidMixerGUI;
+import alchemyplusplus.block.complex.fluidMixer.FluidMixerTileEntity;
 import cpw.mods.fml.common.network.IGuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
@@ -29,18 +29,18 @@ public class GUIHandler implements IGuiHandler
         {
             case 0:
             { // Potion mixer
-                TileEntityLiquidMixer entity = (TileEntityLiquidMixer) world.getTileEntity(x, y, z);
-                return new GuiLiquidMixer(player.inventory, entity);
+                FluidMixerTileEntity entity = (FluidMixerTileEntity) world.getTileEntity(x, y, z);
+                return new FluidMixerGUI(player.inventory, entity);
             }
             case 1:
             { // Extractor
-                TileEntityExtractor entity = (TileEntityExtractor) world.getTileEntity(x, y, z);
-                return new GuiExtractor(player.inventory, entity);
+                ExtractorTileEntity entity = (ExtractorTileEntity) world.getTileEntity(x, y, z);
+                return new ExtractorGUI(player.inventory, entity);
             }
             case 2:
             { // Distillery
-                TileEntityDistillery entity = (TileEntityDistillery) world.getTileEntity(x, y, z);
-                return new GuiDistillery(player.inventory, entity);
+                DistilleryTileEntity entity = (DistilleryTileEntity) world.getTileEntity(x, y, z);
+                return new DistilleryGUI(player.inventory, entity);
             }
             default:
                 return null;
@@ -55,23 +55,23 @@ public class GUIHandler implements IGuiHandler
         {
             case 0:
             { // Potion mixer
-                TileEntityLiquidMixer entity = (TileEntityLiquidMixer) world.getTileEntity(x, y, z);
-                return new ContainerLiquidMixer(player.inventory, entity);
+                FluidMixerTileEntity entity = (FluidMixerTileEntity) world.getTileEntity(x, y, z);
+                return new FluidMixerContainer(player.inventory, entity);
             }
             case 1:
             { // Extractor
-                TileEntityExtractor entity = (TileEntityExtractor) world.getTileEntity(x, y, z);
-                return new ContainerExtractor(player.inventory, entity);
+                ExtractorTileEntity entity = (ExtractorTileEntity) world.getTileEntity(x, y, z);
+                return new ExtractorContainer(player.inventory, entity);
             }
             case 2:
             { // Distillery
-                TileEntityDistillery entity = (TileEntityDistillery) world.getTileEntity(x, y, z);
-                return new ContainerDistillery(player.inventory, entity);
+                DistilleryTileEntity entity = (DistilleryTileEntity) world.getTileEntity(x, y, z);
+                return new DistilleryContainer(player.inventory, entity);
             }
             case 3:
             { // Diffuser
-                TileEntityDiffuser entity = (TileEntityDiffuser) world.getTileEntity(x, y, z);
-                return new ContainerDiffuser(player.inventory, entity);
+                DiffuserTileEntity entity = (DiffuserTileEntity) world.getTileEntity(x, y, z);
+                return new DiffuserContainer(player.inventory, entity);
             }
 
             default:

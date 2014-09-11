@@ -1,11 +1,11 @@
 package alchemyplusplus.utility;
 
-import alchemyplusplus.block.BlockRegistry;
-import alchemyplusplus.items.ItemRegistry;
-import alchemyplusplus.items.MixingFilter;
-import alchemyplusplus.tileentities.distillery.TileEntityDistillery;
-import alchemyplusplus.tileentities.extractor.TileEntityExtractor;
-import alchemyplusplus.tileentities.mixer.TileEntityLiquidMixer;
+import alchemyplusplus.BlockRegistry;
+import alchemyplusplus.ItemRegistry;
+import alchemyplusplus.item.MixingFilter;
+import alchemyplusplus.block.complex.distillery.DistilleryTileEntity;
+import alchemyplusplus.block.complex.extractor.ExtractorTileEntity;
+import alchemyplusplus.block.complex.fluidMixer.FluidMixerTileEntity;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -191,7 +191,7 @@ public class MixingHelper
         return tag;
     }
 
-    public static boolean distillingPossible(TileEntityDistillery te)
+    public static boolean distillingPossible(DistilleryTileEntity te)
     {
         if (te.getStackInSlot(1) != null && te.getStackInSlot(2) != null
                 && te.isItemValidForSlot(1, te.getStackInSlot(1))
@@ -206,7 +206,7 @@ public class MixingHelper
         return false;
     }
 
-    public static boolean extractingPossible(TileEntityExtractor te)
+    public static boolean extractingPossible(ExtractorTileEntity te)
     {
         if (te.getStackInSlot(0) != null && te.getStackInSlot(1) != null
                 && te.getStackInSlot(2) != null
@@ -256,7 +256,7 @@ public class MixingHelper
         return false;
     }
 
-    public static void mix(TileEntityLiquidMixer entity)
+    public static void mix(FluidMixerTileEntity entity)
     {
         MixingFilter.generateCustomInfo(entity.getStackInSlot(2));
 
@@ -407,7 +407,7 @@ public class MixingHelper
         }
     }
 
-    public static void performDistillation(TileEntityDistillery te)
+    public static void performDistillation(DistilleryTileEntity te)
     {
 
         if (te.getStackInSlot(1).getItem() == Item.getItemFromBlock(Blocks.log) || te.getStackInSlot(1).getItem() == Item.getItemFromBlock(Blocks.log2))
@@ -456,7 +456,7 @@ public class MixingHelper
 
     }
 
-    public static void performExtraction(TileEntityExtractor te)
+    public static void performExtraction(ExtractorTileEntity te)
     {
 
         if (te.getStackInSlot(0).getItem() == ItemRegistry.squidEye)

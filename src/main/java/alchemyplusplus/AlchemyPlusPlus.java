@@ -1,8 +1,6 @@
 package alchemyplusplus;
 
-import alchemyplusplus.block.BlockRegistry;
 import alchemyplusplus.gui.GUIHandler;
-import alchemyplusplus.items.ItemRegistry;
 import alchemyplusplus.proxy.CommonProxy;
 import alchemyplusplus.utility.ConfigManager;
 import alchemyplusplus.utility.EventManager;
