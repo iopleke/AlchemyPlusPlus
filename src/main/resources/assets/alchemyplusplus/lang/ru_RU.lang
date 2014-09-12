@@ -1,0 +1,18 @@
+itemGroup.alchemyplusplus=AlchemyPlusPlus
+language.name=Russian
+language.region=RU
+language.code=ru_RU
+
+tile.fleshBlock.name=Блок плоти
+tile.potionJug.name=Кувшин для зелий
+tile.diffuser.name=Диффузор
+tile.distillery.name=Дистиллятор
+tile.fluidMixer.name=Смеситель жидкостей
+
+item.confusionPotion.name=Зелье смятения
+item.fishOil.name=Рыбий жир
+item.ironPowder.name=Железный порошок
+item.mixingFilter.name=Фильтр для смешивания
+item.springyCord.name=Упругий шнур
+item.squidEye.name=Глаз спрута
+item.woodAlcohol.name=Метиловый спирт
