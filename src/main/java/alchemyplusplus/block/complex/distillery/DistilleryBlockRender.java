@@ -2,8 +2,6 @@ package alchemyplusplus.block.complex.distillery;
 
 import alchemyplusplus.BlockRegistry;
 import alchemyplusplus.reference.Textures;
-import alchemyplusplus.block.complex.distillery.DistilleryModel;
-import alchemyplusplus.block.complex.distillery.DistilleryTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

@@ -1,5 +1,9 @@
 package alchemyplusplus.utility;
 
+import alchemyplusplus.AlchemyPlusPlus;
+import alchemyplusplus.reference.Settings;
+import cpw.mods.fml.client.event.ConfigChangedEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.common.config.Configuration;
 
 import java.io.File;
@@ -8,49 +12,38 @@ public class ConfigManager
 {
     // Configuration variables
     public static Configuration appConfig;
-    private static boolean appConfigLoaded;
-    public static boolean appDebugMode;
-    
-    // General settings
-    public static boolean appHardcoreModeEnabled;
 
-    public static boolean appVanillaBrewingOverride;
-    public static boolean appVanillaPotionOverride;
 
-    public static void initialSetup(File config)
+    public static void init(File configFile)
     {
-
-        if (!appConfigLoaded)
+        if (appConfig == null)
         {
-            appConfig = new Configuration(config);
+            appConfig = new Configuration(configFile);
+            loadConfiguration();
         }
-
-        try
-        {
-
-            // And so it begins...
-            appConfig.load();
-
-            // Setting the general options
-            appHardcoreModeEnabled = appConfig.get(Configuration.CATEGORY_GENERAL, "appHardcoreModeEnabled", false, "Enable hardcore game mechanic, making the game more challenging").getBoolean(false);
-            appVanillaBrewingOverride = appConfig.get(Configuration.CATEGORY_GENERAL, "appVanillaBrewingOverride", false, "Enable this to override vanilla brewing mechanics").getBoolean(false);
-            appVanillaPotionOverride = appConfig.get(Configuration.CATEGORY_GENERAL, "appVanillaPotionOverride", false, "Enable this to override vanilla potion mechanics").getBoolean(false);
-            appDebugMode = appConfig.get(Configuration.CATEGORY_GENERAL, "appDebugMode", false, "Enable extra logging (May spam your console. You've been warned.)").getBoolean(false);
-
-        } catch (final Exception e)
-        {
-            System.err.println("Problem loading config");
-
-        } finally
-        {
-            if (appConfig.hasChanged())
-            {
-                appConfig.save();
-            }
-
-            appConfigLoaded = true;
-        }
-
     }
 
+    private static void loadConfiguration()
+    {
+
+        Settings.Debug.appDebugMode = appConfig.getBoolean("appDebugMode", Configuration.CATEGORY_GENERAL, false, "Enable Debug Mode");
+        Settings.General.appHardcoreModeEnabled = appConfig.getBoolean("appHardcoreModeEnabled", Configuration.CATEGORY_GENERAL, false, "Enable Hardcore Mode");
+        Settings.General.appVanillaBrewingOverride = appConfig.getBoolean("appVanillaBrewingOverride", Configuration.CATEGORY_GENERAL, false, "Override Vanilla brewing");
+        Settings.General.appVanillaPotionOverride = appConfig.getBoolean("appVanillaPotionOverride", Configuration.CATEGORY_GENERAL, false, "Override Vanilla potions");
+
+
+        if (appConfig.hasChanged())
+        {
+            appConfig.save();
+        }
+    }
+
+    @SubscribeEvent
+    public void onConfigurationChangedEvent(ConfigChangedEvent.OnConfigChangedEvent event)
+    {
+        if (event.modID.equalsIgnoreCase(AlchemyPlusPlus.ID))
+        {
+            loadConfiguration();
+        }
+    }
 }

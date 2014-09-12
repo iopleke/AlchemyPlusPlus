@@ -2,10 +2,10 @@ package alchemyplusplus.utility;
 
 import alchemyplusplus.BlockRegistry;
 import alchemyplusplus.ItemRegistry;
-import alchemyplusplus.item.MixingFilter;
 import alchemyplusplus.block.complex.distillery.DistilleryTileEntity;
 import alchemyplusplus.block.complex.extractor.ExtractorTileEntity;
 import alchemyplusplus.block.complex.fluidMixer.FluidMixerTileEntity;
+import alchemyplusplus.item.MixingFilter;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;

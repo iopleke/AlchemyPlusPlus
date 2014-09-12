@@ -1,6 +1,6 @@
 package alchemyplusplus.block.complex.diffuser;
 
-import alchemyplusplus.utility.ConfigManager;
+import alchemyplusplus.reference.Settings;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
@@ -208,7 +208,7 @@ public class DiffuserTileEntity extends TileEntity implements IInventory
         {
             isDiffusing = false;
         }
-        if (ConfigManager.appDebugMode)
+        if (Settings.Debug.appDebugMode)
         {
             System.err.println("Fluid level:" + fluidLevel);
             System.err.println("Diffusing: " + isDiffusing);

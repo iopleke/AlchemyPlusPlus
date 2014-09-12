@@ -2,8 +2,6 @@ package alchemyplusplus.block.complex.fluidMixer;
 
 import alchemyplusplus.BlockRegistry;
 import alchemyplusplus.reference.Textures;
-import alchemyplusplus.block.complex.fluidMixer.FluidMixerModel;
-import alchemyplusplus.block.complex.fluidMixer.FluidMixerTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

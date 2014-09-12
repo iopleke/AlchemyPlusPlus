@@ -2,8 +2,6 @@ package alchemyplusplus.block.complex.diffuser;
 
 import alchemyplusplus.BlockRegistry;
 import alchemyplusplus.reference.Textures;
-import alchemyplusplus.block.complex.diffuser.DiffuserModel;
-import alchemyplusplus.block.complex.diffuser.DiffuserTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

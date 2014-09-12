@@ -1,11 +1,11 @@
 package alchemyplusplus;
 
 import alchemyplusplus.block.basic.FleshBlock;
-import alchemyplusplus.reference.Naming;
 import alchemyplusplus.block.complex.diffuser.DiffuserBlock;
 import alchemyplusplus.block.complex.distillery.DistilleryBlock;
 import alchemyplusplus.block.complex.fluidMixer.FluidMixerBlock;
 import alchemyplusplus.block.complex.potionJug.PotionJugBlock;
+import alchemyplusplus.reference.Naming;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Items;

@@ -4,7 +4,7 @@ import alchemyplusplus.item.FishOil;
 import alchemyplusplus.item.ItemBasic;
 import alchemyplusplus.item.MixingFilter;
 import alchemyplusplus.reference.Naming;
-import alchemyplusplus.utility.ConfigManager;
+import alchemyplusplus.reference.Settings;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -60,7 +60,7 @@ public class ItemRegistry
         GameRegistry.registerItem(woodAlcohol, woodAlcohol.getUnlocalizedName());
 
         // work in progress: override vanilla potions
-        if (ConfigManager.appVanillaPotionOverride)
+        if (Settings.General.appVanillaPotionOverride)
         {
             // @TODO - see if this is even still possible...maybe check how Railcraft does it?
 //            ItemPotion potion = Items.potionitem;
