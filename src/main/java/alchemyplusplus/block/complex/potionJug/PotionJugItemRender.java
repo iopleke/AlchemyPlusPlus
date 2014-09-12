@@ -1,6 +1,5 @@
 package alchemyplusplus.block.complex.potionJug;
 
-import alchemyplusplus.block.complex.potionJug.PotionJugItem;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.ItemStack;

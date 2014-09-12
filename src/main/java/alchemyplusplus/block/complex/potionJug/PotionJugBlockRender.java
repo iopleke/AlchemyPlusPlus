@@ -2,8 +2,6 @@ package alchemyplusplus.block.complex.potionJug;
 
 import alchemyplusplus.BlockRegistry;
 import alchemyplusplus.reference.Textures;
-import alchemyplusplus.block.complex.potionJug.PotionJugModel;
-import alchemyplusplus.block.complex.potionJug.PotionJugTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
