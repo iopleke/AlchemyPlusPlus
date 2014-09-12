@@ -29,7 +29,7 @@ public class FluidMixerBlock extends BlockComplex
     {
         if (!world.isRemote)
         {
-            player.openGui(AlchemyPlusPlus.instance, 0, world, x, y, z);
+            player.openGui(AlchemyPlusPlus.INSTANCE, 0, world, x, y, z);
         }
         return true;
     }

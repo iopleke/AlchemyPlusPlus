@@ -31,7 +31,7 @@ public class DistilleryBlock extends BlockComplex
             if (!world.isRemote)
             {
                 System.out.println("Got to the block activation call");
-                player.openGui(AlchemyPlusPlus.instance, 0, world, x, y, z);
+                player.openGui(AlchemyPlusPlus.INSTANCE, 2, world, x, y, z);
                 
             }
             return true;
