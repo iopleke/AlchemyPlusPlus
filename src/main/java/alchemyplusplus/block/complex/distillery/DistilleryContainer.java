@@ -57,27 +57,82 @@ public class DistilleryContainer extends Container
             stack = stackInSlot.copy();
 
             // merges the item into player inventory since its in the tileEntity
-            if (slot < 9)
+            if (slot < 4)
             {
-                if (!this.mergeItemStack(stackInSlot, 0, 35, true))
+                if (!this.mergeItemStack(stackInSlot, 4, inventorySlots.size(), true))
                 {
                     return null;
                 }
-            } // places it into the tileEntity is possible since its in the player
+            } // places it into the tileEntity if possible since its in the player
             // inventory
-            else if (!this.mergeItemStack(stackInSlot, 1, 9, false))
+            else
             {
-                return null;
+            	//is the item a valid input (Log)
+            	if(distillery.isItemValidForSlot(1, stackInSlot))
+            	{
+                	if (!this.mergeItemStack(stackInSlot, 1, 2, true))
+                	{
+                		if(stackInSlot.stackSize==0)
+                			return null;
+                	}
+            	}
+            	//is the item a valid output (Glass bottle)
+            	if(distillery.isItemValidForSlot(2, stackInSlot)) 
+            	{
+            		//if there isn't a bottle in there already
+            		if(!getSlot(2).getHasStack())
+           		 	{
+            			//put one in there.
+                        ItemStack copy = slotObject.decrStackSize(1);
+                        getSlot(2).putStack(copy);
+                        return null;
+           		 	}
+           		 	else
+           		 	{
+           		 		//if there is something in the slot do nothing.
+           		 		return null;
+           		 	}
+            	}
+            	//is the item a valid fuel....
+            	//and we didn't put it all in the input slot
+            	if(distillery.isItemValidForSlot(3, stackInSlot) && stackInSlot.stackSize > 0)
+            	{
+                	if (!this.mergeItemStack(stackInSlot, 3, 4, false))
+                	{
+                		return null;
+                	}
+            	}
+            	//if we couldn't fit any of it in the machine mimic vanilla 
+            	//shift click mechanics.
+            	//put the item in the hot bar from inventory
+            	if(slot<31 && stackInSlot.stackSize == stack.stackSize)
+            	{
+                	if (!this.mergeItemStack(stackInSlot, 31, 40, false))
+                	{
+                		return null;
+                	}
+            		
+            	}
+            	//put the item in the inventory from hot bar.
+            	if(slot>30 && stackInSlot.stackSize == stack.stackSize)
+            	{
+                	if (!this.mergeItemStack(stackInSlot, 4, 30, false))
+                	{
+                		return null;
+                	}
+            	}
             }
-
+            //if we moved the entire stack
             if (stackInSlot.stackSize == 0)
             {
                 slotObject.putStack(null);
-            } else
+            } 
+            else //see if something changed
             {
                 slotObject.onSlotChanged();
             }
-
+            
+            //if nothing changed
             if (stackInSlot.stackSize == stack.stackSize)
             {
                 return null;
