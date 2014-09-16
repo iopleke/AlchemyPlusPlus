@@ -1,0 +1,18 @@
+itemGroup.alchemyplusplus=알케미플러스플러스[AlchemyPlusPlus]
+language.name=한국어
+language.region=KR
+language.code=ko_KR
+
+tile.fleshBlock.name=썩은고기 블럭
+tile.potionJug.name=포션 저그
+tile.diffuser.name=산광기
+tile.distillery.name=증류소
+tile.fluidMixer.name=액체 혼합기
+
+item.confusionPotion.name=혼란 포션
+item.fishOil.name=생선 기름
+item.ironPowder.name=철 가루
+item.mixingFilter.name=혼합 필터
+item.springyCord.name=스프링
+item.squidEye.name=오징어 눈
+item.woodAlcohol.name=나무 알코올
