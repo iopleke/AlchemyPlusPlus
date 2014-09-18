@@ -4,10 +4,10 @@ language.region=KR
 language.code=ko_KR
 
 tile.fleshBlock.name=썩은고기 블럭
-tile.potionJug.name=포션 저그
+tile.potionJug.name=포션 주전자
 tile.diffuser.name=산광기
-tile.distillery.name=증류소
-tile.fluidMixer.name=액체 혼합기
+tile.distillery.name=증류 장치
+tile.fluidMixer.name=교반기
 
 item.confusionPotion.name=혼란 포션
 item.fishOil.name=생선 기름
