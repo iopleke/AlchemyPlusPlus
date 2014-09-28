@@ -9,44 +9,44 @@ import net.minecraft.inventory.Slot;
 public class DiffuserContainer extends Container
 {
 
-    private final DiffuserTileEntity diffuser;
-    public final int fluidLevel = 0;
-    public final boolean isDiffusing = false;
+	private final DiffuserTileEntity diffuser;
+	public final int fluidLevel = 0;
+	public final boolean isDiffusing = false;
 
-    public DiffuserContainer(InventoryPlayer playerInv, DiffuserTileEntity diffuser)
-    {
-        this.diffuser = diffuser;
+	public DiffuserContainer(InventoryPlayer playerInv, DiffuserTileEntity diffuser)
+	{
+		this.diffuser = diffuser;
 
-        this.addSlotToContainer(new Slot(diffuser, 0, 0, 0)); // input
+		this.addSlotToContainer(new Slot(diffuser, 0, 0, 0)); // input
 
-        int i;
+		int i;
 
-        for (i = 0; i < 3; ++i)
-        {
-            for (int j = 0; j < 9; ++j)
-            {
-                this.addSlotToContainer(new Slot(playerInv, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
-            }
-        }
+		for (i = 0; i < 3; ++i)
+		{
+			for (int j = 0; j < 9; ++j)
+			{
+				this.addSlotToContainer(new Slot(playerInv, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+			}
+		}
 
-        for (i = 0; i < 9; ++i)
-        {
-            this.addSlotToContainer(new Slot(playerInv, i, 8 + i * 18, 142));
-        }
+		for (i = 0; i < 9; ++i)
+		{
+			this.addSlotToContainer(new Slot(playerInv, i, 8 + i * 18, 142));
+		}
 
-    }
+	}
 
-    @Override
-    public void addCraftingToCrafters(ICrafting par1ICrafting)
-    {
-        super.addCraftingToCrafters(par1ICrafting);
-        par1ICrafting.sendProgressBarUpdate(this, 0, this.diffuser.fluidLevel);
-    }
+	@Override
+	public void addCraftingToCrafters(ICrafting craft)
+	{
+		super.addCraftingToCrafters(craft);
+		craft.sendProgressBarUpdate(this, 0, this.diffuser.fluidLevel);
+	}
 
-    @Override
-    public boolean canInteractWith(EntityPlayer entityplayer)
-    {
-        return false;
-    }
+	@Override
+	public boolean canInteractWith(EntityPlayer entityplayer)
+	{
+		return false;
+	}
 
 }

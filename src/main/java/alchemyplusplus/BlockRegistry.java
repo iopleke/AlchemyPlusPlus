@@ -13,35 +13,35 @@ import net.minecraft.item.ItemStack;
 
 public class BlockRegistry
 {
-    public static Block diffuser;
-    public static Block distillery;
-    public static Block fleshBlock;
-    public static Block fluidMixer;
-    public static Block potionJug;
+	public static Block diffuser;
+	public static Block distillery;
+	public static Block fleshBlock;
+	public static Block fluidMixer;
+	public static Block potionJug;
 
-    public static void registerBlockRecipes()
-    {
-        GameRegistry.addRecipe(new ItemStack(fleshBlock, 1, 0), "xxx", "xsx", "xxx", 'x', new ItemStack(Items.rotten_flesh, 1, 0), 's', new ItemStack(Items.slime_ball, 1, 0));
+	public static void registerBlockRecipes()
+	{
+		GameRegistry.addRecipe(new ItemStack(fleshBlock, 1, 0), "xxx", "xsx", "xxx", 'x', new ItemStack(Items.rotten_flesh, 1, 0), 's', new ItemStack(Items.slime_ball, 1, 0));
 
-    }
+	}
 
-    public static void registerBlocks()
-    {
-        
-        diffuser = new DiffuserBlock(Naming.Blocks.DIFFUSER);
-        GameRegistry.registerBlock(diffuser, diffuser.getUnlocalizedName());
-        
-        distillery = new DistilleryBlock(Naming.Blocks.DISTILLERY);
-        GameRegistry.registerBlock(distillery, distillery.getUnlocalizedName());
-        
-        fleshBlock = new FleshBlock(Naming.Blocks.FLESH);
-        GameRegistry.registerBlock(fleshBlock, fleshBlock.getUnlocalizedName());
-        
-        fluidMixer = new FluidMixerBlock(Naming.Blocks.FLUID_MIXER);
-        GameRegistry.registerBlock(fluidMixer, fluidMixer.getUnlocalizedName());
-        
-        potionJug = new PotionJugBlock(Naming.Blocks.POTION_JUG);
-        GameRegistry.registerBlock(potionJug, potionJug.getUnlocalizedName());
-    }
+	public static void registerBlocks()
+	{
+
+		diffuser = new DiffuserBlock();
+		GameRegistry.registerBlock(diffuser, diffuser.getUnlocalizedName());
+
+		distillery = new DistilleryBlock();
+		GameRegistry.registerBlock(distillery, distillery.getUnlocalizedName());
+
+		fleshBlock = new FleshBlock(Naming.Blocks.FLESH);
+		GameRegistry.registerBlock(fleshBlock, fleshBlock.getUnlocalizedName());
+
+		fluidMixer = new FluidMixerBlock(Naming.Blocks.FLUID_MIXER);
+		GameRegistry.registerBlock(fluidMixer, fluidMixer.getUnlocalizedName());
+
+		potionJug = new PotionJugBlock(Naming.Blocks.POTION_JUG);
+		GameRegistry.registerBlock(potionJug, potionJug.getUnlocalizedName());
+	}
 
 }

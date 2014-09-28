@@ -1,6 +1,10 @@
 package alchemyplusplus.block.complex.diffuser;
 
+import alchemyplusplus.network.MessageHandler;
+import alchemyplusplus.network.message.DiffuserUpdateMessage;
+import alchemyplusplus.reference.Naming;
 import alchemyplusplus.reference.Settings;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
@@ -8,7 +12,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.Constants;
 
@@ -20,9 +23,10 @@ public class DiffuserTileEntity extends TileEntity implements IInventory
 	public int diffusingTicks = 0;
 
 	public int fluidLevel;
-	private boolean isDiffusing = false;
+	public boolean isDiffusing = false;
 
 	public ItemStack potionStack = null;
+	private boolean updateState;
 
 	public boolean canDiffuse()
 	{
@@ -71,9 +75,8 @@ public class DiffuserTileEntity extends TileEntity implements IInventory
 	@Override
 	public Packet getDescriptionPacket()
 	{
-		NBTTagCompound nbtTag = new NBTTagCompound();
-		this.writeToNBT(nbtTag);
-		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbtTag);
+		this.writeToNBT(new NBTTagCompound());
+		return MessageHandler.INSTANCE.getPacketFrom(new DiffuserUpdateMessage(this));
 	}
 
 	public int getFluidLevel()
@@ -84,9 +87,9 @@ public class DiffuserTileEntity extends TileEntity implements IInventory
 	@Override
 	public String getInventoryName()
 	{
-        // @TODO - set blockname in initialization
+		// @TODO - set blockname in initialization
 		// return this.blockName;
-		return "Diffuser";
+		return Naming.Blocks.DIFFUSER;
 	}
 
 	@Override
@@ -213,6 +216,13 @@ public class DiffuserTileEntity extends TileEntity implements IInventory
 			System.err.println("Fluid level:" + fluidLevel);
 			System.err.println("Diffusing: " + isDiffusing);
 		}
+		this.updateState = true;
+	}
+
+	public void setDiffusingState(boolean value)
+	{
+		this.isDiffusing = value;
+		this.updateState = true;
 	}
 
 	@Override
@@ -225,6 +235,12 @@ public class DiffuserTileEntity extends TileEntity implements IInventory
 		if (fluidLevel < 0)
 		{
 			fluidLevel = 0;
+		}
+		if (this.updateState)
+		{
+			MessageHandler.INSTANCE.sendToAllAround(new DiffuserUpdateMessage(this), new NetworkRegistry.TargetPoint(worldObj.provider.dimensionId, this.xCoord, this.yCoord, this.zCoord, 20));
+			this.markDirty();
+			this.updateState = false;
 		}
 	}
 

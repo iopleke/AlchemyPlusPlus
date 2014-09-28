@@ -1,8 +1,7 @@
 package alchemyplusplus.block.complex.diffuser;
 
 import alchemyplusplus.block.BlockComplex;
-import alchemyplusplus.gui.CreativeTab;
-import alchemyplusplus.reference.Textures;
+import alchemyplusplus.reference.Naming;
 import alchemyplusplus.utility.NotificationManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -15,128 +14,120 @@ import net.minecraft.world.World;
 
 public class DiffuserBlock extends BlockComplex
 {
+	public DiffuserBlock()
+	{
+		super(Material.wood, Naming.Blocks.DIFFUSER, Block.soundTypeWood);
+		this.setBlockBounds(0.2F, 0F, 0.2F, 0.8F, 0.8F, 0.8F);
+	}
 
-    public boolean isDiffusing = false;
+	@Override
+	public TileEntity createNewTileEntity(World world, int i)
+	{
+		return new DiffuserTileEntity();
+	}
 
-    public DiffuserBlock(String blockname)
-    {
-        super(Material.wood, blockname);
-        this.setStepSound(Block.soundTypeWood);
-        this.setBlockName(blockname);
-        this.setCreativeTab(CreativeTab.APP_TAB);
-        this.setBlockBounds(0.2F, 0F, 0.2F, 0.8F, 0.8F, 0.8F);
-        this.setBlockTextureName(Textures.Icon.DIFFUSER);
-    }
+	@Override
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int a, float b, float c, float g)
+	{
 
-    @Override
-    public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_)
-    {
-        return new DiffuserTileEntity();
-    }
+		DiffuserTileEntity diffuser = (DiffuserTileEntity) world.getTileEntity(x, y, z);
 
-    @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int a, float b, float c, float g)
-    {
+		if (player.getHeldItem() != null && !ItemPotion.isSplash(player.getHeldItem().getItemDamage()) && player.getHeldItem().getItem() == Items.potionitem)
+		{
+			if (diffuser.potionStack == null)
+			{
+				if (!world.isRemote)
+				{
+					NotificationManager.sendChatMessage(player, "diffuser.pour");
+				}
+				diffuser.potionStack = player.getHeldItem().copy();
+				diffuser.setBottleColorValue(diffuser.potionStack.getItemDamage());
+				if (!player.capabilities.isCreativeMode && !player.isSneaking())
+				{
+					player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack(Items.glass_bottle);
+				}
+				diffuser.fluidLevel = 10;
+				if (!diffuser.isDiffuserActive())
+				{
+					diffuser.toggleDiffusingState();
+				}
+			} else
+			{
+				if (!world.isRemote)
+				{
+					NotificationManager.sendChatMessage(player, "diffuser.full");
+				}
+			}
+		} else if (player.getHeldItem() != null && player.getHeldItem().getItem() == Items.glass_bottle)
+		{
 
-        DiffuserTileEntity diffuserTE = (DiffuserTileEntity) world.getTileEntity(x, y, z);
+			if (diffuser.potionStack != null)
+			{
+				if (diffuser.getFluidLevel() > 9)
+				{
 
-        if (player.getHeldItem() != null && !ItemPotion.isSplash(player.getHeldItem().getItemDamage()) && player.getHeldItem().getItem() == Items.potionitem)
-        {
-            if (diffuserTE.potionStack == null)
-            {
-                if (!world.isRemote)
-                {
-                    NotificationManager.sendChatMessage(player, "You pour the potion into the diffuser");
-                }
-                diffuserTE.potionStack = player.getHeldItem().copy();
-                diffuserTE.setBottleColorValue(diffuserTE.potionStack.getItemDamage());
-                if (!player.capabilities.isCreativeMode && !player.isSneaking())
-                {
-                    player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack(Items.glass_bottle);
-                }
-                diffuserTE.fluidLevel = 10;
-                if (!diffuserTE.isDiffuserActive())
-                {
-                    diffuserTE.toggleDiffusingState();
-                }
-            } else
-            {
+					// Allow creative mode players to override this by sneaking
+					if (!player.capabilities.isCreativeMode)
+					{
+						player.inventory.mainInventory[player.inventory.currentItem] = diffuser.potionStack;
+					}
+					// Wiping the diffuser data
+					diffuser.potionStack = null;
+					diffuser.setBottleColorValue(0);
+					if (diffuser.isDiffuserActive())
+					{
+						diffuser.toggleDiffusingState();
+					}
+				} else
+				{
+					if (!world.isRemote)
+					{
+						NotificationManager.sendChatMessage(player, "diffuser.bottle.refill.failure");
+					}
+				}
+			}
+		} else if (player.getHeldItem() != null && player.getHeldItem().getItem() == Items.potionitem && player.getHeldItem().getItemDamage() == 0)
+		{
+			if (!player.capabilities.isCreativeMode)
+			{
+				player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack(Items.glass_bottle);
+			}
+			diffuser.potionStack = null;
+			diffuser.fluidLevel = 0;
+			diffuser.setBottleColorValue(0);
+			if (diffuser.isDiffuserActive())
+			{
+				diffuser.toggleDiffusingState();
+			}
+			if (!world.isRemote)
+			{
+				NotificationManager.sendChatMessage(player, "diffuser.wash.success");
+			}
 
-                if (!world.isRemote)
-                {
-                    NotificationManager.sendChatMessage(player, "The diffuser is too full to hold any more liquid");
-                }
-            }
-        } else if (player.getHeldItem() != null && player.getHeldItem().getItem() == Items.glass_bottle)
-        {
+		} else if (diffuser.canDiffuse() || diffuser.isDiffuserActive())
+		{
+			String action;
+			if (diffuser.isDiffuserActive())
+			{
+				action = "cork";
+			} else
+			{
+				action = "un-cork";
+			}
+			diffuser.toggleDiffusingState();
+			if (!world.isRemote)
+			{
+				NotificationManager.sendChatMessage(player, "diffuser." + action);
+			}
+		} else
+		{
+			if (!world.isRemote)
+			{
+				NotificationManager.sendChatMessage(player, "diffuser.uncork.fail");
+			}
 
-            if (diffuserTE.potionStack != null)
-            {
-                if (diffuserTE.getFluidLevel() > 9)
-                {
+		}
 
-                    // Allow creative mode players to override this by sneaking
-                    if (!player.capabilities.isCreativeMode)
-                    {
-                        player.inventory.mainInventory[player.inventory.currentItem] = diffuserTE.potionStack;
-                    }
-                    // Wiping the diffuser data
-                    diffuserTE.potionStack = null;
-                    diffuserTE.setBottleColorValue(0);
-                    if (diffuserTE.isDiffuserActive())
-                    {
-                        diffuserTE.toggleDiffusingState();
-                    }
-                } else
-                {
-                    if (!world.isRemote)
-                    {
-                        NotificationManager.sendChatMessage(player, "There doesn't seem to be enough to refill your bottle");
-                    }
-                }
-            }
-        } else if (player.getHeldItem() != null && player.getHeldItem().getItem() == Items.potionitem && player.getHeldItem().getItemDamage() == 0)
-        {
-            if (!player.capabilities.isCreativeMode)
-            {
-                player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack(Items.glass_bottle);
-            }
-            diffuserTE.potionStack = null;
-            diffuserTE.fluidLevel = 0;
-            diffuserTE.setBottleColorValue(0);
-            if (diffuserTE.isDiffuserActive())
-            {
-                diffuserTE.toggleDiffusingState();
-            }
-            if (!world.isRemote)
-            {
-                NotificationManager.sendChatMessage(player, "The diffuser is washed clean, ready for re-use");
-            }
-
-        } else if (diffuserTE.canDiffuse() || diffuserTE.isDiffuserActive())
-        {
-            String action;
-            if (diffuserTE.isDiffuserActive())
-            {
-                action = "cork";
-            } else
-            {
-                action = "un-cork";
-            }
-            diffuserTE.toggleDiffusingState();
-            if (!world.isRemote)
-            {
-                NotificationManager.sendChatMessage(player, "You " + action + " the diffuser");
-            }
-        } else
-        {
-            if (!world.isRemote)
-            {
-                NotificationManager.sendChatMessage(player, "Without a potion filling it, un-corking the diffuser seems pointless");
-            }
-
-        }
-
-        return false;
-    }
+		return false;
+	}
 }

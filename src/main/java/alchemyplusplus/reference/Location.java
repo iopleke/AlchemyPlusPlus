@@ -1,9 +1,9 @@
-package alchemyplusplus.utility;
+package alchemyplusplus.reference;
 
 import alchemyplusplus.AlchemyPlusPlus;
 import net.minecraft.util.ResourceLocation;
 
-public class ResourceLocationHelper
+public class Location
 {
     public static ResourceLocation getResourceLocation(String modId, String path)
     {

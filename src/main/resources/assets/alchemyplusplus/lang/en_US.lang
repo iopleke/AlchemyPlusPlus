@@ -10,6 +10,13 @@ config.debug.tooltip=Debug Mode Enabled
 tile.fleshBlock.name=Block of Flesh
 tile.potionJug.name=Potion Jug
 tile.diffuser.name=Diffuser
+diffuser.full=The diffuser is too full to hold any more liquid
+diffuser.pour=You pour the potion into the diffuser
+diffuser.bottle.refill.failure=There doesn't seem to be enough to refill your bottle
+diffuser.wash.success=The diffuser is washed clean, ready for re-use
+diffuser.cork=You cork the diffuser
+diffuser.uncork=You uncork the diffuser
+diffuser.uncork.failure=Without a potion filling it, uncorking the diffuser seems pointless
 tile.distillery.name=Distillery
 tile.fluidMixer.name=Fluid Mixer
 

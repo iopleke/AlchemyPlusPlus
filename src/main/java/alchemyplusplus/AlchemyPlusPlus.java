@@ -1,6 +1,7 @@
 package alchemyplusplus;
 
 import alchemyplusplus.gui.GUIHandler;
+import alchemyplusplus.network.MessageHandler;
 import alchemyplusplus.proxy.CommonProxy;
 import alchemyplusplus.reference.Settings;
 import alchemyplusplus.utility.EventManager;
@@ -61,6 +62,7 @@ public class AlchemyPlusPlus
 	{
 		Settings.init(event.getSuggestedConfigurationFile());
 		FMLCommonHandler.instance().bus().register(new Settings());
+		MessageHandler.init();
 
 	}
 
