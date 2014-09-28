@@ -19,8 +19,11 @@ public class PotionFluidBlock extends BlockFluidClassic
 {
 	private IPotionFluidAction action;
 	private final FluidStack fluid;
-	private IIcon stillIcon;
-	private IIcon flowingIcon;
+
+	@SideOnly(Side.CLIENT)
+	protected IIcon stillIcon;
+	@SideOnly(Side.CLIENT)
+	protected IIcon flowingIcon;
 
 	public PotionFluidBlock(Fluid fluid, Material material)
 	{
