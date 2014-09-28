@@ -2,74 +2,43 @@ package alchemyplusplus.block.complex.diffuser;
 
 import alchemyplusplus.network.MessageHandler;
 import alchemyplusplus.network.message.DiffuserUpdateMessage;
-import alchemyplusplus.reference.Naming;
 import alchemyplusplus.reference.Settings;
 import cpw.mods.fml.common.network.NetworkRegistry;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTank;
+import net.minecraftforge.fluids.FluidTankInfo;
+import net.minecraftforge.fluids.IFluidHandler;
+import net.minecraftforge.fluids.IFluidTank;
 
-public class DiffuserTileEntity extends TileEntity implements IInventory
+public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFluidTank
 {
-	public int bottleColor;
-	private final ItemStack[] diffuserInventory = new ItemStack[1];
-
-	public int diffusingTicks = 0;
-
-	public int fluidLevel;
-	public boolean isDiffusing = false;
-
-	public ItemStack potionStack = null;
 	private boolean updateState;
+	public boolean isDiffusing;
+	public int bottleColor;
+	public int diffusingTicks;
+	public FluidTank fluidTank;
+
+	public DiffuserTileEntity()
+	{
+		this.bottleColor = 0;
+		this.diffusingTicks = 0;
+		this.isDiffusing = false;
+		this.updateState = false;
+		this.fluidTank = new FluidTank((int) 333);
+	}
 
 	public boolean canDiffuse()
 	{
-		if (this.fluidLevel > 0)
+		if (this.fluidTank.getFluidAmount() > 0)
 		{
 			return true;
 		}
 		return false;
-	}
-
-	@Override
-	public void closeInventory()
-	{
-
-	}
-
-	@Override
-	public ItemStack decrStackSize(int slot, int amount)
-	{
-		if (this.diffuserInventory[slot] != null)
-		{
-			ItemStack itemstack;
-
-			if (this.diffuserInventory[slot].stackSize <= amount)
-			{
-				itemstack = this.diffuserInventory[slot];
-				this.diffuserInventory[slot] = null;
-				return itemstack;
-			} else
-			{
-				itemstack = this.diffuserInventory[slot].splitStack(amount);
-
-				if (this.diffuserInventory[slot].stackSize == 0)
-				{
-					this.diffuserInventory[slot] = null;
-				}
-
-				return itemstack;
-			}
-		} else
-		{
-			return null;
-		}
 	}
 
 	@Override
@@ -79,111 +48,9 @@ public class DiffuserTileEntity extends TileEntity implements IInventory
 		return MessageHandler.INSTANCE.getPacketFrom(new DiffuserUpdateMessage(this));
 	}
 
-	public int getFluidLevel()
-	{
-		return this.fluidLevel;
-	}
-
-	@Override
-	public String getInventoryName()
-	{
-		// @TODO - set blockname in initialization
-		// return this.blockName;
-		return Naming.Blocks.DIFFUSER;
-	}
-
-	@Override
-	public int getInventoryStackLimit()
-	{
-		return 1;
-	}
-
-	@Override
-	public int getSizeInventory()
-	{
-		return this.diffuserInventory.length;
-	}
-
-	@Override
-	public ItemStack getStackInSlot(int slot)
-	{
-		return this.diffuserInventory[slot];
-	}
-
-	@Override
-	public ItemStack getStackInSlotOnClosing(int slot)
-	{
-		if (this.diffuserInventory[slot] != null)
-		{
-			ItemStack itemstack = this.diffuserInventory[slot];
-			this.diffuserInventory[slot] = null;
-			return itemstack;
-		} else
-		{
-			return null;
-		}
-	}
-
-	@Override
-	public boolean hasCustomInventoryName()
-	{
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-	}
-
-	public boolean hasFluidLevel()
-	{
-		return this.fluidLevel > 0;
-	}
-
 	public boolean isDiffuserActive()
 	{
 		return isDiffusing;
-	}
-
-	@Override
-	public boolean isItemValidForSlot(int slot, ItemStack stack)
-	{
-		if (slot == 1)
-		{
-			if (stack.getItem() == Items.glass_bottle)
-			{
-				return true;
-			}
-		}
-		return false;
-	}
-
-	@Override
-	public boolean isUseableByPlayer(EntityPlayer entityplayer)
-	{
-		return true;
-	}
-
-	@Override
-	public void openInventory()
-	{
-	}
-
-	@Override
-	public void readFromNBT(NBTTagCompound diffuserNBTData)
-	{
-		super.readFromNBT(diffuserNBTData);
-		NBTTagList nbttaglist = diffuserNBTData.getTagList("Items", Constants.NBT.TAG_COMPOUND);
-
-		this.diffusingTicks = diffuserNBTData.getShort("diffusingTicks");
-		this.fluidLevel = diffuserNBTData.getShort("fluidLevel");
-
-		this.isDiffusing = diffuserNBTData.getBoolean("isDiffusing");
-
-		potionStack = new ItemStack(Items.potionitem, 1, diffuserNBTData.getInteger("potionStackDamage"));
-		bottleColor = diffuserNBTData.getInteger("bottleColor");
-
-		// Without this check, diffusers give free water bottles
-		if (potionStack.getItemDamage() == 0)
-		{
-			potionStack = null;
-			bottleColor = 0;
-		}
 	}
 
 	public void setBottleColorValue(int bottleColor)
@@ -191,20 +58,9 @@ public class DiffuserTileEntity extends TileEntity implements IInventory
 		this.bottleColor = bottleColor;
 	}
 
-	@Override
-	public void setInventorySlotContents(int slot, ItemStack stack)
-	{
-		this.diffuserInventory[slot] = stack;
-
-		if (stack != null && stack.stackSize > this.getInventoryStackLimit())
-		{
-			stack.stackSize = this.getInventoryStackLimit();
-		}
-	}
-
 	public void toggleDiffusingState()
 	{
-		if (fluidLevel > 0)
+		if (this.fluidTank.getFluidAmount() > 0)
 		{
 			isDiffusing = !isDiffusing;
 		} else
@@ -213,7 +69,7 @@ public class DiffuserTileEntity extends TileEntity implements IInventory
 		}
 		if (Settings.DebugMode)
 		{
-			System.err.println("Fluid level:" + fluidLevel);
+			System.err.println("Fluid level:" + this.fluidTank.getFluidAmount());
 			System.err.println("Diffusing: " + isDiffusing);
 		}
 		this.updateState = true;
@@ -228,14 +84,6 @@ public class DiffuserTileEntity extends TileEntity implements IInventory
 	@Override
 	public void updateEntity()
 	{
-		if (this.fluidLevel != 100 && this.getStackInSlot(0) != null)
-		{
-			// Check to see if it's a load-able fluid here
-		}
-		if (fluidLevel < 0)
-		{
-			fluidLevel = 0;
-		}
 		if (this.updateState)
 		{
 			MessageHandler.INSTANCE.sendToAllAround(new DiffuserUpdateMessage(this), new NetworkRegistry.TargetPoint(worldObj.provider.dimensionId, this.xCoord, this.yCoord, this.zCoord, 20));
@@ -245,38 +93,145 @@ public class DiffuserTileEntity extends TileEntity implements IInventory
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound diffuserNBTData)
+	public void writeToNBT(NBTTagCompound nbt)
 	{
-		super.writeToNBT(diffuserNBTData);
-
-		diffuserNBTData.setShort("diffusingTicks", (short) this.diffusingTicks);
-		diffuserNBTData.setShort("fluidLevel", (short) this.fluidLevel);
-		diffuserNBTData.setBoolean("isDiffusing", this.isDiffusing);
-
-		if (potionStack != null)
+		super.writeToNBT(nbt);
+		if (this.fluidTank != null)
 		{
-			diffuserNBTData.setInteger("potionStackDamage", potionStack.getItemDamage());
+			nbt.setTag("diffuserTank", this.fluidTank.writeToNBT(new NBTTagCompound()));
 		}
 
-		if (bottleColor != 0)
+		nbt.setShort("diffusingTicks", (short) this.diffusingTicks);
+		nbt.setInteger("bottleColor", this.bottleColor);
+		nbt.setBoolean("isDiffusing", this.isDiffusing);
+
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound nbt)
+	{
+		super.readFromNBT(nbt);
+
+		this.diffusingTicks = nbt.getShort("diffusingTicks");
+
+		this.isDiffusing = nbt.getBoolean("isDiffusing");
+
+		this.bottleColor = nbt.getInteger("bottleColor");
+
+		if (this.fluidTank != null)
 		{
-			diffuserNBTData.setInteger("bottleColor", bottleColor);
+			this.fluidTank.readFromNBT(nbt.getCompoundTag("diffuserTank"));
 		}
+	}
 
-		NBTTagList nbttaglist = new NBTTagList();
-
-		for (int i = 0; i < this.diffuserInventory.length; ++i)
+	@Override
+	public int fill(FluidStack resource, boolean doFill)
+	{
+		if (resource != null)
 		{
-			if (this.diffuserInventory[i] != null)
-			{
-				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-				nbttagcompound1.setByte("Slot", (byte) i);
-				this.diffuserInventory[i].writeToNBT(nbttagcompound1);
-				nbttaglist.appendTag(nbttagcompound1);
-			}
+			return this.fluidTank.fill(resource, doFill);
 		}
+		return 0;
+	}
 
-		diffuserNBTData.setTag("Items", nbttaglist);
+	@Override
+	public int fill(ForgeDirection from, FluidStack resource, boolean doFill)
+	{
+		if (resource != null)
+		{
+			return this.fluidTank.fill(resource, doFill);
+		}
+		return 0;
+	}
 
+	@Override
+	public FluidStack drain(int maxDrain, boolean doDrain)
+	{
+		if (maxDrain > 0)
+		{
+			return this.fluidTank.drain(maxDrain, doDrain);
+		}
+		return null;
+	}
+
+	@Override
+	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain)
+	{
+		if (resource != null)
+		{
+			return this.fluidTank.drain(resource.amount, doDrain);
+		}
+		return null;
+	}
+
+	@Override
+	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
+	{
+		return this.fluidTank.drain(maxDrain, doDrain);
+	}
+
+	@Override
+	public boolean canFill(ForgeDirection from, Fluid fluid)
+	{
+		if (this.fluidTank != null && this.fluidTank.getFluidAmount() < this.fluidTank.getCapacity())
+		{
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean canDrain(ForgeDirection from, Fluid fluid)
+	{
+		if (this.fluidTank != null && this.fluidTank.getFluidAmount() > 0)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public FluidTankInfo[] getTankInfo(ForgeDirection from)
+	{
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	@Override
+	public FluidStack getFluid()
+	{
+		if (this.fluidTank != null)
+		{
+			return this.fluidTank.getFluid();
+		}
+		return null;
+
+	}
+
+	@Override
+	public int getFluidAmount()
+	{
+
+		if (this.fluidTank != null)
+		{
+			return this.fluidTank.getFluidAmount();
+		}
+		return 0;
+	}
+
+	@Override
+	public int getCapacity()
+	{
+
+		if (this.fluidTank != null)
+		{
+			return this.fluidTank.getCapacity();
+		}
+		return 0;
+	}
+
+	@Override
+	public FluidTankInfo getInfo()
+	{
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 }

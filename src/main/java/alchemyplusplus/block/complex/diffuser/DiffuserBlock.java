@@ -11,6 +11,7 @@ import net.minecraft.item.ItemPotion;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidTank;
 
 public class DiffuserBlock extends BlockComplex
 {
@@ -33,19 +34,18 @@ public class DiffuserBlock extends BlockComplex
 
 		if (player.getHeldItem() != null && !ItemPotion.isSplash(player.getHeldItem().getItemDamage()) && player.getHeldItem().getItem() == Items.potionitem)
 		{
-			if (diffuser.potionStack == null)
+			if (diffuser.fluidTank.getFluidAmount() < diffuser.fluidTank.getCapacity())
 			{
 				if (!world.isRemote)
 				{
 					NotificationManager.sendChatMessage(player, "diffuser.pour");
 				}
-				diffuser.potionStack = player.getHeldItem().copy();
-				diffuser.setBottleColorValue(diffuser.potionStack.getItemDamage());
+
 				if (!player.capabilities.isCreativeMode && !player.isSneaking())
 				{
 					player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack(Items.glass_bottle);
 				}
-				diffuser.fluidLevel = 10;
+
 				if (!diffuser.isDiffuserActive())
 				{
 					diffuser.toggleDiffusingState();
@@ -60,29 +60,26 @@ public class DiffuserBlock extends BlockComplex
 		} else if (player.getHeldItem() != null && player.getHeldItem().getItem() == Items.glass_bottle)
 		{
 
-			if (diffuser.potionStack != null)
+			if (diffuser.fluidTank.getFluidAmount() > 0)
 			{
-				if (diffuser.getFluidLevel() > 9)
-				{
 
-					// Allow creative mode players to override this by sneaking
-					if (!player.capabilities.isCreativeMode)
-					{
-						player.inventory.mainInventory[player.inventory.currentItem] = diffuser.potionStack;
-					}
-					// Wiping the diffuser data
-					diffuser.potionStack = null;
-					diffuser.setBottleColorValue(0);
-					if (diffuser.isDiffuserActive())
-					{
-						diffuser.toggleDiffusingState();
-					}
-				} else
+				// Allow creative mode players to override this by sneaking
+				if (!player.capabilities.isCreativeMode)
 				{
-					if (!world.isRemote)
-					{
-						NotificationManager.sendChatMessage(player, "diffuser.bottle.refill.failure");
-					}
+					//player.inventory.mainInventory[player.inventory.currentItem] = diffuser;
+				}
+				// Wiping the diffuser data
+				diffuser.setBottleColorValue(0);
+				if (diffuser.isDiffuserActive())
+				{
+					diffuser.toggleDiffusingState();
+				}
+
+			} else
+			{
+				if (!world.isRemote)
+				{
+					NotificationManager.sendChatMessage(player, "diffuser.bottle.refill.failure");
 				}
 			}
 		} else if (player.getHeldItem() != null && player.getHeldItem().getItem() == Items.potionitem && player.getHeldItem().getItemDamage() == 0)
@@ -91,8 +88,8 @@ public class DiffuserBlock extends BlockComplex
 			{
 				player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack(Items.glass_bottle);
 			}
-			diffuser.potionStack = null;
-			diffuser.fluidLevel = 0;
+			diffuser.fluidTank = new FluidTank(0);
+
 			diffuser.setBottleColorValue(0);
 			if (diffuser.isDiffuserActive())
 			{
@@ -124,7 +121,7 @@ public class DiffuserBlock extends BlockComplex
 		{
 			if (!world.isRemote)
 			{
-				NotificationManager.sendChatMessage(player, "diffuser.uncork.fail");
+				NotificationManager.sendChatMessage(player, "diffuser.uncork.failure");
 			}
 
 		}
