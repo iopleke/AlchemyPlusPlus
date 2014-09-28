@@ -1,4 +1,4 @@
-package alchemyplusplus.proxy.client;
+package alchemyplusplus.proxy;
 
 import alchemyplusplus.block.complex.diffuser.DiffuserBlockRender;
 import alchemyplusplus.block.complex.diffuser.DiffuserTileEntity;
