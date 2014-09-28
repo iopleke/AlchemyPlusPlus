@@ -29,7 +29,6 @@ public class DiffuserBlock extends BlockComplex
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
 	{
-
 		DiffuserTileEntity diffuser = (DiffuserTileEntity) world.getTileEntity(x, y, z);
 
 		if (player.getHeldItem() != null && !ItemPotion.isSplash(player.getHeldItem().getItemDamage()) && player.getHeldItem().getItem() == Items.potionitem)
@@ -106,19 +105,21 @@ public class DiffuserBlock extends BlockComplex
 
 		} else if (diffuser.canDiffuse() || diffuser.isDiffuserActive())
 		{
-			String action;
 			if (diffuser.isDiffuserActive())
 			{
-				action = "cork";
+				if (!world.isRemote)
+				{
+					NotificationManager.sendChatMessage(player, "diffuser.cork");
+				}
 			} else
 			{
-				action = "un-cork";
+				if (!world.isRemote)
+				{
+					NotificationManager.sendChatMessage(player, "diffuser.uncork");
+				}
 			}
 			diffuser.toggleDiffusingState();
-			if (!world.isRemote)
-			{
-				NotificationManager.sendChatMessage(player, "diffuser." + action);
-			}
+
 		} else
 		{
 			if (!world.isRemote)
