@@ -2,6 +2,7 @@ package alchemyplusplus;
 
 import alchemyplusplus.gui.GUIHandler;
 import alchemyplusplus.network.MessageHandler;
+import alchemyplusplus.potion.PotionFluidHandler;
 import alchemyplusplus.proxy.CommonProxy;
 import alchemyplusplus.reference.Settings;
 import alchemyplusplus.utility.EventManager;
@@ -16,6 +17,8 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import java.util.Arrays;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Mod(modid = AlchemyPlusPlus.ID, name = AlchemyPlusPlus.NAME, version = AlchemyPlusPlus.VERSION_FULL, useMetadata = false, guiFactory = "alchemyplusplus.gui.GUIFactory", acceptedMinecraftVersions = "[1.7.10,)")
 public class AlchemyPlusPlus
@@ -57,12 +60,16 @@ public class AlchemyPlusPlus
 	@Mod.Metadata(AlchemyPlusPlus.ID)
 	public static ModMetadata metadata;
 
+	// Logging
+	public static final Logger LOGGER = LogManager.getLogger(AlchemyPlusPlus.ID);
+
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		Settings.init(event.getSuggestedConfigurationFile());
 		FMLCommonHandler.instance().bus().register(new Settings());
 		MessageHandler.init();
+		PotionFluidHandler.registerPotionFluids();
 
 	}
 
