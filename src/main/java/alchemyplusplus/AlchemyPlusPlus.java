@@ -3,7 +3,6 @@ package alchemyplusplus;
 import alchemyplusplus.gui.GUIHandler;
 import alchemyplusplus.proxy.CommonProxy;
 import alchemyplusplus.reference.Settings;
-import alchemyplusplus.utility.ConfigManager;
 import alchemyplusplus.utility.EventManager;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
@@ -60,8 +59,8 @@ public class AlchemyPlusPlus
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		ConfigManager.init(event.getSuggestedConfigurationFile());
-		FMLCommonHandler.instance().bus().register(new ConfigManager());
+		Settings.init(event.getSuggestedConfigurationFile());
+		FMLCommonHandler.instance().bus().register(new Settings());
 
 	}
 
@@ -93,8 +92,7 @@ public class AlchemyPlusPlus
 		BlockRegistry.registerBlockRecipes();
 		ItemRegistry.registerItemRecipes();
 
-		// Book.loadAll();
-		if (Settings.General.appHardcoreModeEnabled)
+		if (Settings.DebugMode)
 		{
 			ItemRegistry.registerHardcoreRecipes();
 		}
