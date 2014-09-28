@@ -25,7 +25,7 @@ public class PotionFluidHandler
 				Fluid potionFluid = new PotionFluid(pot.getName(), pot.getLiquidColor());
 				FluidRegistry.registerFluid(potionFluid
 				);
-				PotionFluidBlock block = new PotionFluidBlock(potionFluid, Material.water);
+				PotionFluidBlock block = new PotionFluidBlock(potionFluid, Material.water, pot);
 				block.setCreativeTab(CreativeTab.APP_TAB);
 
 				GameRegistry.registerBlock(block, PotionFluidBlockItem.class, potionFluid

@@ -7,6 +7,9 @@ import java.util.Random;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -17,8 +20,8 @@ import net.minecraftforge.fluids.FluidStack;
 
 public class PotionFluidBlock extends BlockFluidClassic
 {
-	private IPotionFluidAction action;
 	private final FluidStack fluid;
+	private Potion potion;
 
 	@SideOnly(Side.CLIENT)
 	protected IIcon stillIcon;
@@ -30,31 +33,33 @@ public class PotionFluidBlock extends BlockFluidClassic
 		super(fluid, material);
 
 		this.fluid = new FluidStack(fluid, FluidContainerRegistry.BUCKET_VOLUME);
-
 		this.setBlockName(fluid.getUnlocalizedName());
 	}
 
-	public void setFluidAction(IPotionFluidAction action)
+	public PotionFluidBlock(Fluid fluid, Material material, Potion potion)
 	{
-		this.action = action;
+		super(fluid, material);
+		this.potion = potion;
+		this.fluid = new FluidStack(fluid, FluidContainerRegistry.BUCKET_VOLUME);
+		this.setBlockName(fluid.getUnlocalizedName());
 	}
 
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
 	{
-		if (action != null)
+		if (this.potion != null)
 		{
-			action.onTouch(world, x, y, z, entity);
+			if (entity instanceof EntityLivingBase)
+			{
+				((EntityLivingBase) entity).addPotionEffect(new PotionEffect(this.potion.getId(), 40, 0));
+			}
 		}
+
 	}
 
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random rand)
 	{
-		if (action != null)
-		{
-			action.onTick(world, x, y, z, rand);
-		}
 
 		super.updateTick(world, x, y, z, rand);
 	}
@@ -96,13 +101,13 @@ public class PotionFluidBlock extends BlockFluidClassic
 	}
 
 	@Override
-	public int getRenderColor(int p_149741_1_)
+	public int getRenderColor(int i)
 	{
 		return fluid.getFluid().getColor();
 	}
 
 	@Override
-	public int colorMultiplier(IBlockAccess p_149720_1_, int p_149720_2_, int p_149720_3_, int p_149720_4_)
+	public int colorMultiplier(IBlockAccess access, int x, int y, int z)
 	{
 		return fluid.getFluid().getColor();
 	}
