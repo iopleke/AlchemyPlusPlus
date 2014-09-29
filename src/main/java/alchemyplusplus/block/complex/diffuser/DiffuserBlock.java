@@ -1,6 +1,7 @@
 package alchemyplusplus.block.complex.diffuser;
 
 import alchemyplusplus.block.BlockComplex;
+import alchemyplusplus.potion.PotionFluid;
 import alchemyplusplus.reference.Naming;
 import alchemyplusplus.utility.NotificationManager;
 import net.minecraft.block.Block;
@@ -11,6 +12,7 @@ import net.minecraft.item.ItemPotion;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 
 public class DiffuserBlock extends BlockComplex
@@ -36,6 +38,10 @@ public class DiffuserBlock extends BlockComplex
 		{
 			if (diffuser.fluidTank.getFluidAmount() < diffuser.fluidTank.getCapacity())
 			{
+				PotionFluid potionFluid = new PotionFluid(player.getHeldItem());
+
+				diffuser.fluidTank.fill(new FluidStack(potionFluid, 333), true);
+				diffuser.setBottleColorValue(potionFluid.fluidColor);
 				if (!world.isRemote)
 				{
 					NotificationManager.sendChatMessage(player, "diffuser.pour");

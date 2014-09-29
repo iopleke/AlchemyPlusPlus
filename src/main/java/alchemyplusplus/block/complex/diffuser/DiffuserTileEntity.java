@@ -1,5 +1,6 @@
 package alchemyplusplus.block.complex.diffuser;
 
+import alchemyplusplus.AlchemyPlusPlus;
 import alchemyplusplus.network.MessageHandler;
 import alchemyplusplus.network.message.DiffuserUpdateMessage;
 import alchemyplusplus.reference.Settings;
@@ -22,6 +23,7 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 	public int bottleColor;
 	public int diffusingTicks;
 	public FluidTank fluidTank;
+	public int fluidLevel;
 
 	public DiffuserTileEntity()
 	{
@@ -69,8 +71,8 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 		}
 		if (Settings.DebugMode)
 		{
-			System.err.println("Fluid level:" + this.fluidTank.getFluidAmount());
-			System.err.println("Diffusing: " + isDiffusing);
+			AlchemyPlusPlus.LOGGER.info("Fluid level:" + this.fluidTank.getFluidAmount());
+			AlchemyPlusPlus.LOGGER.info("Diffusing: " + isDiffusing);
 		}
 		this.updateState = true;
 	}
@@ -84,6 +86,14 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 	@Override
 	public void updateEntity()
 	{
+		if (this.isDiffusing)
+		{
+			this.fluidTank.drain(1, true);
+			if (this.fluidTank.getFluidAmount() == 0)
+			{
+				this.setBottleColorValue(0);
+			}
+		}
 		if (this.updateState)
 		{
 			MessageHandler.INSTANCE.sendToAllAround(new DiffuserUpdateMessage(this), new NetworkRegistry.TargetPoint(worldObj.provider.dimensionId, this.xCoord, this.yCoord, this.zCoord, 20));
@@ -99,6 +109,7 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 		if (this.fluidTank != null)
 		{
 			nbt.setTag("diffuserTank", this.fluidTank.writeToNBT(new NBTTagCompound()));
+			nbt.setInteger("diffuserTankAmount", this.fluidTank.getFluidAmount());
 		}
 
 		nbt.setShort("diffusingTicks", (short) this.diffusingTicks);
