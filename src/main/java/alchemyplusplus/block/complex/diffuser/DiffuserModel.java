@@ -1,6 +1,5 @@
 package alchemyplusplus.block.complex.diffuser;
 
-import alchemyplusplus.AlchemyPlusPlus;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -92,15 +91,13 @@ public class DiffuserModel extends ModelBase
 		potionColor = PotionHelper.func_77915_a(potionDamage, false);
 		red = (potionColor >> 16 & 255) / 255f;
 		green = (potionColor >> 8 & 255) / 255f;
-		blue = (potionColor >> 0 & 255) / 255f;
+		blue = (potionColor & 255) / 255f;
 
 		GL11.glColor3f(red, green, blue);
 		// Don't render the liquid if the color is 0
-//		AlchemyPlusPlus.LOGGER.info("Got here, values:");
 		if (this.potionColor != 0 && this.potionDamage != 0 && this.fluidAmount > 0)
 		{
 
-			AlchemyPlusPlus.LOGGER.info("Got there");
 			if (this.fluidAmount > 280)
 			{
 				liquidFull.render(f5);

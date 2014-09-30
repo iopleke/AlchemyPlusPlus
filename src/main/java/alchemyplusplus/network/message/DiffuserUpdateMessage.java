@@ -11,7 +11,7 @@ import net.minecraft.tileentity.TileEntity;
 public class DiffuserUpdateMessage implements IMessage, IMessageHandler<DiffuserUpdateMessage, IMessage>
 {
 	private int posX, posY, posZ;
-	private int bottleColor;
+	private int bottleColor, fluidLevel, fluidID;
 	private boolean isDiffusing;
 
 	public DiffuserUpdateMessage()
@@ -27,6 +27,15 @@ public class DiffuserUpdateMessage implements IMessage, IMessageHandler<Diffuser
 
 		this.bottleColor = diffuser.bottleColor;
 		this.isDiffusing = diffuser.isDiffusing;
+		this.fluidLevel = diffuser.getFluidAmount();
+		if (diffuser.getFluid() != null)
+		{
+			this.fluidID = diffuser.getFluid().fluidID;
+		} else
+		{
+			this.fluidID = 0;
+		}
+
 	}
 
 	@Override
@@ -38,6 +47,8 @@ public class DiffuserUpdateMessage implements IMessage, IMessageHandler<Diffuser
 
 		this.bottleColor = buf.readInt();
 		this.isDiffusing = buf.readBoolean();
+		this.fluidLevel = buf.readInt();
+		this.fluidID = buf.readInt();
 	}
 
 	@Override
@@ -49,6 +60,8 @@ public class DiffuserUpdateMessage implements IMessage, IMessageHandler<Diffuser
 
 		buf.writeInt(this.bottleColor);
 		buf.writeBoolean(this.isDiffusing);
+		buf.writeInt(this.fluidLevel);
+		buf.writeInt(this.fluidID);
 	}
 
 	@Override
@@ -59,6 +72,7 @@ public class DiffuserUpdateMessage implements IMessage, IMessageHandler<Diffuser
 		{
 			((DiffuserTileEntity) tile).setBottleColorValue(message.bottleColor);
 			((DiffuserTileEntity) tile).setDiffusingState(message.isDiffusing);
+			((DiffuserTileEntity) tile).syncFluidAmountAt(message.fluidLevel, message.fluidID);
 
 		}
 		return null;

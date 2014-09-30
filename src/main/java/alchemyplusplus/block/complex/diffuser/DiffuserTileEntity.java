@@ -1,9 +1,7 @@
 package alchemyplusplus.block.complex.diffuser;
 
-import alchemyplusplus.AlchemyPlusPlus;
 import alchemyplusplus.network.MessageHandler;
 import alchemyplusplus.network.message.DiffuserUpdateMessage;
-import alchemyplusplus.reference.Settings;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
@@ -62,17 +60,18 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 
 	public void toggleDiffusingState()
 	{
+
+//		if (Settings.DebugMode)
+//		{
+//			AlchemyPlusPlus.LOGGER.info("Fluid level:" + this.fluidTank.getFluidAmount());
+//			AlchemyPlusPlus.LOGGER.info("Diffusing: " + isDiffusing);
+//		}
 		if (this.fluidTank.getFluidAmount() > 0)
 		{
 			isDiffusing = !isDiffusing;
 		} else
 		{
 			isDiffusing = false;
-		}
-		if (Settings.DebugMode)
-		{
-			AlchemyPlusPlus.LOGGER.info("Fluid level:" + this.fluidTank.getFluidAmount());
-			AlchemyPlusPlus.LOGGER.info("Diffusing: " + isDiffusing);
 		}
 		this.updateState = true;
 	}
@@ -100,6 +99,28 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 			this.markDirty();
 			this.updateState = false;
 		}
+	}
+
+	public void syncFluidAmountAt(int amount, int fluidID)
+	{
+		if (this.fluidTank != null)
+		{
+			if (this.getFluid() != null)
+			{
+				if (this.getFluidAmount() > amount)
+				{
+					this.drain(this.getFluidAmount() - amount, true);
+				} else if (this.getFluidAmount() < amount)
+				{
+					this.fill(new FluidStack(this.getFluid(), amount - this.getFluidAmount()), true);
+				}
+			} else
+			{
+				FluidStack tankFluid = new FluidStack(fluidID, amount);
+				this.fill(tankFluid, true);
+			}
+		}
+		this.updateState = false;
 	}
 
 	@Override
