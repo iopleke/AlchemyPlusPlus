@@ -1,8 +1,12 @@
 package alchemyplusplus.block.complex.diffuser;
 
+import alchemyplusplus.AlchemyPlusPlus;
 import alchemyplusplus.network.MessageHandler;
 import alchemyplusplus.network.message.DiffuserUpdateMessage;
+import alchemyplusplus.potion.PotionFluid;
+import alchemyplusplus.reference.Settings;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import java.util.Iterator;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
@@ -21,7 +25,6 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 	public int bottleColor;
 	public int diffusingTicks;
 	public FluidTank fluidTank;
-	public int fluidLevel;
 
 	public DiffuserTileEntity()
 	{
@@ -61,11 +64,23 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 	public void toggleDiffusingState()
 	{
 
-//		if (Settings.DebugMode)
-//		{
-//			AlchemyPlusPlus.LOGGER.info("Fluid level:" + this.fluidTank.getFluidAmount());
-//			AlchemyPlusPlus.LOGGER.info("Diffusing: " + isDiffusing);
-//		}
+		if (Settings.DebugMode)
+		{
+			AlchemyPlusPlus.LOGGER.info("Fluid level:" + this.fluidTank.getFluidAmount());
+			AlchemyPlusPlus.LOGGER.info("Diffusing: " + isDiffusing);
+			if (this.getFluid() != null && this.getFluid().getFluid() instanceof PotionFluid)
+			{
+				if (((PotionFluid) this.getFluid().getFluid()).potionEffects != null)
+				{
+					Iterator iter = ((PotionFluid) this.getFluid().getFluid()).potionEffects.iterator();
+					while (iter.hasNext())
+					{
+						AlchemyPlusPlus.LOGGER.info("Effects: " + iter.next().toString());
+					}
+				}
+
+			}
+		}
 		if (this.fluidTank.getFluidAmount() > 0)
 		{
 			isDiffusing = !isDiffusing;
@@ -87,7 +102,7 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 	{
 		if (this.isDiffusing)
 		{
-			this.fluidTank.drain(1, true);
+			//this.fluidTank.drain(1, true);
 			if (this.fluidTank.getFluidAmount() == 0)
 			{
 				this.setBottleColorValue(0);

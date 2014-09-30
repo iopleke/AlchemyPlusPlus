@@ -1,5 +1,6 @@
 package alchemyplusplus.block.complex.diffuser;
 
+import alchemyplusplus.AlchemyPlusPlus;
 import alchemyplusplus.block.BlockComplex;
 import alchemyplusplus.potion.PotionFluid;
 import alchemyplusplus.reference.Naming;
@@ -34,78 +35,92 @@ public class DiffuserBlock extends BlockComplex
 	{
 		DiffuserTileEntity diffuser = (DiffuserTileEntity) world.getTileEntity(x, y, z);
 
-		if (player.getHeldItem() != null && !ItemPotion.isSplash(player.getHeldItem().getItemDamage()) && player.getHeldItem().getItem() == Items.potionitem)
+		if (player.getHeldItem() != null)
 		{
-			if (diffuser.fluidTank.getFluidAmount() < diffuser.fluidTank.getCapacity())
+			if (player.getHeldItem().getItem() == Items.potionitem)
 			{
-				PotionFluid potionFluid = new PotionFluid(player.getHeldItem());
-
-				diffuser.fluidTank.fill(new FluidStack(potionFluid, 333), true);
-				diffuser.setBottleColorValue(potionFluid.fluidColor);
-				if (!world.isRemote)
+				if (player.getHeldItem().getItemDamage() == 0)
 				{
-					NotificationManager.sendChatMessage(player, "diffuser.pour");
-				}
+					if (!player.capabilities.isCreativeMode)
+					{
+						player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack(Items.glass_bottle);
+					}
 
-				if (!player.capabilities.isCreativeMode && !player.isSneaking())
-				{
-					player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack(Items.glass_bottle);
-				}
+					if (diffuser.fluidTank.getFluid() != null)
+					{
+						diffuser.fluidTank = new FluidTank((int) 333);
+						diffuser.setBottleColorValue(0);
 
-				if (!diffuser.isDiffuserActive())
+						if (diffuser.isDiffuserActive())
+						{
+							diffuser.toggleDiffusingState();
+						}
+
+						if (!world.isRemote)
+						{
+							NotificationManager.sendChatMessage(player, "diffuser.wash.success");
+						}
+
+					} else
+					{
+						NotificationManager.sendChatMessage(player, "diffuser.wash.failure");
+					}
+
+				} else if (!ItemPotion.isSplash(player.getHeldItem().getItemDamage()))
 				{
-					diffuser.toggleDiffusingState();
+					if (diffuser.fluidTank.getFluidAmount() < diffuser.fluidTank.getCapacity())
+					{
+						PotionFluid potionFluid = new PotionFluid(player.getHeldItem());
+
+						diffuser.fluidTank.fill(new FluidStack(potionFluid, 333), true);
+						diffuser.setBottleColorValue(potionFluid.fluidColor);
+						if (!world.isRemote)
+						{
+							NotificationManager.sendChatMessage(player, "diffuser.pour");
+						}
+
+						if (!player.capabilities.isCreativeMode && !player.isSneaking())
+						{
+							player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack(Items.glass_bottle);
+						}
+
+						if (!diffuser.isDiffuserActive())
+						{
+							diffuser.toggleDiffusingState();
+						}
+					} else
+					{
+						if (!world.isRemote)
+						{
+							NotificationManager.sendChatMessage(player, "diffuser.full");
+						}
+					}
 				}
-			} else
+			} else if (player.getHeldItem().getItem() == Items.glass_bottle)
 			{
-				if (!world.isRemote)
+				if (diffuser.fluidTank.getFluidAmount() > 0)
 				{
-					NotificationManager.sendChatMessage(player, "diffuser.full");
+
+					// Allow creative mode players to override this by sneaking
+					if (!player.capabilities.isCreativeMode)
+					{
+						//player.inventory.mainInventory[player.inventory.currentItem] = diffuser;
+					}
+					// Wiping the diffuser data
+					diffuser.setBottleColorValue(0);
+					if (diffuser.isDiffuserActive())
+					{
+						diffuser.toggleDiffusingState();
+					}
+
+				} else
+				{
+					if (!world.isRemote)
+					{
+						NotificationManager.sendChatMessage(player, "diffuser.bottle.refill.failure");
+					}
 				}
 			}
-		} else if (player.getHeldItem() != null && player.getHeldItem().getItem() == Items.glass_bottle)
-		{
-
-			if (diffuser.fluidTank.getFluidAmount() > 0)
-			{
-
-				// Allow creative mode players to override this by sneaking
-				if (!player.capabilities.isCreativeMode)
-				{
-					//player.inventory.mainInventory[player.inventory.currentItem] = diffuser;
-				}
-				// Wiping the diffuser data
-				diffuser.setBottleColorValue(0);
-				if (diffuser.isDiffuserActive())
-				{
-					diffuser.toggleDiffusingState();
-				}
-
-			} else
-			{
-				if (!world.isRemote)
-				{
-					NotificationManager.sendChatMessage(player, "diffuser.bottle.refill.failure");
-				}
-			}
-		} else if (player.getHeldItem() != null && player.getHeldItem().getItem() == Items.potionitem && player.getHeldItem().getItemDamage() == 0)
-		{
-			if (!player.capabilities.isCreativeMode)
-			{
-				player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack(Items.glass_bottle);
-			}
-			diffuser.fluidTank = new FluidTank(0);
-
-			diffuser.setBottleColorValue(0);
-			if (diffuser.isDiffuserActive())
-			{
-				diffuser.toggleDiffusingState();
-			}
-			if (!world.isRemote)
-			{
-				NotificationManager.sendChatMessage(player, "diffuser.wash.success");
-			}
-
 		} else if (diffuser.canDiffuse() || diffuser.isDiffuserActive())
 		{
 			if (diffuser.isDiffuserActive())
@@ -131,7 +146,7 @@ public class DiffuserBlock extends BlockComplex
 			}
 
 		}
-
+		AlchemyPlusPlus.LOGGER.info("Fluid amount: " + diffuser.getFluidAmount());
 		return false;
 	}
 }
