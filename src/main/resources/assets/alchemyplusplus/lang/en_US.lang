@@ -14,6 +14,8 @@ tile.fluidMixer.name=Fluid Mixer
 tile.potionJug.name=Potion Jug
 
 diffuser.bottle.refill.failure=There doesn't seem to be enough to refill your bottle
+diffuser.combine.success=You refill the diffuser with the same potion
+diffuser.combine.failure=These potions are too different to mix in the diffuser. Perhaps you should try the fluid mixer...
 diffuser.cork=You cork the diffuser
 diffuser.full=The diffuser is too full to hold any more liquid
 diffuser.pour=You pour the potion into the diffuser

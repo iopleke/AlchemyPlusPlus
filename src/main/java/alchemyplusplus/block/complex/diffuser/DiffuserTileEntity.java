@@ -63,7 +63,6 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 
 	public void toggleDiffusingState()
 	{
-
 		if (Settings.DebugMode)
 		{
 			AlchemyPlusPlus.LOGGER.info("Fluid level:" + this.fluidTank.getFluidAmount());
@@ -102,8 +101,8 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 	{
 		if (this.isDiffusing)
 		{
-			//this.fluidTank.drain(1, true);
-			if (this.fluidTank.getFluidAmount() == 0)
+			this.drain(1, true); // drain by 1 per tick, for testing purposes
+			if (this.getFluidAmount() == 0)
 			{
 				this.setBottleColorValue(0);
 			}
