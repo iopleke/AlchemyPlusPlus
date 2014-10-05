@@ -1,6 +1,7 @@
 package alchemyplusplus.potion;
 
 import alchemyplusplus.AlchemyPlusPlus;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import net.minecraft.item.Item;
@@ -20,9 +21,10 @@ public class PotionFluid extends Fluid
 	public PotionFluid(Potion potion)
 	{
 		super(potion.getName());
+		this.potionEffects = new ArrayList();
 		this.fluidColor = potion.getLiquidColor();
 		PotionEffect effect = new PotionEffect(potion.getId(), 40, 0);
-		this.potionEffects.add(effect.toString());
+		this.potionEffects.add(effect);
 	}
 
 	public PotionFluid(ItemStack itemStack)

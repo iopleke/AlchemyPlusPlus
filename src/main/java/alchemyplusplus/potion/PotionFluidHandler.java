@@ -36,7 +36,6 @@ public class PotionFluidHandler
 					AlchemyPlusPlus.LOGGER.info("Potion ID: " + pot.getId());
 					AlchemyPlusPlus.LOGGER.info("Potion Name: " + pot.getName());
 					AlchemyPlusPlus.LOGGER.info("Potion Color: " + pot.getLiquidColor());
-					AlchemyPlusPlus.LOGGER.info("Potion Name: " + pot.getEffectiveness());
 				}
 			}
 
