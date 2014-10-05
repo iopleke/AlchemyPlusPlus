@@ -1,7 +1,6 @@
 package alchemyplusplus.potion;
 
 import alchemyplusplus.AlchemyPlusPlus;
-import java.awt.Color;
 import java.util.Iterator;
 import java.util.List;
 import net.minecraft.item.Item;
@@ -17,12 +16,6 @@ public class PotionFluid extends Fluid
 {
 	public int fluidColor;
 	public List potionEffects;
-
-	public PotionFluid(String fluidName)
-	{
-		super(fluidName);
-		this.fluidColor = new Color(0, 0, 0, 0.25F).getRGB();
-	}
 
 	public PotionFluid(Potion potion)
 	{
@@ -40,12 +33,6 @@ public class PotionFluid extends Fluid
 			this.potionEffects = ((ItemPotion) itemStack.getItem()).getEffects(itemStack);
 			this.fluidColor = ((ItemPotion) itemStack.getItem()).getColorFromDamage(itemStack.getItemDamage());
 		}
-	}
-
-	public PotionFluid(String fluidName, int fluidColor)
-	{
-		super(fluidName);
-		this.fluidColor = fluidColor;
 	}
 
 	@Override

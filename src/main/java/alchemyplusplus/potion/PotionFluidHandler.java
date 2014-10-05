@@ -24,7 +24,7 @@ public class PotionFluidHandler
 		{
 			if (pot != null)
 			{
-				Fluid potionFluid = new PotionFluid(pot.getName(), pot.getLiquidColor());
+				Fluid potionFluid = new PotionFluid(pot);
 				FluidRegistry.registerFluid(potionFluid);
 
 				PotionFluidBlock block = new PotionFluidBlock(potionFluid, Material.water, pot);
