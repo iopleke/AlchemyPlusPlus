@@ -54,7 +54,7 @@ public class PotionFluid extends Fluid
 
 	public void addPotionEffect(PotionEffect effect)
 	{
-		this.potionEffects.add(effect.toString());
+		this.potionEffects.add(effect);
 	}
 
 	public void addAllPotionEffects(ItemStack itemStack)
