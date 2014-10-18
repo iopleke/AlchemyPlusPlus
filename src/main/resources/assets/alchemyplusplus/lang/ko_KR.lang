@@ -3,11 +3,26 @@ language.name=한국어
 language.region=KR
 language.code=ko_KR
 
+config.general.description=기본 설정 옵션
+config.debug.description=정보 콘솔 표시
+config.debug.tooltip=디버그 모드 활성화
+
 tile.fleshBlock.name=썩은고기 블럭
 tile.potionJug.name=포션 주전자
 tile.diffuser.name=산광기
 tile.distillery.name=증류 장치
 tile.fluidMixer.name=교반기
+
+diffuser.bottle.refill.failure=당신은 병은 리필하기에 부적합합니다.
+diffuser.combine.success=동일한 포션을 리필했습니다.
+diffuser.combine.failure=These potions are too different to mix in the diffuser. Perhaps you should try the fluid mixer...
+diffuser.cork=You cork the diffuser
+diffuser.full=The diffuser is too full to hold any more liquid
+diffuser.pour=You pour the potion into the diffuser
+diffuser.uncork.failure=Without a potion filling it, uncorking the diffuser seems pointless
+diffuser.uncork=You uncork the diffuser
+diffuser.wash.failure=The diffuser is already empty, no need to wash it out
+diffuser.wash.success=The diffuser is washed clean, ready for re-use
 
 item.confusionPotion.name=혼란 포션
 item.fishOil.name=생선 기름
