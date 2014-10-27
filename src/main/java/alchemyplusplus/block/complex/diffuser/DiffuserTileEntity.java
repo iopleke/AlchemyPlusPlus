@@ -4,6 +4,8 @@ import alchemyplusplus.AlchemyPlusPlus;
 import alchemyplusplus.network.MessageHandler;
 import alchemyplusplus.network.message.DiffuserUpdateMessage;
 import alchemyplusplus.potion.PotionFluid;
+import alchemyplusplus.potion.PotionFluidStack;
+import alchemyplusplus.potion.PotionFluidTank;
 import alchemyplusplus.reference.Settings;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import java.util.Iterator;
@@ -14,7 +16,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 import net.minecraftforge.fluids.IFluidTank;
@@ -22,7 +23,7 @@ import net.minecraftforge.fluids.IFluidTank;
 public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFluidTank
 {
 	private boolean updateState;
-	public FluidTank fluidTank;
+	public PotionFluidTank fluidTank;
 	public boolean isDiffusing;
 	public int bottleColor;
 	public int diffusingTicks;
@@ -31,7 +32,7 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 	{
 		this.bottleColor = 0;
 		this.diffusingTicks = 0;
-		this.fluidTank = new FluidTank((int) 333);
+		this.fluidTank = new PotionFluidTank((int) 333);
 		this.isDiffusing = false;
 		this.updateState = false;
 	}
@@ -66,7 +67,7 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 	{
 		this.bottleColor = 0;
 		this.diffusingTicks = 0;
-		this.fluidTank = new FluidTank((int) 333);
+		this.fluidTank = new PotionFluidTank((int) 333);
 		this.isDiffusing = false;
 		this.updateState = true;
 	}
@@ -183,7 +184,7 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 	public int fillWithOverRide(ItemStack heldItem)
 	{
 		PotionFluid potionFluid = new PotionFluid(heldItem);
-		this.fluidTank = new FluidTank(new FluidStack(potionFluid, 333), 333);
+		this.fluidTank = new PotionFluidTank(new PotionFluidStack(potionFluid, 333), 333);
 		//this.bottleColor = ((ItemPotion) heldItem.getItem()).getColorFromDamage(heldItem.getItemDamage());
 		this.bottleColor = potionFluid.getColor();
 		AlchemyPlusPlus.LOGGER.info("Potion color is " + this.bottleColor);
