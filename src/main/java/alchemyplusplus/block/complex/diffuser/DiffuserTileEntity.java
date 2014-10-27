@@ -7,6 +7,7 @@ import alchemyplusplus.potion.PotionFluid;
 import alchemyplusplus.reference.Settings;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import java.util.Iterator;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
@@ -21,18 +22,18 @@ import net.minecraftforge.fluids.IFluidTank;
 public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFluidTank
 {
 	private boolean updateState;
+	public FluidTank fluidTank;
 	public boolean isDiffusing;
 	public int bottleColor;
 	public int diffusingTicks;
-	public FluidTank fluidTank;
 
 	public DiffuserTileEntity()
 	{
 		this.bottleColor = 0;
 		this.diffusingTicks = 0;
+		this.fluidTank = new FluidTank((int) 333);
 		this.isDiffusing = false;
 		this.updateState = false;
-		this.fluidTank = new FluidTank((int) 333);
 	}
 
 	public boolean canDiffuse()
@@ -59,6 +60,15 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 	public void setBottleColorValue(int bottleColor)
 	{
 		this.bottleColor = bottleColor;
+	}
+
+	public void resetDiffuser()
+	{
+		this.bottleColor = 0;
+		this.diffusingTicks = 0;
+		this.fluidTank = new FluidTank((int) 333);
+		this.isDiffusing = false;
+		this.updateState = true;
 	}
 
 	public void toggleDiffusingState()
@@ -168,6 +178,17 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 		{
 			this.fluidTank.readFromNBT(nbt.getCompoundTag("diffuserTank"));
 		}
+	}
+
+	public int fillWithOverRide(ItemStack heldItem)
+	{
+		PotionFluid potionFluid = new PotionFluid(heldItem);
+		this.fluidTank = new FluidTank(new FluidStack(potionFluid, 333), 333);
+		//this.bottleColor = ((ItemPotion) heldItem.getItem()).getColorFromDamage(heldItem.getItemDamage());
+		this.bottleColor = potionFluid.getColor();
+		AlchemyPlusPlus.LOGGER.info("Potion color is " + this.bottleColor);
+		this.updateState = true;
+		return this.fluidTank.getFluidAmount();
 	}
 
 	@Override

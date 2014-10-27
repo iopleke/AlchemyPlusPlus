@@ -33,6 +33,7 @@ public class PotionFluid extends Fluid
 		if (itemStack.getItem() instanceof ItemPotion)
 		{
 			this.potionEffects = ((ItemPotion) itemStack.getItem()).getEffects(itemStack);
+			// @TODO - this doesn't match the potion item color, fix that
 			this.fluidColor = ((ItemPotion) itemStack.getItem()).getColorFromDamage(itemStack.getItemDamage());
 		}
 	}
