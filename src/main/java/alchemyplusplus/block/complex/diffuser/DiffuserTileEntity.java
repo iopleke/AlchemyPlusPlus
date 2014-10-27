@@ -9,10 +9,14 @@ import alchemyplusplus.potion.PotionFluidTank;
 import alchemyplusplus.reference.Settings;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import java.util.Iterator;
+import java.util.List;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
@@ -110,9 +114,21 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 	@Override
 	public void updateEntity()
 	{
+
 		if (this.isDiffusing)
 		{
 			this.drain(1, true); // drain by 1 per tick, for testing purposes
+
+			if (diffusingTicks <= 0)
+			{
+				this.diffusingTicks = 20;
+				if (!this.fluidTank.potionEffects.isEmpty() && this.fluidTank.getFluidAmount() > 0)
+				{
+					this.applyPotionEffects();
+				}
+			}
+			this.diffusingTicks--;
+
 			if (this.getFluidAmount() == 0)
 			{
 				this.setBottleColorValue(0);
@@ -124,6 +140,25 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 			this.markDirty();
 			this.updateState = false;
 		}
+	}
+
+	private void applyPotionEffects()
+	{
+		int diffuseRadius = 20;
+		AxisAlignedBB axisalignedbb = AxisAlignedBB.getBoundingBox((double) this.xCoord, (double) this.yCoord, (double) this.zCoord, (double) (this.xCoord + 1), (double) (this.yCoord + 1), (double) (this.zCoord + 1)).expand(diffuseRadius, diffuseRadius, diffuseRadius);
+		axisalignedbb.maxY = (double) this.worldObj.getHeight();
+		List list = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
+		Iterator iterator = list.iterator();
+		EntityPlayer entityplayer;
+
+		while (iterator.hasNext())
+		{
+			entityplayer = (EntityPlayer) iterator.next();
+			int potionID = ((PotionEffect) this.fluidTank.potionEffects.get(0)).getPotionID();
+			int duration = 21;
+			entityplayer.addPotionEffect(new PotionEffect(potionID, duration));
+		}
+
 	}
 
 	public void syncFluidAmountAt(int amount, int fluidID)
