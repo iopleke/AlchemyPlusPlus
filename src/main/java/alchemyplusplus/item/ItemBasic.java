@@ -12,33 +12,33 @@ import net.minecraft.world.World;
 public class ItemBasic extends Item
 {
 
-    String iconName;
-    int lifespan = 6000;
+	String iconName;
+	int lifespan = 6000;
 
-    public ItemBasic(String itemname)
-    {
-        super();
-        this.iconName = AlchemyPlusPlus.ID + ":" + itemname;
-        this.setUnlocalizedName(itemname);
-        this.setCreativeTab(CreativeTab.APP_TAB);
-    }
+	public ItemBasic(String itemname)
+	{
+		super();
+		this.iconName = AlchemyPlusPlus.ID + ":" + itemname;
+		this.setUnlocalizedName(itemname);
+		this.setCreativeTab(CreativeTab.APP_TAB);
+	}
 
-    @Override
-    public int getEntityLifespan(ItemStack itemStack, World world)
-    {
-        return this.lifespan;
-    }
+	@Override
+	public int getEntityLifespan(ItemStack itemStack, World world)
+	{
+		return this.lifespan;
+	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister iconRegister)
-    {
-        this.itemIcon = iconRegister.registerIcon(iconName);
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IIconRegister iconRegister)
+	{
+		this.itemIcon = iconRegister.registerIcon(iconName);
+	}
 
-    public void setLifespan(int lifespan)
-    {
-        this.lifespan = lifespan;
-    }
+	public void setLifespan(int lifespan)
+	{
+		this.lifespan = lifespan;
+	}
 
 }

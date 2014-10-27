@@ -7,19 +7,19 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 public class BlockBasic extends Block
 {
 
-    String icon;
-    
-    public BlockBasic(Material material, String icon)
-    {
-        super(material);
+	String icon;
 
-        this.icon = icon;
-    }
+	public BlockBasic(Material material, String icon)
+	{
+		super(material);
 
-    @Override
-    public void registerBlockIcons(IIconRegister iconRegister)
-    {
-        this.blockIcon = iconRegister.registerIcon(icon);
-    }
+		this.icon = icon;
+	}
+
+	@Override
+	public void registerBlockIcons(IIconRegister iconRegister)
+	{
+		this.blockIcon = iconRegister.registerIcon(icon);
+	}
 
 }

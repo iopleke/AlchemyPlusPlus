@@ -14,66 +14,66 @@ import net.minecraft.world.World;
 public class CommonProxy
 {
 
-    public static int RENDER_ID;
-    public static String displayName;
+	public static int RENDER_ID;
+	public static String displayName;
 
-    public void registerRenderers()
-    {
+	public void registerRenderers()
+	{
 
-    }
+	}
 
-    public void registerTileEntitys()
-    {
-        // @TODO - add tileEntity names to Resources reference class per https://github.com/jakimfett/AlchemyPlusPlus/issues/6
-        GameRegistry.registerTileEntity(DiffuserTileEntity.class, "diffuserTE");
-        GameRegistry.registerTileEntity(DistilleryTileEntity.class, "distilleryTE");
-        GameRegistry.registerTileEntity(FluidMixerTileEntity.class, "liquidMixerTE");
-        GameRegistry.registerTileEntity(PotionJugTileEntity.class, "potionJugTE");
-    }
+	public void registerTileEntitys()
+	{
+		// @TODO - add tileEntity names to Resources reference class per https://github.com/jakimfett/AlchemyPlusPlus/issues/6
+		GameRegistry.registerTileEntity(DiffuserTileEntity.class, "diffuserTE");
+		GameRegistry.registerTileEntity(DistilleryTileEntity.class, "distilleryTE");
+		GameRegistry.registerTileEntity(FluidMixerTileEntity.class, "liquidMixerTE");
+		GameRegistry.registerTileEntity(PotionJugTileEntity.class, "potionJugTE");
+	}
 
-    public World getClientWorld()
-    {
-        return null;
-    }
+	public World getClientWorld()
+	{
+		return null;
+	}
 
-    public void registerHooks()
-    {
-    }
+	public void registerHooks()
+	{
+	}
 
-    public EntityPlayer findEntityPlayerByName(String name)
-    {
+	public EntityPlayer findEntityPlayerByName(String name)
+	{
 
-        EntityPlayer player;
-        player = MinecraftServer.getServer().getConfigurationManager().func_152612_a(name);
+		EntityPlayer player;
+		player = MinecraftServer.getServer().getConfigurationManager().func_152612_a(name);
 
-        if (player != null)
-        {
-            return player;
-        }
+		if (player != null)
+		{
+			return player;
+		}
 
-        return null;
-    }
+		return null;
+	}
 
-    public String getCurrentLanguage()
-    {
-        return null;
-    }
+	public String getCurrentLanguage()
+	{
+		return null;
+	}
 
-    public void addName(Object obj, String s)
-    {
-    }
+	public void addName(Object obj, String s)
+	{
+	}
 
-    public void addLocalization(String s1, String string)
-    {
-    }
+	public void addLocalization(String s1, String string)
+	{
+	}
 
-    public String getItemDisplayName(ItemStack newStack)
-    {
-        return this.displayName;
-    }
+	public String getItemDisplayName(ItemStack newStack)
+	{
+		return this.displayName;
+	}
 
-    public EntityPlayer getPlayer(MessageContext context)
-    {
-        return context.getServerHandler().playerEntity;
-    }
+	public EntityPlayer getPlayer(MessageContext context)
+	{
+		return context.getServerHandler().playerEntity;
+	}
 }
