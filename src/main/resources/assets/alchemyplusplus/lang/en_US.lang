@@ -6,6 +6,9 @@ language.code=en_US
 config.general.description=General configuration options
 config.debug.description=Print extra information to the console
 config.debug.tooltip=Debug Mode Enabled
+config.diffuser.description=Configuration options for the potion diffuser
+config.diffuser.radius.description=Base value for the distance to apply diffuser effects
+config.diffuser.radius=Diffuser Effect Radius
 
 tile.diffuser.name=Diffuser
 tile.distillery.name=Distillery

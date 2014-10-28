@@ -145,8 +145,7 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 
 	private void applyPotionEffects()
 	{
-		int diffuseRadius = 20;
-		AxisAlignedBB axisalignedbb = AxisAlignedBB.getBoundingBox((double) this.xCoord, (double) this.yCoord, (double) this.zCoord, (double) (this.xCoord + 1), (double) (this.yCoord + 1), (double) (this.zCoord + 1)).expand(diffuseRadius, diffuseRadius, diffuseRadius);
+		AxisAlignedBB axisalignedbb = AxisAlignedBB.getBoundingBox((double) this.xCoord, (double) this.yCoord, (double) this.zCoord, (double) (this.xCoord + 1), (double) (this.yCoord + 1), (double) (this.zCoord + 1)).expand(Settings.DiffusingRadius, Settings.DiffusingRadius, Settings.DiffusingRadius);
 		axisalignedbb.maxY = (double) this.worldObj.getHeight();
 		List list = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
 

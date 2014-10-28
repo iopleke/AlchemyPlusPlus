@@ -23,6 +23,10 @@ public class Settings
 	// Override vanilla potion brewing mechanics
 	public static boolean BrewingOverride = false;
 
+	// Base diffusion radius
+	public static int DiffusingRadius = 20;
+
+	// Currently unused
 	public static boolean HardcoreMode = false;
 
 	public static void init(File configFile)
@@ -49,11 +53,18 @@ public class Settings
 		List<String> configList = new ArrayList<String>();
 
 		config.addCustomCategoryComment(Configuration.CATEGORY_GENERAL, StatCollector.translateToLocal("config.general.description"));
+		config.addCustomCategoryComment("Diffuser", StatCollector.translateToLocal("config.diffuser.description"));
 
 		prop = config.get(Configuration.CATEGORY_GENERAL, "debug", Settings.DebugMode);
 		prop.comment = StatCollector.translateToLocal("config.debug.description");
 		prop.setLanguageKey("config.debug.tooltip");
 		DebugMode = prop.getBoolean();
+		configList.add(prop.getName());
+
+		prop = config.get("Diffuser", "diffusingRadius", Settings.DiffusingRadius);
+		prop.comment = StatCollector.translateToLocal("config.diffuser.radius.description");
+		prop.setLanguageKey("config.diffuser.radius");
+		DiffusingRadius = prop.getInt();
 		configList.add(prop.getName());
 
 		if (config.hasChanged())
@@ -66,6 +77,7 @@ public class Settings
 	{
 		List<IConfigElement> list = new ArrayList<IConfigElement>();
 		list.addAll(new ConfigElement(config.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements());
+		list.addAll(new ConfigElement(config.getCategory("Diffuser")).getChildElements());
 		return list;
 	}
 }
