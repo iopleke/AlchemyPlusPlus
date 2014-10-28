@@ -80,6 +80,7 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 	{
 		if (Settings.DebugMode)
 		{
+			// @TODO - remove these, and/or allow player to see info
 			AlchemyPlusPlus.LOGGER.info("Fluid level:" + this.fluidTank.getFluidAmount());
 			AlchemyPlusPlus.LOGGER.info("Diffusing: " + isDiffusing);
 			if (this.getFluid() != null && this.getFluid().getFluid() instanceof PotionFluid)
@@ -148,15 +149,24 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 		AxisAlignedBB axisalignedbb = AxisAlignedBB.getBoundingBox((double) this.xCoord, (double) this.yCoord, (double) this.zCoord, (double) (this.xCoord + 1), (double) (this.yCoord + 1), (double) (this.zCoord + 1)).expand(diffuseRadius, diffuseRadius, diffuseRadius);
 		axisalignedbb.maxY = (double) this.worldObj.getHeight();
 		List list = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
-		Iterator iterator = list.iterator();
-		EntityPlayer entityplayer;
 
-		while (iterator.hasNext())
+		// Iterate through all instances of EntityPlayer in the area
+		Iterator players = list.iterator();
+		EntityPlayer entityplayer;
+		while (players.hasNext())
 		{
-			entityplayer = (EntityPlayer) iterator.next();
-			int potionID = ((PotionEffect) this.fluidTank.potionEffects.get(0)).getPotionID();
-			int duration = 21;
-			entityplayer.addPotionEffect(new PotionEffect(potionID, duration));
+			// Get the next EntityPlayer
+			entityplayer = (EntityPlayer) players.next();
+
+			// Iterate through all potion effects, applying each one to each EntityPlayer
+			Iterator potionEffects = this.fluidTank.potionEffects.iterator();
+
+			while (potionEffects.hasNext())
+			{
+				int potionID = ((PotionEffect) potionEffects.next()).getPotionID();
+				int duration = 21;
+				entityplayer.addPotionEffect(new PotionEffect(potionID, duration));
+			}
 		}
 
 	}
