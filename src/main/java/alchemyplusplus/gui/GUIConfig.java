@@ -6,11 +6,10 @@
 package alchemyplusplus.gui;
 
 import alchemyplusplus.AlchemyPlusPlus;
+import alchemyplusplus.reference.Settings;
 import static alchemyplusplus.reference.Settings.config;
 import cpw.mods.fml.client.config.GuiConfig;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraftforge.common.config.ConfigElement;
-import net.minecraftforge.common.config.Configuration;
 
 /**
  *
@@ -21,7 +20,7 @@ public class GUIConfig extends GuiConfig
 	public GUIConfig(GuiScreen guiScreen)
 	{
 		super(guiScreen,
-				new ConfigElement(config.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements(),
+				Settings.getConfigElements(),
 				AlchemyPlusPlus.ID,
 				false,
 				false,
