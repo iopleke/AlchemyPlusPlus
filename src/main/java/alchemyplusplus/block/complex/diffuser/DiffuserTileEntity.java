@@ -133,8 +133,10 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 			if (this.getFluidAmount() == 0)
 			{
 				this.setBottleColorValue(0);
+				this.setDiffusingState(false);
 			}
 		}
+
 		if (this.updateState)
 		{
 			MessageHandler.INSTANCE.sendToAllAround(new DiffuserUpdateMessage(this), new NetworkRegistry.TargetPoint(worldObj.provider.dimensionId, this.xCoord, this.yCoord, this.zCoord, 20));

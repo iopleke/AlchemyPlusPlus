@@ -1,16 +1,19 @@
 package alchemyplusplus.block.complex.diffuser;
 
-import alchemyplusplus.AlchemyPlusPlus;
 import alchemyplusplus.block.BlockComplex;
 import alchemyplusplus.reference.Naming;
 import alchemyplusplus.utility.NotificationManager;
 import net.minecraft.block.Block;
+import static net.minecraft.block.BlockDirectional.getDirection;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemPotion;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Direction;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class DiffuserBlock extends BlockComplex
@@ -63,6 +66,7 @@ public class DiffuserBlock extends BlockComplex
 								}
 							}
 							diffuser.fillWithOverRide(player.getHeldItem());
+							diffuser.setDiffusingState(world.isBlockIndirectlyGettingPowered(x, y, z) || this.isGettingInput(world, x, y, z, world.getBlockMetadata(x, y, z)));
 							if (!player.capabilities.isCreativeMode && !player.isSneaking())
 							{
 								player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack(Items.glass_bottle);
@@ -148,7 +152,52 @@ public class DiffuserBlock extends BlockComplex
 			}
 
 		}
-		AlchemyPlusPlus.LOGGER.info("Fluid amount: " + diffuser.getFluidAmount());
 		return false;
+	}
+
+	@Override
+	public boolean canConnectRedstone(IBlockAccess world, int x, int y, int z, int side)
+	{
+		if (side != -1)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public void onNeighborBlockChange(World world, int x, int y, int z, Block changedBlock)
+	{
+		if (changedBlock.canProvidePower())
+		{
+			TileEntity worldTE = world.getTileEntity(x, y, z);
+			if (worldTE != null)
+			{
+				if (worldTE instanceof DiffuserTileEntity)
+				{
+					if (((DiffuserTileEntity) worldTE).canDiffuse())
+					{
+						((DiffuserTileEntity) worldTE).setDiffusingState(world.getBlockPowerInput(x, y, z) > 0 || world.isBlockIndirectlyGettingPowered(x, y, z) || this.isGettingInput(world, x, y, z, world.getBlockMetadata(x, y, z)));
+					} else
+					{
+						((DiffuserTileEntity) worldTE).setDiffusingState(false);
+					}
+				}
+			}
+		}
+	}
+
+	protected boolean isGettingInput(World world, int x, int y, int z, int side)
+	{
+		return this.getInputStrength(world, x, y, z, side) > 0;
+	}
+
+	protected int getInputStrength(World world, int x, int y, int z, int side)
+	{
+		int i1 = getDirection(side);
+		int j1 = x + Direction.offsetX[i1];
+		int k1 = z + Direction.offsetZ[i1];
+		int l1 = world.getIndirectPowerLevelTo(j1, y, k1, Direction.directionToFacing[i1]);
+		return l1 >= 15 ? l1 : Math.max(l1, world.getBlock(j1, y, k1) == Blocks.redstone_wire ? world.getBlockMetadata(j1, y, k1) : 0);
 	}
 }
