@@ -17,6 +17,8 @@ public class Settings
 	// Config file
 	public static Configuration config;
 
+	public static String CATEGORY_DIFFUSER = "diffuser";
+
 	// Determines if the mod will print debug info
 	public static boolean DebugMode = false;
 
@@ -25,6 +27,9 @@ public class Settings
 
 	// Base diffusion radius
 	public static int DiffusingRadius = 20;
+
+	// Max number of effects per diffuser
+	public static int EffectsLimit = 0;
 
 	// Currently unused
 	public static boolean HardcoreMode = false;
@@ -53,7 +58,7 @@ public class Settings
 		List<String> configList = new ArrayList<String>();
 
 		config.addCustomCategoryComment(Configuration.CATEGORY_GENERAL, StatCollector.translateToLocal("config.general.description"));
-		config.addCustomCategoryComment("Diffuser", StatCollector.translateToLocal("config.diffuser.description"));
+		config.addCustomCategoryComment(Settings.CATEGORY_DIFFUSER, StatCollector.translateToLocal("config.diffuser.description"));
 
 		prop = config.get(Configuration.CATEGORY_GENERAL, "debug", Settings.DebugMode);
 		prop.comment = StatCollector.translateToLocal("config.debug.description");
@@ -61,9 +66,15 @@ public class Settings
 		DebugMode = prop.getBoolean();
 		configList.add(prop.getName());
 
-		prop = config.get("Diffuser", "diffusingRadius", Settings.DiffusingRadius);
+		prop = config.get(Settings.CATEGORY_DIFFUSER, "diffusingRadius", Settings.DiffusingRadius);
 		prop.comment = StatCollector.translateToLocal("config.diffuser.radius.description");
 		prop.setLanguageKey("config.diffuser.radius");
+		DiffusingRadius = prop.getInt();
+		configList.add(prop.getName());
+
+		prop = config.get(Settings.CATEGORY_DIFFUSER, "effectsLimit", Settings.EffectsLimit);
+		prop.comment = StatCollector.translateToLocal("config.diffuser.effectslimit.description");
+		prop.setLanguageKey("config.diffuser.effectslimit");
 		DiffusingRadius = prop.getInt();
 		configList.add(prop.getName());
 
@@ -76,8 +87,8 @@ public class Settings
 	public static List<IConfigElement> getConfigElements()
 	{
 		List<IConfigElement> list = new ArrayList<IConfigElement>();
+		list.addAll(new ConfigElement(config.getCategory(Settings.CATEGORY_DIFFUSER)).getChildElements());
 		list.addAll(new ConfigElement(config.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements());
-		list.addAll(new ConfigElement(config.getCategory("Diffuser")).getChildElements());
 		return list;
 	}
 }
