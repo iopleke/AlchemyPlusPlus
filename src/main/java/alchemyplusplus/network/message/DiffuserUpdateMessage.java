@@ -6,6 +6,8 @@ import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
+import java.util.Iterator;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 
 public class DiffuserUpdateMessage implements IMessage, IMessageHandler<DiffuserUpdateMessage, IMessage>
@@ -13,6 +15,8 @@ public class DiffuserUpdateMessage implements IMessage, IMessageHandler<Diffuser
 	private int posX, posY, posZ;
 	private int bottleColor, fluidLevel, fluidID;
 	private boolean isDiffusing;
+	private int effectsListSize;
+	private int[] effectIDs;
 
 	public DiffuserUpdateMessage()
 	{
@@ -36,6 +40,26 @@ public class DiffuserUpdateMessage implements IMessage, IMessageHandler<Diffuser
 			this.fluidID = 0;
 		}
 
+		this.effectsListSize = diffuser.fluidTank.potionEffects.size();
+		this.effectIDs = new int[1];
+
+		Iterator potionEffects = diffuser.fluidTank.potionEffects.iterator();
+
+		while (potionEffects.hasNext())
+		{
+			int potionID = ((PotionEffect) potionEffects.next()).getPotionID();
+			this.effectIDs = this.addIntToArray(this.effectIDs, potionID);
+		}
+
+	}
+
+	private int[] addIntToArray(int[] intArray, int toAdd)
+	{
+		int[] sizedArray = new int[intArray.length + 1];
+
+		sizedArray[intArray.length] = toAdd;
+
+		return sizedArray;
 	}
 
 	@Override
@@ -49,6 +73,15 @@ public class DiffuserUpdateMessage implements IMessage, IMessageHandler<Diffuser
 		this.isDiffusing = buf.readBoolean();
 		this.fluidLevel = buf.readInt();
 		this.fluidID = buf.readInt();
+		this.effectsListSize = buf.readInt();
+		this.effectIDs = new int[1];
+
+		int count = this.effectsListSize;
+		while (count > 0)
+		{
+			this.effectIDs = this.addIntToArray(this.effectIDs, buf.readInt());
+			count--;
+		}
 	}
 
 	@Override
@@ -62,6 +95,14 @@ public class DiffuserUpdateMessage implements IMessage, IMessageHandler<Diffuser
 		buf.writeBoolean(this.isDiffusing);
 		buf.writeInt(this.fluidLevel);
 		buf.writeInt(this.fluidID);
+		buf.writeInt(this.effectsListSize);
+
+		int count = 0;
+		while (count < this.effectsListSize)
+		{
+			buf.writeInt(this.effectIDs[count]);
+			count++;
+		}
 	}
 
 	@Override

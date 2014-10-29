@@ -8,6 +8,7 @@ import alchemyplusplus.potion.PotionFluidStack;
 import alchemyplusplus.potion.PotionFluidTank;
 import alchemyplusplus.reference.Settings;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import net.minecraft.entity.player.EntityPlayer;
@@ -165,8 +166,11 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 			while (potionEffects.hasNext())
 			{
 				int potionID = ((PotionEffect) potionEffects.next()).getPotionID();
-				int duration = 21;
-				entityplayer.addPotionEffect(new PotionEffect(potionID, duration));
+				if (potionID != 0)
+				{
+					int duration = 21;
+					entityplayer.addPotionEffect(new PotionEffect(potionID, duration));
+				}
 			}
 		}
 
@@ -202,6 +206,16 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 		{
 			nbt.setTag("diffuserTank", this.fluidTank.writeToNBT(new NBTTagCompound()));
 			nbt.setInteger("diffuserTankAmount", this.fluidTank.getFluidAmount());
+			nbt.setInteger("effectsCount", this.fluidTank.potionEffects.size());
+			Iterator potionEffects = this.fluidTank.potionEffects.iterator();
+			int count = 0;
+			while (potionEffects.hasNext())
+			{
+				int potionID = ((PotionEffect) potionEffects.next()).getPotionID();
+				AlchemyPlusPlus.LOGGER.info("WRITING: " + potionID);
+				nbt.setInteger("effect" + count, potionID);
+				count++;
+			}
 		}
 
 		nbt.setShort("diffusingTicks", (short) this.diffusingTicks);
@@ -224,6 +238,18 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 		if (this.fluidTank != null)
 		{
 			this.fluidTank.readFromNBT(nbt.getCompoundTag("diffuserTank"));
+			this.fluidTank.potionEffects = new ArrayList();
+
+			int count = nbt.getInteger("effectsCount");
+			while (count >= 0)
+			{
+				int potionID = nbt.getInteger("effect" + count);
+				AlchemyPlusPlus.LOGGER.info("READING: " + potionID);
+				PotionEffect effect = new PotionEffect(potionID, 40, 0);
+
+				this.fluidTank.potionEffects.add(effect);
+				count--;
+			}
 		}
 	}
 
