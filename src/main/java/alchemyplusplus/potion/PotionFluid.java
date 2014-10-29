@@ -13,7 +13,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionHelper;
-import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 
@@ -34,8 +33,8 @@ public class PotionFluid extends Fluid
 	public PotionFluid(ItemStack itemStack)
 	{
 		super(PotionFluid.getPotionNameFromItemStack(itemStack));
-		World world = Minecraft.getMinecraft().theWorld;
-		if (world.isRemote)
+		Minecraft minecraft = Minecraft.getMinecraft();
+		if (minecraft.theWorld != null && minecraft.theWorld.isRemote)
 		{
 			this.getPotionColorFromDamage(itemStack);
 		}
