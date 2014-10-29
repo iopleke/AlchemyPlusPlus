@@ -6,7 +6,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPotion;
 import net.minecraft.item.ItemStack;
@@ -19,7 +18,9 @@ import net.minecraftforge.fluids.FluidRegistry;
 public class PotionFluid extends Fluid
 {
 	public int fluidColor = 0;
+	private ItemPotion potion;
 	public List potionEffects;
+	private int itemDamage;
 
 	public PotionFluid(Potion potion)
 	{
@@ -33,28 +34,20 @@ public class PotionFluid extends Fluid
 	public PotionFluid(ItemStack itemStack)
 	{
 		super(PotionFluid.getPotionNameFromItemStack(itemStack));
-		Minecraft minecraft = Minecraft.getMinecraft();
-		if (minecraft.theWorld != null && minecraft.theWorld.isRemote)
-		{
-			this.getPotionColorFromDamage(itemStack);
-		}
+		this.potion = (ItemPotion) itemStack.getItem();
+		this.itemDamage = itemStack.getItemDamage();
+		this.potionEffects = ((ItemPotion) itemStack.getItem()).getEffects(itemStack);
 
-	}
-
-	@SideOnly(Side.CLIENT)
-	private void getPotionColorFromDamage(ItemStack itemStack)
-	{
-		if (itemStack.getItem() instanceof ItemPotion)
-		{
-			this.potionEffects = ((ItemPotion) itemStack.getItem()).getEffects(itemStack);
-			// @TODO - this doesn't match the potion item color, fix that
-			this.fluidColor = ((ItemPotion) itemStack.getItem()).getColorFromDamage(itemStack.getItemDamage());
-		}
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public int getColor()
 	{
+		if (this.potion != null)
+		{
+			return potion.getColorFromDamage(this.itemDamage);
+		}
 		return this.fluidColor;
 	}
 
