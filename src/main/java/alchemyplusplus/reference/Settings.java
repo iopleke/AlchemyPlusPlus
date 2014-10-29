@@ -72,11 +72,6 @@ public class Settings
 		DiffusingRadius = prop.getInt();
 		configList.add(prop.getName());
 
-//		prop = config.get(Settings.CATEGORY_DIFFUSER, "effectsLimit", Settings.EffectsLimit);
-//		prop.comment = StatCollector.translateToLocal("config.diffuser.effectslimit.description");
-//		prop.setLanguageKey("config.diffuser.effectslimit");
-//		DiffusingRadius = prop.getInt();
-//		configList.add(prop.getName());
 		if (config.hasChanged())
 		{
 			config.save();
