@@ -13,7 +13,7 @@ See the [original mod topic](http://www.minecraftforum.net/topic/1909298-162152f
 Getting AlchemyPlusPlus
 ========================
 
-For the latest builds, check the [Jenkins build server](http://mc.picraft.com/build/job/Alchemy++/).
+For the latest builds, check the [Jenkins build server](http://goo.gl/C1sVjY).
 
 I got permission form @mokonaDesu to take over the mod.
 ![](https://raw.githubusercontent.com/jakimfett/AlchemyPlusPlus/master/alchemypluspluspermission.png)
