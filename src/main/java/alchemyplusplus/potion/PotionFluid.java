@@ -33,7 +33,7 @@ public class PotionFluid extends Fluid
 
 	public PotionFluid(ItemStack itemStack)
 	{
-		super(PotionFluid.getPotionNameFromItemStack(itemStack));
+		super(PotionFluid.getPotionNameFromItemStack(itemStack).substring(0, (PotionFluid.getPotionNameFromItemStack(itemStack).indexOf(" ") > 0 ? PotionFluid.getPotionNameFromItemStack(itemStack).indexOf(" ") : PotionFluid.getPotionNameFromItemStack(itemStack).length())));
 		this.potion = (ItemPotion) itemStack.getItem();
 		this.itemDamage = itemStack.getItemDamage();
 		this.potionEffects = ((ItemPotion) itemStack.getItem()).getEffects(itemStack);
