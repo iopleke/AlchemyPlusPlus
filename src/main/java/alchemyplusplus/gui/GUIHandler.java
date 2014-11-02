@@ -22,7 +22,6 @@ public class GUIHandler implements IGuiHandler
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
 	{
-		System.out.println("Got to the client GUI element method");
 		switch (ID)
 		{
 			case 0:
@@ -48,7 +47,6 @@ public class GUIHandler implements IGuiHandler
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
 	{
-		System.out.println("Got to the server GUI element method");
 		// @TODO - refactor this to use instanceof
 		switch (ID)
 		{
