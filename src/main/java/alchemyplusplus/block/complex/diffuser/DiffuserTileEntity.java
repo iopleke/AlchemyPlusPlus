@@ -257,7 +257,6 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 		this.fluidTank = new PotionFluidTank(new PotionFluidStack(potionFluid, 333), 333);
 		//this.bottleColor = ((ItemPotion) heldItem.getItem()).getColorFromDamage(heldItem.getItemDamage());
 		this.bottleColor = potionFluid.getColor();
-		AlchemyPlusPlus.LOGGER.info("Potion color is " + this.bottleColor);
 		this.updateState = true;
 		return this.fluidTank.getFluidAmount();
 	}
