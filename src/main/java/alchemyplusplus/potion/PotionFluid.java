@@ -1,6 +1,7 @@
 package alchemyplusplus.potion;
 
 import alchemyplusplus.AlchemyPlusPlus;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.util.ArrayList;
@@ -37,6 +38,13 @@ public class PotionFluid extends Fluid
 		this.potion = (ItemPotion) itemStack.getItem();
 		this.itemDamage = itemStack.getItemDamage();
 		this.potionEffects = ((ItemPotion) itemStack.getItem()).getEffects(itemStack);
+		if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
+		{
+			this.fluidColor = ((ItemPotion) itemStack.getItem()).getColorFromDamage(itemStack.getItemDamage());
+		} else
+		{
+			this.fluidColor = 0;
+		}
 
 	}
 
