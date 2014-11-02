@@ -212,7 +212,6 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 			while (potionEffects.hasNext())
 			{
 				int potionID = ((PotionEffect) potionEffects.next()).getPotionID();
-				AlchemyPlusPlus.LOGGER.info("WRITING: " + potionID);
 				nbt.setInteger("effect" + count, potionID);
 				count++;
 			}
@@ -244,7 +243,6 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 			while (count >= 0)
 			{
 				int potionID = nbt.getInteger("effect" + count);
-				AlchemyPlusPlus.LOGGER.info("READING: " + potionID);
 				PotionEffect effect = new PotionEffect(potionID, 40, 0);
 
 				this.fluidTank.potionEffects.add(effect);
