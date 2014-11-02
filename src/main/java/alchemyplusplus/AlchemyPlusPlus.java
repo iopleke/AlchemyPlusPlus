@@ -102,7 +102,7 @@ public class AlchemyPlusPlus
 
 		if (Settings.DebugMode)
 		{
-			ItemRegistry.registerHardcoreRecipes();
+			//ItemRegistry.registerHardcoreRecipes();
 		}
 
 		EventManager.registerEventHooks();
