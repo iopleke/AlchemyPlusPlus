@@ -74,8 +74,10 @@ public class ItemRegistry
 	public static void registerHardcoreRecipes()
 	{
 
-		System.out.println("Alchemy++ is registering its hardcore recipes! This requires modifyng vanilla recipe list.");
-
+		if (Settings.DebugMode)
+		{
+			AlchemyPlusPlus.LOGGER.info("Alchemy++ is registering its hardcore recipes! This requires modifyng vanilla recipe list.");
+		}
 		// first remove the standard vanilla ones!
 		ArrayList list = (ArrayList) CraftingManager.getInstance().getRecipeList();
 
@@ -83,7 +85,10 @@ public class ItemRegistry
 		{
 			if (ItemStack.areItemStacksEqual(((IRecipe) list.get(i)).getRecipeOutput(), new ItemStack(Items.speckled_melon)))
 			{
-				System.out.println("Alchemy++ removes \"speckeledMelon\" recipe from the recipe list! Be advised!");
+				if (Settings.DebugMode)
+				{
+					AlchemyPlusPlus.LOGGER.info("Alchemy++ removes \"speckeledMelon\" recipe from the recipe list! Be advised!");
+				}
 				list.remove(i);
 			}
 
