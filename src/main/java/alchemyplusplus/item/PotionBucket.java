@@ -7,6 +7,8 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionHelper;
 import net.minecraft.util.IIcon;
 
 public class PotionBucket extends ItemBucket
@@ -15,10 +17,12 @@ public class PotionBucket extends ItemBucket
 
 	@SideOnly(Side.CLIENT)
 	private IIcon potionBucket, potionBucketOverlay;
+	private final Potion potion;
 
-	public PotionBucket(Block block)
+	public PotionBucket(Block block, Potion potion)
 	{
 		super(block);
+		this.potion = potion;
 	}
 
 	@Override
@@ -46,6 +50,19 @@ public class PotionBucket extends ItemBucket
 		}
 		return this.potionBucketOverlay;
 
+	}
+
+	@SideOnly(Side.CLIENT)
+	public int getColorFromDamage(int damage)
+	{
+		return PotionHelper.func_77915_a(damage, false);
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Override
+	public int getColorFromItemStack(ItemStack itemStack, int pass)
+	{
+		return pass > 0 ? 16777215 : this.potion.getLiquidColor();
 	}
 
 }

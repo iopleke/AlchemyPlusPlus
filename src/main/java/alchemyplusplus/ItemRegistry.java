@@ -80,7 +80,7 @@ public class ItemRegistry
 	public static void registerPotionBucketRecipe(Block block, Potion potion)
 	{
 
-		PotionBucket potionBucket = new PotionBucket(block);
+		PotionBucket potionBucket = new PotionBucket(block, potion);
 		potionBucket.setCreativeTab(CreativeTab.APP_TAB);
 		potionBucket.setUnlocalizedName(potion.getName());
 		GameRegistry.registerItem(potionBucket, potion.getName());
