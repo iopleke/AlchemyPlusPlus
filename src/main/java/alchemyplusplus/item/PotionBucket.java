@@ -8,7 +8,6 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionHelper;
 import net.minecraft.util.IIcon;
 
 public class PotionBucket extends ItemBucket
@@ -50,12 +49,6 @@ public class PotionBucket extends ItemBucket
 		}
 		return this.potionBucket;
 
-	}
-
-	@SideOnly(Side.CLIENT)
-	public int getColorFromDamage(int damage)
-	{
-		return PotionHelper.func_77915_a(damage, false);
 	}
 
 	@SideOnly(Side.CLIENT)
