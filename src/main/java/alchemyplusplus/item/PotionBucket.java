@@ -46,9 +46,9 @@ public class PotionBucket extends ItemBucket
 	{
 		if (pass == 0)
 		{
-			return this.potionBucket;
+			return this.potionBucketOverlay;
 		}
-		return this.potionBucketOverlay;
+		return this.potionBucket;
 
 	}
 
