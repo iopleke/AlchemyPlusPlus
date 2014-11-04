@@ -30,6 +30,11 @@ public class PotionRegistry
 				PotionFluidBlock block = new PotionFluidBlock(potionFluid, Material.water, pot);
 				block.setCreativeTab(CreativeTab.APP_TAB);
 
+				if (Settings.PotionBucketCrafting)
+				{
+					ItemRegistry.registerPotionBucketRecipe(block, pot);
+				}
+
 				GameRegistry.registerBlock(block, PotionFluidBlockItem.class, potionFluid.getUnlocalizedName());
 			}
 		}

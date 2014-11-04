@@ -22,6 +22,7 @@ public class BlockRegistry
 	public static void registerBlockRecipes()
 	{
 		GameRegistry.addRecipe(new ItemStack(fleshBlock, 1, 0), "xxx", "xsx", "xxx", 'x', new ItemStack(Items.rotten_flesh, 1, 0), 's', new ItemStack(Items.slime_ball, 1, 0));
+		GameRegistry.addRecipe(new ItemStack(diffuser), ".d.", ".b.", "...", 'd', new ItemStack(Items.glass_bottle), 'b', new ItemStack(Items.bowl));
 
 	}
 

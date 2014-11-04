@@ -25,6 +25,9 @@ public class Settings
 	// Override vanilla potion brewing mechanics
 	public static boolean BrewingOverride = false;
 
+	// Allow players to craft potion buckets
+	public static boolean PotionBucketCrafting = true;
+
 	// Base diffusion radius
 	public static int DiffusingRadius = 20;
 
@@ -64,6 +67,12 @@ public class Settings
 		prop.comment = StatCollector.translateToLocal("config.debug.description");
 		prop.setLanguageKey("config.debug.tooltip");
 		DebugMode = prop.getBoolean();
+		configList.add(prop.getName());
+
+		prop = config.get(Configuration.CATEGORY_GENERAL, "potionBucketCrafting", Settings.PotionBucketCrafting);
+		prop.comment = StatCollector.translateToLocal("config.potionbucket.description");
+		prop.setLanguageKey("config.potionbucket.tooltip");
+		PotionBucketCrafting = prop.getBoolean();
 		configList.add(prop.getName());
 
 		prop = config.get(Settings.CATEGORY_DIFFUSER, "diffusingRadius", Settings.DiffusingRadius);

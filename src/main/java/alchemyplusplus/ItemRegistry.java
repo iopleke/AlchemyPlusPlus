@@ -1,18 +1,22 @@
 package alchemyplusplus;
 
+import alchemyplusplus.gui.CreativeTab;
 import alchemyplusplus.item.FishOil;
 import alchemyplusplus.item.ItemBasic;
 import alchemyplusplus.item.MixingFilter;
+import alchemyplusplus.item.PotionBucket;
 import alchemyplusplus.reference.Naming;
 import alchemyplusplus.reference.Settings;
 import cpw.mods.fml.common.registry.GameRegistry;
 import java.util.ArrayList;
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.potion.Potion;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public class ItemRegistry
@@ -59,15 +63,27 @@ public class ItemRegistry
 		GameRegistry.registerItem(woodAlcohol, woodAlcohol.getUnlocalizedName());
 
 		// work in progress: override vanilla potions
-		if (Settings.BrewingOverride)
 		{
-			// @TODO - see if this is even still possible...maybe check how Railcraft does it?
+			if (Settings.BrewingOverride)
+			{
+				// @TODO - see if this is even still possible...maybe check how Railcraft does it?
 //            ItemPotion potion = Items.potionitem;
 //            Item.itemRegistry = null;
 //            appItemPotion = new PotionTemplate(potion).setUnlocalizedName("potion").setTextureName("potion");
 //            Items.potionitem = (ItemPotion) appItemPotion;
 //            GameRegistry.registerItem(appItemPotion, "potion");
+			}
 		}
+
+	}
+
+	public static void registerPotionBucketRecipe(Block block, Potion potion)
+	{
+
+		PotionBucket potionBucket = new PotionBucket(block);
+		potionBucket.setCreativeTab(CreativeTab.APP_TAB);
+		potionBucket.setUnlocalizedName(potion.getName());
+		GameRegistry.registerItem(potionBucket, potion.getName());
 
 	}
 
