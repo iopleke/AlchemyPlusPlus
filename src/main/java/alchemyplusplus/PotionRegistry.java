@@ -27,8 +27,15 @@ public class PotionRegistry
 				FluidRegistry.registerFluid((Fluid) potionFluid);
 				PotionFluidBlock block = new PotionFluidBlock((Fluid) potionFluid, Material.water, potion);
 
-				ItemRegistry.addCreativePotionBucket(block, potion);
+				//ItemRegistry.addCreativePotionBucket(block, potion);
+				PotionBucket potionBucket = new PotionBucket(block, potion);
+				potionBucket.setCreativeTab(CreativeTab.APP_TAB);
+				potionBucket.setUnlocalizedName(potion.getName());
+				GameRegistry.registerItem(potionBucket, potion.getName());
+
 				FluidContainerRegistry.registerFluidContainer((Fluid) potionFluid, new ItemStack(new PotionBucket(block, potion)), new ItemStack(Items.bucket));
+
+				EventsHandler.INSTANCE.buckets.put(block, potionBucket);
 
 				block.setCreativeTab(CreativeTab.APP_TAB);
 
