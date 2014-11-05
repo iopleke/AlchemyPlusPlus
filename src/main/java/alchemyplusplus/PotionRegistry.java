@@ -1,41 +1,48 @@
 package alchemyplusplus;
 
 import alchemyplusplus.gui.CreativeTab;
+import alchemyplusplus.item.PotionBucket;
 import alchemyplusplus.potion.PotionFluid;
 import alchemyplusplus.potion.PotionFluidBlock;
 import alchemyplusplus.potion.PotionFluidBlockItem;
 import alchemyplusplus.reference.Settings;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 
 public class PotionRegistry
 {
 	public static void init()
 	{
-		for (Potion pot : Potion.potionTypes)
+		for (Potion potion : Potion.potionTypes)
 		{
-			if (pot != null)
+			if (potion != null)
 			{
-				Fluid potionFluid = new PotionFluid(pot);
-				FluidRegistry.registerFluid(potionFluid);
+				PotionFluid potionFluid = new PotionFluid(potion);
+				FluidRegistry.registerFluid((Fluid) potionFluid);
+				PotionFluidBlock block = new PotionFluidBlock((Fluid) potionFluid, Material.water, potion);
 
-				if (Settings.DebugMode)
-				{
-					AlchemyPlusPlus.LOGGER.info("Registered fluid for " + pot.getName());
-				}
+				ItemRegistry.addCreativePotionBucket(block, potion);
+				FluidContainerRegistry.registerFluidContainer((Fluid) potionFluid, new ItemStack(new PotionBucket(block, potion)), new ItemStack(Items.bucket));
 
-				PotionFluidBlock block = new PotionFluidBlock(potionFluid, Material.water, pot);
 				block.setCreativeTab(CreativeTab.APP_TAB);
 
 				if (Settings.PotionBucketCrafting)
 				{
-					ItemRegistry.registerPotionBucketRecipe(block, pot);
+
 				}
 
 				GameRegistry.registerBlock(block, PotionFluidBlockItem.class, potionFluid.getUnlocalizedName());
+
+				if (Settings.DebugMode)
+				{
+					AlchemyPlusPlus.LOGGER.info("Registered fluid for " + potion.getName());
+				}
 			}
 		}
 	}
