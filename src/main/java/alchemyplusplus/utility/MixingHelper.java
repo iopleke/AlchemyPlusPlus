@@ -23,15 +23,12 @@ import net.minecraftforge.common.util.Constants;
 public class MixingHelper
 {
 
-	public static void addCustomPotionEffect(ItemStack stack, PotionEffect e, boolean degrade, ItemStack filter)
+	public static void addCustomPotionEffect(ItemStack stack, PotionEffect potionEffect, boolean degrade, ItemStack filter)
 	{
 		Random random = new Random();
-		boolean badBonus = (isBadEffect(e.getPotionID()) && filter
-				.getTagCompound().getBoolean("BadBoost"));
-		boolean goodBonus = (!(isBadEffect(e.getPotionID())) && filter
-				.getTagCompound().getBoolean("GoodBoost"));
-		boolean splashBonus = (ItemPotion.isSplash(stack.getItemDamage()) && filter
-				.getTagCompound().getBoolean("SplashBoost"));
+		boolean badBonus = (isBadEffect(potionEffect.getPotionID()) && filter.getTagCompound().getBoolean("BadBoost"));
+		boolean goodBonus = (!(isBadEffect(potionEffect.getPotionID())) && filter.getTagCompound().getBoolean("GoodBoost"));
+		boolean splashBonus = (ItemPotion.isSplash(stack.getItemDamage()) && filter.getTagCompound().getBoolean("SplashBoost"));
 
 		if (stack.hasTagCompound())
 		{
@@ -41,20 +38,19 @@ public class MixingHelper
 				NBTTagList list = stack.getTagCompound().getTagList("CustomPotionEffects", Constants.NBT.TAG_COMPOUND);
 				NBTTagCompound effectTag = new NBTTagCompound();
 
-				if ((badBonus || goodBonus || splashBonus)
-						&& (random.nextFloat() > 0.75f))
+				if ((badBonus || goodBonus || splashBonus) && (random.nextFloat() > 0.75f))
 				{
-					effectTag = upgradeAndWriteEffect(effectTag, e);
+					effectTag = upgradeAndWriteEffect(effectTag, potionEffect);
 				} else if (degrade)
 				{
-					effectTag = degradeAndWriteEffect(effectTag, e, filter);
+					effectTag = degradeAndWriteEffect(effectTag, potionEffect, filter);
 					if (effectTag == null)
 					{
 						return;
 					}
 				} else
 				{
-					e.writeCustomPotionEffectToNBT(effectTag);
+					potionEffect.writeCustomPotionEffectToNBT(effectTag);
 				}
 				list.appendTag(effectTag);
 			} else
@@ -64,17 +60,17 @@ public class MixingHelper
 				if ((badBonus || goodBonus || splashBonus)
 						&& (random.nextFloat() > 0.7f))
 				{
-					effectTag = upgradeAndWriteEffect(effectTag, e);
+					effectTag = upgradeAndWriteEffect(effectTag, potionEffect);
 				} else if (degrade)
 				{
-					effectTag = degradeAndWriteEffect(effectTag, e, filter);
+					effectTag = degradeAndWriteEffect(effectTag, potionEffect, filter);
 					if (effectTag == null)
 					{
 						return;
 					}
 				} else
 				{
-					e.writeCustomPotionEffectToNBT(effectTag);
+					potionEffect.writeCustomPotionEffectToNBT(effectTag);
 				}
 				list.appendTag(effectTag);
 				stack.getTagCompound().setTag("CustomPotionEffects", list);
@@ -84,20 +80,20 @@ public class MixingHelper
 			NBTTagCompound nbt = new NBTTagCompound();
 			NBTTagList list = new NBTTagList();
 			NBTTagCompound effectTag = new NBTTagCompound();
-			if ((badBonus || goodBonus || splashBonus)
-					&& (random.nextFloat() > 0.7f))
+
+			if ((badBonus || goodBonus || splashBonus) && (random.nextFloat() > 0.7f))
 			{
-				effectTag = upgradeAndWriteEffect(effectTag, e);
+				effectTag = upgradeAndWriteEffect(effectTag, potionEffect);
 			} else if (degrade)
 			{
-				effectTag = degradeAndWriteEffect(effectTag, e, filter);
+				effectTag = degradeAndWriteEffect(effectTag, potionEffect, filter);
 				if (effectTag == null)
 				{
 					return;
 				}
 			} else
 			{
-				e.writeCustomPotionEffectToNBT(effectTag);
+				potionEffect.writeCustomPotionEffectToNBT(effectTag);
 			}
 			list.appendTag(effectTag);
 			nbt.setTag("CustomPotionEffects", list);
@@ -106,7 +102,7 @@ public class MixingHelper
 
 	}
 
-	public static void addEffect(ItemStack stack, PotionEffect e)
+	public static void addEffect(ItemStack stack, PotionEffect potionEffect)
 	{
 
 		if (!stack.hasTagCompound())
@@ -121,13 +117,12 @@ public class MixingHelper
 			stack.getTagCompound().setTag("CustomPotionEffects", list);
 		}
 
-		NBTTagList list = stack.getTagCompound().getTagList(
-				"CustomPotionEffects", Constants.NBT.TAG_COMPOUND);
+		NBTTagList list = stack.getTagCompound().getTagList("CustomPotionEffects", Constants.NBT.TAG_COMPOUND);
 		NBTTagCompound tag = new NBTTagCompound();
-		tag.setByte("Amplifier", (byte) e.getAmplifier());
-		tag.setByte("Id", (byte) e.getPotionID());
-		tag.setInteger("Duration", e.getDuration());
-		tag.setBoolean("Ambient", e.getIsAmbient());
+		tag.setByte("Amplifier", (byte) potionEffect.getAmplifier());
+		tag.setByte("Id", (byte) potionEffect.getPotionID());
+		tag.setInteger("Duration", potionEffect.getDuration());
+		tag.setBoolean("Ambient", potionEffect.getIsAmbient());
 		list.appendTag(tag);
 
 	}
