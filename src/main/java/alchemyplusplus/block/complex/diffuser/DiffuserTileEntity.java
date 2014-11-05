@@ -32,7 +32,7 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 	public boolean isDiffusing;
 	public int bottleColor;
 	public int diffusingTicks;
-	public int bottleDamage;
+	public int potionDamageValue;
 
 	public DiffuserTileEntity()
 	{
@@ -208,6 +208,7 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 			nbt.setTag("diffuserTank", this.fluidTank.writeToNBT(new NBTTagCompound()));
 			nbt.setInteger("diffuserTankAmount", this.fluidTank.getFluidAmount());
 			nbt.setInteger("effectsCount", this.fluidTank.potionEffects.size());
+			nbt.setInteger("potionDamageValue", this.potionDamageValue);
 			Iterator potionEffects = this.fluidTank.potionEffects.iterator();
 			int count = 0;
 			while (potionEffects.hasNext())
@@ -235,6 +236,8 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 
 		this.bottleColor = nbt.getInteger("bottleColor");
 
+		this.potionDamageValue = nbt.getInteger("potionDamageValue");
+
 		if (this.fluidTank != null)
 		{
 			this.fluidTank.readFromNBT(nbt.getCompoundTag("diffuserTank"));
@@ -256,7 +259,7 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 	{
 		PotionFluid potionFluid = new PotionFluid(heldItem);
 		this.fluidTank = new PotionFluidTank(new PotionFluidStack(potionFluid, 333), 333);
-		this.bottleDamage = heldItem.getItemDamage();
+		this.potionDamageValue = heldItem.getItemDamage();
 		this.bottleColor = potionFluid.getColor();
 		this.updateState = true;
 		return this.fluidTank.getFluidAmount();

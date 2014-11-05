@@ -119,7 +119,7 @@ public class DiffuserBlock extends BlockComplex
 					{
 						MixingHelper.addEffect(itemStack, (PotionEffect) iter.next());
 					}
-					itemStack.setItemDamage(diffuser.bottleDamage);
+					itemStack.setItemDamage(diffuser.potionDamageValue);
 					player.inventory.mainInventory[player.inventory.currentItem] = itemStack;
 
 					// Wiping the diffuser data
