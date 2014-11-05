@@ -32,6 +32,7 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 	public boolean isDiffusing;
 	public int bottleColor;
 	public int diffusingTicks;
+	public int bottleDamage;
 
 	public DiffuserTileEntity()
 	{
@@ -255,7 +256,7 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 	{
 		PotionFluid potionFluid = new PotionFluid(heldItem);
 		this.fluidTank = new PotionFluidTank(new PotionFluidStack(potionFluid, 333), 333);
-		//this.bottleColor = ((ItemPotion) heldItem.getItem()).getColorFromDamage(heldItem.getItemDamage());
+		this.bottleDamage = heldItem.getItemDamage();
 		this.bottleColor = potionFluid.getColor();
 		this.updateState = true;
 		return this.fluidTank.getFluidAmount();

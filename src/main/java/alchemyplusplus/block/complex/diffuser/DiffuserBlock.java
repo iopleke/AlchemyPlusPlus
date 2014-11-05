@@ -109,16 +109,13 @@ public class DiffuserBlock extends BlockComplex
 				{
 
 					// Set item to potion
-					// @TODO - make this work
-					player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack(Items.potionitem);
+					ItemPotion potion = Items.potionitem;
+					ItemStack itemStack = new ItemStack(potion);
+					itemStack.setItemDamage(diffuser.bottleDamage);
+					player.inventory.mainInventory[player.inventory.currentItem] = itemStack;
 
 					// Wiping the diffuser data
-					diffuser.setBottleColorValue(0);
-					if (diffuser.isDiffuserActive())
-					{
-						diffuser.toggleDiffusingState();
-					}
-
+					diffuser.resetDiffuser();
 				} else
 				{
 					if (!world.isRemote)
