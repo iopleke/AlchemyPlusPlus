@@ -213,8 +213,9 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 			int count = 0;
 			while (potionEffects.hasNext())
 			{
-				int potionID = ((PotionEffect) potionEffects.next()).getPotionID();
-				nbt.setInteger("effect" + count, potionID);
+				PotionEffect effect = (PotionEffect) potionEffects.next();
+				nbt.setInteger("effect" + count, effect.getPotionID());
+				nbt.setInteger("duration" + count, effect.getDuration());
 				count++;
 			}
 		}
@@ -247,7 +248,8 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 			while (count >= 0)
 			{
 				int potionID = nbt.getInteger("effect" + count);
-				PotionEffect effect = new PotionEffect(potionID, 40, 0);
+				int duration = nbt.getInteger("duration" + count);
+				PotionEffect effect = new PotionEffect(potionID, duration, 0);
 
 				this.fluidTank.potionEffects.add(effect);
 				count--;
