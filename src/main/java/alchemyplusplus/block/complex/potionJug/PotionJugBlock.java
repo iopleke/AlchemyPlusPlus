@@ -1,5 +1,6 @@
 package alchemyplusplus.block.complex.potionJug;
 
+import alchemyplusplus.AlchemyPlusPlus;
 import alchemyplusplus.BlockRegistry;
 import alchemyplusplus.gui.CreativeTab;
 import alchemyplusplus.reference.Textures;
@@ -66,6 +67,8 @@ public class PotionJugBlock extends BlockContainer
 		entityitem.motionY = (double) ((float) random.nextGaussian() * 0.05F + 0.2F);
 		entityitem.motionZ = (double) ((float) random.nextGaussian() * 0.05F);
 
+		AlchemyPlusPlus.LOGGER.info("Spawning potion jug item entity");
+
 		world.spawnEntityInWorld(entityitem);
 
 		super.breakBlock(world, x, y, z, block, meta);
@@ -89,7 +92,7 @@ public class PotionJugBlock extends BlockContainer
 	{
 		world.notifyBlockChange(x, y, z, this);
 
-		if (player.isSneaking())
+		if (player.isSneaking() || player.getCurrentEquippedItem() == null)
 		{
 
 			if (((PotionJugTileEntity) world.getTileEntity(x, y, z)).containerHas > 0)
@@ -119,20 +122,32 @@ public class PotionJugBlock extends BlockContainer
 		{
 			if (te.containerHas > 0)
 			{
-				stack.stackSize--;
+				if (!player.capabilities.isCreativeMode)
+				{
+					stack.stackSize--;
+				}
 				te.containerHas--;
 				ItemStack potion = new ItemStack(Items.potionitem, 1, te.potionID);
-				player.inventory.addItemStackToInventory(potion);
+				if (!player.capabilities.isCreativeMode)
+				{
+					player.inventory.addItemStackToInventory(potion);
+				}
 			}
 		} else if (stack.getItem() == Items.potionitem && stack.getItemDamage() > 0 && !stack.hasTagCompound())
 		{		//Custom potions are not allowed!
 			if (te.containerHas == 0 || (stack.getItemDamage() == te.potionID && (te.containerHas < te.containerMax)))
 			{
-				te.containerHas++;
+
 				te.potionID = stack.getItemDamage();
-				stack.stackSize--;
-				ItemStack potion = new ItemStack(Items.glass_bottle, 1, 0);
-				player.inventory.addItemStackToInventory(potion);
+
+				if (!player.capabilities.isCreativeMode)
+				{
+					stack.stackSize--;
+
+					ItemStack potion = new ItemStack(Items.glass_bottle, 1, 0);
+					player.inventory.addItemStackToInventory(potion);
+				}
+				te.containerHas++;
 			}
 		}
 		if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER)
