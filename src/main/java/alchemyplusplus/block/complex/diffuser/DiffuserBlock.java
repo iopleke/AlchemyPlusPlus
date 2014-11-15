@@ -8,6 +8,7 @@ import java.util.Iterator;
 import net.minecraft.block.Block;
 import static net.minecraft.block.BlockDirectional.getDirection;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -16,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -195,6 +197,18 @@ public class DiffuserBlock extends BlockComplex
     protected boolean isGettingInput(World world, int x, int y, int z, int side)
     {
         return this.getInputStrength(world, x, y, z, side) > 0;
+    }
+
+    @Override
+    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase el, ItemStack is)
+    {
+        super.onBlockPlacedBy(world, x, y, z, el, is);
+
+        // Rotate the model by 90 degrees counterclockwise
+        Float direction = el.rotationYaw + 90;
+
+        int facing = MathHelper.floor_double(direction * 4.0F / 360.0F + 0.5D) & 3;
+        world.setBlockMetadataWithNotify(x, y, z, facing, 2);
     }
 
     protected int getInputStrength(World world, int x, int y, int z, int side)
