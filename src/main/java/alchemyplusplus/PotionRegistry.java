@@ -17,41 +17,41 @@ import net.minecraftforge.fluids.FluidRegistry;
 
 public class PotionRegistry
 {
-	public static void init()
-	{
-		for (Potion potion : Potion.potionTypes)
-		{
-			if (potion != null)
-			{
-				PotionFluid potionFluid = new PotionFluid(potion);
-				FluidRegistry.registerFluid((Fluid) potionFluid);
-				PotionFluidBlock block = new PotionFluidBlock((Fluid) potionFluid, Material.water, potion);
+    public static void init()
+    {
+        for (Potion potion : Potion.potionTypes)
+        {
+            if (potion != null)
+            {
+                PotionFluid potionFluid = new PotionFluid(potion);
+                FluidRegistry.registerFluid((Fluid) potionFluid);
+                PotionFluidBlock block = new PotionFluidBlock((Fluid) potionFluid, Material.water, potion);
 
-				//ItemRegistry.addCreativePotionBucket(block, potion);
-				PotionBucket potionBucket = new PotionBucket(block, potion);
-				potionBucket.setCreativeTab(CreativeTab.APP_TAB);
-				potionBucket.setUnlocalizedName(potion.getName());
-				GameRegistry.registerItem(potionBucket, potion.getName());
+                //ItemRegistry.addCreativePotionBucket(block, potion);
+                PotionBucket potionBucket = new PotionBucket(block, potion);
+                potionBucket.setCreativeTab(CreativeTab.APP_TAB);
+                potionBucket.setUnlocalizedName(potion.getName());
+                GameRegistry.registerItem(potionBucket, potion.getName());
 
-				FluidContainerRegistry.registerFluidContainer((Fluid) potionFluid, new ItemStack(new PotionBucket(block, potion)), new ItemStack(Items.bucket));
+                FluidContainerRegistry.registerFluidContainer((Fluid) potionFluid, new ItemStack(new PotionBucket(block, potion)), new ItemStack(Items.bucket));
 
-				EventsHandler.INSTANCE.buckets.put(block, potionBucket);
+                EventsHandler.INSTANCE.buckets.put(block, potionBucket);
 
-				block.setCreativeTab(CreativeTab.APP_TAB);
+                block.setCreativeTab(CreativeTab.APP_TAB);
 
-				if (Settings.PotionBucketCrafting)
-				{
+                if (Settings.PotionBucketCrafting)
+                {
 
-				}
+                }
 
-				GameRegistry.registerBlock(block, PotionFluidBlockItem.class, potionFluid.getUnlocalizedName());
+                GameRegistry.registerBlock(block, PotionFluidBlockItem.class, potionFluid.getUnlocalizedName());
 
-				if (Settings.DebugMode)
-				{
-					AlchemyPlusPlus.LOGGER.info("Registered fluid for " + potion.getName());
-				}
-			}
-		}
-	}
+                if (Settings.DebugMode)
+                {
+                    AlchemyPlusPlus.LOGGER.info("Registered fluid for " + potion.getName());
+                }
+            }
+        }
+    }
 
 }

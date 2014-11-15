@@ -12,50 +12,50 @@ import net.minecraft.util.IIcon;
 
 public class PotionBucket extends ItemBucket
 {
-	private String iconName;
+    private String iconName;
 
-	@SideOnly(Side.CLIENT)
-	private IIcon potionBucket, potionBucketOverlay;
-	private final Potion potion;
+    @SideOnly(Side.CLIENT)
+    private IIcon potionBucket, potionBucketOverlay;
+    private final Potion potion;
 
-	public PotionBucket(Block block, Potion potion)
-	{
-		super(block);
-		this.potion = potion;
-	}
+    public PotionBucket(Block block, Potion potion)
+    {
+        super(block);
+        this.potion = potion;
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister iconRegister)
-	{
-		this.potionBucket = iconRegister.registerIcon(AlchemyPlusPlus.ID + ":potionBucket");
-		this.potionBucketOverlay = iconRegister.registerIcon(AlchemyPlusPlus.ID + ":potionBucketOverlay");
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IIconRegister iconRegister)
+    {
+        this.potionBucket = iconRegister.registerIcon(AlchemyPlusPlus.ID + ":potionBucket");
+        this.potionBucketOverlay = iconRegister.registerIcon(AlchemyPlusPlus.ID + ":potionBucketOverlay");
+    }
 
-	@SideOnly(Side.CLIENT)
-	@Override
-	public boolean requiresMultipleRenderPasses()
-	{
-		return true;
-	}
+    @SideOnly(Side.CLIENT)
+    @Override
+    public boolean requiresMultipleRenderPasses()
+    {
+        return true;
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(ItemStack stack, int pass)
-	{
-		if (pass == 0)
-		{
-			return this.potionBucketOverlay;
-		}
-		return this.potionBucket;
+    @Override
+    @SideOnly(Side.CLIENT)
+    public IIcon getIcon(ItemStack stack, int pass)
+    {
+        if (pass == 0)
+        {
+            return this.potionBucketOverlay;
+        }
+        return this.potionBucket;
 
-	}
+    }
 
-	@SideOnly(Side.CLIENT)
-	@Override
-	public int getColorFromItemStack(ItemStack itemStack, int pass)
-	{
-		return pass > 0 ? 16777215 : this.potion.getLiquidColor();
-	}
+    @SideOnly(Side.CLIENT)
+    @Override
+    public int getColorFromItemStack(ItemStack itemStack, int pass)
+    {
+        return pass > 0 ? 16777215 : this.potion.getLiquidColor();
+    }
 
 }

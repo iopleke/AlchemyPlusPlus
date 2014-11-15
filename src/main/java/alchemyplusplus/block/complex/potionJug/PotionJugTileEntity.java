@@ -8,40 +8,40 @@ import net.minecraft.tileentity.TileEntity;
 public class PotionJugTileEntity extends TileEntity
 {
 
-	public int containerHas = 0;
-	public final int containerMax = 16;
-	public int potionID = 0;
+    public int containerHas = 0;
+    public final int containerMax = 16;
+    public int potionID = 0;
 
-	@Override
-	public boolean canUpdate()
-	{
-		return false;
-	}
+    @Override
+    public boolean canUpdate()
+    {
+        return false;
+    }
 
-	@Override
-	public Packet getDescriptionPacket()
-	{
-		NBTTagCompound nbtTag = new NBTTagCompound();
-		this.writeToNBT(nbtTag);
-		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbtTag);
-	}
+    @Override
+    public Packet getDescriptionPacket()
+    {
+        NBTTagCompound nbtTag = new NBTTagCompound();
+        this.writeToNBT(nbtTag);
+        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbtTag);
+    }
 
-	@Override
-	public void readFromNBT(NBTTagCompound par1NBTTagCompound)
-	{
-		super.readFromNBT(par1NBTTagCompound);
+    @Override
+    public void readFromNBT(NBTTagCompound par1NBTTagCompound)
+    {
+        super.readFromNBT(par1NBTTagCompound);
 
-		this.potionID = par1NBTTagCompound.getShort("potionID");
-		this.containerHas = par1NBTTagCompound.getShort("containerHas");
+        this.potionID = par1NBTTagCompound.getShort("potionID");
+        this.containerHas = par1NBTTagCompound.getShort("containerHas");
 
-	}
+    }
 
-	@Override
-	public void writeToNBT(NBTTagCompound par1NBTTagCompound)
-	{
-		super.writeToNBT(par1NBTTagCompound);
-		par1NBTTagCompound.setShort("potionID", (short) this.potionID);
-		par1NBTTagCompound.setShort("containerHas", (short) this.containerHas);
-	}
+    @Override
+    public void writeToNBT(NBTTagCompound par1NBTTagCompound)
+    {
+        super.writeToNBT(par1NBTTagCompound);
+        par1NBTTagCompound.setShort("potionID", (short) this.potionID);
+        par1NBTTagCompound.setShort("containerHas", (short) this.containerHas);
+    }
 
 }

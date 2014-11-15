@@ -12,8 +12,8 @@ buildscript {
         }
     }
     dependencies {
-	    classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
-		classpath "org.scala-lang:scala-library:2.11.1"
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+        classpath "org.scala-lang:scala-library:2.11.1"
     }
 }
 
@@ -33,20 +33,20 @@ buildProps.withReader {
 
 repositories {
     maven {
-	name 'Calclavia Maven'
-	url 'http://calclavia.com/maven'
+        name 'Calclavia Maven'
+        url 'http://calclavia.com/maven'
     }
     maven {
-	name = "forge"
-	url = "http://files.minecraftforge.net/maven"
+        name = "forge"
+        url = "http://files.minecraftforge.net/maven"
     }
     maven { // the repo from which to get NEI and stuff
-	name 'CB Repo'
-	url "http://chickenbones.net/maven"
+        name 'CB Repo'
+        url "http://chickenbones.net/maven"
     }
     ivy {
-	name 'FMP'
-	artifactPattern "http://files.minecraftforge.net/[module]/[module]-dev-[revision].[ext]"
+        name 'FMP'
+        artifactPattern "http://files.minecraftforge.net/[module]/[module]-dev-[revision].[ext]"
     }
 }
 

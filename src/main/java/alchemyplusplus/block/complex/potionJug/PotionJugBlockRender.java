@@ -14,45 +14,45 @@ import org.lwjgl.opengl.GL11;
 public class PotionJugBlockRender extends TileEntitySpecialRenderer
 {
 
-	PotionJugModel model = new PotionJugModel();
+    PotionJugModel model = new PotionJugModel();
 
-	public void render(PotionJugTileEntity tl, World world, int i, int j, int k, Block block)
-	{
-		int l = world.getLightBrightnessForSkyBlocks(i, j, k, 0);
-		int l1 = l % 65536;
-		int l2 = l / 65536;
-		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, l1,
-				l2);
+    public void render(PotionJugTileEntity tl, World world, int i, int j, int k, Block block)
+    {
+        int l = world.getLightBrightnessForSkyBlocks(i, j, k, 0);
+        int l1 = l % 65536;
+        int l2 = l / 65536;
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, l1,
+                l2);
 
-		int dir = world.getBlockMetadata(i, j, k);
+        int dir = world.getBlockMetadata(i, j, k);
 
-		GL11.glPushMatrix();
-		GL11.glTranslatef(0.5F, 0, 0.5F);
-		GL11.glRotatef(dir * (-90F), 0F, 1F, 0F);
-		GL11.glTranslatef(-0.5F, 0, -0.5F);
+        GL11.glPushMatrix();
+        GL11.glTranslatef(0.5F, 0, 0.5F);
+        GL11.glRotatef(dir * (-90F), 0F, 1F, 0F);
+        GL11.glTranslatef(-0.5F, 0, -0.5F);
 
-		bindTexture(Textures.Model.POTION_JUG);
+        bindTexture(Textures.Model.POTION_JUG);
 
-		float percentage = ((float) tl.containerHas) / tl.containerMax;
-		int color = 0;
-		if (percentage > 0)
-		{
-			color = PotionHelper.func_77915_a(tl.potionID, false);
-		}
+        float percentage = ((float) tl.containerHas) / tl.containerMax;
+        int color = 0;
+        if (percentage > 0)
+        {
+            color = PotionHelper.func_77915_a(tl.potionID, false);
+        }
 
-		this.model.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F,
-				0.0625F, percentage, color);
+        this.model.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F,
+                0.0625F, percentage, color);
 
-		GL11.glPopMatrix();
-	}
+        GL11.glPopMatrix();
+    }
 
-	@Override
-	public void renderTileEntityAt(TileEntity tileEntity, double d, double d1, double d2, float f)
-	{
-		GL11.glPushMatrix();
-		GL11.glTranslatef((float) d, (float) d1, (float) d2);
-		PotionJugTileEntity tileEntityYour = (PotionJugTileEntity) tileEntity;
-		render(tileEntityYour, tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, BlockRegistry.potionJug);
-		GL11.glPopMatrix();
-	}
+    @Override
+    public void renderTileEntityAt(TileEntity tileEntity, double d, double d1, double d2, float f)
+    {
+        GL11.glPushMatrix();
+        GL11.glTranslatef((float) d, (float) d1, (float) d2);
+        PotionJugTileEntity tileEntityYour = (PotionJugTileEntity) tileEntity;
+        render(tileEntityYour, tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, BlockRegistry.potionJug);
+        GL11.glPopMatrix();
+    }
 }

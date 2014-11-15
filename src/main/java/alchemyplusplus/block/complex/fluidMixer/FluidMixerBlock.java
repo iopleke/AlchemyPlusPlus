@@ -13,31 +13,31 @@ import net.minecraft.world.World;
 public class FluidMixerBlock extends BlockComplex
 {
 
-	public FluidMixerBlock(String blockname)
-	{
-		super(Material.iron, Naming.Blocks.FLUID_MIXER, Block.soundTypeGlass);
-	}
+    public FluidMixerBlock(String blockname)
+    {
+        super(Material.iron, Naming.Blocks.FLUID_MIXER, Block.soundTypeGlass);
+    }
 
-	@Override
-	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_)
-	{
-		return new FluidMixerTileEntity();
-	}
+    @Override
+    public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_)
+    {
+        return new FluidMixerTileEntity();
+    }
 
-	@Override
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
-	{
-		if (!world.isRemote)
-		{
-			player.openGui(AlchemyPlusPlus.INSTANCE, 0, world, x, y, z);
-		}
-		return true;
-	}
+    @Override
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
+    {
+        if (!world.isRemote)
+        {
+            player.openGui(AlchemyPlusPlus.INSTANCE, 0, world, x, y, z);
+        }
+        return true;
+    }
 
-	@Override
-	public boolean shouldSideBeRendered(IBlockAccess iblockaccess, int i, int j, int k, int l)
-	{
-		return false;
-	}
+    @Override
+    public boolean shouldSideBeRendered(IBlockAccess iblockaccess, int i, int j, int k, int l)
+    {
+        return false;
+    }
 
 }

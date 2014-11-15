@@ -10,16 +10,16 @@ import cpw.mods.fml.relauncher.Side;
 
 public class MessageHandler implements IMessageHandler
 {
-	public static SimpleNetworkWrapper INSTANCE = new SimpleNetworkWrapper(AlchemyPlusPlus.ID);
+    public static SimpleNetworkWrapper INSTANCE = new SimpleNetworkWrapper(AlchemyPlusPlus.ID);
 
-	public static void init()
-	{
-		INSTANCE.registerMessage(DiffuserUpdateMessage.class, DiffuserUpdateMessage.class, 1, Side.CLIENT);
-	}
+    public static void init()
+    {
+        INSTANCE.registerMessage(DiffuserUpdateMessage.class, DiffuserUpdateMessage.class, 1, Side.CLIENT);
+    }
 
-	@Override
-	public IMessage onMessage(IMessage message, MessageContext ctx)
-	{
-		return null;
-	}
+    @Override
+    public IMessage onMessage(IMessage message, MessageContext ctx)
+    {
+        return null;
+    }
 }

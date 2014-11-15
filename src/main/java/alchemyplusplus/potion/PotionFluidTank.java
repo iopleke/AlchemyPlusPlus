@@ -6,19 +6,19 @@ import net.minecraftforge.fluids.FluidTank;
 
 public class PotionFluidTank extends FluidTank
 {
-	public List potionEffects;
+    public List potionEffects;
 
-	public PotionFluidTank(PotionFluidStack stack, int capacity)
-	{
-		super(stack, capacity);
+    public PotionFluidTank(PotionFluidStack stack, int capacity)
+    {
+        super(stack, capacity);
 
-		this.potionEffects = stack.potionEffects;
-	}
+        this.potionEffects = stack.potionEffects;
+    }
 
-	public PotionFluidTank(int capacity)
-	{
-		super(null, capacity);
-		this.potionEffects = new ArrayList();
-	}
+    public PotionFluidTank(int capacity)
+    {
+        super(null, capacity);
+        this.potionEffects = new ArrayList();
+    }
 
 }

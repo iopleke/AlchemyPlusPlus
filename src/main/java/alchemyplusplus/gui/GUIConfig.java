@@ -12,13 +12,13 @@ import net.minecraft.client.gui.GuiScreen;
  */
 public class GUIConfig extends GuiConfig
 {
-	public GUIConfig(GuiScreen guiScreen)
-	{
-		super(guiScreen,
-				Settings.getConfigElements(),
-				AlchemyPlusPlus.ID,
-				false,
-				false,
-				GuiConfig.getAbridgedConfigPath(config.toString()));
-	}
+    public GUIConfig(GuiScreen guiScreen)
+    {
+        super(guiScreen,
+                Settings.getConfigElements(),
+                AlchemyPlusPlus.ID,
+                false,
+                false,
+                GuiConfig.getAbridgedConfigPath(config.toString()));
+    }
 }
