@@ -69,8 +69,6 @@ public class PotionJugBlock extends BlockContainer
 
 		AlchemyPlusPlus.LOGGER.info("Spawning potion jug item entity");
 
-		world.spawnEntityInWorld(entityitem);
-
 		super.breakBlock(world, x, y, z, block, meta);
 	}
 
