@@ -254,6 +254,10 @@ public class MixingHelper
     {
         MixingFilter.generateCustomInfo(entity.getStackInSlot(2));
 
+        // @TODO - combine the names, checking if potion has effects first.
+        String customName1 = entity.getStackInSlot(0).getDisplayName();
+        String customName2 = entity.getStackInSlot(1).getDisplayName();
+
         int newDamage = (int) (entity.getStackInSlot(2).getItemDamage() + ((entity.getStackInSlot(2).getTagCompound().getBoolean("Unbreaking")) ? 0.7f : 1f) * mixingCost(entity.getStackInSlot(0), entity.getStackInSlot(1)));
 
         int potionID = entity.getStackInSlot(0).getItemDamage();
@@ -272,9 +276,9 @@ public class MixingHelper
                 potionID));
 
         entity.getStackInSlot(3).setStackDisplayName(
-                EnumChatFormatting.RESET + "Potion");
+                EnumChatFormatting.RESET + customName1);
         entity.getStackInSlot(4).setStackDisplayName(
-                EnumChatFormatting.RESET + "Potion");
+                EnumChatFormatting.RESET + customName2);
 
         ArrayList compiled = new ArrayList();
         for (int i = 0; i < l1.size(); i++)
