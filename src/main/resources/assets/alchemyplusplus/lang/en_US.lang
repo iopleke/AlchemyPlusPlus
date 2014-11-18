@@ -13,6 +13,8 @@ config.diffuser.effectslimit.description=Values greater than zero will limit how
 config.diffuser.effectslimit=Max Effect Count
 config.potionbucket.description=Should players be able to craft potion buckets?
 config.potionbucket.tooltip=Craftable Potions
+config.hostileAnimals.description=Should animals attack infected players?
+config.hostileAnimals.tooltip=Hostile Animals
 
 tile.diffuser.name=Diffuser
 tile.distillery.name=Distillery
