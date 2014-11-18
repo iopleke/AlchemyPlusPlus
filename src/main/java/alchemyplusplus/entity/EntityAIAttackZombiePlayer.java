@@ -8,6 +8,7 @@ import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.pathfinding.PathPoint;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
 public class EntityAIAttackZombiePlayer extends EntityAIBase
@@ -47,11 +48,7 @@ public class EntityAIAttackZombiePlayer extends EntityAIBase
     {
         zombiePlayer = ZombieHelper.getNearestZombie(this.attacker,8);
 
-        if (zombiePlayer == null)
-        {
-            return false;
-        }
-        else if (!zombiePlayer.isEntityAlive())
+        if (zombiePlayer == null||!zombiePlayer.isEntityAlive()||this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL)
         {
             return false;
         }
@@ -150,7 +147,7 @@ public class EntityAIAttackZombiePlayer extends EntityAIBase
         if (d0 <= d1 && this.attackTick <= 20)
         {
             this.attackTick = 20;
-            zombiePlayer.attackEntityFrom(DamageSource.causeMobDamage(attacker),1F);
+            zombiePlayer.attackEntityFrom(DamageSource.causeMobDamage(attacker),1F+((float)worldObj.rand.nextInt(4))/3);
         }
     }
 }
