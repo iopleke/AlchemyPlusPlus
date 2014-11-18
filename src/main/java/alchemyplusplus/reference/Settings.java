@@ -37,6 +37,8 @@ public class Settings
     // Currently unused
     public static boolean HardcoreMode = false;
 
+    public static boolean hostileAnimals = false;
+
     public static void init(File configFile)
     {
         if (config == null)
@@ -73,6 +75,12 @@ public class Settings
         prop.comment = StatCollector.translateToLocal("config.potionbucket.description");
         prop.setLanguageKey("config.potionbucket.tooltip");
         PotionBucketCrafting = prop.getBoolean();
+        configList.add(prop.getName());
+
+        prop = config.get(Configuration.CATEGORY_GENERAL, "hostileAnimals", Settings.hostileAnimals);
+        prop.comment = StatCollector.translateToLocal("config.hostileAnimals.description");
+        prop.setLanguageKey("config.hostileAnimals.tooltip");
+        hostileAnimals = prop.getBoolean();
         configList.add(prop.getName());
 
         prop = config.get(Settings.CATEGORY_DIFFUSER, "diffusingRadius", Settings.DiffusingRadius);
