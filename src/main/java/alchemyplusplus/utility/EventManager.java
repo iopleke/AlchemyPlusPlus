@@ -1,20 +1,26 @@
 package alchemyplusplus.utility;
 
 import alchemyplusplus.ItemRegistry;
+import alchemyplusplus.entity.EntityAIAttackZombiePlayer;
+import alchemyplusplus.reference.Settings;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import java.util.Random;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.monster.EntitySlime;
+import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntitySquid;
+import net.minecraft.entity.passive.IAnimals;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 
@@ -24,6 +30,15 @@ public class EventManager
     public static void registerEventHooks()
     {
         MinecraftForge.EVENT_BUS.register(new EventManager());
+    }
+
+    @SubscribeEvent
+    public void onEntitySpawn(EntityJoinWorldEvent event)
+    {
+        if (event.entity instanceof EntityAnimal)
+        {
+            if (Settings.hostileAnimals)((EntityAnimal)event.entity).tasks.addTask(0,new EntityAIAttackZombiePlayer((EntityAnimal)event.entity,1.4F,false));
+        }
     }
 
     @SubscribeEvent
