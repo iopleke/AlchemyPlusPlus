@@ -1,13 +1,14 @@
-package alchemyplusplus.entity;
+package alchemyplusplus.zombie.entity.ai;
 
+import alchemyplusplus.zombie.ZombieHelper;
 import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.pathfinding.PathPoint;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
 public class EntityAIAttackZombiePlayer extends EntityAIBase
@@ -27,16 +28,18 @@ public class EntityAIAttackZombiePlayer extends EntityAIBase
     private double field_151497_i;
     private double field_151495_j;
     private double field_151496_k;
+    private double radius;
     private static final String __OBFID = "CL_00001595";
 
     private int failedPathFindingPenalty;
 
-    public EntityAIAttackZombiePlayer(EntityCreature creature, double speed, boolean longMemory)
+    public EntityAIAttackZombiePlayer(EntityCreature creature, double speed, double radius, boolean longMemory)
     {
         this.attacker = creature;
         this.worldObj = creature.worldObj;
         this.speedTowardsTarget = speed;
         this.longMemory = longMemory;
+        this.radius = radius;
         this.setMutexBits(3);
     }
 
@@ -45,13 +48,9 @@ public class EntityAIAttackZombiePlayer extends EntityAIBase
      */
     public boolean shouldExecute()
     {
-        zombiePlayer = ZombieHelper.getNearestZombie(this.attacker,8);
+        zombiePlayer = ZombieHelper.getNearestZombie(this.attacker, radius, false);
 
-        if (zombiePlayer == null)
-        {
-            return false;
-        }
-        else if (!zombiePlayer.isEntityAlive())
+        if (zombiePlayer == null||!zombiePlayer.isEntityAlive()||this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL)
         {
             return false;
         }
@@ -150,7 +149,7 @@ public class EntityAIAttackZombiePlayer extends EntityAIBase
         if (d0 <= d1 && this.attackTick <= 20)
         {
             this.attackTick = 20;
-            zombiePlayer.attackEntityFrom(DamageSource.causeMobDamage(attacker),1F);
+            zombiePlayer.attackEntityFrom(DamageSource.causeMobDamage(attacker),1F+((float)worldObj.rand.nextInt(4))/3);
         }
     }
 }
