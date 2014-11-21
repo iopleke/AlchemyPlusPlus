@@ -5,6 +5,8 @@ import alchemyplusplus.network.MessageHandler;
 import alchemyplusplus.proxy.CommonProxy;
 import alchemyplusplus.reference.Settings;
 import alchemyplusplus.utility.EventManager;
+import alchemyplusplus.utility.PotionRegistryHelper;
+import alchemyplusplus.zombie.ZombieEventHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -70,7 +72,7 @@ public class AlchemyPlusPlus
         FMLCommonHandler.instance().bus().register(new Settings());
         MessageHandler.init();
         PotionRegistry.init();
-
+        PotionRegistryHelper.expandPotionRegistry();
     }
 
     @EventHandler
@@ -92,8 +94,9 @@ public class AlchemyPlusPlus
 
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GUIHandler());
         MinecraftForge.EVENT_BUS.register(EventsHandler.INSTANCE);
+        if (Settings.zombieMode) MinecraftForge.EVENT_BUS.register(ZombieEventHandler.INSTANCE);
 
-        proxy.registerRenderers();
+                proxy.registerRenderers();
         proxy.registerTileEntitys();
 
         BlockRegistry.registerBlocks();

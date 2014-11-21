@@ -19,6 +19,8 @@ public class Settings
 
     public static String CATEGORY_DIFFUSER = "diffuser";
 
+    public static String CATEGORY_ZOMBIE = "ZombiesPlusPlus";
+
     // Determines if the mod will print debug info
     public static boolean DebugMode = false;
 
@@ -38,6 +40,7 @@ public class Settings
     public static boolean HardcoreMode = false;
 
     public static boolean hostileAnimals = false;
+    public static boolean zombieMode = true;
 
     public static void init(File configFile)
     {
@@ -64,6 +67,7 @@ public class Settings
 
         config.addCustomCategoryComment(Configuration.CATEGORY_GENERAL, StatCollector.translateToLocal("config.general.description"));
         config.addCustomCategoryComment(Settings.CATEGORY_DIFFUSER, StatCollector.translateToLocal("config.diffuser.description"));
+        config.addCustomCategoryComment(Settings.CATEGORY_ZOMBIE, StatCollector.translateToLocal("config.zombie.description"));
 
         prop = config.get(Configuration.CATEGORY_GENERAL, "debug", Settings.DebugMode);
         prop.comment = StatCollector.translateToLocal("config.debug.description");
@@ -77,7 +81,13 @@ public class Settings
         PotionBucketCrafting = prop.getBoolean();
         configList.add(prop.getName());
 
-        prop = config.get(Configuration.CATEGORY_GENERAL, "hostileAnimals", Settings.hostileAnimals);
+        prop = config.get(CATEGORY_ZOMBIE, "zombieMode", Settings.zombieMode);
+        prop.comment = StatCollector.translateToLocal("config.zombieMode.description");
+        prop.setLanguageKey("config.zombieMode.tooltip");
+        zombieMode = prop.getBoolean();
+        configList.add(prop.getName());
+
+        prop = config.get(CATEGORY_ZOMBIE, "hostileAnimals", Settings.hostileAnimals);
         prop.comment = StatCollector.translateToLocal("config.hostileAnimals.description");
         prop.setLanguageKey("config.hostileAnimals.tooltip");
         hostileAnimals = prop.getBoolean();
@@ -99,6 +109,7 @@ public class Settings
     {
         List<IConfigElement> list = new ArrayList<IConfigElement>();
         list.addAll(new ConfigElement(config.getCategory(Settings.CATEGORY_DIFFUSER)).getChildElements());
+        list.addAll(new ConfigElement(config.getCategory(Settings.CATEGORY_ZOMBIE)).getChildElements());
         list.addAll(new ConfigElement(config.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements());
         return list;
     }
