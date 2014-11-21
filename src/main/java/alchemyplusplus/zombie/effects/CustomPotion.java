@@ -1,14 +1,16 @@
 package alchemyplusplus.zombie.effects;
 
+import alchemyplusplus.AlchemyPlusPlus;
 import net.minecraft.client.Minecraft;
 import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 
-public class CustomPotion extends Potion
+public abstract class CustomPotion extends Potion
 {
-    public static CustomPotion zombiePotion;
-    public static CustomPotion infectedPotion;
-    private ResourceLocation texture;
+    public static CustomPotion zombiePotion = new ZombiePotion(112).setIcon(1,0).setName("Zombie");
+    public static CustomPotion infectedPotion =new InfectedPotion(113).setIcon(2,0).setName("Infected");
+    private static final ResourceLocation texture = new ResourceLocation(AlchemyPlusPlus.ID,"textures/icons/potion.png");
     private boolean instant;
     private boolean bad;
 
@@ -16,17 +18,18 @@ public class CustomPotion extends Potion
         super(id, bad, colour);
     }
 
-    public CustomPotion setIcon(ResourceLocation location, int a, int b)
+    public CustomPotion setIcon(int a, int b)
     {
-        this.texture = location;
         this.setIconIndex(a,b);
         return this;
     }
 
+    public abstract PotionEffect getEffect();
+
     @Override
     public int getStatusIconIndex()
     {
-        if (this.texture != null)
+        if (texture != null)
         {
             Minecraft.getMinecraft().renderEngine.bindTexture(this.texture);
         }
@@ -42,6 +45,12 @@ public class CustomPotion extends Potion
     public CustomPotion setInstant(boolean instant)
     {
         this.instant = instant;
+        return this;
+    }
+
+    public CustomPotion setName(String name)
+    {
+        this.setPotionName(name);
         return this;
     }
 
