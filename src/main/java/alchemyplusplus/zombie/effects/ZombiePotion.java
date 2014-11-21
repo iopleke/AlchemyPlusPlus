@@ -1,6 +1,7 @@
 package alchemyplusplus.zombie.effects;
 
 import alchemyplusplus.reference.Settings;
+import alchemyplusplus.zombie.ZombieEventHandler;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
@@ -18,17 +19,27 @@ public class ZombiePotion extends CustomPotion {
         return new ZombieEffect();
     }
 
+    @Override
+    public boolean isReady(int duration, int amplifier) {
+        return true;
+    }
+
+    @Override
+    public void performEffect(EntityLivingBase entityLivingBase, int amplifier) {
+        ZombieEventHandler.zombify.add(entityLivingBase);
+    }
 
     public class ZombieEffect extends PotionEffect
     {
         public ZombieEffect() {
-            super(CustomPotion.zombiePotion.id, 0, 0, false);
+            super(CustomPotion.zombiePotion.id, Integer.MAX_VALUE, 0, false);
             this.setCurativeItems(new LinkedList<ItemStack>());
         }
 
         @Override
         public void combine(PotionEffect effect)
         {
+            this.setPotionDurationMax(true);
         }
 
         @Override
