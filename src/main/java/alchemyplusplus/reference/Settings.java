@@ -17,9 +17,9 @@ public class Settings
     // Config file
     public static Configuration config;
 
-    public static String CATEGORY_DIFFUSER = "diffuser";
+    public static final String CATEGORY_DIFFUSER = "diffuser";
 
-    public static String CATEGORY_ZOMBIE = "zombiesplusplus";
+    public static final String CATEGORY_ZOMBIE = "zombiesplusplus";
 
     // Determines if the mod will print debug info
     public static boolean DebugMode = false;
@@ -82,13 +82,13 @@ public class Settings
         PotionBucketCrafting = prop.getBoolean();
         configList.add(prop.getName());
 
-        prop = config.get(CATEGORY_ZOMBIE, "zombieMode", Settings.zombieMode);
+        prop = config.get(Settings.CATEGORY_ZOMBIE, "zombieMode", Settings.zombieMode);
         prop.comment = StatCollector.translateToLocal("config.zombieMode.description");
         prop.setLanguageKey("config.zombieMode.tooltip");
         zombieMode = prop.getBoolean();
         configList.add(prop.getName());
 
-        prop = config.get(CATEGORY_ZOMBIE, "hostileAnimals", Settings.hostileAnimals);
+        prop = config.get(Settings.CATEGORY_ZOMBIE, "hostileAnimals", Settings.hostileAnimals);
         prop.comment = StatCollector.translateToLocal("config.hostileAnimals.description");
         prop.setLanguageKey("config.hostileAnimals.tooltip");
         hostileAnimals = prop.getBoolean();
