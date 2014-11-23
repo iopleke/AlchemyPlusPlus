@@ -1,5 +1,6 @@
 package alchemyplusplus.item;
 
+import alchemyplusplus.zombie.effects.CustomPotion;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
@@ -8,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
@@ -62,6 +64,7 @@ public class FishOil extends ItemBasic
 
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
     {
+
         if (!player.isSneaking() || stack.getItemDamage() == 100)
         {
             return false;
@@ -73,6 +76,7 @@ public class FishOil extends ItemBasic
             return true;
         } else
         {
+            player.addPotionEffect(CustomPotion.infectedPotion.getEffect());
             return false;
         }
 

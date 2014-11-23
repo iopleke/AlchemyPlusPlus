@@ -54,7 +54,7 @@ public class AlchemyPlusPlus
      * Herbs addon loaded
      */
     public static boolean herbs = false;
-    @Instance(value = "AlchemyPlusPlus")
+    @Instance(value = "alchemyplusplus")
     public static AlchemyPlusPlus instance = new AlchemyPlusPlus();
     @SidedProxy(clientSide = "alchemyplusplus.proxy.ClientProxy", serverSide = "alchemyplusplus.proxy.CommonProxy")
     public static CommonProxy proxy;
@@ -72,7 +72,7 @@ public class AlchemyPlusPlus
         FMLCommonHandler.instance().bus().register(new Settings());
         MessageHandler.init();
         PotionRegistry.init();
-        PotionRegistryHelper.expandPotionRegistry();
+        PotionRegistryHelper.expandPotionRegistry(256);
     }
 
     @EventHandler
@@ -94,9 +94,9 @@ public class AlchemyPlusPlus
 
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GUIHandler());
         MinecraftForge.EVENT_BUS.register(EventsHandler.INSTANCE);
-        if (Settings.zombieMode) MinecraftForge.EVENT_BUS.register(ZombieEventHandler.INSTANCE);
+        if (Settings.zombieMode) ZombieEventHandler.INSTANCE.register();
 
-                proxy.registerRenderers();
+        proxy.registerRenderers();
         proxy.registerTileEntitys();
 
         BlockRegistry.registerBlocks();

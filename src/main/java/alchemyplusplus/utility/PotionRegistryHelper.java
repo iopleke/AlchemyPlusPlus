@@ -7,7 +7,7 @@ import java.lang.reflect.Modifier;
 
 public class PotionRegistryHelper
 {
-    public static boolean expandPotionRegistry()
+    public static boolean expandPotionRegistry(int newSize)
     {
         for (Field f : Potion.class.getDeclaredFields()) {
             f.setAccessible(true);
@@ -18,7 +18,7 @@ public class PotionRegistryHelper
                     modfield.setInt(f, f.getModifiers() & ~Modifier.FINAL);
                     Potion[] potionTypes;
                     potionTypes = (Potion[])f.get(null);
-                    final Potion[] newPotionTypes = new Potion[Math.max(256,potionTypes.length)];
+                    final Potion[] newPotionTypes = new Potion[Math.max(newSize,potionTypes.length)];
                     System.arraycopy(potionTypes, 0, newPotionTypes, 0, potionTypes.length);
                     f.set(null, newPotionTypes);
                     return true;

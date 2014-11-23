@@ -41,6 +41,7 @@ public class Settings
 
     public static boolean hostileAnimals = false;
     public static boolean zombieMode = true;
+    public static int infectionTimer = 180;
 
     public static void init(File configFile)
     {
@@ -109,8 +110,8 @@ public class Settings
     {
         List<IConfigElement> list = new ArrayList<IConfigElement>();
         list.addAll(new ConfigElement(config.getCategory(Settings.CATEGORY_DIFFUSER)).getChildElements());
-        list.addAll(new ConfigElement(config.getCategory(Settings.CATEGORY_ZOMBIE)).getChildElements());
         list.addAll(new ConfigElement(config.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements());
+        list.addAll(new ConfigElement(config.getCategory(Settings.CATEGORY_ZOMBIE)).getChildElements());
         return list;
     }
 }
