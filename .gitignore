@@ -1,26 +1,33 @@
-# Eclipse
-*.bak
-*.launch
-*.swp
-*.tmp
-.classpath
-.loadpath
-.metadata
-.project
-.settings
-bin
-eclipse
-tmp
+## General stuff to keep the repo clean
+dist
+download
+gradle/
+gradlew
+lib/
+natives/
+output/
+._*
+.cache
+.DS_Store
+*.bat
+*.class
+*.log
+*.py
+*.sh
+*.txt
+*.xml
 
-# gedit
-*.*~
+## gradle
+/.gradle
+/build
+/eclipse
 
-# netbeans
-build.xml
-buildfile
-nb-build.xml
-nbbuild
-nbproject
+## ForgeGradle
+/run
+/out
+
+## sublime
+*.sublime*
 
 ## idea
 /.idea
@@ -28,15 +35,22 @@ nbproject
 *.ipr
 *.iws
 
-# gradle
-.gradle
-gradlew
-gradlew.bat
-gradle/
-/.nb-gradle/private/
-/.nb-gradle/profiles/private/
-/run
-/out
-build
-lib
-output
+## eclipse
+/.settings
+/.metadata
+/.classpath
+/.project
+/bin
+
+## netbeans
+.nb*
+nbbuild/
+nbproject/
+
+## minecraft
+/config/
+/mods/
+/saves/
+/logs/
+/crash-reports/
+/screenshots/
