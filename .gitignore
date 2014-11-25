@@ -1,56 +1,51 @@
-## General stuff to keep the repo clean
-dist
-download
-gradle/
-gradlew
-lib/
-natives/
-output/
-._*
-.cache
-.DS_Store
+## Edits of this file MUST be in their own commit ##
+## Whenever possible, use wildcards to keep this clean ##
+## Alphabetize, or else ##
+## Put your edits in the proper section, or I'll grouch at you ##
+
+## General housekeeping
 *.bat
 *.class
+*.iml
+*.ipr
+*.iws
+*.json
 *.log
 *.py
 *.sh
 *.txt
 *.xml
+.cache
+lib/
+natives/
 
-## gradle
-/.gradle
-/build
-/eclipse
+## Because Macs
+.DS_Store
+._*
 
-## ForgeGradle
-/run
-/out
+## Gradle
+.gradle/
+build/
+gradle/
+gradlew
+out/
+output/
+run/
 
 ## sublime
 *.sublime*
 
-## idea
-/.idea
-*.iml
-*.ipr
-*.iws
-
 ## eclipse
-/.settings
-/.metadata
-/.classpath
-/.project
-/bin
+.classpath
+.metadata/
+.project
+.settings/
+bin/
+eclipse/
+
+## Intellij IDEA
+.idea/
 
 ## netbeans
-.nb*
 nbbuild/
 nbproject/
-
-## minecraft
-/config/
-/mods/
-/saves/
-/logs/
-/crash-reports/
-/screenshots/
