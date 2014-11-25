@@ -33,6 +33,9 @@ public class Settings
     // Base diffusion radius
     public static int DiffusingRadius = 20;
 
+    // Base diffusion rate of fluid use
+    public static int DiffusingRate = 10;
+
     // Max number of effects per diffuser
     public static int EffectsLimit = 0;
 
@@ -98,6 +101,12 @@ public class Settings
         prop = config.get(Settings.CATEGORY_DIFFUSER, "diffusingRadius", Settings.DiffusingRadius);
         prop.comment = StatCollector.translateToLocal("config.diffuser.radius.description");
         prop.setLanguageKey("config.diffuser.radius");
+        DiffusingRadius = prop.getInt();
+        configList.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_DIFFUSER, "diffusingRate", Settings.DiffusingRate);
+        prop.comment = StatCollector.translateToLocal("config.diffuser.rate.description");
+        prop.setLanguageKey("config.diffuser.rate");
         DiffusingRadius = prop.getInt();
         configList.add(prop.getName());
 
