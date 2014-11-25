@@ -33,8 +33,14 @@ public class Settings
     // Base diffusion radius
     public static int DiffusingRadius = 20;
 
+    // Diffuser radius in active mode is multiplied by
+    public static int DiffusingRadiusMultiplier = 2;
+
     // Base diffusion rate of fluid use
-    public static int DiffusingRate = 10;
+    public static int DiffusingRate = 20;
+
+    // Diffuser in active mode rate multiplier
+    public static int DiffusingRateMultiplier = 2;
 
     // Max number of effects per diffuser
     public static int EffectsLimit = 0;
@@ -104,9 +110,21 @@ public class Settings
         DiffusingRadius = prop.getInt();
         configList.add(prop.getName());
 
+        prop = config.get(Settings.CATEGORY_DIFFUSER, "diffusingRadiusMultiplier", Settings.DiffusingRadiusMultiplier);
+        prop.comment = StatCollector.translateToLocal("config.diffuser.radius.multiplier.description");
+        prop.setLanguageKey("config.diffuser.radius.multiplier");
+        DiffusingRadius = prop.getInt();
+        configList.add(prop.getName());
+
         prop = config.get(Settings.CATEGORY_DIFFUSER, "diffusingRate", Settings.DiffusingRate);
         prop.comment = StatCollector.translateToLocal("config.diffuser.rate.description");
         prop.setLanguageKey("config.diffuser.rate");
+        DiffusingRadius = prop.getInt();
+        configList.add(prop.getName());
+
+        prop = config.get(Settings.CATEGORY_DIFFUSER, "diffusingRateMultiplier", Settings.DiffusingRateMultiplier);
+        prop.comment = StatCollector.translateToLocal("config.diffuser.rate.multiplier.description");
+        prop.setLanguageKey("config.diffuser.rate.multiplier");
         DiffusingRadius = prop.getInt();
         configList.add(prop.getName());
 
