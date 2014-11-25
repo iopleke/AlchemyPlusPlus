@@ -120,8 +120,12 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
 
         if (this.isDiffusing)
         {
-            this.drain(1, true); // drain by 1 per tick, for testing purposes
-
+            // Drain by 1 every # of ticks, as set in the config
+            if(this.diffusingTicks % Settings.DiffusingRate == 0)
+            {
+                this.drain(1, true);
+            }
+            
             if (diffusingTicks <= 0)
             {
                 this.diffusingTicks = 20;
