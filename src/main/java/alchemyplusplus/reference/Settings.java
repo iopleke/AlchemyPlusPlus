@@ -39,6 +39,7 @@ public class Settings
     // Currently unused
     public static boolean HardcoreMode = false;
 
+    // @TODO - beat @hilburn with a dead fish for not commenting on these
     public static boolean hostileAnimals = false;
     public static boolean zombieMode = true;
     public static int infectionTimer = 180;
