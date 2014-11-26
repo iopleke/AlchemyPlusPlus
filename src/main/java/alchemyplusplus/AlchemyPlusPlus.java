@@ -83,7 +83,7 @@ public class AlchemyPlusPlus
         metadata.modId = AlchemyPlusPlus.ID;
         metadata.name = AlchemyPlusPlus.NAME;
         metadata.description = AlchemyPlusPlus.NAME + ": Feel the need to brew the perfect potion? Is the vanilla Minecraft brewing system to simple for your refined tastes? If so, AlchemyPlusPlus might be the mod for you";
-        metadata.url = "http://www.minechemmod.com/";
+        metadata.url = "http://jakimfett.github.io/AlchemyPlusPlus/";
         metadata.logoFile = "assets/" + AlchemyPlusPlus.ID + "/logo.png";
         metadata.version = V_MAJOR + "." + V_MINOR + "." + V_REVIS;
         metadata.authorList = Arrays.asList(new String[]
