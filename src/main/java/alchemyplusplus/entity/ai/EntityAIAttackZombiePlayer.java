@@ -1,4 +1,4 @@
-package alchemyplusplus.entity.entity.ai;
+package alchemyplusplus.entity.ai;
 
 import alchemyplusplus.helper.ZombieHelper;
 import net.minecraft.entity.EntityCreature;

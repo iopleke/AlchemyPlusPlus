@@ -2,8 +2,8 @@ package alchemyplusplus.handler;
 
 import alchemyplusplus.reference.Settings;
 import alchemyplusplus.entity.effects.CustomPotion;
-import alchemyplusplus.entity.entity.ai.EntityAIAttackZombiePlayer;
-import alchemyplusplus.entity.entity.ai.EntityAIAvoidZombiePlayer;
+import alchemyplusplus.entity.ai.EntityAIAttackZombiePlayer;
+import alchemyplusplus.entity.ai.EntityAIAvoidZombiePlayer;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
