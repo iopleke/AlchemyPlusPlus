@@ -2,7 +2,7 @@ package alchemyplusplus.handler;
 
 import alchemyplusplus.registry.ItemRegistry;
 import alchemyplusplus.item.PotionBucket;
-import alchemyplusplus.potion.PotionFluidBlock;
+import alchemyplusplus.potion.fluid.PotionFluidBlock;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import java.util.HashMap;

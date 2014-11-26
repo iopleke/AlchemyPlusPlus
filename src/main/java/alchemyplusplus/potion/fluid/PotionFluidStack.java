@@ -1,4 +1,4 @@
-package alchemyplusplus.potion;
+package alchemyplusplus.potion.fluid;
 
 import java.util.List;
 import net.minecraftforge.fluids.FluidStack;

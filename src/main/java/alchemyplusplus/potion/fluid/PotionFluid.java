@@ -1,4 +1,4 @@
-package alchemyplusplus.potion;
+package alchemyplusplus.potion.fluid;
 
 import alchemyplusplus.AlchemyPlusPlus;
 import cpw.mods.fml.common.FMLCommonHandler;

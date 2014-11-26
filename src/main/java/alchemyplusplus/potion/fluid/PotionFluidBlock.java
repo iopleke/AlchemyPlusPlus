@@ -1,4 +1,4 @@
-package alchemyplusplus.potion;
+package alchemyplusplus.potion.fluid;
 
 import alchemyplusplus.reference.Textures;
 import cpw.mods.fml.relauncher.Side;

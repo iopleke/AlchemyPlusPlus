@@ -1,4 +1,4 @@
-package alchemyplusplus.potion;
+package alchemyplusplus.potion.fluid;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
