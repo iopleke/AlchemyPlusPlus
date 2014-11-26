@@ -1,6 +1,6 @@
 package alchemyplusplus.helper;
 
-import alchemyplusplus.entity.effects.CustomPotion;
+import alchemyplusplus.potion.custom.PotionCustom;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.player.EntityPlayer;
 
@@ -9,7 +9,7 @@ public class ZombieHelper
 
     public static boolean isPlayerZombie(EntityPlayer player)
     {
-        return player.getActivePotionEffect(CustomPotion.zombiePotion) != null;
+        return player.getActivePotionEffect(PotionCustom.zombiePotion) != null;
     }
 
     public static EntityPlayer getNearestZombie(EntityCreature creature, double radius, boolean visible)

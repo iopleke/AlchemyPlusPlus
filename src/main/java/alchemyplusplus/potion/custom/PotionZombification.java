@@ -1,4 +1,4 @@
-package alchemyplusplus.entity.effects;
+package alchemyplusplus.potion.custom;
 
 import alchemyplusplus.handler.ZombieHandler;
 import java.util.LinkedList;
@@ -6,10 +6,10 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 
-public class ZombiePotion extends CustomPotion
+public class PotionZombification extends PotionCustom
 {
 
-    public ZombiePotion(int id)
+    public PotionZombification(int id)
     {
         super(id, true, 0);
     }
@@ -37,7 +37,7 @@ public class ZombiePotion extends CustomPotion
 
         public ZombieEffect()
         {
-            super(CustomPotion.zombiePotion.id, 1, 0, false);
+            super(PotionCustom.zombiePotion.id, 1, 0, false);
             this.setCurativeItems(new LinkedList<ItemStack>());
         }
 

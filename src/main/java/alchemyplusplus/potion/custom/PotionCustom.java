@@ -1,4 +1,4 @@
-package alchemyplusplus.entity.effects;
+package alchemyplusplus.potion.custom;
 
 import alchemyplusplus.AlchemyPlusPlus;
 import net.minecraft.client.Minecraft;
@@ -6,21 +6,21 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 
-public abstract class CustomPotion extends Potion
+public abstract class PotionCustom extends Potion
 {
 
-    public static CustomPotion zombiePotion = new ZombiePotion(112).setIcon(0, 0).setName("Zombie");
-    public static CustomPotion infectedPotion = new InfectedPotion(113).setIcon(1, 0).setName("Infected");
+    public static PotionCustom zombiePotion = new PotionZombification(112).setIcon(0, 0).setName("Zombie");
+    public static PotionCustom infectedPotion = new PotionInfection(113).setIcon(1, 0).setName("Infected");
     private static final ResourceLocation texture = new ResourceLocation(AlchemyPlusPlus.ID, "textures/icons/potion.png");
     private boolean instant;
     private boolean bad;
 
-    public CustomPotion(int id, boolean bad, int colour)
+    public PotionCustom(int id, boolean bad, int colour)
     {
         super(id, bad, colour);
     }
 
-    public CustomPotion setIcon(int a, int b)
+    public PotionCustom setIcon(int a, int b)
     {
         this.setIconIndex(a, b);
         return this;
@@ -35,19 +35,19 @@ public abstract class CustomPotion extends Potion
         return super.getStatusIconIndex();
     }
 
-    public CustomPotion setBadEffect(boolean bad)
+    public PotionCustom setBadEffect(boolean bad)
     {
         this.bad = bad;
         return this;
     }
 
-    public CustomPotion setInstant(boolean instant)
+    public PotionCustom setInstant(boolean instant)
     {
         this.instant = instant;
         return this;
     }
 
-    public CustomPotion setName(String name)
+    public PotionCustom setName(String name)
     {
         this.setPotionName(name);
         return this;

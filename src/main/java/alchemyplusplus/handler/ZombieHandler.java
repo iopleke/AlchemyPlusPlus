@@ -1,7 +1,7 @@
 package alchemyplusplus.handler;
 
 import alchemyplusplus.reference.Settings;
-import alchemyplusplus.entity.effects.CustomPotion;
+import alchemyplusplus.potion.custom.PotionCustom;
 import alchemyplusplus.entity.ai.EntityAIAttackZombiePlayer;
 import alchemyplusplus.entity.ai.EntityAIAvoidZombiePlayer;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -59,7 +59,7 @@ public class ZombieHandler
             }
             for (EntityLivingBase entity : zombify)
             {
-                entity.addPotionEffect(CustomPotion.zombiePotion.getEffect());
+                entity.addPotionEffect(PotionCustom.zombiePotion.getEffect());
             }
             if (event.player.worldObj.isRemote)
             {

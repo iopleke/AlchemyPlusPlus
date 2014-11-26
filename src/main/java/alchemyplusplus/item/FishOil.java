@@ -1,6 +1,6 @@
 package alchemyplusplus.item;
 
-import alchemyplusplus.entity.effects.CustomPotion;
+import alchemyplusplus.potion.custom.PotionCustom;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
@@ -76,7 +76,7 @@ public class FishOil extends ItemBasic
             return true;
         } else
         {
-            player.addPotionEffect(CustomPotion.infectedPotion.getEffect());
+            player.addPotionEffect(PotionCustom.infectedPotion.getEffect());
             return false;
         }
 
