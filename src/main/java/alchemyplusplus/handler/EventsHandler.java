@@ -1,4 +1,4 @@
-package alchemyplusplus.utility;
+package alchemyplusplus.handler;
 
 import alchemyplusplus.registry.ItemRegistry;
 import alchemyplusplus.item.PotionBucket;

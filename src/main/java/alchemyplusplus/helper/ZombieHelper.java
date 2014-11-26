@@ -1,6 +1,6 @@
-package alchemyplusplus.zombie;
+package alchemyplusplus.helper;
 
-import alchemyplusplus.zombie.effects.CustomPotion;
+import alchemyplusplus.entity.effects.CustomPotion;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.player.EntityPlayer;
 

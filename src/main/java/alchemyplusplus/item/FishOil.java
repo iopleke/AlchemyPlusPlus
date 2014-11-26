@@ -1,6 +1,6 @@
 package alchemyplusplus.item;
 
-import alchemyplusplus.zombie.effects.CustomPotion;
+import alchemyplusplus.entity.effects.CustomPotion;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;

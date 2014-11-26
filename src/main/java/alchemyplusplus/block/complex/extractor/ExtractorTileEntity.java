@@ -1,6 +1,6 @@
 package alchemyplusplus.block.complex.extractor;
 
-import alchemyplusplus.utility.MixingHandler;
+import alchemyplusplus.helper.MixingHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
@@ -182,7 +182,7 @@ public class ExtractorTileEntity extends TileEntity implements IInventory
 
         if (fuel > 0)
         {
-            if (MixingHandler.extractingPossible(this))
+            if (MixingHelper.extractingPossible(this))
             {
                 this.extractingTicks++;
 
@@ -193,7 +193,7 @@ public class ExtractorTileEntity extends TileEntity implements IInventory
 
             if (this.extractingTicks == 400)
             {
-                MixingHandler.performExtraction(this);
+                MixingHelper.performExtraction(this);
                 this.extractingTicks = 0;
             }
         } else

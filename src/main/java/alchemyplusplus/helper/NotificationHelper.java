@@ -1,10 +1,10 @@
-package alchemyplusplus.utility;
+package alchemyplusplus.helper;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.StatCollector;
 
-public class NotificationHandler
+public class NotificationHelper
 {
 
     public static void sendPlayerChatMessage(EntityPlayer player, String message)

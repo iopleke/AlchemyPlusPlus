@@ -1,10 +1,10 @@
-package alchemyplusplus.utility;
+package alchemyplusplus.helper;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import net.minecraft.potion.Potion;
 
-public class PotionRegistryHandler
+public class PotionRegistryHelper
 {
 
     public static boolean expandPotionRegistry(int newSize)

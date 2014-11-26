@@ -1,7 +1,7 @@
 package alchemyplusplus.registry;
 
 import alchemyplusplus.AlchemyPlusPlus;
-import alchemyplusplus.utility.EventsHandler;
+import alchemyplusplus.handler.EventsHandler;
 import alchemyplusplus.gui.CreativeTab;
 import alchemyplusplus.item.PotionBucket;
 import alchemyplusplus.potion.PotionFluid;

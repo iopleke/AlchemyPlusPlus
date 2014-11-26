@@ -1,6 +1,6 @@
-package alchemyplusplus.zombie.effects;
+package alchemyplusplus.entity.effects;
 
-import alchemyplusplus.zombie.ZombieEventHandler;
+import alchemyplusplus.handler.ZombieHandler;
 import java.util.LinkedList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -29,7 +29,7 @@ public class ZombiePotion extends CustomPotion
     @Override
     public void performEffect(EntityLivingBase entityLivingBase, int amplifier)
     {
-        ZombieEventHandler.zombify.add(entityLivingBase);
+        ZombieHandler.zombify.add(entityLivingBase);
     }
 
     public class ZombieEffect extends PotionEffect

@@ -1,4 +1,4 @@
-package alchemyplusplus.zombie.effects;
+package alchemyplusplus.entity.effects;
 
 import alchemyplusplus.AlchemyPlusPlus;
 import net.minecraft.client.Minecraft;

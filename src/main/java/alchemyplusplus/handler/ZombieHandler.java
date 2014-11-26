@@ -1,9 +1,9 @@
-package alchemyplusplus.zombie;
+package alchemyplusplus.handler;
 
 import alchemyplusplus.reference.Settings;
-import alchemyplusplus.zombie.effects.CustomPotion;
-import alchemyplusplus.zombie.entity.ai.EntityAIAttackZombiePlayer;
-import alchemyplusplus.zombie.entity.ai.EntityAIAvoidZombiePlayer;
+import alchemyplusplus.entity.effects.CustomPotion;
+import alchemyplusplus.entity.entity.ai.EntityAIAttackZombiePlayer;
+import alchemyplusplus.entity.entity.ai.EntityAIAvoidZombiePlayer;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
@@ -15,10 +15,10 @@ import net.minecraft.entity.passive.EntityVillager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 
-public class ZombieEventHandler
+public class ZombieHandler
 {
 
-    public static ZombieEventHandler INSTANCE = new ZombieEventHandler();
+    public static ZombieHandler INSTANCE = new ZombieHandler();
     public static Set<EntityLivingBase> zombify = new LinkedHashSet<EntityLivingBase>();
 
     public void register()

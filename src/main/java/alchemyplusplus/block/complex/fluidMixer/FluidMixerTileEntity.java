@@ -1,6 +1,6 @@
 package alchemyplusplus.block.complex.fluidMixer;
 
-import alchemyplusplus.utility.MixingHandler;
+import alchemyplusplus.helper.MixingHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -169,7 +169,7 @@ public class FluidMixerTileEntity extends TileEntity implements IInventory
     public void updateEntity()
     {
 
-        if (MixingHandler.mixingPossible(mixerInventory[0], mixerInventory[1], mixerInventory[2], mixerInventory[3], mixerInventory[4]))
+        if (MixingHelper.mixingPossible(mixerInventory[0], mixerInventory[1], mixerInventory[2], mixerInventory[3], mixerInventory[4]))
         {
             this.mixingTicks += 2;
         } else
@@ -179,7 +179,7 @@ public class FluidMixerTileEntity extends TileEntity implements IInventory
         if (this.mixingTicks >= 400)
         {
             this.mixingTicks = 0;
-            MixingHandler.mix(this);
+            MixingHelper.mix(this);
         }
 
     }

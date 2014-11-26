@@ -2,8 +2,8 @@ package alchemyplusplus.block.complex.diffuser;
 
 import alchemyplusplus.block.BlockComplex;
 import alchemyplusplus.reference.Naming;
-import alchemyplusplus.utility.MixingHandler;
-import alchemyplusplus.utility.NotificationHandler;
+import alchemyplusplus.helper.MixingHelper;
+import alchemyplusplus.helper.NotificationHelper;
 import java.util.Iterator;
 import net.minecraft.block.Block;
 import static net.minecraft.block.BlockDirectional.getDirection;
@@ -54,7 +54,7 @@ public class DiffuserBlock extends BlockComplex
                         {
                             if (!world.isRemote)
                             {
-                                NotificationHandler.sendPlayerChatMessage(player, "diffuser.full");
+                                NotificationHelper.sendPlayerChatMessage(player, "diffuser.full");
                             }
                         } else if (diffuser.fluidTank.getFluidAmount() == 0 || diffuser.fluidTank.getFluid().fluidID == ItemPotion.getIdFromItem(player.getHeldItem().getItem()))
                         {// @TODO - move potion match check to the TileEntity fill method
@@ -62,13 +62,13 @@ public class DiffuserBlock extends BlockComplex
                             {
                                 if (!world.isRemote)
                                 {
-                                    NotificationHandler.sendPlayerChatMessage(player, "diffuser.combine.success");
+                                    NotificationHelper.sendPlayerChatMessage(player, "diffuser.combine.success");
                                 }
                             } else if ((diffuser.getFluidAmount() == 0))
                             {
                                 if (!world.isRemote)
                                 {
-                                    NotificationHandler.sendPlayerChatMessage(player, "diffuser.pour");
+                                    NotificationHelper.sendPlayerChatMessage(player, "diffuser.pour");
                                 }
                             }
                             diffuser.fillWithOverRide(player.getHeldItem());
@@ -81,7 +81,7 @@ public class DiffuserBlock extends BlockComplex
                         {
                             if (!world.isRemote)
                             {
-                                NotificationHandler.sendPlayerChatMessage(player, "diffuser.combine.failure");
+                                NotificationHelper.sendPlayerChatMessage(player, "diffuser.combine.failure");
                             }
 
                         }
@@ -100,12 +100,12 @@ public class DiffuserBlock extends BlockComplex
 
                         if (!world.isRemote)
                         {
-                            NotificationHandler.sendPlayerChatMessage(player, "diffuser.wash.success");
+                            NotificationHelper.sendPlayerChatMessage(player, "diffuser.wash.success");
                         }
 
                     } else
                     {
-                        NotificationHandler.sendPlayerChatMessage(player, "diffuser.wash.failure");
+                        NotificationHelper.sendPlayerChatMessage(player, "diffuser.wash.failure");
                     }
 
                 }
@@ -120,7 +120,7 @@ public class DiffuserBlock extends BlockComplex
                     Iterator iter = diffuser.fluidTank.potionEffects.iterator();
                     while (iter.hasNext())
                     {
-                        MixingHandler.addEffect(itemStack, (PotionEffect) iter.next());
+                        MixingHelper.addEffect(itemStack, (PotionEffect) iter.next());
                     }
                     itemStack.setItemDamage(diffuser.potionDamageValue);
                     player.inventory.mainInventory[player.inventory.currentItem] = itemStack;
@@ -131,7 +131,7 @@ public class DiffuserBlock extends BlockComplex
                 {
                     if (!world.isRemote)
                     {
-                        NotificationHandler.sendPlayerChatMessage(player, "diffuser.bottle.refill.failure");
+                        NotificationHelper.sendPlayerChatMessage(player, "diffuser.bottle.refill.failure");
                     }
                 }
             }
@@ -141,13 +141,13 @@ public class DiffuserBlock extends BlockComplex
             {
                 if (!world.isRemote)
                 {
-                    NotificationHandler.sendPlayerChatMessage(player, "diffuser.cork");
+                    NotificationHelper.sendPlayerChatMessage(player, "diffuser.cork");
                 }
             } else
             {
                 if (!world.isRemote)
                 {
-                    NotificationHandler.sendPlayerChatMessage(player, "diffuser.uncork");
+                    NotificationHelper.sendPlayerChatMessage(player, "diffuser.uncork");
                 }
             }
             diffuser.toggleDiffusingState();
@@ -156,7 +156,7 @@ public class DiffuserBlock extends BlockComplex
         {
             if (!world.isRemote)
             {
-                NotificationHandler.sendPlayerChatMessage(player, "diffuser.uncork.failure");
+                NotificationHelper.sendPlayerChatMessage(player, "diffuser.uncork.failure");
             }
 
         }

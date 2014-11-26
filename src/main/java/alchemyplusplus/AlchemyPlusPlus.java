@@ -3,13 +3,13 @@ package alchemyplusplus;
 import alchemyplusplus.registry.BlockRegistry;
 import alchemyplusplus.registry.PotionRegistry;
 import alchemyplusplus.registry.ItemRegistry;
-import alchemyplusplus.utility.EventsHandler;
+import alchemyplusplus.handler.EventsHandler;
 import alchemyplusplus.gui.GUIHandler;
 import alchemyplusplus.network.MessageHandler;
 import alchemyplusplus.proxy.CommonProxy;
 import alchemyplusplus.reference.Settings;
-import alchemyplusplus.utility.PotionRegistryHandler;
-import alchemyplusplus.zombie.ZombieEventHandler;
+import alchemyplusplus.helper.PotionRegistryHelper;
+import alchemyplusplus.handler.ZombieHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -75,7 +75,7 @@ public class AlchemyPlusPlus
         FMLCommonHandler.instance().bus().register(new Settings());
         MessageHandler.init();
         PotionRegistry.init();
-        PotionRegistryHandler.expandPotionRegistry(256);
+        PotionRegistryHelper.expandPotionRegistry(256);
     }
 
     @EventHandler
@@ -102,7 +102,7 @@ public class AlchemyPlusPlus
         MinecraftForge.EVENT_BUS.register(EventsHandler.INSTANCE);
         if (Settings.zombieMode)
         {
-            ZombieEventHandler.INSTANCE.register();
+            ZombieHandler.INSTANCE.register();
         }
 
         proxy.registerRenderers();

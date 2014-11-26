@@ -1,4 +1,4 @@
-package alchemyplusplus.utility;
+package alchemyplusplus.helper;
 
 import alchemyplusplus.registry.BlockRegistry;
 import alchemyplusplus.registry.ItemRegistry;
@@ -20,7 +20,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.common.util.Constants;
 
-public class MixingHandler
+public class MixingHelper
 {
 
     public static void addCustomPotionEffect(ItemStack stack, PotionEffect potionEffect, boolean degrade, ItemStack filter)
