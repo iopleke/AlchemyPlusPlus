@@ -1,5 +1,6 @@
 package alchemyplusplus;
 
+import alchemyplusplus.utility.EventsHandler;
 import alchemyplusplus.gui.GUIHandler;
 import alchemyplusplus.network.MessageHandler;
 import alchemyplusplus.proxy.CommonProxy;
