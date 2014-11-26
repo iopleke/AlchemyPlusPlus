@@ -2,8 +2,10 @@ package alchemyplusplus.reference;
 
 public class Naming
 {
+
     public static final class Blocks
     {
+
         public static final String DIFFUSER = "diffuser";
         public static final String DISTILLERY = "distillery";
         public static final String FLESH = "fleshBlock";
@@ -13,6 +15,7 @@ public class Naming
 
     public static final class Items
     {
+
         public static final String CONFUSION_POTION = "confusionPotion";
         public static final String FISH_OIL = "fishOil";
         public static final String IRON_POWDER = "ironPowder";

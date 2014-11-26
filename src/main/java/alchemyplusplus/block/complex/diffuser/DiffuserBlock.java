@@ -23,6 +23,7 @@ import net.minecraft.world.World;
 
 public class DiffuserBlock extends BlockComplex
 {
+
     public DiffuserBlock()
     {
         super(Material.wood, Naming.Blocks.DIFFUSER, Block.soundTypeWood);

@@ -12,6 +12,7 @@ import net.minecraft.client.gui.GuiScreen;
  */
 public class GUIConfig extends GuiConfig
 {
+
     public GUIConfig(GuiScreen guiScreen)
     {
         super(guiScreen,

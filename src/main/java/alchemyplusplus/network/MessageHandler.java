@@ -10,6 +10,7 @@ import cpw.mods.fml.relauncher.Side;
 
 public class MessageHandler implements IMessageHandler
 {
+
     public static SimpleNetworkWrapper INSTANCE = new SimpleNetworkWrapper(AlchemyPlusPlus.ID);
 
     public static void init()

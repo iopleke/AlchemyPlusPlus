@@ -8,19 +8,21 @@ import net.minecraft.util.ResourceLocation;
 
 public abstract class CustomPotion extends Potion
 {
-    public static CustomPotion zombiePotion = new ZombiePotion(112).setIcon(0,0).setName("Zombie");
-    public static CustomPotion infectedPotion =new InfectedPotion(113).setIcon(1,0).setName("Infected");
-    private static final ResourceLocation texture = new ResourceLocation(AlchemyPlusPlus.ID,"textures/icons/potion.png");
+
+    public static CustomPotion zombiePotion = new ZombiePotion(112).setIcon(0, 0).setName("Zombie");
+    public static CustomPotion infectedPotion = new InfectedPotion(113).setIcon(1, 0).setName("Infected");
+    private static final ResourceLocation texture = new ResourceLocation(AlchemyPlusPlus.ID, "textures/icons/potion.png");
     private boolean instant;
     private boolean bad;
 
-    public CustomPotion(int id, boolean bad, int colour) {
+    public CustomPotion(int id, boolean bad, int colour)
+    {
         super(id, bad, colour);
     }
 
     public CustomPotion setIcon(int a, int b)
     {
-        this.setIconIndex(a,b);
+        this.setIconIndex(a, b);
         return this;
     }
 

@@ -14,6 +14,7 @@ import net.minecraft.world.World;
 
 public class DistilleryBlock extends BlockComplex
 {
+
     public DistilleryBlock()
     {
         super(Material.iron, Naming.Blocks.DISTILLERY, Block.soundTypeMetal);

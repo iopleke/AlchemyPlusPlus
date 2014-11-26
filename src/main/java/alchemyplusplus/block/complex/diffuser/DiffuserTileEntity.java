@@ -27,6 +27,7 @@ import net.minecraftforge.fluids.IFluidTank;
 
 public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFluidTank
 {
+
     private boolean updateState;
     public PotionFluidTank fluidTank;
     public boolean isDiffusing;
@@ -121,11 +122,11 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
         if (this.isDiffusing)
         {
             // Drain by 1 every # of ticks, as set in the config
-            if(this.diffusingTicks % Settings.DiffusingRate == 0)
+            if (this.diffusingTicks % Settings.DiffusingRate == 0)
             {
                 this.drain(1, true);
             }
-            
+
             if (diffusingTicks <= 0)
             {
                 this.diffusingTicks = 20;

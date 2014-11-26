@@ -17,6 +17,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 
 public class PotionRegistry
 {
+
     public static void init()
     {
         for (Potion potion : Potion.potionTypes)

@@ -5,6 +5,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 public class PotionFluidStack extends FluidStack
 {
+
     public List potionEffects;
 
     public PotionFluidStack(PotionFluid fluid, int amount)

@@ -94,7 +94,10 @@ public class AlchemyPlusPlus
 
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GUIHandler());
         MinecraftForge.EVENT_BUS.register(EventsHandler.INSTANCE);
-        if (Settings.zombieMode) ZombieEventHandler.INSTANCE.register();
+        if (Settings.zombieMode)
+        {
+            ZombieEventHandler.INSTANCE.register();
+        }
 
         proxy.registerRenderers();
         proxy.registerTileEntitys();

@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 
 public class PotionFluidBlockItem extends ItemBlock
 {
+
     public PotionFluidBlockItem(Block block)
     {
         super(block);

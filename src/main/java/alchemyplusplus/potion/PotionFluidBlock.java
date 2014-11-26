@@ -20,6 +20,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 public class PotionFluidBlock extends BlockFluidClassic
 {
+
     private final FluidStack fluid;
     private Potion potion;
 

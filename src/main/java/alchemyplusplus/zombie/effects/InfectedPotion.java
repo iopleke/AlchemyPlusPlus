@@ -2,31 +2,36 @@ package alchemyplusplus.zombie.effects;
 
 import alchemyplusplus.reference.Settings;
 import alchemyplusplus.zombie.ZombieEventHandler;
+import java.util.LinkedList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 
-import java.util.LinkedList;
+public class InfectedPotion extends CustomPotion
+{
 
-public class InfectedPotion extends CustomPotion {
-    public InfectedPotion(int id) {
+    public InfectedPotion(int id)
+    {
         super(id, true, 0);
     }
 
     @Override
-    public boolean isReady(int duration, int amplifier) {
-        return duration==0;
+    public boolean isReady(int duration, int amplifier)
+    {
+        return duration == 0;
     }
 
     @Override
-    public PotionEffect getEffect() {
+    public PotionEffect getEffect()
+    {
         return new InfectedEffect();
     }
 
     public class InfectedEffect extends PotionEffect
     {
-        public InfectedEffect() {
+
+        public InfectedEffect()
+        {
             super(CustomPotion.infectedPotion.id, Settings.infectionTimer, 0, false);
             this.setCurativeItems(new LinkedList<ItemStack>());
         }
@@ -43,7 +48,10 @@ public class InfectedPotion extends CustomPotion {
             {
                 notFinished = super.onUpdate(entity);
             }
-            if (!notFinished) performEffect(entity);
+            if (!notFinished)
+            {
+                performEffect(entity);
+            }
             return notFinished;
         }
 

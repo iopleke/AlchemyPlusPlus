@@ -18,6 +18,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 
 public class PotionFluid extends Fluid
 {
+
     public int fluidColor = 0;
     private ItemPotion potion;
     public List potionEffects;

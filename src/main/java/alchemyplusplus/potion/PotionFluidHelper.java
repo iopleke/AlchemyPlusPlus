@@ -15,6 +15,7 @@ import net.minecraftforge.fluids.IFluidTank;
 
 public class PotionFluidHelper
 {
+
     public static Fluid getFluidForBlock(Block block)
     {
         // more hotfixing the broken vanilla fluid handling (fluid registry only has blocks for still water & still lava)

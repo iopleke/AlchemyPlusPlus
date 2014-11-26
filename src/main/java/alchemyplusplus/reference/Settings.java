@@ -14,6 +14,7 @@ import net.minecraftforge.common.config.Property;
 
 public class Settings
 {
+
     // Config file
     public static Configuration config;
 

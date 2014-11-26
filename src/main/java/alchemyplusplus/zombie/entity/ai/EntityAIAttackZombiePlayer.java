@@ -13,16 +13,25 @@ import net.minecraft.world.World;
 
 public class EntityAIAttackZombiePlayer extends EntityAIBase
 {
+
     World worldObj;
     EntityCreature attacker;
     EntityPlayer zombiePlayer;
-    /** An amount of decrementing ticks that allows the entity to attack once the tick reaches 0. */
+    /**
+     * An amount of decrementing ticks that allows the entity to attack once the tick reaches 0.
+     */
     int attackTick;
-    /** The speed with which the mob will approach the target */
+    /**
+     * The speed with which the mob will approach the target
+     */
     double speedTowardsTarget;
-    /** When true, the mob will continue chasing its target, even if it can't find a path to them right now. */
+    /**
+     * When true, the mob will continue chasing its target, even if it can't find a path to them right now.
+     */
     boolean longMemory;
-    /** The PathEntity of our entity. */
+    /**
+     * The PathEntity of our entity.
+     */
     PathEntity entityPathEntity;
     private int field_75445_i;
     private double field_151497_i;
@@ -50,19 +59,17 @@ public class EntityAIAttackZombiePlayer extends EntityAIBase
     {
         zombiePlayer = ZombieHelper.getNearestZombie(this.attacker, radius, false);
 
-        if (zombiePlayer == null||!zombiePlayer.isEntityAlive()||this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL)
+        if (zombiePlayer == null || !zombiePlayer.isEntityAlive() || this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL)
         {
             return false;
-        }
-        else
+        } else
         {
-            if (-- this.field_75445_i <= 0)
+            if (--this.field_75445_i <= 0)
             {
                 this.entityPathEntity = this.attacker.getNavigator().getPathToEntityLiving(zombiePlayer);
                 this.field_75445_i = 4 + this.attacker.getRNG().nextInt(7);
                 return this.entityPathEntity != null;
-            }
-            else
+            } else
             {
                 return true;
             }
@@ -102,7 +109,7 @@ public class EntityAIAttackZombiePlayer extends EntityAIBase
     {
         this.attacker.getLookHelper().setLookPositionWithEntity(zombiePlayer, 30.0F, 30.0F);
         double d0 = this.attacker.getDistanceSq(zombiePlayer.posX, zombiePlayer.boundingBox.minY, zombiePlayer.posZ);
-        double d1 = (double)(this.attacker.width * 2.0F * this.attacker.width * 2.0F + zombiePlayer.width);
+        double d1 = (double) (this.attacker.width * 2.0F * this.attacker.width * 2.0F + zombiePlayer.width);
         --this.field_75445_i;
 
         if ((this.longMemory || this.attacker.getEntitySenses().canSee(zombiePlayer)) && this.field_75445_i <= 0 && (this.field_151497_i == 0.0D && this.field_151495_j == 0.0D && this.field_151496_k == 0.0D || zombiePlayer.getDistanceSq(this.field_151497_i, this.field_151495_j, this.field_151496_k) >= 1.0D || this.attacker.getRNG().nextFloat() < 0.05F))
@@ -118,13 +125,11 @@ public class EntityAIAttackZombiePlayer extends EntityAIBase
                 if (finalPathPoint != null && zombiePlayer.getDistanceSq(finalPathPoint.xCoord, finalPathPoint.yCoord, finalPathPoint.zCoord) < 1)
                 {
                     failedPathFindingPenalty = 0;
-                }
-                else
+                } else
                 {
                     failedPathFindingPenalty += 10;
                 }
-            }
-            else
+            } else
             {
                 failedPathFindingPenalty += 10;
             }
@@ -132,8 +137,7 @@ public class EntityAIAttackZombiePlayer extends EntityAIBase
             if (d0 > 1024.0D)
             {
                 this.field_75445_i += 10;
-            }
-            else if (d0 > 256.0D)
+            } else if (d0 > 256.0D)
             {
                 this.field_75445_i += 5;
             }
@@ -149,7 +153,7 @@ public class EntityAIAttackZombiePlayer extends EntityAIBase
         if (d0 <= d1 && this.attackTick <= 20)
         {
             this.attackTick = 20;
-            zombiePlayer.attackEntityFrom(DamageSource.causeMobDamage(attacker),1F+((float)worldObj.rand.nextInt(4))/3);
+            zombiePlayer.attackEntityFrom(DamageSource.causeMobDamage(attacker), 1F + ((float) worldObj.rand.nextInt(4)) / 3);
         }
     }
 }

@@ -12,6 +12,7 @@ import net.minecraft.util.IIcon;
 
 public class PotionBucket extends ItemBucket
 {
+
     private String iconName;
 
     @SideOnly(Side.CLIENT)

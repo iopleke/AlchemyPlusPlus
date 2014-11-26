@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 
 public class BlockRegistry
 {
+
     public static Block diffuser;
     public static Block distillery;
     public static Block fleshBlock;

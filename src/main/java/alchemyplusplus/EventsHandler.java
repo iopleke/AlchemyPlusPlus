@@ -12,6 +12,7 @@ import net.minecraftforge.event.entity.player.FillBucketEvent;
 
 public class EventsHandler
 {
+
     public static EventsHandler INSTANCE = new EventsHandler();
     public Map<PotionFluidBlock, PotionBucket> buckets = new HashMap<PotionFluidBlock, PotionBucket>();
 

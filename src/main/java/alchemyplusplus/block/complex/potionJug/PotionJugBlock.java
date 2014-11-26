@@ -23,6 +23,7 @@ import net.minecraft.world.World;
 
 public class PotionJugBlock extends BlockContainer
 {
+
     public PotionJugBlock(String blockname)
     {
         super(Material.glass);

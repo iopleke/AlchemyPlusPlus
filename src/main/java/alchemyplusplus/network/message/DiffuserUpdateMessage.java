@@ -12,6 +12,7 @@ import net.minecraft.tileentity.TileEntity;
 
 public class DiffuserUpdateMessage implements IMessage, IMessageHandler<DiffuserUpdateMessage, IMessage>
 {
+
     private int posX, posY, posZ;
     private int bottleColor, potionDamageValue, fluidLevel, fluidID;
     private boolean isDiffusing;
