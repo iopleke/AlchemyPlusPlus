@@ -3,7 +3,7 @@ package alchemyplusplus.block.complex.diffuser;
 import alchemyplusplus.block.BlockComplex;
 import alchemyplusplus.reference.Naming;
 import alchemyplusplus.utility.MixingHelper;
-import alchemyplusplus.utility.NotificationManager;
+import alchemyplusplus.utility.NotificationHandler;
 import java.util.Iterator;
 import net.minecraft.block.Block;
 import static net.minecraft.block.BlockDirectional.getDirection;
@@ -54,7 +54,7 @@ public class DiffuserBlock extends BlockComplex
                         {
                             if (!world.isRemote)
                             {
-                                NotificationManager.sendChatMessage(player, "diffuser.full");
+                                NotificationHandler.sendPlayerChatMessage(player, "diffuser.full");
                             }
                         } else if (diffuser.fluidTank.getFluidAmount() == 0 || diffuser.fluidTank.getFluid().fluidID == ItemPotion.getIdFromItem(player.getHeldItem().getItem()))
                         {// @TODO - move potion match check to the TileEntity fill method
@@ -62,13 +62,13 @@ public class DiffuserBlock extends BlockComplex
                             {
                                 if (!world.isRemote)
                                 {
-                                    NotificationManager.sendChatMessage(player, "diffuser.combine.success");
+                                    NotificationHandler.sendPlayerChatMessage(player, "diffuser.combine.success");
                                 }
                             } else if ((diffuser.getFluidAmount() == 0))
                             {
                                 if (!world.isRemote)
                                 {
-                                    NotificationManager.sendChatMessage(player, "diffuser.pour");
+                                    NotificationHandler.sendPlayerChatMessage(player, "diffuser.pour");
                                 }
                             }
                             diffuser.fillWithOverRide(player.getHeldItem());
@@ -81,7 +81,7 @@ public class DiffuserBlock extends BlockComplex
                         {
                             if (!world.isRemote)
                             {
-                                NotificationManager.sendChatMessage(player, "diffuser.combine.failure");
+                                NotificationHandler.sendPlayerChatMessage(player, "diffuser.combine.failure");
                             }
 
                         }
@@ -100,12 +100,12 @@ public class DiffuserBlock extends BlockComplex
 
                         if (!world.isRemote)
                         {
-                            NotificationManager.sendChatMessage(player, "diffuser.wash.success");
+                            NotificationHandler.sendPlayerChatMessage(player, "diffuser.wash.success");
                         }
 
                     } else
                     {
-                        NotificationManager.sendChatMessage(player, "diffuser.wash.failure");
+                        NotificationHandler.sendPlayerChatMessage(player, "diffuser.wash.failure");
                     }
 
                 }
@@ -131,7 +131,7 @@ public class DiffuserBlock extends BlockComplex
                 {
                     if (!world.isRemote)
                     {
-                        NotificationManager.sendChatMessage(player, "diffuser.bottle.refill.failure");
+                        NotificationHandler.sendPlayerChatMessage(player, "diffuser.bottle.refill.failure");
                     }
                 }
             }
@@ -141,13 +141,13 @@ public class DiffuserBlock extends BlockComplex
             {
                 if (!world.isRemote)
                 {
-                    NotificationManager.sendChatMessage(player, "diffuser.cork");
+                    NotificationHandler.sendPlayerChatMessage(player, "diffuser.cork");
                 }
             } else
             {
                 if (!world.isRemote)
                 {
-                    NotificationManager.sendChatMessage(player, "diffuser.uncork");
+                    NotificationHandler.sendPlayerChatMessage(player, "diffuser.uncork");
                 }
             }
             diffuser.toggleDiffusingState();
@@ -156,7 +156,7 @@ public class DiffuserBlock extends BlockComplex
         {
             if (!world.isRemote)
             {
-                NotificationManager.sendChatMessage(player, "diffuser.uncork.failure");
+                NotificationHandler.sendPlayerChatMessage(player, "diffuser.uncork.failure");
             }
 
         }
