@@ -2,7 +2,7 @@ package alchemyplusplus.block.complex.diffuser;
 
 import alchemyplusplus.block.BlockComplex;
 import alchemyplusplus.reference.Naming;
-import alchemyplusplus.utility.MixingHelper;
+import alchemyplusplus.utility.MixingHandler;
 import alchemyplusplus.utility.NotificationHandler;
 import java.util.Iterator;
 import net.minecraft.block.Block;
@@ -120,7 +120,7 @@ public class DiffuserBlock extends BlockComplex
                     Iterator iter = diffuser.fluidTank.potionEffects.iterator();
                     while (iter.hasNext())
                     {
-                        MixingHelper.addEffect(itemStack, (PotionEffect) iter.next());
+                        MixingHandler.addEffect(itemStack, (PotionEffect) iter.next());
                     }
                     itemStack.setItemDamage(diffuser.potionDamageValue);
                     player.inventory.mainInventory[player.inventory.currentItem] = itemStack;

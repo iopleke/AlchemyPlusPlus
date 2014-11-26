@@ -20,7 +20,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.common.util.Constants;
 
-public class MixingHelper
+public class MixingHandler
 {
 
     public static void addCustomPotionEffect(ItemStack stack, PotionEffect potionEffect, boolean degrade, ItemStack filter)

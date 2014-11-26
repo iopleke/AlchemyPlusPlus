@@ -1,6 +1,6 @@
 package alchemyplusplus.block.complex.distillery;
 
-import alchemyplusplus.utility.MixingHelper;
+import alchemyplusplus.utility.MixingHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -223,7 +223,7 @@ public class DistilleryTileEntity extends TileEntity implements IInventory
 
         if (fuel > 0)
         {
-            if (MixingHelper.distillingPossible(this))
+            if (MixingHandler.distillingPossible(this))
             {
                 this.distillingTicks++;
             } else
@@ -232,7 +232,7 @@ public class DistilleryTileEntity extends TileEntity implements IInventory
             }
             if (this.distillingTicks == 400)
             {
-                MixingHelper.performDistillation(this);
+                MixingHandler.performDistillation(this);
                 this.distillingTicks = 0;
             }
         } else
