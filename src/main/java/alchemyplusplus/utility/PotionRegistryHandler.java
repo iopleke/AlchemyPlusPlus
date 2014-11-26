@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import net.minecraft.potion.Potion;
 
-public class PotionRegistryHelper
+public class PotionRegistryHandler
 {
 
     public static boolean expandPotionRegistry(int newSize)

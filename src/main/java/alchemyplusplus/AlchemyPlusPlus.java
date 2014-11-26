@@ -4,7 +4,7 @@ import alchemyplusplus.gui.GUIHandler;
 import alchemyplusplus.network.MessageHandler;
 import alchemyplusplus.proxy.CommonProxy;
 import alchemyplusplus.reference.Settings;
-import alchemyplusplus.utility.PotionRegistryHelper;
+import alchemyplusplus.utility.PotionRegistryHandler;
 import alchemyplusplus.zombie.ZombieEventHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
@@ -71,7 +71,7 @@ public class AlchemyPlusPlus
         FMLCommonHandler.instance().bus().register(new Settings());
         MessageHandler.init();
         PotionRegistry.init();
-        PotionRegistryHelper.expandPotionRegistry(256);
+        PotionRegistryHandler.expandPotionRegistry(256);
     }
 
     @EventHandler
