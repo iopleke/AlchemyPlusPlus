@@ -1,7 +1,7 @@
 package alchemyplusplus.gui;
 
 import alchemyplusplus.AlchemyPlusPlus;
-import alchemyplusplus.BlockRegistry;
+import alchemyplusplus.registry.BlockRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 

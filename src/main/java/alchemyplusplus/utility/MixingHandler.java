@@ -1,7 +1,7 @@
 package alchemyplusplus.utility;
 
-import alchemyplusplus.BlockRegistry;
-import alchemyplusplus.ItemRegistry;
+import alchemyplusplus.registry.BlockRegistry;
+import alchemyplusplus.registry.ItemRegistry;
 import alchemyplusplus.block.complex.distillery.DistilleryTileEntity;
 import alchemyplusplus.block.complex.extractor.ExtractorTileEntity;
 import alchemyplusplus.block.complex.fluidMixer.FluidMixerTileEntity;

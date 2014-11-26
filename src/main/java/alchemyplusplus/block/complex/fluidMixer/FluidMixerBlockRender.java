@@ -1,6 +1,6 @@
 package alchemyplusplus.block.complex.fluidMixer;
 
-import alchemyplusplus.BlockRegistry;
+import alchemyplusplus.registry.BlockRegistry;
 import alchemyplusplus.reference.Textures;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.OpenGlHelper;

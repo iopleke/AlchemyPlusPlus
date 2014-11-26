@@ -1,4 +1,4 @@
-package alchemyplusplus;
+package alchemyplusplus.registry;
 
 import alchemyplusplus.block.basic.FleshBlock;
 import alchemyplusplus.block.complex.diffuser.DiffuserBlock;

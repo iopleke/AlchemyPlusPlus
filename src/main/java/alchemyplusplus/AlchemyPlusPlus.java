@@ -1,5 +1,8 @@
 package alchemyplusplus;
 
+import alchemyplusplus.registry.BlockRegistry;
+import alchemyplusplus.registry.PotionRegistry;
+import alchemyplusplus.registry.ItemRegistry;
 import alchemyplusplus.utility.EventsHandler;
 import alchemyplusplus.gui.GUIHandler;
 import alchemyplusplus.network.MessageHandler;

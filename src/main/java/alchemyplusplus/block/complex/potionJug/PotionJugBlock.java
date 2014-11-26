@@ -1,7 +1,7 @@
 package alchemyplusplus.block.complex.potionJug;
 
 import alchemyplusplus.AlchemyPlusPlus;
-import alchemyplusplus.BlockRegistry;
+import alchemyplusplus.registry.BlockRegistry;
 import alchemyplusplus.gui.CreativeTab;
 import alchemyplusplus.reference.Textures;
 import cpw.mods.fml.common.FMLCommonHandler;

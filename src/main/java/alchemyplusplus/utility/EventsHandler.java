@@ -1,6 +1,6 @@
 package alchemyplusplus.utility;
 
-import alchemyplusplus.ItemRegistry;
+import alchemyplusplus.registry.ItemRegistry;
 import alchemyplusplus.item.PotionBucket;
 import alchemyplusplus.potion.PotionFluidBlock;
 import cpw.mods.fml.common.eventhandler.Event.Result;

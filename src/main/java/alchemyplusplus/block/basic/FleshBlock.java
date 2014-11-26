@@ -1,6 +1,6 @@
 package alchemyplusplus.block.basic;
 
-import alchemyplusplus.MaterialRegistry;
+import alchemyplusplus.registry.MaterialRegistry;
 import alchemyplusplus.block.BlockBasic;
 import alchemyplusplus.gui.CreativeTab;
 import cpw.mods.fml.relauncher.Side;

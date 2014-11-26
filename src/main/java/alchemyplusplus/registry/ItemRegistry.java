@@ -1,5 +1,6 @@
-package alchemyplusplus;
+package alchemyplusplus.registry;
 
+import alchemyplusplus.AlchemyPlusPlus;
 import alchemyplusplus.gui.CreativeTab;
 import alchemyplusplus.item.FishOil;
 import alchemyplusplus.item.ItemBasic;
