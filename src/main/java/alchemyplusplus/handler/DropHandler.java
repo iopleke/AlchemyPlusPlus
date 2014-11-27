@@ -3,8 +3,6 @@ package alchemyplusplus.handler;
 import alchemyplusplus.registry.ItemRegistry;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import java.util.Random;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.monster.EntitySlime;
@@ -41,8 +39,7 @@ public class DropHandler
             float f1 = random.nextFloat() * 0.8F + 0.1F;
             float f2 = random.nextFloat() * 0.8F + 0.1F;
 
-            EntityItem entityitem = new EntityItem(e.entityLiving.worldObj, (double) ((float) e.entityLiving.posX + f), (double) ((float) e.entityLiving.posY + f1), (double) ((float) e.entityLiving.posZ + f2),
-                    stack);
+            EntityItem entityitem = new EntityItem(e.entityLiving.worldObj, (double) ((float) e.entityLiving.posX + f), (double) ((float) e.entityLiving.posY + f1), (double) ((float) e.entityLiving.posZ + f2), stack);
 
             entityitem.motionX = (double) ((float) random.nextGaussian() * 0.05F);
             entityitem.motionY = (double) ((float) random.nextGaussian() * 0.05F + 0.2F);
@@ -55,10 +52,7 @@ public class DropHandler
             if (e.source.getSourceOfDamage() != null && e.source.getSourceOfDamage() instanceof EntityPlayer)
             {
                 ItemStack stack = (((EntityPlayer) e.source.getSourceOfDamage()).getHeldItem());
-                if (stack.getItem() == Items.shears
-                        && EnchantmentHelper.getSilkTouchModifier((EntityLivingBase) e.source.getSourceOfDamage())
-                        && stack.hasDisplayName()
-                        && stack.getDisplayName().toLowerCase().equals("eye choppa"))
+                if (stack.getItem() == Items.shears)
                 {
 
                     ItemStack eyeStack = new ItemStack(ItemRegistry.squidEye, 1, 0);
@@ -67,8 +61,7 @@ public class DropHandler
                     float f1 = random.nextFloat() * 0.8F + 0.1F;
                     float f2 = random.nextFloat() * 0.8F + 0.1F;
 
-                    EntityItem entityitem = new EntityItem(e.entityLiving.worldObj, (double) ((float) e.entityLiving.posX + f), (double) ((float) e.entityLiving.posY + f1), (double) ((float) e.entityLiving.posZ + f2),
-                            eyeStack);
+                    EntityItem entityitem = new EntityItem(e.entityLiving.worldObj, (double) ((float) e.entityLiving.posX + f), (double) ((float) e.entityLiving.posY + f1), (double) ((float) e.entityLiving.posZ + f2), eyeStack);
 
                     entityitem.motionX = (double) ((float) random.nextGaussian() * 0.05F);
                     entityitem.motionY = (double) ((float) random.nextGaussian() * 0.05F + 0.2F);
@@ -79,23 +72,24 @@ public class DropHandler
                     stack.damageItem(stack.getMaxDamage() + 1, e.entityLiving);
                 }
             }
-        } else if (e.entityLiving instanceof EntitySlime && e.source == DamageSource.fall)
+        } else if (e.entityLiving instanceof EntitySlime)
         {
+            if (e.source == DamageSource.onFire || e.source == DamageSource.inFire || e.source == DamageSource.fall)
+            {
+                ItemStack stack = new ItemStack(ItemRegistry.springyCord, 1, 0);
+                Random random = new Random();
+                float f = random.nextFloat() * 0.8F + 0.1F;
+                float f1 = random.nextFloat() * 0.8F + 0.1F;
+                float f2 = random.nextFloat() * 0.8F + 0.1F;
 
-            ItemStack stack = new ItemStack(ItemRegistry.springyCord, 1, 0);
-            Random random = new Random();
-            float f = random.nextFloat() * 0.8F + 0.1F;
-            float f1 = random.nextFloat() * 0.8F + 0.1F;
-            float f2 = random.nextFloat() * 0.8F + 0.1F;
+                EntityItem entityitem = new EntityItem(e.entityLiving.worldObj, (double) ((float) e.entityLiving.posX + f), (double) ((float) e.entityLiving.posY + f1), (double) ((float) e.entityLiving.posZ + f2), stack);
 
-            EntityItem entityitem = new EntityItem(e.entityLiving.worldObj, (double) ((float) e.entityLiving.posX + f), (double) ((float) e.entityLiving.posY + f1), (double) ((float) e.entityLiving.posZ + f2),
-                    stack);
+                entityitem.motionX = (double) ((float) random.nextGaussian() * 0.05F);
+                entityitem.motionY = (double) ((float) random.nextGaussian() * 0.05F + 0.2F);
+                entityitem.motionZ = (double) ((float) random.nextGaussian() * 0.05F);
 
-            entityitem.motionX = (double) ((float) random.nextGaussian() * 0.05F);
-            entityitem.motionY = (double) ((float) random.nextGaussian() * 0.05F + 0.2F);
-            entityitem.motionZ = (double) ((float) random.nextGaussian() * 0.05F);
-
-            e.entityLiving.worldObj.spawnEntityInWorld(entityitem);
+                e.entityLiving.worldObj.spawnEntityInWorld(entityitem);
+            }
 
         } else if (e.entityLiving instanceof EntityIronGolem && e.source.getSourceOfDamage() instanceof EntityPlayer)
         {
