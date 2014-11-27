@@ -158,7 +158,8 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
         Block belowBlock = this.worldObj.getBlock(this.xCoord, this.yCoord - 1, this.zCoord);
         if (belowBlock != null)
         {
-            if (belowBlock.equals(Blocks.furnace))
+            // @TODO - check for lava, blocks on fire, etc
+            if (belowBlock.equals(Blocks.lit_furnace))
             {
                 return true;
             }
@@ -170,16 +171,14 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
     {
         // @TODO - figure out how to cache these numbers
         int expandX, expandY, expandZ;
+        expandX = Settings.DiffusingRadius;
+        expandY = Settings.DiffusingRadius;
+        expandZ = Settings.DiffusingRadius;
         if (this.isDiffuserHeated())
         {
-            expandX = Settings.DiffusingRadius * Settings.DiffusingRadiusMultiplier;
-            expandY = Settings.DiffusingRadius * Settings.DiffusingRadiusMultiplier;
-            expandZ = Settings.DiffusingRadius * Settings.DiffusingRadiusMultiplier;
-        } else
-        {
-            expandX = Settings.DiffusingRadius;
-            expandY = Settings.DiffusingRadius;
-            expandZ = Settings.DiffusingRadius;
+            expandX = expandX * Settings.DiffusingRadiusMultiplier;
+            expandY = expandY * Settings.DiffusingRadiusMultiplier;
+            expandZ = expandZ * Settings.DiffusingRadiusMultiplier;
         }
 
         // Get the bounding box for the diffusing range
