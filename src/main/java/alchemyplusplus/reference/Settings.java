@@ -114,19 +114,19 @@ public class Settings
         prop = config.get(Settings.CATEGORY_DIFFUSER, "diffusingRadiusMultiplier", Settings.DiffusingRadiusMultiplier);
         prop.comment = StatCollector.translateToLocal("config.diffuser.radius.multiplier.description");
         prop.setLanguageKey("config.diffuser.radius.multiplier");
-        DiffusingRadius = prop.getInt();
+        DiffusingRadiusMultiplier = prop.getInt();
         configList.add(prop.getName());
 
         prop = config.get(Settings.CATEGORY_DIFFUSER, "diffusingRate", Settings.DiffusingRate);
         prop.comment = StatCollector.translateToLocal("config.diffuser.rate.description");
         prop.setLanguageKey("config.diffuser.rate");
-        DiffusingRadius = prop.getInt();
+        DiffusingRate = prop.getInt();
         configList.add(prop.getName());
 
         prop = config.get(Settings.CATEGORY_DIFFUSER, "diffusingRateMultiplier", Settings.DiffusingRateMultiplier);
         prop.comment = StatCollector.translateToLocal("config.diffuser.rate.multiplier.description");
         prop.setLanguageKey("config.diffuser.rate.multiplier");
-        DiffusingRadius = prop.getInt();
+        DiffusingRateMultiplier = prop.getInt();
         configList.add(prop.getName());
 
         if (config.hasChanged())

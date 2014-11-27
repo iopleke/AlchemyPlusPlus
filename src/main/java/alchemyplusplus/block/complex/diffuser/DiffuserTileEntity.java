@@ -11,7 +11,9 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
@@ -118,7 +120,6 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
     @Override
     public void updateEntity()
     {
-
         if (this.isDiffusing)
         {
             // Drain by 1 every # of ticks, as set in the config
@@ -152,9 +153,37 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
         }
     }
 
+    private boolean isDiffuserHeated()
+    {
+        Block belowBlock = this.worldObj.getBlock(this.xCoord, this.yCoord - 1, this.zCoord);
+        if (belowBlock != null)
+        {
+            if (belowBlock.equals(Blocks.furnace))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void applyPotionEffects()
     {
-        AxisAlignedBB axisalignedbb = AxisAlignedBB.getBoundingBox((double) this.xCoord, (double) this.yCoord, (double) this.zCoord, (double) (this.xCoord + 1), (double) (this.yCoord + 1), (double) (this.zCoord + 1)).expand(Settings.DiffusingRadius, Settings.DiffusingRadius, Settings.DiffusingRadius);
+        // @TODO - figure out how to cache these numbers
+        int expandX, expandY, expandZ;
+        if (this.isDiffuserHeated())
+        {
+            expandX = Settings.DiffusingRadius * Settings.DiffusingRadiusMultiplier;
+            expandY = Settings.DiffusingRadius * Settings.DiffusingRadiusMultiplier;
+            expandZ = Settings.DiffusingRadius * Settings.DiffusingRadiusMultiplier;
+        } else
+        {
+            expandX = Settings.DiffusingRadius;
+            expandY = Settings.DiffusingRadius;
+            expandZ = Settings.DiffusingRadius;
+        }
+
+        // Get the bounding box for the diffusing range
+        AxisAlignedBB axisalignedbb = AxisAlignedBB.getBoundingBox((double) this.xCoord, (double) this.yCoord, (double) this.zCoord, (double) (this.xCoord + 1), (double) (this.yCoord + 1), (double) (this.zCoord + 1)).expand(expandX, expandY, expandZ);
         axisalignedbb.maxY = (double) this.worldObj.getHeight();
         List list = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
 
@@ -172,10 +201,10 @@ public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFl
             while (potionEffects.hasNext())
             {
                 int potionID = ((PotionEffect) potionEffects.next()).getPotionID();
+                int duration = Settings.DiffusingRate * Settings.DiffusingRateMultiplier;
                 if (potionID != 0)
                 {
-                    int duration = 21;
-                    entityplayer.addPotionEffect(new PotionEffect(potionID, duration));
+                    entityplayer.addPotionEffect(new PotionEffect(potionID, duration + 2));
                 }
             }
         }
