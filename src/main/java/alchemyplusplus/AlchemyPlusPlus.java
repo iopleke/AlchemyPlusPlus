@@ -1,15 +1,16 @@
 package alchemyplusplus;
 
-import alchemyplusplus.registry.BlockRegistry;
-import alchemyplusplus.registry.PotionRegistry;
-import alchemyplusplus.registry.ItemRegistry;
-import alchemyplusplus.handler.EventsHandler;
 import alchemyplusplus.gui.GUIHandler;
+import alchemyplusplus.handler.DropHandler;
+import alchemyplusplus.handler.FluidHandler;
+import alchemyplusplus.handler.ZombieHandler;
+import alchemyplusplus.helper.PotionRegistryHelper;
 import alchemyplusplus.network.MessageHandler;
 import alchemyplusplus.proxy.CommonProxy;
 import alchemyplusplus.reference.Settings;
-import alchemyplusplus.helper.PotionRegistryHelper;
-import alchemyplusplus.handler.ZombieHandler;
+import alchemyplusplus.registry.BlockRegistry;
+import alchemyplusplus.registry.ItemRegistry;
+import alchemyplusplus.registry.PotionRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -99,7 +100,8 @@ public class AlchemyPlusPlus
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GUIHandler());
 
         // Register event handlers
-        MinecraftForge.EVENT_BUS.register(EventsHandler.INSTANCE);
+        MinecraftForge.EVENT_BUS.register(DropHandler.INSTANCE);
+        MinecraftForge.EVENT_BUS.register(FluidHandler.INSTANCE);
         if (Settings.zombieMode)
         {
             ZombieHandler.INSTANCE.register();

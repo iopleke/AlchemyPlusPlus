@@ -1,14 +1,8 @@
 package alchemyplusplus.handler;
 
 import alchemyplusplus.registry.ItemRegistry;
-import alchemyplusplus.item.PotionBucket;
-import alchemyplusplus.potion.fluid.PotionFluidBlock;
-import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
-import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -22,33 +16,14 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
-import net.minecraftforge.event.entity.player.FillBucketEvent;
 
-public class EventsHandler
+public class DropHandler
 {
 
-    public static EventsHandler INSTANCE = new EventsHandler();
-    public Map<PotionFluidBlock, PotionBucket> buckets = new HashMap<PotionFluidBlock, PotionBucket>();
+    public static DropHandler INSTANCE = new DropHandler();
 
-    private EventsHandler()
+    private DropHandler()
     {
-    }
-
-    @SubscribeEvent
-    public void onBucketFill(FillBucketEvent event)
-    {
-        Block block = event.world.getBlock(event.target.blockX, event.target.blockY, event.target.blockZ);
-
-        if (block != null && block instanceof PotionFluidBlock)
-        {
-            PotionBucket bucket = buckets.get((PotionFluidBlock) block);
-            if (bucket != null && event.world.getBlockMetadata(event.target.blockX, event.target.blockY, event.target.blockZ) == 0)
-            {
-                event.world.setBlockToAir(event.target.blockX, event.target.blockY, event.target.blockZ);
-                event.result = new ItemStack(bucket);
-                event.setResult(Result.ALLOW);
-            }
-        }
     }
 
     @SubscribeEvent

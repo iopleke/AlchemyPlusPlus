@@ -1,8 +1,8 @@
 package alchemyplusplus.registry;
 
 import alchemyplusplus.AlchemyPlusPlus;
-import alchemyplusplus.handler.EventsHandler;
 import alchemyplusplus.gui.CreativeTab;
+import alchemyplusplus.handler.FluidHandler;
 import alchemyplusplus.item.PotionBucket;
 import alchemyplusplus.potion.fluid.PotionFluid;
 import alchemyplusplus.potion.fluid.PotionFluidBlock;
@@ -38,7 +38,7 @@ public class PotionRegistry
 
                 FluidContainerRegistry.registerFluidContainer((Fluid) potionFluid, new ItemStack(new PotionBucket(block, potion)), new ItemStack(Items.bucket));
 
-                EventsHandler.INSTANCE.buckets.put(block, potionBucket);
+                FluidHandler.INSTANCE.buckets.put(block, potionBucket);
 
                 block.setCreativeTab(CreativeTab.APP_TAB);
 
