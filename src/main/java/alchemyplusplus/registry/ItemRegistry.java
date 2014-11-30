@@ -63,16 +63,16 @@ public class ItemRegistry
         woodAlcohol = new MixingFilter(Naming.Items.WOOD_ALCOHOL);
         GameRegistry.registerItem(woodAlcohol, woodAlcohol.getUnlocalizedName());
 
-        // work in progress: override vanilla potions
+        // @TODO - override vanilla potions
         {
             if (Settings.BrewingOverride)
             {
-                // @TODO - see if this is even still possible...maybe check how Railcraft does it?
-//            ItemPotion potion = Items.potionitem;
-//            Item.itemRegistry = null;
-//            appItemPotion = new PotionTemplate(potion).setUnlocalizedName("potion").setTextureName("potion");
-//            Items.potionitem = (ItemPotion) appItemPotion;
-//            GameRegistry.registerItem(appItemPotion, "potion");
+//              @TODO - see if this is even still possible...maybe check how Railcraft does it?
+//              ItemPotion potion = Items.potionitem;
+//              Item.itemRegistry = null;
+//              appItemPotion = new PotionTemplate(potion).setUnlocalizedName("potion").setTextureName("potion");
+//              Items.potionitem = (ItemPotion) appItemPotion;
+//              GameRegistry.registerItem(appItemPotion, "potion");
             }
         }
 
@@ -125,8 +125,6 @@ public class ItemRegistry
         {
             "Bi-", "C-P", "F-S", Character.valueOf('B'), Items.brewing_stand, Character.valueOf('i'), Items.iron_ingot, Character.valueOf('C'), Items.cauldron, Character.valueOf('P'), BlockRegistry.potionJug, Character.valueOf('F'), Blocks.furnace, Character.valueOf('S'), Items.iron_ingot
         });
-
-        // GameRegistry.addRecipe(new ItemStack(appItemDiffuser, 1, 0), new Object[] { "--s", "-b-", "w--", Character.valueOf('s'), Item.silk, Character.valueOf('b'), Item.glassBottle, Character.valueOf('w'), Item.bowlEmpty });
     }
 
 }
