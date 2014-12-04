@@ -112,4 +112,13 @@ public class PotionFluidBlock extends BlockFluidClassic
     {
         return fluid.getFluid().getColor();
     }
+
+    public int getPotionID()
+    {
+        if (this.potion != null)
+        {
+            return this.potion.id;
+        }
+        return 0;
+    }
 }
