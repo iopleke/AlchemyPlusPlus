@@ -8,7 +8,7 @@ import alchemyplusplus.block.complex.fluidMixer.FluidMixerBlockRender;
 import alchemyplusplus.block.complex.fluidMixer.FluidMixerTileEntity;
 import alchemyplusplus.block.complex.potionJug.PotionJugBlockRender;
 import alchemyplusplus.block.complex.potionJug.PotionJugTileEntity;
-import alchemyplusplus.potion.fluid.PotionFluidHelper;
+import alchemyplusplus.helper.PotionFluidHelper;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import net.minecraft.client.Minecraft;
