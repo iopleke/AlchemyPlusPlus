@@ -121,4 +121,23 @@ public class PotionFluidBlock extends BlockFluidClassic
         }
         return 0;
     }
+
+    public FluidStack getFluidStack()
+    {
+        if (this.fluid != null)
+        {
+            return this.fluid;
+        }
+        return null;
+    }
+
+    public Potion getFluidStackPotion()
+    {
+        if (this.potion != null)
+        {
+            return this.potion;
+        }
+        return null;
+    }
+
 }

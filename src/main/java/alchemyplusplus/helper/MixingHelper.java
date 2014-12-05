@@ -1,11 +1,11 @@
 package alchemyplusplus.helper;
 
-import alchemyplusplus.registry.BlockRegistry;
-import alchemyplusplus.registry.ItemRegistry;
 import alchemyplusplus.block.complex.distillery.DistilleryTileEntity;
 import alchemyplusplus.block.complex.extractor.ExtractorTileEntity;
 import alchemyplusplus.block.complex.fluidMixer.FluidMixerTileEntity;
 import alchemyplusplus.item.MixingFilter;
+import alchemyplusplus.registry.BlockRegistry;
+import alchemyplusplus.registry.ItemRegistry;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -408,8 +408,7 @@ public class MixingHelper
         if (te.getStackInSlot(1).getItem() == Item.getItemFromBlock(Blocks.log) || te.getStackInSlot(1).getItem() == Item.getItemFromBlock(Blocks.log2))
         {
             // Looks like we're making wood alcohol
-            ItemStack stack = new ItemStack(ItemRegistry.woodAlcohol,
-                    1, te.getStackInSlot(2).getItemDamage());
+            ItemStack stack = new ItemStack(ItemRegistry.woodAlcohol, 1, te.getStackInSlot(2).getItemDamage());
             if (te.getStackInSlot(2).getItem() == Items.glass_bottle)
             {
                 // Remove the glass bottle, and put in a spirit bottle
