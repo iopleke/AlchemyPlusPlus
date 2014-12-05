@@ -15,7 +15,6 @@ import net.minecraft.potion.Potion;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.event.entity.player.FillBucketEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import org.lwjgl.input.Mouse;
 
 public class FluidHandler
 {
@@ -115,7 +114,6 @@ public class FluidHandler
     @SubscribeEvent
     public void onGlassBottleFill(PlayerInteractEvent event)
     {
-        Mouse.setGrabbed(false);
         ItemStack equippedItem = event.entityPlayer.getCurrentEquippedItem();
         if (equippedItem != null)
         {
@@ -175,7 +173,7 @@ public class FluidHandler
                                     ItemStack potionStack = new ItemStack(Items.potionitem, 1, potionDamage);
                                 }
                             }
-                            String testName = StatCollector.translateToLocal(fluidPotion.getName());
+
                             event.setCanceled(true);
                         }
 
