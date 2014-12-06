@@ -5,6 +5,7 @@ import alchemyplusplus.gui.CreativeTab;
 import alchemyplusplus.item.FishOil;
 import alchemyplusplus.item.ItemBasic;
 import alchemyplusplus.item.MixingFilter;
+import alchemyplusplus.item.MortarAndPestle;
 import alchemyplusplus.item.PotionBucket;
 import alchemyplusplus.reference.Naming;
 import alchemyplusplus.reference.Settings;
@@ -30,6 +31,7 @@ public class ItemRegistry
     public static Item springyCord;
     public static Item squidEye;
     public static Item woodAlcohol;
+    public static Item mortarAndPestle;
 
 
     /*
@@ -63,7 +65,10 @@ public class ItemRegistry
         woodAlcohol = new MixingFilter(Naming.Items.WOOD_ALCOHOL);
         GameRegistry.registerItem(woodAlcohol, woodAlcohol.getUnlocalizedName());
 
-        // @TODO - override vanilla potions
+        mortarAndPestle = new MortarAndPestle(Naming.Items.MortarAndPestle);
+        GameRegistry.registerItem(mortarAndPestle, mortarAndPestle.getUnlocalizedName());
+
+// @TODO - override vanilla potions
         {
             if (Settings.BrewingOverride)
             {

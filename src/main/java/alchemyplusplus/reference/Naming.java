@@ -23,5 +23,6 @@ public class Naming
         public static final String SPRINGY_CORD = "springyCord";
         public static final String SQUID_EYE = "squidEye";
         public static final String WOOD_ALCOHOL = "woodAlcohol";
+        public static final String MortarAndPestle = "mortarAndPestle";
     }
 }
