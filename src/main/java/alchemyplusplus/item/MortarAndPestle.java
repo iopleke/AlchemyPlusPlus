@@ -18,7 +18,8 @@ public class MortarAndPestle extends ItemBasic
     {
         super(itemname);
         this.iconName = AlchemyPlusPlus.ID + ":" + itemname;
-        this.setMaxDamage(1);
+        this.setMaxDamage(0);
+        this.setHasSubtypes(true);
         this.setMaxStackSize(1);
     }
 
