@@ -49,7 +49,13 @@ public class Settings
     // Currently unused
     public static boolean HardcoreMode = false;
 
-    // @TODO - beat @hilburn with a dead fish for not commenting on these
+    //Should consume potion source blocks
+    public static boolean consumeSourceBlocks = true;
+
+    //Chance to consume a potion source block
+    public static float consumeSourceBlocksChance = 0.33F;
+
+    //Zombie stuff - don't worry your pretty little head about these
     public static boolean hostileAnimals = false;
     public static boolean zombieMode = true;
     public static int infectionTimer = 180;
