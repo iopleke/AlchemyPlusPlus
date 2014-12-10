@@ -49,6 +49,8 @@ item.mixingFilter.name=Mixing Filter
 item.springyCord.name=Springy Cord
 item.squidEye.name=Squid Eye
 item.woodAlcohol.name=Wood Alcohol
+item.mortarAndPestle.name=Mortar and Pestle
+item.mortarAndPestle.flavor.wooden=Made of wood, can grind soft materials
 
 fluid.potion.moveSpeed=Swiftness Fluid
 fluid.potion.moveSlowdown=Slowness Fluid
