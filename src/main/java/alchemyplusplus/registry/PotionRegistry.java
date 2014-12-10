@@ -9,7 +9,9 @@ import alchemyplusplus.potion.fluid.PotionFluidBlock;
 import alchemyplusplus.potion.fluid.PotionFluidBlockItem;
 import alchemyplusplus.reference.Settings;
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialLiquid;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
@@ -19,7 +21,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 
 public class PotionRegistry
 {
-
+    public static final Material materialPotion = new MaterialLiquid(MapColor.waterColor);
     public static void init()
     {
         for (Potion potion : Potion.potionTypes)
@@ -28,7 +30,7 @@ public class PotionRegistry
             {
                 PotionFluid potionFluid = new PotionFluid(potion);
                 FluidRegistry.registerFluid((Fluid) potionFluid);
-                PotionFluidBlock block = new PotionFluidBlock((Fluid) potionFluid, Material.water, potion);
+                PotionFluidBlock block = new PotionFluidBlock((Fluid) potionFluid, materialPotion, potion);
 
                 //ItemRegistry.addCreativePotionBucket(block, potion);
                 PotionBucket potionBucket = new PotionBucket(block, potion);

@@ -2,12 +2,15 @@ package alchemyplusplus.handler;
 
 import alchemyplusplus.item.PotionBucket;
 import alchemyplusplus.potion.fluid.PotionFluidBlock;
+import alchemyplusplus.reference.Settings;
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.Event.Result;
+import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import java.util.HashMap;
 import java.util.Map;
 import net.minecraft.block.Block;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemGlassBottle;
 import net.minecraft.item.ItemStack;
@@ -16,6 +19,7 @@ import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.event.entity.player.FillBucketEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
 
 public class FluidHandler
 {
@@ -32,7 +36,7 @@ public class FluidHandler
         potionNameRef.put("Swiftness", 2);
         potionNameRef.put("Fire Resistance", 3);
         potionNameRef.put("Poison", 4);
-        potionNameRef.put("Healing", 5);
+        potionNameRef.put("potion.heal", 5);
         potionNameRef.put("Night Vision", 6);
         potionNameRef.put("Clear", 7);
         potionNameRef.put("Weakness", 8);
@@ -112,44 +116,50 @@ public class FluidHandler
     }
 
     // patterning this off Enviromine https://github.com/Funwayguy/EnviroMine/blob/14add02db4b0ab1cfa8f33ea17949656c86804fc/src/main/java/enviromine/handlers/EM_EventManager.java#L271
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onGlassBottleFill(PlayerInteractEvent event)
     {
         ItemStack equippedItem = event.entityPlayer.getCurrentEquippedItem();
-        if (equippedItem != null)
+        if (equippedItem != null && equippedItem.getItem() instanceof ItemGlassBottle)
         {
-            if (event.getResult() != Result.DENY)
+            if (event.action == PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK || event.action == PlayerInteractEvent.Action.RIGHT_CLICK_AIR)
             {
-                if (event.action == PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK || event.action == PlayerInteractEvent.Action.RIGHT_CLICK_AIR)
+                ForgeDirection dir = ForgeDirection.getOrientation(event.face);
+                int x = event.x + dir.offsetX;
+                int y = event.y + dir.offsetY;
+                int z = event.z + dir.offsetZ;
+                if (!event.entityPlayer.canPlayerEdit(x,y,z,event.face,equippedItem)) return;
+                Block potentialFluidBlock = event.world.getBlock(x,y,z);
+                if (potentialFluidBlock instanceof PotionFluidBlock)
                 {
-                    if (equippedItem.getItem() instanceof ItemGlassBottle)
+                    PotionFluidBlock potionFluidBlock = (PotionFluidBlock) potentialFluidBlock;
+                    if (potionFluidBlock.isSourceBlock(event.world,x,y,z))
                     {
-                        ForgeDirection dir = ForgeDirection.getOrientation(event.face);
-                        int offsetX = dir.offsetX;
-                        int offsetY = dir.offsetY;
-                        int offsetZ = dir.offsetZ;
-                        Block potentialFluidBlock = event.world.getBlock(event.x + offsetX, event.y + offsetY, event.z + offsetZ);
-                        if (potentialFluidBlock instanceof PotionFluidBlock)
+                        Potion fluidPotion = potionFluidBlock.getFluidStackPotion();
+                        if (fluidPotion != null)
                         {
-                            PotionFluidBlock potionFluidBlock = (PotionFluidBlock) potentialFluidBlock;
-                            Potion fluidPotion = potionFluidBlock.getFluidStackPotion();
-                            if (fluidPotion != null)
+                            int potionTier = 0;
+                            int potionSplash = 0;
+                            int potionExtended = 0;
+                            int potionDamage = fluidPotion.id + (potionTier<<5) + (potionExtended<<6) + (potionSplash<<14);
+                            ItemStack potionStack = new ItemStack(Items.potionitem, 1, potionDamage);
+                            if (!event.entityPlayer.capabilities.isCreativeMode)
                             {
-                                if (this.potionNameRef.containsKey(StatCollector.translateToLocal(fluidPotion.getName())))
-                                {
-                                    int potionDamage = this.potionNameRef.get(StatCollector.translateToLocal(fluidPotion.getName()));
-                                    potionDamage = potionDamage + fluidPotion.id;
-                                    ItemStack potionStack = new ItemStack(Items.potionitem, 1, potionDamage);
-                                }
+                                event.entityPlayer.inventory.decrStackSize(event.entityPlayer.inventory.currentItem, 1);
+                                if (Settings.consumeSourceBlocks && event.world.rand.nextFloat()<Settings.consumeSourceBlocksChance)
+                                    event.world.setBlockToAir(x,y,z);
                             }
-
-                            event.setCanceled(true);
+                            if (!event.entityPlayer.inventory.addItemStackToInventory(potionStack))
+                            {
+                                event.entityPlayer.dropPlayerItemWithRandomChoice(potionStack, false);
+                            }
                         }
-
                     }
+                    if (event.world.isRemote) return;
+                    event.setCanceled(true);
                 }
             }
         }
-
     }
+
 }
