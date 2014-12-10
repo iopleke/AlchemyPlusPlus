@@ -13,6 +13,7 @@ import net.minecraft.item.ItemGlassBottle;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.StatCollector;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.event.entity.player.FillBucketEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
@@ -123,42 +124,10 @@ public class FluidHandler
                 {
                     if (equippedItem.getItem() instanceof ItemGlassBottle)
                     {
-                        int offsetX = 0;
-                        int offsetY = 0;
-                        int offsetZ = 0;
-                        switch (event.face)
-                        {
-                            case 0:
-                            {
-                                offsetY = -1;
-                                break;
-                            }
-                            case 1:
-                            {
-                                offsetY = 1;
-                                break;
-                            }
-                            case 2:
-                            {
-                                offsetZ = -1;
-                                break;
-                            }
-                            case 3:
-                            {
-                                offsetZ = 1;
-                                break;
-                            }
-                            case 4:
-                            {
-                                offsetX = -1;
-                                break;
-                            }
-                            case 5:
-                            {
-                                offsetX = 1;
-                                break;
-                            }
-                        }
+                        ForgeDirection dir = ForgeDirection.getOrientation(event.face);
+                        int offsetX = dir.offsetX;
+                        int offsetY = dir.offsetY;
+                        int offsetZ = dir.offsetZ;
                         Block potentialFluidBlock = event.world.getBlock(event.x + offsetX, event.y + offsetY, event.z + offsetZ);
                         if (potentialFluidBlock instanceof PotionFluidBlock)
                         {
