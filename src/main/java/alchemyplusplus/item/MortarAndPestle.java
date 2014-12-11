@@ -11,6 +11,7 @@ import net.minecraft.util.IIcon;
 
 public class MortarAndPestle extends ItemBasic
 {
+
     private int tier;
     private IIcon[] icons;
 

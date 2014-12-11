@@ -21,7 +21,9 @@ import net.minecraftforge.fluids.FluidRegistry;
 
 public class PotionRegistry
 {
+
     public static final Material materialPotion = new MaterialLiquid(MapColor.waterColor);
+
     public static void init()
     {
         for (Potion potion : Potion.potionTypes)
