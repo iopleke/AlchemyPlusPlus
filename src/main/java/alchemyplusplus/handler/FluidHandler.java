@@ -138,10 +138,10 @@ public class FluidHandler
                         Potion fluidPotion = potionFluidBlock.getFluidStackPotion();
                         if (fluidPotion != null)
                         {
-                            int potionTier = 0;
-                            int potionSplash = 0;
-                            int potionExtended = 0;
-                            int potionDamage = fluidPotion.id + (potionTier<<5) + (potionExtended<<6) + (potionSplash<<14);
+                            int potionTier = 0; //0 for T1, 1 for T2
+                            int potionExtended = 0; //1 for true
+                            int potionSplash = 1; //1 for drinkable, 2 for splash
+                            int potionDamage = fluidPotion.id + (potionTier<<5) + (potionExtended<<6) + (potionSplash<<13);
                             ItemStack potionStack = new ItemStack(Items.potionitem, 1, potionDamage);
                             if (!event.entityPlayer.capabilities.isCreativeMode)
                             {
