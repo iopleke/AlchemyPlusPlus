@@ -99,17 +99,21 @@ public class FluidHandler
                             int potionTier = 0; //0 for T1, 1 for T2
                             int potionExtended = 0; //1 for true
                             int potionSplash = 1; //1 for drinkable, 2 for splash
-                            int potionDamage = potionEffectIds[fluidPotion.getId()] + (potionTier<<5) + (potionExtended<<6) + (potionSplash<<13);
-                            ItemStack potionStack = new ItemStack(Items.potionitem, 1, potionDamage);
-                            if (!event.entityPlayer.capabilities.isCreativeMode)
+                            int potionEffect = potionEffectIds[fluidPotion.getId()];
+                            if (potionEffect>0)
                             {
-                                event.entityPlayer.inventory.decrStackSize(event.entityPlayer.inventory.currentItem, 1);
-                                if (Settings.consumeSourceBlocks && event.world.rand.nextFloat()<Settings.consumeSourceBlocksChance)
-                                    event.world.setBlockToAir(x,y,z);
-                            }
-                            if (!event.entityPlayer.inventory.addItemStackToInventory(potionStack))
-                            {
-                                event.entityPlayer.dropPlayerItemWithRandomChoice(potionStack, false);
+                                int potionDamage = potionEffect + (potionTier << 5) + (potionExtended << 6) + (potionSplash << 13);
+                                ItemStack potionStack = new ItemStack(Items.potionitem, 1, potionDamage);
+                                if (!event.entityPlayer.capabilities.isCreativeMode)
+                                {
+                                    event.entityPlayer.inventory.decrStackSize(event.entityPlayer.inventory.currentItem, 1);
+                                    if (Settings.consumeSourceBlocks && event.world.rand.nextFloat() < Settings.consumeSourceBlocksChance)
+                                        event.world.setBlockToAir(x, y, z);
+                                }
+                                if (!event.entityPlayer.inventory.addItemStackToInventory(potionStack))
+                                {
+                                    event.entityPlayer.dropPlayerItemWithRandomChoice(potionStack, false);
+                                }
                             }
                         }
                     }
