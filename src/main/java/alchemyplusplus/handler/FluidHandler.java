@@ -22,76 +22,34 @@ public class FluidHandler
 
     public static FluidHandler INSTANCE = new FluidHandler();
     public Map<PotionFluidBlock, PotionBucket> buckets = new HashMap<PotionFluidBlock, PotionBucket>();
-    public Map<String, Integer> potionNameRef = new HashMap<String, Integer>();
+    public static int[] potionEffectIds;
 
     private FluidHandler()
     {
-        potionNameRef.put("Mundane", 0);
-        potionNameRef.put("Water Bottle", 0);
-        potionNameRef.put("Regeneration", 1);
-        potionNameRef.put("Swiftness", 2);
-        potionNameRef.put("Fire Resistance", 3);
-        potionNameRef.put("Poison", 4);
-        potionNameRef.put("potion.heal", 5);
-        potionNameRef.put("Night Vision", 6);
-        potionNameRef.put("Clear", 7);
-        potionNameRef.put("Weakness", 8);
-        potionNameRef.put("Strength", 9);
-        potionNameRef.put("Slowness", 10);
-        potionNameRef.put("Leaping", 11);
-        potionNameRef.put("Harming", 12);
-        potionNameRef.put("Water Breathing", 13);
-        potionNameRef.put("Invisibility", 14);
-        potionNameRef.put("Thin", 15);
-        potionNameRef.put("Awkward", 16);
-        potionNameRef.put("Regeneration", 17);
-        potionNameRef.put("Swiftness", 18);
-        potionNameRef.put("Fire Resistance", 19);
-        potionNameRef.put("Poison", 20);
-        potionNameRef.put("Healing", 21);
-        potionNameRef.put("Night Vision", 22);
-        potionNameRef.put("Bungling", 23);
-        potionNameRef.put("Weakness", 24);
-        potionNameRef.put("Strength", 25);
-        potionNameRef.put("Slowness", 26);
-        potionNameRef.put("Leaping", 27);
-        potionNameRef.put("Harming", 28);
-        potionNameRef.put("Water Breathing", 29);
-        potionNameRef.put("Invisibility", 30);
-        potionNameRef.put("Debonair", 31);
-        potionNameRef.put("Thick", 32);
-        potionNameRef.put("Regeneration", 33);
-        potionNameRef.put("Swiftness", 34);
-        potionNameRef.put("Fire Resistance", 35);
-        potionNameRef.put("Poison", 36);
-        potionNameRef.put("Healing", 37);
-        potionNameRef.put("Night Vision", 38);
-        potionNameRef.put("Charming", 39);
-        potionNameRef.put("Weakness", 40);
-        potionNameRef.put("Strength", 41);
-        potionNameRef.put("Slowness", 42);
-        potionNameRef.put("Leaping", 43);
-        potionNameRef.put("Harming", 44);
-        potionNameRef.put("Water Breathing", 45);
-        potionNameRef.put("Invisibility", 46);
-        potionNameRef.put("Sparkling", 47);
-        potionNameRef.put("Potent", 48);
-        potionNameRef.put("Regeneration", 49);
-        potionNameRef.put("Swiftness", 50);
-        potionNameRef.put("Fire Resistance", 51);
-        potionNameRef.put("Poison", 52);
-        potionNameRef.put("Healing", 53);
-        potionNameRef.put("Night Vision", 54);
-        potionNameRef.put("Rank", 55);
-        potionNameRef.put("Weakness", 56);
-        potionNameRef.put("Strength", 57);
-        potionNameRef.put("Slowness", 58);
-        potionNameRef.put("Leaping", 59);
-        potionNameRef.put("Harming", 60);
-        potionNameRef.put("Water Breathing", 61);
-        potionNameRef.put("Invisibility", 62);
-        potionNameRef.put("Stinky", 63);
-
+        potionEffectIds = new int[Potion.potionTypes.length];
+        potionEffectIds[1] = 2;//SPEED
+        potionEffectIds[2] = 10;//SLOWNESS
+        potionEffectIds[3] = 0; //TODO: HASTE
+        potionEffectIds[4] = 0; //TODO: SLOWMINING
+        potionEffectIds[5] = 9;//STENGTH
+        potionEffectIds[6] = 5;//HEALTH
+        potionEffectIds[7] = 12;//DAMAGE
+        potionEffectIds[8] = 11;//JUMP
+        potionEffectIds[9] = 0;//TODO CONFUSION
+        potionEffectIds[10] = 1;//REGENERATION
+        potionEffectIds[11] = 0;//TODO:RESISTANCE
+        potionEffectIds[12] = 3;//FIRERESISTANCE
+        potionEffectIds[13] = 13;//WATERBREATHING
+        potionEffectIds[14] = 14;//INVISIBILITY
+        potionEffectIds[15] = 0;//TODO:BLINDNESS
+        potionEffectIds[16] = 6;//NIGHTVISION
+        potionEffectIds[17] = 0;//TODO:HUNGER
+        potionEffectIds[18] = 8;//WEAKNESS
+        potionEffectIds[19] = 4;//POISON
+        potionEffectIds[20] = 0;//TODO:WITHER
+        potionEffectIds[21] = 0;//TODO:HEALTHBOOST
+        potionEffectIds[22] = 0;//TODO:ABSORPTION
+        potionEffectIds[23] = 0;//TODO:SATURATION
     }
 
     @SubscribeEvent
@@ -140,19 +98,21 @@ public class FluidHandler
                             int potionTier = 0; //0 for T1, 1 for T2
                             int potionExtended = 0; //1 for true
                             int potionSplash = 1; //1 for drinkable, 2 for splash
-                            int potionDamage = fluidPotion.id + (potionTier << 5) + (potionExtended << 6) + (potionSplash << 13);
-                            ItemStack potionStack = new ItemStack(Items.potionitem, 1, potionDamage);
-                            if (!event.entityPlayer.capabilities.isCreativeMode)
+                            int potionEffect = potionEffectIds[fluidPotion.getId()];
+                            if (potionEffect>0)
                             {
-                                event.entityPlayer.inventory.decrStackSize(event.entityPlayer.inventory.currentItem, 1);
-                                if (Settings.consumeSourceBlocks && event.world.rand.nextFloat() < Settings.consumeSourceBlocksChance)
+                                int potionDamage = potionEffect + (potionTier << 5) + (potionExtended << 6) + (potionSplash << 13);
+                                ItemStack potionStack = new ItemStack(Items.potionitem, 1, potionDamage);
+                                if (!event.entityPlayer.capabilities.isCreativeMode)
                                 {
-                                    event.world.setBlockToAir(x, y, z);
+                                    event.entityPlayer.inventory.decrStackSize(event.entityPlayer.inventory.currentItem, 1);
+                                    if (Settings.consumeSourceBlocks && event.world.rand.nextFloat() < Settings.consumeSourceBlocksChance)
+                                        event.world.setBlockToAir(x, y, z);
                                 }
-                            }
-                            if (!event.entityPlayer.inventory.addItemStackToInventory(potionStack))
-                            {
-                                event.entityPlayer.dropPlayerItemWithRandomChoice(potionStack, false);
+                                if (!event.entityPlayer.inventory.addItemStackToInventory(potionStack))
+                                {
+                                    event.entityPlayer.dropPlayerItemWithRandomChoice(potionStack, false);
+                                }
                             }
                         }
                     }
