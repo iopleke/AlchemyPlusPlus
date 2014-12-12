@@ -4,22 +4,18 @@ import alchemyplusplus.item.PotionBucket;
 import alchemyplusplus.potion.fluid.PotionFluidBlock;
 import alchemyplusplus.reference.Settings;
 import cpw.mods.fml.common.eventhandler.Event;
-import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import java.util.HashMap;
 import java.util.Map;
 import net.minecraft.block.Block;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemGlassBottle;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
-import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.event.entity.player.FillBucketEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
 
 public class FluidHandler
 {
@@ -86,12 +82,15 @@ public class FluidHandler
                 int x = event.x + dir.offsetX;
                 int y = event.y + dir.offsetY;
                 int z = event.z + dir.offsetZ;
-                if (!event.entityPlayer.canPlayerEdit(x,y,z,event.face,equippedItem)) return;
-                Block potentialFluidBlock = event.world.getBlock(x,y,z);
+                if (!event.entityPlayer.canPlayerEdit(x, y, z, event.face, equippedItem))
+                {
+                    return;
+                }
+                Block potentialFluidBlock = event.world.getBlock(x, y, z);
                 if (potentialFluidBlock instanceof PotionFluidBlock)
                 {
                     PotionFluidBlock potionFluidBlock = (PotionFluidBlock) potentialFluidBlock;
-                    if (potionFluidBlock.isSourceBlock(event.world,x,y,z))
+                    if (potionFluidBlock.isSourceBlock(event.world, x, y, z))
                     {
                         Potion fluidPotion = potionFluidBlock.getFluidStackPotion();
                         if (fluidPotion != null)
@@ -117,7 +116,10 @@ public class FluidHandler
                             }
                         }
                     }
-                    if (event.world.isRemote) return;
+                    if (event.world.isRemote)
+                    {
+                        return;
+                    }
                     event.setCanceled(true);
                 }
             }

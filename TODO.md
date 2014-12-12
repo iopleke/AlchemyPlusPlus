@@ -7,3 +7,4 @@ Diffuser isn't balanced for survival
 Shift clicking a filter into the fluid mixer places it in the potion slots  
 Shift clicking a completed potion out of the fluid mixer places it in the third hotbar slot  
 Add inline documentation. Look up how to make proper javadocs.  
+Make fluid IDs match potion ID.  
