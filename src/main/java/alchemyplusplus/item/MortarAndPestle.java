@@ -35,33 +35,36 @@ public class MortarAndPestle extends ItemBasic
     @Override
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
     {
-        if (!world.isRemote)
+        if (stack != null)
         {
-            MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(world, player, true);
-
-            if (movingobjectposition != null)
+            if (!world.isRemote)
             {
+                MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(world, player, true);
 
-                if (movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
+                if (movingobjectposition != null)
                 {
-                    int i = movingobjectposition.blockX;
-                    int j = movingobjectposition.blockY;
-                    int k = movingobjectposition.blockZ;
 
-                    Material material = world.getBlock(i, j, k).getMaterial();
-                    int l = world.getBlockMetadata(i, j, k);
-
-                    if (material == Material.water && l == 0)
+                    if (movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
                     {
+                        int i = movingobjectposition.blockX;
+                        int j = movingobjectposition.blockY;
+                        int k = movingobjectposition.blockZ;
 
-                        this.setFilled(true, stack);
-                        return stack;
+                        Material material = world.getBlock(i, j, k).getMaterial();
+                        int l = world.getBlockMetadata(i, j, k);
 
+                        if (material == Material.water && l == 0)
+                        {
+
+                            this.setFilled(true, stack);
+                            return stack;
+
+                        }
                     }
                 }
             }
+            this.setFilled(false, stack);
         }
-        this.setFilled(false, stack);
         return stack;
     }
 
@@ -80,12 +83,19 @@ public class MortarAndPestle extends ItemBasic
 
     public void setFilled(boolean state, ItemStack stack)
     {
-        stack.getTagCompound().setBoolean("Filled", state);
+        if (stack.getTagCompound() != null)
+        {
+            stack.getTagCompound().setBoolean("Filled", state);
+        }
     }
 
     public boolean getFilled(ItemStack stack)
     {
-        return stack.getTagCompound().getBoolean("Filled");
+        if (stack.getTagCompound() != null)
+        {
+            return stack.getTagCompound().getBoolean("Filled");
+        }
+        return false;
     }
 
     public final void toggleFilled()
