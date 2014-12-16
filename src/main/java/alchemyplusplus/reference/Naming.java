@@ -24,10 +24,13 @@ public class Naming
         public static final String SQUID_EYE = "squidEye";
         public static final String WOOD_ALCOHOL = "woodAlcohol";
         public static final String MortarAndPestle = "mortarAndPestle";
+        public static final String CrushedGrass = "crushedGrass";
+        public static final String PasteGrass = "pasteGrass";
     }
 
     public static final class Colors
     {
+
         public static final String Black = "\u00A70";
         public static final String DarkBlue = "\u00A71";
         public static final String DarkGreen = "\u00A72";
