@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 public class ItemBasic extends Item
 {
 
-    String iconName;
+    protected String iconName;
     int lifespan = 6000;
 
     public ItemBasic(String itemname)
