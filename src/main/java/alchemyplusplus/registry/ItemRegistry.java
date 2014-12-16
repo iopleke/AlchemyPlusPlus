@@ -7,6 +7,7 @@ import alchemyplusplus.item.ItemBasic;
 import alchemyplusplus.item.MixingFilter;
 import alchemyplusplus.item.MortarAndPestle;
 import alchemyplusplus.item.PotionBucket;
+import alchemyplusplus.item.flora.BasicFlora;
 import alchemyplusplus.reference.Naming;
 import alchemyplusplus.reference.Settings;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -32,6 +33,10 @@ public class ItemRegistry
     public static Item squidEye;
     public static Item woodAlcohol;
     public static Item mortarAndPestle;
+
+    // plant stuffs
+    public static Item crushedGrass;
+    public static Item pasteGrass;
 
 
     /*
@@ -67,6 +72,12 @@ public class ItemRegistry
 
         mortarAndPestle = new MortarAndPestle(Naming.Items.MortarAndPestle);
         GameRegistry.registerItem(mortarAndPestle, mortarAndPestle.getUnlocalizedName());
+
+        // Register plant stuffs
+        crushedGrass = new BasicFlora(Naming.Items.CrushedGrass);
+        GameRegistry.registerItem(crushedGrass, crushedGrass.getUnlocalizedName());
+        pasteGrass = new BasicFlora(Naming.Items.PasteGrass);
+        GameRegistry.registerItem(pasteGrass, pasteGrass.getUnlocalizedName());
 
 // @TODO - override vanilla potions
         {
