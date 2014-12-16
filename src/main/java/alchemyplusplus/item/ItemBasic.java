@@ -41,4 +41,9 @@ public class ItemBasic extends Item
         this.lifespan = lifespan;
     }
 
+    public int getItemDamage()
+    {
+        return this.getDamage(new ItemStack(this));
+    }
+
 }
