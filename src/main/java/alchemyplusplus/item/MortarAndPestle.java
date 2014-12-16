@@ -2,12 +2,14 @@ package alchemyplusplus.item;
 
 import alchemyplusplus.AlchemyPlusPlus;
 import alchemyplusplus.reference.Naming;
+import alchemyplusplus.registry.ItemRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -49,14 +51,24 @@ public class MortarAndPestle extends ItemBasic
                     int k = movingobjectposition.blockZ;
 
                     Material material = world.getBlock(i, j, k).getMaterial();
-                    int l = world.getBlockMetadata(i, j, k);
+                    int meta = world.getBlockMetadata(i, j, k);
 
-                    if (material == Material.water && l == 0)
+                    if (material == Material.water && meta == 0)
                     {
-
                         this.setFilled(true, stack);
                         return stack;
-
+                    }
+                    if (material == Material.grass)
+                    {
+                        if (this.getFilled(stack))
+                        {
+                            EntityItem itemDrop = player.dropItem(ItemRegistry.pasteGrass, 1);
+                            itemDrop.delayBeforeCanPickup = 0;
+                        } else
+                        {
+                            EntityItem itemDrop = player.dropItem(ItemRegistry.crushedGrass, 1);
+                            itemDrop.delayBeforeCanPickup = 0;
+                        }
                     }
                 }
             }
