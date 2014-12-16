@@ -60,6 +60,9 @@ item.mortarAndPestle.flavor.stone=Carved from living stone, can grind most organ
 item.mortarAndPestle.flavor.iron=Forged from cold iron, reacts with some materials
 item.mortarAndPestle.flavor.obsidian=Solidified from liquid fire, glows darkly purple
 
+item.crushedGrass.name=Crushed Grass
+item.pasteGrass.name=Grass Paste
+
 fluid.potion.moveSpeed=Swiftness Fluid
 fluid.potion.moveSlowdown=Slowness Fluid
 fluid.potion.digSpeed=Haste Fluid
