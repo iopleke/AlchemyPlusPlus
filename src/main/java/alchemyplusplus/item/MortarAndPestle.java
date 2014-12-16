@@ -54,14 +54,14 @@ public class MortarAndPestle extends ItemBasic
                     if (material == Material.water && l == 0)
                     {
 
-                        this.setFilled(true);
+                        this.setFilled(true, stack);
                         return stack;
 
                     }
                 }
             }
         }
-        this.setFilled(false);
+        this.setFilled(false, stack);
         return stack;
     }
 
@@ -78,14 +78,14 @@ public class MortarAndPestle extends ItemBasic
 
     }
 
-    public final void setFilled(boolean filledState)
+    public void setFilled(boolean state, ItemStack stack)
     {
-        this.isFilled = filledState;
+        stack.getTagCompound().setBoolean("Filled", state);
     }
 
-    public boolean getFilled()
+    public boolean getFilled(ItemStack stack)
     {
-        return this.isFilled;
+        return stack.getTagCompound().getBoolean("Filled");
     }
 
     public final void toggleFilled()
