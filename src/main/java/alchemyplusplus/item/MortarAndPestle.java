@@ -1,24 +1,29 @@
 package alchemyplusplus.item;
 
 import alchemyplusplus.AlchemyPlusPlus;
+import alchemyplusplus.gui.CreativeTab;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-public class MortarAndPestle extends ItemBasic
+public class MortarAndPestle extends Item
 {
 
     private int tier;
     private IIcon[] icons;
+    private final String iconName;
 
     public MortarAndPestle(String itemname)
     {
-        super(itemname);
+        super();
         this.iconName = AlchemyPlusPlus.ID + ":" + itemname;
+        this.setUnlocalizedName(itemname);
+        this.setCreativeTab(CreativeTab.APP_TAB);
         this.setMaxDamage(0);
         this.setHasSubtypes(true);
         this.setMaxStackSize(1);
@@ -34,16 +39,17 @@ public class MortarAndPestle extends ItemBasic
 
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
-    public IIcon getIIconFromDamage(int damage)
+    public IIcon getIconFromDamage(int damage)
     {
         return icons[damage];
     }
 
-    @SideOnly(Side.CLIENT)
-    public void getSubItems(int itemID, CreativeTabs tabs, List list)
+    @Override
+    public void getSubItems(Item item, CreativeTabs tab, List list)
     {
-        for (int i = 0; i < 1; ++i)
+        for (int i = 0; i <= 1; ++i)
         {
             list.add(new ItemStack(this, 1, i));
         }
