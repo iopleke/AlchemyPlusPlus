@@ -33,9 +33,11 @@ public class MortarAndPestle extends Item
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iconRegister)
     {
-        icons = new IIcon[2];
+        icons = new IIcon[4];
         icons[0] = iconRegister.registerIcon(iconName + "Wooden");
         icons[1] = iconRegister.registerIcon(iconName + "Stone");
+        icons[2] = iconRegister.registerIcon(iconName + "Iron");
+        icons[3] = iconRegister.registerIcon(iconName + "Obsidian");
 
     }
 
@@ -49,7 +51,7 @@ public class MortarAndPestle extends Item
     @Override
     public void getSubItems(Item item, CreativeTabs tab, List list)
     {
-        for (int i = 0; i <= 1; ++i)
+        for (int i = 0; i <= 3; ++i)
         {
             list.add(new ItemStack(this, 1, i));
         }
