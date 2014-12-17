@@ -9,7 +9,6 @@ import net.minecraft.potion.PotionHelper;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-
 import org.lwjgl.opengl.GL11;
 
 public class TileEntityPotionContainerRenderer extends
@@ -35,7 +34,7 @@ public class TileEntityPotionContainerRenderer extends
         GL11.glRotatef(dir * (-90F), 0F, 1F, 0F);
         GL11.glTranslatef(-0.5F, 0, -0.5F);
 
-        bindTexture(new ResourceLocation("AlchemyPlusPlus:textures/blocks/Bottle.png"));
+        bindTexture(new ResourceLocation("AlchemyPlusPlus:textures/blocks/PotionBottle.png"));
 
         float percentage = ((float) tl.containerHas) / tl.containerMax;
         int color = 0;
