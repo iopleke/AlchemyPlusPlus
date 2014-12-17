@@ -6,6 +6,8 @@ import alchemyplusplus.registry.ItemRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockTallGrass;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -50,7 +52,8 @@ public class MortarAndPestle extends ItemBasic
                     int j = movingobjectposition.blockY;
                     int k = movingobjectposition.blockZ;
 
-                    Material material = world.getBlock(i, j, k).getMaterial();
+                    Block block = world.getBlock(i, j, k);
+                    Material material = block.getMaterial();
                     int meta = world.getBlockMetadata(i, j, k);
 
                     if (material == Material.water && meta == 0)
@@ -58,7 +61,7 @@ public class MortarAndPestle extends ItemBasic
                         this.setFilled(true, stack);
                         return stack;
                     }
-                    if (material == Material.grass)
+                    if (material == Material.grass || block instanceof BlockTallGrass)
                     {
                         if (this.getFilled(stack))
                         {
