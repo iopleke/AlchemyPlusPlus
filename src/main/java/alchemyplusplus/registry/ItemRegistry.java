@@ -37,6 +37,8 @@ public class ItemRegistry
     // plant stuffs
     public static Item crushedGrass;
     public static Item pasteGrass;
+    public static Item crushedLeaves;
+    public static Item pasteLeaves;
 
 
     /*
@@ -78,6 +80,11 @@ public class ItemRegistry
         GameRegistry.registerItem(crushedGrass, crushedGrass.getUnlocalizedName());
         pasteGrass = new BasicFlora(Naming.Items.PasteGrass);
         GameRegistry.registerItem(pasteGrass, pasteGrass.getUnlocalizedName());
+
+        crushedLeaves = new BasicFlora(Naming.Items.CrushedLeaves);
+        GameRegistry.registerItem(crushedLeaves, crushedLeaves.getUnlocalizedName());
+        pasteLeaves = new BasicFlora(Naming.Items.PasteLeaves);
+        GameRegistry.registerItem(pasteLeaves, pasteLeaves.getUnlocalizedName());
 
 // @TODO - override vanilla potions
         {

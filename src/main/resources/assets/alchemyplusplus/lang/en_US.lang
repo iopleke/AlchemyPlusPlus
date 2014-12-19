@@ -63,6 +63,8 @@ item.mortarAndPestle.flavor.obsidian=Solidified from liquid fire, glows darkly p
 
 item.crushedGrass.name=Crushed Grass
 item.pasteGrass.name=Grass Paste
+item.crushedLeaves.name=Crushed Leaves
+item.pasteLeaves.name=Leaf Paste
 
 fluid.potion.moveSpeed=Swiftness Fluid
 fluid.potion.moveSlowdown=Slowness Fluid

@@ -7,6 +7,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockTallGrass;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -70,6 +71,17 @@ public class MortarAndPestle extends ItemBasic
                         } else
                         {
                             EntityItem itemDrop = player.dropItem(ItemRegistry.crushedGrass, 1);
+                            itemDrop.delayBeforeCanPickup = 0;
+                        }
+                    } else if (material == Material.leaves || block instanceof BlockLeaves)
+                    {
+                        if (this.getFilled(stack))
+                        {
+                            EntityItem itemDrop = player.dropItem(ItemRegistry.pasteLeaves, 1);
+                            itemDrop.delayBeforeCanPickup = 0;
+                        } else
+                        {
+                            EntityItem itemDrop = player.dropItem(ItemRegistry.crushedLeaves, 1);
                             itemDrop.delayBeforeCanPickup = 0;
                         }
                     }

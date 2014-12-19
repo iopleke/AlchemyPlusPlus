@@ -26,6 +26,8 @@ public class Naming
         public static final String MortarAndPestle = "mortarAndPestle";
         public static final String CrushedGrass = "crushedGrass";
         public static final String PasteGrass = "pasteGrass";
+        public static final String CrushedLeaves = "crushedLeaves";
+        public static final String PasteLeaves = "pasteLeaves";
     }
 
     public static final class Colors
