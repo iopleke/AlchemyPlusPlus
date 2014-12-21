@@ -1,6 +1,6 @@
 package alchemyplusplus;
 
-import alchemyplusplus.gui.GUIHandler;
+import alchemyplusplus.handler.GUIHandler;
 import alchemyplusplus.handler.DropHandler;
 import alchemyplusplus.handler.FluidHandler;
 import alchemyplusplus.handler.ZombieHandler;

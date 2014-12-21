@@ -1,4 +1,4 @@
-package alchemyplusplus.gui;
+package alchemyplusplus.handler;
 
 import alchemyplusplus.block.complex.distillery.DistilleryContainer;
 import alchemyplusplus.block.complex.distillery.DistilleryGUI;
