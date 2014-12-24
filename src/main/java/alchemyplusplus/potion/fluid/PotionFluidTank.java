@@ -2,12 +2,14 @@ package alchemyplusplus.potion.fluid;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.fluids.FluidTank;
 
 public class PotionFluidTank extends FluidTank
 {
 
-    public List potionEffects;
+    public List<PotionEffect> potionEffects;
 
     public PotionFluidTank(PotionFluidStack stack, int capacity)
     {
@@ -19,7 +21,7 @@ public class PotionFluidTank extends FluidTank
     public PotionFluidTank(int capacity)
     {
         super(null, capacity);
-        this.potionEffects = new ArrayList();
+        this.potionEffects = new ArrayList<PotionEffect>();
     }
 
 }

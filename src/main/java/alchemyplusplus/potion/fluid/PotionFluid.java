@@ -21,13 +21,13 @@ public class PotionFluid extends Fluid
 
     public int fluidColor = 0;
     private ItemPotion potion;
-    public List potionEffects;
+    public List<PotionEffect> potionEffects;
     private int itemDamage;
 
     public PotionFluid(Potion potion)
     {
         super(potion.getName());
-        this.potionEffects = new ArrayList();
+        this.potionEffects = new ArrayList<PotionEffect>();
         this.fluidColor = potion.getLiquidColor();
         PotionEffect effect = new PotionEffect(potion.getId(), 40, 0);
         this.potionEffects.add(effect);

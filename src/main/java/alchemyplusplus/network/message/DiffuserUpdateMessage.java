@@ -6,7 +6,6 @@ import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
-import java.util.Iterator;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 
@@ -16,7 +15,6 @@ public class DiffuserUpdateMessage implements IMessage, IMessageHandler<Diffuser
     private int posX, posY, posZ;
     private int bottleColor, potionDamageValue, fluidLevel, fluidID;
     private boolean isDiffusing;
-    private int effectsListSize;
     private int[] effectIDs;
 
     public DiffuserUpdateMessage()
@@ -42,26 +40,12 @@ public class DiffuserUpdateMessage implements IMessage, IMessageHandler<Diffuser
             this.fluidID = 0;
         }
 
-        this.effectsListSize = diffuser.fluidTank.potionEffects.size();
-        this.effectIDs = new int[1];
+        this.effectIDs = new int[diffuser.fluidTank.potionEffects.size()];
+        int id = 0;
 
-        Iterator potionEffects = diffuser.fluidTank.potionEffects.iterator();
+        for (PotionEffect potionEffect : diffuser.fluidTank.potionEffects)
+            this.effectIDs[id++] = potionEffect.getPotionID();
 
-        while (potionEffects.hasNext())
-        {
-            int potionID = ((PotionEffect) potionEffects.next()).getPotionID();
-            this.effectIDs = this.addIntToArray(this.effectIDs, potionID);
-        }
-
-    }
-
-    private int[] addIntToArray(int[] intArray, int toAdd)
-    {
-        int[] sizedArray = new int[intArray.length + 1];
-
-        sizedArray[intArray.length] = toAdd;
-
-        return sizedArray;
     }
 
     @Override
@@ -76,15 +60,12 @@ public class DiffuserUpdateMessage implements IMessage, IMessageHandler<Diffuser
         this.isDiffusing = buf.readBoolean();
         this.fluidLevel = buf.readInt();
         this.fluidID = buf.readInt();
-        this.effectsListSize = buf.readInt();
-        this.effectIDs = new int[1];
 
-        int count = this.effectsListSize;
-        while (count > 0)
-        {
-            this.effectIDs = this.addIntToArray(this.effectIDs, buf.readInt());
-            count--;
-        }
+        int size = buf.readInt();
+        this.effectIDs = new int[size];
+        int id = 0;
+        while (id < size)
+            this.effectIDs[id++] = buf.readInt();
     }
 
     @Override
@@ -99,14 +80,10 @@ public class DiffuserUpdateMessage implements IMessage, IMessageHandler<Diffuser
         buf.writeBoolean(this.isDiffusing);
         buf.writeInt(this.fluidLevel);
         buf.writeInt(this.fluidID);
-        buf.writeInt(this.effectsListSize);
 
-        int count = 0;
-        while (count < this.effectsListSize)
-        {
-            buf.writeInt(this.effectIDs[count]);
-            count++;
-        }
+        buf.writeInt(this.effectIDs.length);
+        for (int id : this.effectIDs)
+            buf.writeInt(id);
     }
 
     @Override
@@ -119,7 +96,6 @@ public class DiffuserUpdateMessage implements IMessage, IMessageHandler<Diffuser
             ((DiffuserTileEntity) tile).setDiffusingState(message.isDiffusing);
             ((DiffuserTileEntity) tile).syncFluidAmountAt(message.fluidLevel, message.fluidID);
             ((DiffuserTileEntity) tile).potionDamageValue = this.potionDamageValue;
-
         }
         return null;
     }
