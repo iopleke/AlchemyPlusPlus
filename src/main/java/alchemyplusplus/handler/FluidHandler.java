@@ -27,27 +27,27 @@ public class FluidHandler
     private FluidHandler()
     {
         potionEffectIds = new int[Potion.potionTypes.length];
-        potionEffectIds[1] = Potion.moveSpeed.getId();//SPEED
-        potionEffectIds[2] = Potion.moveSlowdown.getId();//SLOWNESS
+        potionEffectIds[1] = 2;//SPEED
+        potionEffectIds[2] = 10;//SLOWNESS
         potionEffectIds[3] = Potion.digSpeed.getId();//HASTE
         potionEffectIds[4] = Potion.digSlowdown.getId();//SLOWMINING
-        potionEffectIds[5] = Potion.damageBoost.getId();//TODO:STENGTH
+        potionEffectIds[5] = 9;//STRENGTH
         potionEffectIds[6] = Potion.heal.getId();//HEALTH
-        potionEffectIds[7] = Potion.damageBoost.getId();//TODO:DAMAGE
-        potionEffectIds[8] = Potion.jump.getId();//JUMP
+        potionEffectIds[7] = 12;//DAMAGE ?= instantDamage
+        potionEffectIds[8] = 11;//JUMP
         potionEffectIds[9] = Potion.confusion.getId();//CONFUSION
-        potionEffectIds[10] = Potion.regeneration.getId();//REGENERATION
+        potionEffectIds[10] = 1;//REGENERATION
         potionEffectIds[11] = Potion.resistance.getId();//RESISTANCE
-        potionEffectIds[12] = Potion.fireResistance.getId();//FIRERESISTANCE
-        potionEffectIds[13] = Potion.waterBreathing.getId();//WATERBREATHING
-        potionEffectIds[14] = Potion.invisibility.getId();//INVISIBILITY
+        potionEffectIds[12] = 3;//FIRERESISTANCE
+        potionEffectIds[13] = 13;//WATERBREATHING
+        potionEffectIds[14] = 14;//INVISIBILITY
         potionEffectIds[15] = Potion.blindness.getId();//BLINDNESS
-        potionEffectIds[16] = Potion.nightVision.getId();//NIGHTVISION
+        potionEffectIds[16] = 6;//NIGHTVISION
         potionEffectIds[17] = Potion.hunger.getId();//HUNGER
-        potionEffectIds[18] = Potion.weakness.getId();//WEAKNESS
-        potionEffectIds[19] = Potion.poison.getId();//POISON
+        potionEffectIds[18] = 8;//WEAKNESS
+        potionEffectIds[19] = 4;//POISON
         potionEffectIds[20] = Potion.wither.getId();//WITHER
-        potionEffectIds[21] = Potion.field_76434_w.getId();//HEALTHBOOST
+        potionEffectIds[21] = 5;//HEALTHBOOST =? instantHealth
         potionEffectIds[22] = Potion.field_76444_x.getId();//ABSORPTION
         potionEffectIds[23] = Potion.field_76443_y.getId();//SATURATION
     }
