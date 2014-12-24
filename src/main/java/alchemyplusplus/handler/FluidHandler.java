@@ -28,23 +28,23 @@ public class FluidHandler
     {
         potionEffectIds = new int[Potion.potionTypes.length];
         potionEffectIds[1] = 2;//SPEED
-        potionEffectIds[2] = 9;//SLOWNESS
+        potionEffectIds[2] = 10;//SLOWNESS
         potionEffectIds[3] = Potion.digSpeed.getId();//HASTE
         potionEffectIds[4] = Potion.digSlowdown.getId();//SLOWMINING
-        potionEffectIds[5] = 8;//STRENGTH
+        potionEffectIds[5] = 9;//STRENGTH
         potionEffectIds[6] = Potion.heal.getId();//HEALTH
-        potionEffectIds[7] = 11;//DAMAGE ?= instantDamage
-        potionEffectIds[8] = 10;//JUMP
+        potionEffectIds[7] = 12;//DAMAGE ?= instantDamage
+        potionEffectIds[8] = 11;//JUMP
         potionEffectIds[9] = Potion.confusion.getId();//CONFUSION
         potionEffectIds[10] = 1;//REGENERATION
         potionEffectIds[11] = Potion.resistance.getId();//RESISTANCE
         potionEffectIds[12] = 3;//FIRERESISTANCE
-        potionEffectIds[13] = 12;//WATERBREATHING
-        potionEffectIds[14] = 13;//INVISIBILITY
+        potionEffectIds[13] = 13;//WATERBREATHING
+        potionEffectIds[14] = 14;//INVISIBILITY
         potionEffectIds[15] = Potion.blindness.getId();//BLINDNESS
         potionEffectIds[16] = 6;//NIGHTVISION
         potionEffectIds[17] = Potion.hunger.getId();//HUNGER
-        potionEffectIds[18] = 7;//WEAKNESS
+        potionEffectIds[18] = 8;//WEAKNESS
         potionEffectIds[19] = 4;//POISON
         potionEffectIds[20] = Potion.wither.getId();//WITHER
         potionEffectIds[21] = 5;//HEALTHBOOST =? instantHealth
