@@ -1,0 +1,3 @@
+[submodule "src/jakimbox"]
+	path = src/jakimbox
+	url = https://github.com/jakimfett/JakimBox.git
