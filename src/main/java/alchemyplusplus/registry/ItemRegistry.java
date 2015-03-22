@@ -1,7 +1,6 @@
 package alchemyplusplus.registry;
 
 import alchemyplusplus.AlchemyPlusPlus;
-import alchemyplusplus.gui.CreativeTab;
 import alchemyplusplus.item.FishOil;
 import alchemyplusplus.item.ItemBasic;
 import alchemyplusplus.item.MixingFilter;
@@ -104,7 +103,7 @@ public class ItemRegistry
     public static void addCreativePotionBucket(Block block, Potion potion)
     {
         PotionBucket potionBucket = new PotionBucket(block, potion);
-        potionBucket.setCreativeTab(CreativeTab.APP_TAB);
+        potionBucket.setCreativeTab(CreativeTabRegistry.APP_TAB);
         potionBucket.setUnlocalizedName(potion.getName());
         GameRegistry.registerItem(potionBucket, potion.getName());
     }

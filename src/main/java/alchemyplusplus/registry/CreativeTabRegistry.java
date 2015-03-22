@@ -1,12 +1,10 @@
-package alchemyplusplus.gui;
+package alchemyplusplus.registry;
 
 import alchemyplusplus.AlchemyPlusPlus;
-import alchemyplusplus.registry.BlockRegistry;
-import alchemyplusplus.registry.ItemRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
-public class CreativeTab
+public class CreativeTabRegistry
 {
 
     public static CreativeTabs APP_TAB = new CreativeTabs(AlchemyPlusPlus.ID)

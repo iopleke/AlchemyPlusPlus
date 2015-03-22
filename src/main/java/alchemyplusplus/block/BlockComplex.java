@@ -1,7 +1,7 @@
 package alchemyplusplus.block;
 
 import alchemyplusplus.AlchemyPlusPlus;
-import alchemyplusplus.gui.CreativeTab;
+import alchemyplusplus.registry.CreativeTabRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.util.Random;
@@ -31,7 +31,7 @@ public class BlockComplex extends BlockContainer
         this.setBlockName(blockName);
         this.setStepSound(blockSound);
         this.icon = AlchemyPlusPlus.ID + ":" + blockName + "Icon";
-        this.setCreativeTab(CreativeTab.APP_TAB);
+        this.setCreativeTab(CreativeTabRegistry.APP_TAB);
     }
 
     @Override

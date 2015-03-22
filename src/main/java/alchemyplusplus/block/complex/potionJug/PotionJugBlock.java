@@ -2,7 +2,7 @@ package alchemyplusplus.block.complex.potionJug;
 
 import alchemyplusplus.AlchemyPlusPlus;
 import alchemyplusplus.registry.BlockRegistry;
-import alchemyplusplus.gui.CreativeTab;
+import alchemyplusplus.registry.CreativeTabRegistry;
 import alchemyplusplus.reference.Textures;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
@@ -29,7 +29,7 @@ public class PotionJugBlock extends BlockContainer
         super(Material.glass);
         this.setStepSound(Block.soundTypeGlass);
         this.setBlockName(blockname);
-        this.setCreativeTab(CreativeTab.APP_TAB);
+        this.setCreativeTab(CreativeTabRegistry.APP_TAB);
         this.setBlockTextureName(Textures.Icon.POTION_JUG);
     }
 

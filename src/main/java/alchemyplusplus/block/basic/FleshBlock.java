@@ -2,7 +2,7 @@ package alchemyplusplus.block.basic;
 
 import alchemyplusplus.registry.MaterialRegistry;
 import alchemyplusplus.block.BlockBasic;
-import alchemyplusplus.gui.CreativeTab;
+import alchemyplusplus.registry.CreativeTabRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.util.Random;
@@ -24,7 +24,7 @@ public class FleshBlock extends BlockBasic
         super(MaterialRegistry.flesh, blockname);
         this.setBlockName(blockname);
         this.setTickRandomly(true);
-        this.setCreativeTab(CreativeTab.APP_TAB);
+        this.setCreativeTab(CreativeTabRegistry.APP_TAB);
         this.setHardness(3.0F).setResistance(5.0F);
     }
 

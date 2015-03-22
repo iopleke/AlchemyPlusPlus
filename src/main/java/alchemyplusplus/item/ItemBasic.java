@@ -1,7 +1,7 @@
 package alchemyplusplus.item;
 
 import alchemyplusplus.AlchemyPlusPlus;
-import alchemyplusplus.gui.CreativeTab;
+import alchemyplusplus.registry.CreativeTabRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -20,7 +20,7 @@ public class ItemBasic extends Item
         super();
         this.iconName = AlchemyPlusPlus.ID + ":" + itemname;
         this.setUnlocalizedName(itemname);
-        this.setCreativeTab(CreativeTab.APP_TAB);
+        this.setCreativeTab(CreativeTabRegistry.APP_TAB);
     }
 
     @Override
