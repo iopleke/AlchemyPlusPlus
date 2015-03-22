@@ -4,6 +4,7 @@ import alchemyplusplus.block.BasicModel;
 import alchemyplusplus.block.BasicTileEntity;
 import alchemyplusplus.block.complex.diffuser.DiffuserModel;
 import alchemyplusplus.block.complex.diffuser.DiffuserTileEntity;
+import alchemyplusplus.reference.Textures;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -45,30 +46,25 @@ public abstract class BasicTileEntityRenderer extends TileEntitySpecialRenderer
     {
         if (tileEntity instanceof BasicTileEntity)
         {
-            GL11.glTranslatef((float) x, (float) y, (float) z);
+            GL11.glPushMatrix();
+            GL11.glTranslated(x + xOffset, y + yOffset, z + zOffset);
 
             GL11.glPushMatrix();
-            GL11.glRotatef(tileEntity.getBlockMetadata() * (-90.0F), 0F, 1F, 0F);
-            bindTexture(texture);
+            GL11.glTranslatef(0.5F, 0, 0.5F);
+            GL11.glRotatef(tileEntity.getBlockMetadata() * (-90F), 0F, 1F, 0F);
+            GL11.glTranslatef(-0.5F, 0, -0.5F);
+
+            bindTexture(Textures.Model.DIFFUSER);
             if (model instanceof DiffuserModel && tileEntity instanceof DiffuserTileEntity)
             {
                 ((DiffuserModel) model).isDiffusing = ((DiffuserTileEntity) tileEntity).isDiffuserActive();
                 ((DiffuserModel) model).potionDamage = ((DiffuserTileEntity) tileEntity).bottleColor;
                 ((DiffuserModel) model).fluidAmount = ((DiffuserTileEntity) tileEntity).getFluidAmount();
             }
-            model.render(rotation);
+
+            model.render(0.0625F);
             GL11.glPopMatrix();
-//            GL11.glPushMatrix();
-//            GL11.glTranslated(x + xOffset, y + yOffset, z + zOffset);
-//            GL11.glRotatef(0f, 0f, 0f, 1f);
-//            GL11.glRotatef((tileEntity.getBlockMetadata() * 90.0F), 0.0F, 1.0F, 0.0F);
-//            GL11.glEnable(GL11.GL_BLEND);
-//            GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-//            GL11.glScaled(xScale, yScale, zScale);
-//            bindTexture(texture);
-//            model.render(rotation);
-//            GL11.glDisable(GL11.GL_BLEND);
-//            GL11.glPopMatrix();
+            GL11.glPopMatrix();
         }
     }
 
