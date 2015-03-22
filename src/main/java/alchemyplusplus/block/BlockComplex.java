@@ -128,31 +128,21 @@ public class BlockComplex extends BlockContainer
         }
     }
 
+    /**
+     * Set block metadata for model rotation
+     *
+     * @param world        the world object
+     * @param x            world X coordinate of placed block
+     * @param y            world Y coordinate of placed block
+     * @param z            world Z coordinate of placed block
+     * @param livingEntity the entity that placed the block
+     * @param itemStack    ItemStack object used to place the block
+     */
     @Override
-    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase el, ItemStack is)
+    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase livingEntity, ItemStack itemStack)
     {
-        byte facing = 0;
-        int facingI = MathHelper.floor_double(el.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-
-        if (facingI == 0)
-        {
-            facing = 2;
-        }
-
-        if (facingI == 1)
-        {
-            facing = 5;
-        }
-
-        if (facingI == 2)
-        {
-            facing = 3;
-        }
-
-        if (facingI == 3)
-        {
-            facing = 4;
-        }
+        super.onBlockPlacedBy(world, x, y, z, livingEntity, itemStack);
+        int facing = MathHelper.floor_double(livingEntity.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
         world.setBlockMetadataWithNotify(x, y, z, facing, 2);
     }
 }

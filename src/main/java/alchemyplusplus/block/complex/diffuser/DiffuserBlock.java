@@ -9,7 +9,6 @@ import java.util.Iterator;
 import net.minecraft.block.Block;
 import static net.minecraft.block.BlockDirectional.getDirection;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -18,7 +17,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -199,24 +197,6 @@ public class DiffuserBlock extends BlockComplex
     protected boolean isGettingInput(World world, int x, int y, int z, int side)
     {
         return this.getInputStrength(world, x, y, z, side) > 0;
-    }
-
-    /**
-     * Set block metadata for model rotation
-     *
-     * @param world        the world object
-     * @param x            world X coordinate of placed block
-     * @param y            world Y coordinate of placed block
-     * @param z            world Z coordinate of placed block
-     * @param livingEntity the entity that placed the block
-     * @param itemStack    ItemStack object used to place the block
-     */
-    @Override
-    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase livingEntity, ItemStack itemStack)
-    {
-        super.onBlockPlacedBy(world, x, y, z, livingEntity, itemStack);
-        int facing = MathHelper.floor_double(livingEntity.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-        world.setBlockMetadataWithNotify(x, y, z, facing, 2);
     }
 
     protected int getInputStrength(World world, int x, int y, int z, int side)
