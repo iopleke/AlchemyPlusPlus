@@ -1,7 +1,7 @@
 package alchemyplusplus.block.complex.diffuser;
 
 import alchemyplusplus.AlchemyPlusPlus;
-import alchemyplusplus.block.BasicTileEntity;
+import jakimbox.prefab.tileEntity.BasicTileEntity;
 import alchemyplusplus.network.MessageHandler;
 import alchemyplusplus.network.message.DiffuserUpdateMessage;
 import alchemyplusplus.potion.fluid.PotionFluid;
