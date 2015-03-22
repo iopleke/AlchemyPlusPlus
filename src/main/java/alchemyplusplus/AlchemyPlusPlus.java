@@ -1,8 +1,8 @@
 package alchemyplusplus;
 
-import alchemyplusplus.handler.GUIHandler;
 import alchemyplusplus.handler.DropHandler;
 import alchemyplusplus.handler.FluidHandler;
+import alchemyplusplus.handler.GUIHandler;
 import alchemyplusplus.handler.ZombieHandler;
 import alchemyplusplus.helper.PotionRegistryHelper;
 import alchemyplusplus.network.MessageHandler;
@@ -60,7 +60,7 @@ public class AlchemyPlusPlus
     public static boolean herbs = false;
     @Instance(value = "alchemyplusplus")
     public static AlchemyPlusPlus instance = new AlchemyPlusPlus();
-    @SidedProxy(clientSide = "alchemyplusplus.proxy.ClientProxy", serverSide = "alchemyplusplus.proxy.CommonProxy")
+    @SidedProxy(clientSide = "alchemyplusplus.proxy.client.ClientProxy", serverSide = "alchemyplusplus.proxy.CommonProxy")
     public static CommonProxy proxy;
 
     @Mod.Metadata(AlchemyPlusPlus.ID)

@@ -1,12 +1,11 @@
 package alchemyplusplus.block.complex.diffuser;
 
-import net.minecraft.client.model.ModelBase;
+import alchemyplusplus.block.BasicModel;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.entity.Entity;
 import net.minecraft.potion.PotionHelper;
 import org.lwjgl.opengl.GL11;
 
-public class DiffuserModel extends ModelBase
+public class DiffuserModel extends BasicModel
 {
 
     ModelRenderer bottle;
@@ -72,20 +71,23 @@ public class DiffuserModel extends ModelBase
 
     }
 
-    @Override
-    public void render(Entity diffuserEntity, float f, float f1, float f2, float f3, float f4, float f5)
+    private void setRotation(ModelRenderer model, float x, float y, float z)
     {
-        super.render(diffuserEntity, f, f1, f2, f3, f4, f5);
+        model.rotateAngleX = x;
+        model.rotateAngleY = y;
+        model.rotateAngleZ = z;
+    }
 
+    @Override
+    public void render(float rotation)
+    {
         float red, green, blue;
-
-        setRotationAngles(f, f1, f2, f3, f4, f5, diffuserEntity);
 
         GL11.glEnable(GL11.GL_NORMALIZE);
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
-        bowl.render(f5);
+        bowl.render(rotation);
 
         // Calculate the colors
         potionColor = PotionHelper.func_77915_a(potionDamage, false);
@@ -100,13 +102,13 @@ public class DiffuserModel extends ModelBase
 
             if (this.fluidAmount > 280)
             {
-                liquidFull.render(f5);
+                liquidFull.render(rotation);
             } else if (this.fluidAmount > 160)
             {
-                liquidHalf.render(f5);
+                liquidHalf.render(rotation);
             } else if (this.fluidAmount > 0)
             {
-                liquidThird.render(f5);
+                liquidThird.render(rotation);
             }
 
         }
@@ -114,26 +116,13 @@ public class DiffuserModel extends ModelBase
         GL11.glColor3f(1f, 1f, 1f);
 
         // Bottle must render AFTER the liquid
-        bottle.render(f5);
+        bottle.render(rotation);
 
         // Don't render the stopper if the diffuser is active
         if (!isDiffusing)
         {
-            stopper.render(f5);
+            stopper.render(rotation);
         }
-    }
-
-    private void setRotation(ModelRenderer model, float x, float y, float z)
-    {
-        model.rotateAngleX = x;
-        model.rotateAngleY = y;
-        model.rotateAngleZ = z;
-    }
-
-    @Override
-    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity e)
-    {
-        super.setRotationAngles(f, f1, f2, f3, f4, f5, e);
     }
 
 }

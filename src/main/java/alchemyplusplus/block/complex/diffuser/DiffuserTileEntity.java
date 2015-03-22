@@ -1,6 +1,7 @@
 package alchemyplusplus.block.complex.diffuser;
 
 import alchemyplusplus.AlchemyPlusPlus;
+import alchemyplusplus.block.BasicTileEntity;
 import alchemyplusplus.network.MessageHandler;
 import alchemyplusplus.network.message.DiffuserUpdateMessage;
 import alchemyplusplus.potion.fluid.PotionFluid;
@@ -18,7 +19,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
@@ -27,7 +27,7 @@ import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 import net.minecraftforge.fluids.IFluidTank;
 
-public class DiffuserTileEntity extends TileEntity implements IFluidHandler, IFluidTank
+public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler, IFluidTank
 {
 
     private boolean updateState;

@@ -15,6 +15,8 @@ public class CommonProxy
 {
 
     public static int RENDER_ID;
+    public static int ISBRH_ID;
+
     public static String displayName;
 
     public void registerRenderers()

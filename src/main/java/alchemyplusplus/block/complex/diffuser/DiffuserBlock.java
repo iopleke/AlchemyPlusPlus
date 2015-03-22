@@ -1,9 +1,10 @@
 package alchemyplusplus.block.complex.diffuser;
 
 import alchemyplusplus.block.BlockComplex;
-import alchemyplusplus.reference.Naming;
 import alchemyplusplus.helper.MixingHelper;
 import alchemyplusplus.helper.NotificationHelper;
+import alchemyplusplus.proxy.CommonProxy;
+import alchemyplusplus.reference.Naming;
 import java.util.Iterator;
 import net.minecraft.block.Block;
 import static net.minecraft.block.BlockDirectional.getDirection;
@@ -200,15 +201,21 @@ public class DiffuserBlock extends BlockComplex
         return this.getInputStrength(world, x, y, z, side) > 0;
     }
 
+    /**
+     * Set block metadata for model rotation
+     *
+     * @param world        the world object
+     * @param x            world X coordinate of placed block
+     * @param y            world Y coordinate of placed block
+     * @param z            world Z coordinate of placed block
+     * @param livingEntity the entity that placed the block
+     * @param itemStack    ItemStack object used to place the block
+     */
     @Override
-    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase el, ItemStack is)
+    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase livingEntity, ItemStack itemStack)
     {
-        super.onBlockPlacedBy(world, x, y, z, el, is);
-
-        // Rotate the model by 90 degrees counterclockwise
-        Float direction = el.rotationYaw + 90;
-
-        int facing = MathHelper.floor_double(direction * 4.0F / 360.0F + 0.5D) & 3;
+        super.onBlockPlacedBy(world, x, y, z, livingEntity, itemStack);
+        int facing = MathHelper.floor_double(livingEntity.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
         world.setBlockMetadataWithNotify(x, y, z, facing, 2);
     }
 
@@ -219,5 +226,38 @@ public class DiffuserBlock extends BlockComplex
         int k1 = z + Direction.offsetZ[i1];
         int l1 = world.getIndirectPowerLevelTo(j1, y, k1, Direction.directionToFacing[i1]);
         return l1 >= 15 ? l1 : Math.max(l1, world.getBlock(j1, y, k1) == Blocks.redstone_wire ? world.getBlockMetadata(j1, y, k1) : 0);
+    }
+
+    /**
+     * Get the render type
+     *
+     * @return render ID from the CommonProxy
+     */
+    @Override
+    public int getRenderType()
+    {
+        return CommonProxy.RENDER_ID;
+    }
+
+    /**
+     * Disable opaque cube rendering
+     *
+     * @return false
+     */
+    @Override
+    public boolean isOpaqueCube()
+    {
+        return false;
+    }
+
+    /**
+     * Disable normal block rendering
+     *
+     * @return false
+     */
+    @Override
+    public boolean renderAsNormalBlock()
+    {
+        return false;
     }
 }
