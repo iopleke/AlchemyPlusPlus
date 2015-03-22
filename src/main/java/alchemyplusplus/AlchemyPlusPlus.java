@@ -97,7 +97,7 @@ public class AlchemyPlusPlus
         }
 
         proxy.registerRenderers();
-        proxy.registerTileEntitys();
+        proxy.registerTileEntities();
 
         // Register blocks and items
         BlockRegistry.registerBlocks();
