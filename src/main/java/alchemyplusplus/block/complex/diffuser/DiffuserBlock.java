@@ -1,10 +1,10 @@
 package alchemyplusplus.block.complex.diffuser;
 
-import alchemyplusplus.block.BlockComplex;
+import alchemyplusplus.AlchemyPlusPlus;
 import alchemyplusplus.helper.MixingHelper;
 import alchemyplusplus.helper.NotificationHelper;
-import alchemyplusplus.proxy.CommonProxy;
 import alchemyplusplus.reference.Naming;
+import jakimbox.prefab.block.BasicBlockContainer;
 import java.util.Iterator;
 import net.minecraft.block.Block;
 import static net.minecraft.block.BlockDirectional.getDirection;
@@ -20,12 +20,12 @@ import net.minecraft.util.Direction;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class DiffuserBlock extends BlockComplex
+public class DiffuserBlock extends BasicBlockContainer
 {
 
     public DiffuserBlock()
     {
-        super(Material.wood, Naming.Blocks.DIFFUSER, Block.soundTypeWood);
+        super(AlchemyPlusPlus.ID, Naming.Blocks.DIFFUSER, Material.wood);
         this.setBlockBounds(0.2F, 0F, 0.2F, 0.8F, 0.8F, 0.8F);
     }
 
@@ -206,16 +206,5 @@ public class DiffuserBlock extends BlockComplex
         int k1 = z + Direction.offsetZ[i1];
         int l1 = world.getIndirectPowerLevelTo(j1, y, k1, Direction.directionToFacing[i1]);
         return l1 >= 15 ? l1 : Math.max(l1, world.getBlock(j1, y, k1) == Blocks.redstone_wire ? world.getBlockMetadata(j1, y, k1) : 0);
-    }
-
-    /**
-     * Get the render type
-     *
-     * @return render ID from the CommonProxy
-     */
-    @Override
-    public int getRenderType()
-    {
-        return CommonProxy.RENDER_ID;
     }
 }

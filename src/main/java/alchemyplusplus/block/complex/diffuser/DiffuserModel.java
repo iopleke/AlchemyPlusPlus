@@ -1,6 +1,6 @@
 package alchemyplusplus.block.complex.diffuser;
 
-import alchemyplusplus.block.BasicModel;
+import jakimbox.prefab.model.BasicModel;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.potion.PotionHelper;
 import org.lwjgl.opengl.GL11;
