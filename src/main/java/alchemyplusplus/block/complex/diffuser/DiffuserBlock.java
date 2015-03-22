@@ -238,26 +238,4 @@ public class DiffuserBlock extends BlockComplex
     {
         return CommonProxy.RENDER_ID;
     }
-
-    /**
-     * Disable opaque cube rendering
-     *
-     * @return false
-     */
-    @Override
-    public boolean isOpaqueCube()
-    {
-        return false;
-    }
-
-    /**
-     * Disable normal block rendering
-     *
-     * @return false
-     */
-    @Override
-    public boolean renderAsNormalBlock()
-    {
-        return false;
-    }
 }
