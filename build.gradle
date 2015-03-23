@@ -111,6 +111,17 @@ allprojects {
     }
 }
 
+sourceSets {
+    main {
+        resources {
+            exclude '**/xcf/*'
+        }
+        java {
+            srcDir 'src/jakimbox/src/main/java'
+        }
+    }
+}
+
 task copyBuildXml(type: Copy) {
     from 'build.properties'
     into 'output'
