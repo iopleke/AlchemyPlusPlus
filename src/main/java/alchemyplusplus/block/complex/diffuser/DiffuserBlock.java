@@ -2,7 +2,7 @@ package alchemyplusplus.block.complex.diffuser;
 
 import alchemyplusplus.AlchemyPlusPlus;
 import alchemyplusplus.helper.MixingHelper;
-import alchemyplusplus.helper.NotificationHelper;
+import jakimbox.helper.NotificationHelper;
 import alchemyplusplus.reference.Naming;
 import jakimbox.prefab.block.BasicBlockContainer;
 import java.util.Iterator;
