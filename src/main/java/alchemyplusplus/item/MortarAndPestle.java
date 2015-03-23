@@ -5,6 +5,7 @@ import alchemyplusplus.reference.Naming;
 import alchemyplusplus.registry.ItemRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import jakimbox.prefab.item.ItemBasic;
 import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
@@ -30,8 +31,7 @@ public class MortarAndPestle extends ItemBasic
 
     public MortarAndPestle(String itemname)
     {
-        super(itemname);
-        this.iconName = AlchemyPlusPlus.ID + ":" + itemname;
+        super(AlchemyPlusPlus.ID, itemname);
         this.setMaxDamage(0);
         this.setHasSubtypes(true);
         this.setMaxStackSize(1);
@@ -97,11 +97,11 @@ public class MortarAndPestle extends ItemBasic
     public void registerIcons(IIconRegister iconRegister)
     {
         icons = new IIcon[4];
-        filledIcon = iconRegister.registerIcon(iconName + "Water");
-        icons[0] = iconRegister.registerIcon(iconName + "Wooden");
-        icons[1] = iconRegister.registerIcon(iconName + "Stone");
-        icons[2] = iconRegister.registerIcon(iconName + "Iron");
-        icons[3] = iconRegister.registerIcon(iconName + "Obsidian");
+        filledIcon = iconRegister.registerIcon(iconString + "Water");
+        icons[0] = iconRegister.registerIcon(iconString + "Wooden");
+        icons[1] = iconRegister.registerIcon(iconString + "Stone");
+        icons[2] = iconRegister.registerIcon(iconString + "Iron");
+        icons[3] = iconRegister.registerIcon(iconString + "Obsidian");
 
     }
 

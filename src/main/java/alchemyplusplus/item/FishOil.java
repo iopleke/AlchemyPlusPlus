@@ -1,8 +1,10 @@
 package alchemyplusplus.item;
 
+import alchemyplusplus.AlchemyPlusPlus;
 import alchemyplusplus.potion.custom.PotionCustom;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import jakimbox.prefab.item.ItemBasic;
 import java.util.List;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -36,7 +38,7 @@ public class FishOil extends ItemBasic
 
     public FishOil(String itemname)
     {
-        super(itemname);
+        super(AlchemyPlusPlus.ID, itemname);
         this.setHasSubtypes(true);
         this.setMaxDamage(0);
     }
@@ -85,13 +87,13 @@ public class FishOil extends ItemBasic
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iconRegister)
     {
-        this.itemIcon = iconRegister.registerIcon(iconName);
-        this.percent0 = iconRegister.registerIcon(iconName + "0");
-        this.percent20 = iconRegister.registerIcon(iconName + "20");
-        this.percent40 = iconRegister.registerIcon(iconName + "40");
-        this.percent60 = iconRegister.registerIcon(iconName + "60");
-        this.percent80 = iconRegister.registerIcon(iconName + "80");
-        this.percent100 = iconRegister.registerIcon(iconName + "100");
+        this.itemIcon = iconRegister.registerIcon(iconString);
+        this.percent0 = iconRegister.registerIcon(iconString + "0");
+        this.percent20 = iconRegister.registerIcon(iconString + "20");
+        this.percent40 = iconRegister.registerIcon(iconString + "40");
+        this.percent60 = iconRegister.registerIcon(iconString + "60");
+        this.percent80 = iconRegister.registerIcon(iconString + "80");
+        this.percent100 = iconRegister.registerIcon(iconString + "100");
     }
 
 }

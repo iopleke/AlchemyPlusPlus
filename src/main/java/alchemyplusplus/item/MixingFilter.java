@@ -1,5 +1,7 @@
 package alchemyplusplus.item;
 
+import alchemyplusplus.AlchemyPlusPlus;
+import jakimbox.prefab.item.ItemBasic;
 import java.util.List;
 import java.util.Random;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,10 +15,7 @@ public class MixingFilter extends ItemBasic
 
     public static void generateCustomInfo(ItemStack stack)
     {
-        if (hasCustomInfo(stack))
-        {
-            return; // already generated
-        } else
+        if (!hasCustomInfo(stack))
         {
             if (!stack.hasTagCompound())
             {
@@ -85,7 +84,7 @@ public class MixingFilter extends ItemBasic
 
     public MixingFilter(String blockname)
     {
-        super(blockname);
+        super(AlchemyPlusPlus.ID, blockname);
         this.setMaxDamage(600);
         this.maxStackSize = 1;
         this.setNoRepair();
