@@ -1,5 +1,6 @@
 package alchemyplusplus.registry;
 
+import alchemyplusplus.Config;
 import alchemyplusplus.AlchemyPlusPlus;
 import alchemyplusplus.item.FishOil;
 import alchemyplusplus.item.MixingFilter;
@@ -7,7 +8,6 @@ import alchemyplusplus.item.MortarAndPestle;
 import alchemyplusplus.item.PotionBucket;
 import alchemyplusplus.item.flora.BasicFlora;
 import alchemyplusplus.reference.Naming;
-import alchemyplusplus.reference.Settings;
 import cpw.mods.fml.common.registry.GameRegistry;
 import jakimbox.prefab.item.ItemBasic;
 import java.util.ArrayList;
@@ -87,7 +87,7 @@ public class ItemRegistry
 
 // @TODO - override vanilla potions
         {
-            if (Settings.BrewingOverride)
+            if (Config.BrewingOverride)
             {
 //              @TODO - see if this is even still possible...maybe check how Railcraft does it?
 //              ItemPotion potion = Items.potionitem;
@@ -111,7 +111,7 @@ public class ItemRegistry
     public static void registerHardcoreRecipes()
     {
 
-        if (Settings.DebugMode)
+        if (Config.DebugMode)
         {
             AlchemyPlusPlus.LOGGER.info("Alchemy++ is registering its hardcore recipes! This requires modifyng vanilla recipe list.");
         }
@@ -122,7 +122,7 @@ public class ItemRegistry
         {
             if (ItemStack.areItemStacksEqual(((IRecipe) list.get(i)).getRecipeOutput(), new ItemStack(Items.speckled_melon)))
             {
-                if (Settings.DebugMode)
+                if (Config.DebugMode)
                 {
                     AlchemyPlusPlus.LOGGER.info("Alchemy++ removes \"speckeledMelon\" recipe from the recipe list! Be advised!");
                 }

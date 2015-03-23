@@ -2,8 +2,8 @@ package alchemyplusplus.block.complex.diffuser;
 
 import alchemyplusplus.AlchemyPlusPlus;
 import alchemyplusplus.helper.MixingHelper;
-import jakimbox.helper.NotificationHelper;
 import alchemyplusplus.reference.Naming;
+import jakimbox.helper.NotificationHelper;
 import jakimbox.prefab.block.BasicBlockContainer;
 import java.util.Iterator;
 import net.minecraft.block.Block;
@@ -56,7 +56,8 @@ public class DiffuserBlock extends BasicBlockContainer
                                 NotificationHelper.sendPlayerChatMessage(player, "diffuser.full");
                             }
                         } else if (diffuser.fluidTank.getFluidAmount() == 0 || diffuser.fluidTank.getFluid().fluidID == ItemPotion.getIdFromItem(player.getHeldItem().getItem()))
-                        {// @TODO - move potion match check to the TileEntity fill method
+                        {
+                            // @TODO - move potion match check to the TileEntity fill method
                             if (diffuser.getFluidAmount() != 0)
                             {
                                 if (!world.isRemote)

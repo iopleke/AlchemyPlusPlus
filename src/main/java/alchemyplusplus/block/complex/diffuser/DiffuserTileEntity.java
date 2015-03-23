@@ -1,14 +1,14 @@
 package alchemyplusplus.block.complex.diffuser;
 
 import alchemyplusplus.AlchemyPlusPlus;
-import jakimbox.prefab.tileEntity.BasicTileEntity;
 import alchemyplusplus.network.MessageHandler;
 import alchemyplusplus.network.message.DiffuserUpdateMessage;
 import alchemyplusplus.potion.fluid.PotionFluid;
 import alchemyplusplus.potion.fluid.PotionFluidStack;
 import alchemyplusplus.potion.fluid.PotionFluidTank;
-import alchemyplusplus.reference.Settings;
+import alchemyplusplus.Config;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import jakimbox.prefab.tileEntity.BasicTileEntity;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -83,7 +83,7 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
 
     public void toggleDiffusingState()
     {
-        if (Settings.DebugMode)
+        if (Config.DebugMode)
         {
             // @TODO - remove these, and/or allow player to see info
             AlchemyPlusPlus.LOGGER.info("Fluid level:" + this.fluidTank.getFluidAmount());
@@ -123,7 +123,7 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
         if (this.isDiffusing)
         {
             // Drain by 1 every # of ticks, as set in the config
-            if (this.diffusingTicks % Settings.DiffusingRate == 0)
+            if (this.diffusingTicks % Config.DiffusingRate == 0)
             {
                 this.drain(1, true);
             }
@@ -171,14 +171,14 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
     {
         // @TODO - figure out how to cache these numbers
         int expandX, expandY, expandZ;
-        expandX = Settings.DiffusingRadius;
-        expandY = Settings.DiffusingRadius;
-        expandZ = Settings.DiffusingRadius;
+        expandX = Config.DiffusingRadius;
+        expandY = Config.DiffusingRadius;
+        expandZ = Config.DiffusingRadius;
         if (this.isDiffuserHeated())
         {
-            expandX = expandX * Settings.DiffusingRadiusMultiplier;
-            expandY = expandY * Settings.DiffusingRadiusMultiplier;
-            expandZ = expandZ * Settings.DiffusingRadiusMultiplier;
+            expandX = expandX * Config.DiffusingRadiusMultiplier;
+            expandY = expandY * Config.DiffusingRadiusMultiplier;
+            expandZ = expandZ * Config.DiffusingRadiusMultiplier;
         }
 
         // Get the bounding box for the diffusing range
@@ -200,7 +200,7 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
             while (potionEffects.hasNext())
             {
                 int potionID = ((PotionEffect) potionEffects.next()).getPotionID();
-                int duration = Settings.DiffusingRate * Settings.DiffusingRateMultiplier;
+                int duration = Config.DiffusingRate * Config.DiffusingRateMultiplier;
                 if (potionID != 0)
                 {
                     entityplayer.addPotionEffect(new PotionEffect(potionID, duration + 2));

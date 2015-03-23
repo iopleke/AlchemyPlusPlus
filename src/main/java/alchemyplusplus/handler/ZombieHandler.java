@@ -1,6 +1,6 @@
 package alchemyplusplus.handler;
 
-import alchemyplusplus.reference.Settings;
+import alchemyplusplus.Config;
 import alchemyplusplus.potion.custom.PotionCustom;
 import alchemyplusplus.entity.ai.EntityAIAttackZombiePlayer;
 import alchemyplusplus.entity.ai.EntityAIAvoidZombiePlayer;
@@ -35,7 +35,7 @@ public class ZombieHandler
         {
             if (event.entity instanceof EntityAnimal)
             {
-                if (Settings.hostileAnimals)
+                if (Config.hostileAnimals)
                 {
                     ((EntityAnimal) event.entity).tasks.addTask(0, new EntityAIAttackZombiePlayer((EntityAnimal) event.entity, 1.4F, 15D, false));
                 }

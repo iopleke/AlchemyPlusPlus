@@ -1,6 +1,6 @@
 package alchemyplusplus.potion.custom;
 
-import alchemyplusplus.reference.Settings;
+import alchemyplusplus.Config;
 import alchemyplusplus.handler.ZombieHandler;
 import java.util.LinkedList;
 import net.minecraft.entity.EntityLivingBase;
@@ -32,7 +32,7 @@ public class PotionInfection extends PotionCustom
 
         public InfectedEffect()
         {
-            super(PotionCustom.infectedPotion.id, Settings.infectionTimer, 0, false);
+            super(PotionCustom.infectedPotion.id, Config.infectionTimer, 0, false);
             this.setCurativeItems(new LinkedList<ItemStack>());
         }
 

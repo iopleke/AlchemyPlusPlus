@@ -2,7 +2,7 @@ package alchemyplusplus.handler;
 
 import alchemyplusplus.item.PotionBucket;
 import alchemyplusplus.potion.fluid.PotionFluidBlock;
-import alchemyplusplus.reference.Settings;
+import alchemyplusplus.Config;
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -106,7 +106,7 @@ public class FluidHandler
                                 if (!event.entityPlayer.capabilities.isCreativeMode)
                                 {
                                     event.entityPlayer.inventory.decrStackSize(event.entityPlayer.inventory.currentItem, 1);
-                                    if (Settings.consumeSourceBlocks && event.world.rand.nextFloat() < Settings.consumeSourceBlocksChance)
+                                    if (Config.consumeSourceBlocks && event.world.rand.nextFloat() < Config.consumeSourceBlocksChance)
                                         event.world.setBlockToAir(x, y, z);
                                 }
                                 if (!event.entityPlayer.inventory.addItemStackToInventory(potionStack))

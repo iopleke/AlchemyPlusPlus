@@ -1,4 +1,4 @@
-package alchemyplusplus.reference;
+package alchemyplusplus;
 
 import alchemyplusplus.AlchemyPlusPlus;
 import cpw.mods.fml.client.config.IConfigElement;
@@ -12,7 +12,7 @@ import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 
-public class Settings
+public class Config
 {
 
     // Config file
@@ -60,11 +60,11 @@ public class Settings
     public static boolean zombieMode = true;
     public static int infectionTimer = 180;
 
-    public static void init(File configFile)
+    public static void init()
     {
         if (config == null)
         {
-            config = new Configuration(configFile);
+            config = new Configuration(new File("config/AlchemyPlusPlus.cfg"));
             loadConfig();
         }
     }
@@ -84,52 +84,52 @@ public class Settings
         List<String> configList = new ArrayList<String>();
 
         config.addCustomCategoryComment(Configuration.CATEGORY_GENERAL, StatCollector.translateToLocal("config.general.description"));
-        config.addCustomCategoryComment(Settings.CATEGORY_DIFFUSER, StatCollector.translateToLocal("config.diffuser.description"));
-        config.addCustomCategoryComment(Settings.CATEGORY_ZOMBIE, StatCollector.translateToLocal("config.zombie.description"));
+        config.addCustomCategoryComment(Config.CATEGORY_DIFFUSER, StatCollector.translateToLocal("config.diffuser.description"));
+        config.addCustomCategoryComment(Config.CATEGORY_ZOMBIE, StatCollector.translateToLocal("config.zombie.description"));
 
-        prop = config.get(Configuration.CATEGORY_GENERAL, "debug", Settings.DebugMode);
+        prop = config.get(Configuration.CATEGORY_GENERAL, "debug", Config.DebugMode);
         prop.comment = StatCollector.translateToLocal("config.debug.description");
         prop.setLanguageKey("config.debug.tooltip");
         DebugMode = prop.getBoolean();
         configList.add(prop.getName());
 
-        prop = config.get(Configuration.CATEGORY_GENERAL, "potionBucketCrafting", Settings.PotionBucketCrafting);
+        prop = config.get(Configuration.CATEGORY_GENERAL, "potionBucketCrafting", Config.PotionBucketCrafting);
         prop.comment = StatCollector.translateToLocal("config.potionbucket.description");
         prop.setLanguageKey("config.potionbucket.tooltip");
         PotionBucketCrafting = prop.getBoolean();
         configList.add(prop.getName());
 
-        prop = config.get(Settings.CATEGORY_ZOMBIE, "zombieMode", Settings.zombieMode);
+        prop = config.get(Config.CATEGORY_ZOMBIE, "zombieMode", Config.zombieMode);
         prop.comment = StatCollector.translateToLocal("config.zombieMode.description");
         prop.setLanguageKey("config.zombieMode.tooltip");
         zombieMode = prop.getBoolean();
         configList.add(prop.getName());
 
-        prop = config.get(Settings.CATEGORY_ZOMBIE, "hostileAnimals", Settings.hostileAnimals);
+        prop = config.get(Config.CATEGORY_ZOMBIE, "hostileAnimals", Config.hostileAnimals);
         prop.comment = StatCollector.translateToLocal("config.hostileAnimals.description");
         prop.setLanguageKey("config.hostileAnimals.tooltip");
         hostileAnimals = prop.getBoolean();
         configList.add(prop.getName());
 
-        prop = config.get(Settings.CATEGORY_DIFFUSER, "diffusingRadius", Settings.DiffusingRadius);
+        prop = config.get(Config.CATEGORY_DIFFUSER, "diffusingRadius", Config.DiffusingRadius);
         prop.comment = StatCollector.translateToLocal("config.diffuser.radius.description");
         prop.setLanguageKey("config.diffuser.radius");
         DiffusingRadius = prop.getInt();
         configList.add(prop.getName());
 
-        prop = config.get(Settings.CATEGORY_DIFFUSER, "diffusingRadiusMultiplier", Settings.DiffusingRadiusMultiplier);
+        prop = config.get(Config.CATEGORY_DIFFUSER, "diffusingRadiusMultiplier", Config.DiffusingRadiusMultiplier);
         prop.comment = StatCollector.translateToLocal("config.diffuser.radius.multiplier.description");
         prop.setLanguageKey("config.diffuser.radius.multiplier");
         DiffusingRadiusMultiplier = prop.getInt();
         configList.add(prop.getName());
 
-        prop = config.get(Settings.CATEGORY_DIFFUSER, "diffusingRate", Settings.DiffusingRate);
+        prop = config.get(Config.CATEGORY_DIFFUSER, "diffusingRate", Config.DiffusingRate);
         prop.comment = StatCollector.translateToLocal("config.diffuser.rate.description");
         prop.setLanguageKey("config.diffuser.rate");
         DiffusingRate = prop.getInt();
         configList.add(prop.getName());
 
-        prop = config.get(Settings.CATEGORY_DIFFUSER, "diffusingRateMultiplier", Settings.DiffusingRateMultiplier);
+        prop = config.get(Config.CATEGORY_DIFFUSER, "diffusingRateMultiplier", Config.DiffusingRateMultiplier);
         prop.comment = StatCollector.translateToLocal("config.diffuser.rate.multiplier.description");
         prop.setLanguageKey("config.diffuser.rate.multiplier");
         DiffusingRateMultiplier = prop.getInt();
@@ -144,9 +144,9 @@ public class Settings
     public static List<IConfigElement> getConfigElements()
     {
         List<IConfigElement> list = new ArrayList<IConfigElement>();
-        list.addAll(new ConfigElement(config.getCategory(Settings.CATEGORY_DIFFUSER)).getChildElements());
+        list.addAll(new ConfigElement(config.getCategory(Config.CATEGORY_DIFFUSER)).getChildElements());
         list.addAll(new ConfigElement(config.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements());
-        list.addAll(new ConfigElement(config.getCategory(Settings.CATEGORY_ZOMBIE)).getChildElements());
+        list.addAll(new ConfigElement(config.getCategory(Config.CATEGORY_ZOMBIE)).getChildElements());
         return list;
     }
 }

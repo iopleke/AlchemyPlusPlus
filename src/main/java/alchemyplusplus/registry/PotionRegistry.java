@@ -1,12 +1,12 @@
 package alchemyplusplus.registry;
 
+import alchemyplusplus.Config;
 import alchemyplusplus.AlchemyPlusPlus;
 import alchemyplusplus.handler.FluidHandler;
 import alchemyplusplus.item.PotionBucket;
 import alchemyplusplus.potion.fluid.PotionFluid;
 import alchemyplusplus.potion.fluid.PotionFluidBlock;
 import alchemyplusplus.potion.fluid.PotionFluidBlockItem;
-import alchemyplusplus.reference.Settings;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -45,14 +45,14 @@ public class PotionRegistry
 
                 block.setCreativeTab(CreativeTabRegistry.APP_TAB);
 
-                if (Settings.PotionBucketCrafting)
+                if (Config.PotionBucketCrafting)
                 {
 
                 }
 
                 GameRegistry.registerBlock(block, PotionFluidBlockItem.class, potionFluid.getUnlocalizedName());
 
-                if (Settings.DebugMode)
+                if (Config.DebugMode)
                 {
                     AlchemyPlusPlus.LOGGER.info("Registered fluid for " + potion.getName());
                 }
