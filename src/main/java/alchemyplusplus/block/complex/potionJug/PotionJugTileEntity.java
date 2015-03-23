@@ -1,11 +1,11 @@
 package alchemyplusplus.block.complex.potionJug;
 
+import jakimbox.prefab.tileEntity.BasicTileEntity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntity;
 
-public class PotionJugTileEntity extends TileEntity
+public class PotionJugTileEntity extends BasicTileEntity
 {
 
     public int containerHas = 0;

@@ -1,11 +1,11 @@
 package alchemyplusplus.block.complex.potionJug;
 
-import net.minecraft.client.model.ModelBase;
+import jakimbox.prefab.model.BasicModel;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
 
-public class PotionJugModel extends ModelBase
+public class PotionJugModel extends BasicModel
 {
 
     //fields
@@ -13,6 +13,10 @@ public class PotionJugModel extends ModelBase
 
     ModelRenderer liquid;
     ModelRenderer neck;
+
+    public float percentage;
+    public int color;
+    public int potionID;
 
     public PotionJugModel()
     {
@@ -32,13 +36,11 @@ public class PotionJugModel extends ModelBase
         neck.addBox(5, 12, 5, 6, 4, 6);        //neck
     }
 
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5, float percentage, int color)
+    public void render(float f5)
     {
         GL11.glEnable(GL11.GL_NORMALIZE);
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-
-        super.render(entity, f, f1, f2, f3, f4, f5);
 
         if (percentage > 0)
         {
@@ -57,7 +59,6 @@ public class PotionJugModel extends ModelBase
             GL11.glColor4f(1f, 1f, 1f, 1f);
         }
 
-        setRotationAngles(f, f1, f2, f3, f4, f5, entity);
         bottle.render(f5);
         neck.render(f5);
 
