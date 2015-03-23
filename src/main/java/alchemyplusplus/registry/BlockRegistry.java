@@ -2,9 +2,13 @@ package alchemyplusplus.registry;
 
 import alchemyplusplus.block.basic.FleshBlock;
 import alchemyplusplus.block.complex.diffuser.DiffuserBlock;
+import alchemyplusplus.block.complex.diffuser.DiffuserTileEntity;
 import alchemyplusplus.block.complex.distillery.DistilleryBlock;
+import alchemyplusplus.block.complex.distillery.DistilleryTileEntity;
 import alchemyplusplus.block.complex.fluidMixer.FluidMixerBlock;
+import alchemyplusplus.block.complex.fluidMixer.FluidMixerTileEntity;
 import alchemyplusplus.block.complex.potionJug.PotionJugBlock;
+import alchemyplusplus.block.complex.potionJug.PotionJugTileEntity;
 import alchemyplusplus.reference.Naming;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
@@ -32,18 +36,22 @@ public class BlockRegistry
 
         diffuser = new DiffuserBlock();
         GameRegistry.registerBlock(diffuser, diffuser.getUnlocalizedName());
+        GameRegistry.registerTileEntity(DiffuserTileEntity.class, diffuser.getUnlocalizedName() + "TileEntity");
 
         distillery = new DistilleryBlock();
         GameRegistry.registerBlock(distillery, distillery.getUnlocalizedName());
+        GameRegistry.registerTileEntity(DistilleryTileEntity.class, distillery.getUnlocalizedName() + "TileEntity");
 
         fleshBlock = new FleshBlock(Naming.Blocks.FLESH);
         GameRegistry.registerBlock(fleshBlock, fleshBlock.getUnlocalizedName());
 
         fluidMixer = new FluidMixerBlock(Naming.Blocks.FLUID_MIXER);
         GameRegistry.registerBlock(fluidMixer, fluidMixer.getUnlocalizedName());
+        GameRegistry.registerTileEntity(FluidMixerTileEntity.class, fluidMixer.getUnlocalizedName() + "TileEntity");
 
         potionJug = new PotionJugBlock(Naming.Blocks.POTION_JUG);
         GameRegistry.registerBlock(potionJug, potionJug.getUnlocalizedName());
+        GameRegistry.registerTileEntity(PotionJugTileEntity.class, potionJug.getUnlocalizedName() + "TileEntity");
     }
 
 }
