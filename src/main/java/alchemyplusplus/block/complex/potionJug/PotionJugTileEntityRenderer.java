@@ -4,7 +4,6 @@ import alchemyplusplus.reference.Textures;
 import jakimbox.prefab.render.BasicTileEntityRenderer;
 import net.minecraft.potion.PotionHelper;
 import net.minecraft.tileentity.TileEntity;
-import org.lwjgl.opengl.GL11;
 
 public class PotionJugTileEntityRenderer extends BasicTileEntityRenderer
 {
@@ -28,26 +27,5 @@ public class PotionJugTileEntityRenderer extends BasicTileEntityRenderer
                 ((PotionJugModel) model).color = PotionHelper.func_77915_a(((PotionJugTileEntity) tileEntity).potionID, false);
             }
         }
-    }
-
-    @Override
-    public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float f)
-    {
-        GL11.glPushMatrix();
-        GL11.glTranslated(x + xOffset, y + yOffset, z + zOffset);
-
-        GL11.glPushMatrix();
-        GL11.glTranslatef(0.5F, 0, 0.5F);
-        GL11.glRotatef(tileEntity.getBlockMetadata() * (-90F), 0F, 1F, 0F);
-        GL11.glTranslatef(-0.5F, 0, -0.5F);
-
-        bindTexture(texture);
-
-        modelSpecificOperations(tileEntity);
-
-        model.render(0.0625F);
-
-        GL11.glPopMatrix();
-        GL11.glPopMatrix();
     }
 }
