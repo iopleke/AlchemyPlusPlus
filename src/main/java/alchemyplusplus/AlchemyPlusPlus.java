@@ -6,8 +6,6 @@ import alchemyplusplus.handler.GUIHandler;
 import alchemyplusplus.handler.ZombieHandler;
 import alchemyplusplus.helper.PotionRegistryHelper;
 import alchemyplusplus.network.MessageHandler;
-import alchemyplusplus.proxy.CommonProxy;
-import alchemyplusplus.reference.Settings;
 import alchemyplusplus.registry.BlockRegistry;
 import alchemyplusplus.registry.ItemRegistry;
 import alchemyplusplus.registry.MetaDataRegistry;
@@ -22,6 +20,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import jakimbox.proxy.CommonProxyBase;
 import net.minecraftforge.common.MinecraftForge;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -60,8 +59,8 @@ public class AlchemyPlusPlus
     public static boolean herbs = false;
     @Instance(value = "alchemyplusplus")
     public static AlchemyPlusPlus instance = new AlchemyPlusPlus();
-    @SidedProxy(clientSide = "alchemyplusplus.proxy.client.ClientProxy", serverSide = "alchemyplusplus.proxy.CommonProxy")
-    public static CommonProxy proxy;
+    @SidedProxy(clientSide = "alchemyplusplus.proxy.client.ClientProxy", serverSide = "jakimbox.proxy.CommonProxyBase")
+    public static CommonProxyBase proxy;
 
     @Mod.Metadata(AlchemyPlusPlus.ID)
     public static ModMetadata metadata;
@@ -72,18 +71,36 @@ public class AlchemyPlusPlus
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
-        Settings.init(event.getSuggestedConfigurationFile());
-        FMLCommonHandler.instance().bus().register(new Settings());
+        // Register the mod instance
+        INSTANCE = this;
+
+        // Load the configuration file
+        Config.init();
+        FMLCommonHandler.instance().bus().register(new Config());
+
+        // Register packet handler
         MessageHandler.init();
+
+        // Register potion fluids etc
         PotionRegistry.init();
         PotionRegistryHelper.expandPotionRegistry(256);
+
+        // Set up metadata
+        AlchemyPlusPlus.metadata = MetaDataRegistry.init(metadata);
+
+        // Register blocks and items
+        BlockRegistry.registerBlocks();
+        ItemRegistry.registerItems();
+
     }
 
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
-        INSTANCE = this;
-        AlchemyPlusPlus.metadata = MetaDataRegistry.init(metadata);
+
+        // Register recipes
+        BlockRegistry.registerBlockRecipes();
+        ItemRegistry.registerItemRecipes();
 
         // Register GUI handler
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GUIHandler());
@@ -91,23 +108,15 @@ public class AlchemyPlusPlus
         // Register event handlers
         MinecraftForge.EVENT_BUS.register(DropHandler.INSTANCE);
         MinecraftForge.EVENT_BUS.register(FluidHandler.INSTANCE);
-        if (Settings.zombieMode)
+
+        if (Config.zombieMode)
         {
             ZombieHandler.INSTANCE.register();
         }
 
         proxy.registerRenderers();
-        proxy.registerTileEntities();
 
-        // Register blocks and items
-        BlockRegistry.registerBlocks();
-        ItemRegistry.registerItems();
-
-        // Register recipes
-        BlockRegistry.registerBlockRecipes();
-        ItemRegistry.registerItemRecipes();
-
-        if (Settings.DebugMode)
+        if (Config.DebugMode)
         {
             //ItemRegistry.registerHardcoreRecipes();
         }
