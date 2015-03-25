@@ -1,7 +1,7 @@
 package alchemyplusplus.item;
 
 import alchemyplusplus.AlchemyPlusPlus;
-import jakimbox.prefab.item.ItemBasic;
+import jakimbox.prefab.item.BasicItem;
 import java.util.List;
 import java.util.Random;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,7 +10,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 
-public class MixingFilter extends ItemBasic
+public class MixingFilter extends BasicItem
 {
 
     public static void generateCustomInfo(ItemStack stack)

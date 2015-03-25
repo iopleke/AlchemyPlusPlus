@@ -9,7 +9,7 @@ import alchemyplusplus.item.PotionBucket;
 import alchemyplusplus.item.flora.BasicFlora;
 import alchemyplusplus.reference.Naming;
 import cpw.mods.fml.common.registry.GameRegistry;
-import jakimbox.prefab.item.ItemBasic;
+import jakimbox.prefab.item.BasicItem;
 import java.util.ArrayList;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -50,22 +50,22 @@ public class ItemRegistry
      */
     public static void registerItems()
     {
-        confusionPotion = new ItemBasic(AlchemyPlusPlus.ID, Naming.Items.CONFUSION_POTION);
+        confusionPotion = new BasicItem(AlchemyPlusPlus.ID, Naming.Items.CONFUSION_POTION);
         GameRegistry.registerItem(confusionPotion, confusionPotion.getUnlocalizedName());
 
         fishOil = new FishOil(Naming.Items.FISH_OIL);
         GameRegistry.registerItem(fishOil, fishOil.getUnlocalizedName());
 
-        ironPowder = new ItemBasic(AlchemyPlusPlus.ID, Naming.Items.IRON_POWDER);
+        ironPowder = new BasicItem(AlchemyPlusPlus.ID, Naming.Items.IRON_POWDER);
         GameRegistry.registerItem(ironPowder, ironPowder.getUnlocalizedName());
 
         mixingFilter = new MixingFilter(Naming.Items.MIXING_FILTER);
         GameRegistry.registerItem(mixingFilter, mixingFilter.getUnlocalizedName());
 
-        springyCord = new ItemBasic(AlchemyPlusPlus.ID, Naming.Items.SPRINGY_CORD);
+        springyCord = new BasicItem(AlchemyPlusPlus.ID, Naming.Items.SPRINGY_CORD);
         GameRegistry.registerItem(springyCord, springyCord.getUnlocalizedName());
 
-        squidEye = new ItemBasic(AlchemyPlusPlus.ID, Naming.Items.SQUID_EYE);
+        squidEye = new BasicItem(AlchemyPlusPlus.ID, Naming.Items.SQUID_EYE);
         GameRegistry.registerItem(squidEye, squidEye.getUnlocalizedName());
 
         woodAlcohol = new MixingFilter(Naming.Items.WOOD_ALCOHOL);

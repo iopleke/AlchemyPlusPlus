@@ -2,9 +2,9 @@ package alchemyplusplus.item.flora;
 
 import alchemyplusplus.AlchemyPlusPlus;
 import alchemyplusplus.registry.CreativeTabRegistry;
-import jakimbox.prefab.item.ItemBasic;
+import jakimbox.prefab.item.BasicItem;
 
-public class BasicFlora extends ItemBasic
+public class BasicFlora extends BasicItem
 {
 
     public BasicFlora(String itemname)

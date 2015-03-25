@@ -5,7 +5,7 @@ import alchemyplusplus.reference.Naming;
 import alchemyplusplus.registry.ItemRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import jakimbox.prefab.item.ItemBasic;
+import jakimbox.prefab.item.BasicItem;
 import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
@@ -23,7 +23,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
-public class MortarAndPestle extends ItemBasic
+public class MortarAndPestle extends BasicItem
 {
 
     private IIcon[] icons;

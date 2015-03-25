@@ -4,7 +4,7 @@ import alchemyplusplus.AlchemyPlusPlus;
 import alchemyplusplus.potion.custom.PotionCustom;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import jakimbox.prefab.item.ItemBasic;
+import jakimbox.prefab.item.BasicItem;
 import java.util.List;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,7 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-public class FishOil extends ItemBasic
+public class FishOil extends BasicItem
 {
 
     public static void fill(ItemStack stack, int percent)
