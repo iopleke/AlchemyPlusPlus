@@ -1,6 +1,5 @@
 package alchemyplusplus;
 
-import alchemyplusplus.AlchemyPlusPlus;
 import cpw.mods.fml.client.config.IConfigElement;
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -91,6 +90,7 @@ public class Config
         prop.comment = StatCollector.translateToLocal("config.debug.description");
         prop.setLanguageKey("config.debug.tooltip");
         DebugMode = prop.getBoolean();
+        AlchemyPlusPlus.logger.debugMode = DebugMode;
         configList.add(prop.getName());
 
         prop = config.get(Configuration.CATEGORY_GENERAL, "potionBucketCrafting", Config.PotionBucketCrafting);

@@ -86,8 +86,8 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
         if (Config.DebugMode)
         {
             // @TODO - remove these, and/or allow player to see info
-            AlchemyPlusPlus.LOGGER.info("Fluid level:" + this.fluidTank.getFluidAmount());
-            AlchemyPlusPlus.LOGGER.info("Diffusing: " + isDiffusing);
+            AlchemyPlusPlus.logger.info("Fluid level:" + this.fluidTank.getFluidAmount());
+            AlchemyPlusPlus.logger.info("Diffusing: " + isDiffusing);
             if (this.getFluid() != null && this.getFluid().getFluid() instanceof PotionFluid)
             {
                 if (((PotionFluid) this.getFluid().getFluid()).potionEffects != null)
@@ -95,7 +95,7 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
                     Iterator iter = ((PotionFluid) this.getFluid().getFluid()).potionEffects.iterator();
                     while (iter.hasNext())
                     {
-                        AlchemyPlusPlus.LOGGER.info("Effects: " + iter.next().toString());
+                        AlchemyPlusPlus.logger.info("Effects: " + iter.next().toString());
                     }
                 }
 

@@ -36,6 +36,7 @@ public class PotionJugModel extends BasicModel
         neck.addBox(5, 12, 5, 6, 4, 6);        //neck
     }
 
+    @Override
     public void render(float scale)
     {
         GL11.glEnable(GL11.GL_NORMALIZE);
@@ -47,7 +48,7 @@ public class PotionJugModel extends BasicModel
             float r, g, b;
             r = (color >> 16 & 255) / 255.0F;
             g = (color >> 8 & 255) / 255.0F;
-            b = (color >> 0 & 255) / 255.0F;
+            b = (color & 255) / 255.0F;
 
             GL11.glColor4f(r * 0.8f, g * 0.8f, b * 0.8f, 0.8f);
 

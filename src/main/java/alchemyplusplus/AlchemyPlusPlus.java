@@ -20,10 +20,9 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import jakimbox.helper.LogHelper;
 import jakimbox.proxy.CommonProxyBase;
 import net.minecraftforge.common.MinecraftForge;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 @Mod(modid = AlchemyPlusPlus.ID, name = AlchemyPlusPlus.NAME, version = AlchemyPlusPlus.VERSION_FULL, useMetadata = false, guiFactory = "alchemyplusplus.gui.GUIFactory", acceptedMinecraftVersions = "[1.7.10,)")
 public class AlchemyPlusPlus
@@ -66,7 +65,7 @@ public class AlchemyPlusPlus
     public static ModMetadata metadata;
 
     // Logging
-    public static final Logger LOGGER = LogManager.getLogger(AlchemyPlusPlus.ID);
+    public static final LogHelper logger = new LogHelper(AlchemyPlusPlus.ID);
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)

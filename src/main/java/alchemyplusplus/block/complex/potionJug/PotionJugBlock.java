@@ -1,9 +1,9 @@
 package alchemyplusplus.block.complex.potionJug;
 
 import alchemyplusplus.AlchemyPlusPlus;
+import alchemyplusplus.reference.Textures;
 import alchemyplusplus.registry.BlockRegistry;
 import alchemyplusplus.registry.CreativeTabRegistry;
-import alchemyplusplus.reference.Textures;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import java.util.List;
@@ -62,13 +62,13 @@ public class PotionJugBlock extends BlockContainer
         float f2 = random.nextFloat() * 0.8F + 0.1F;
 
         EntityItem entityitem = new EntityItem(world, (double) ((float) x + f), (double) ((float) y + f1), (double) ((float) z + f2),
-                stack);
+            stack);
 
         entityitem.motionX = (double) ((float) random.nextGaussian() * 0.05F);
         entityitem.motionY = (double) ((float) random.nextGaussian() * 0.05F + 0.2F);
         entityitem.motionZ = (double) ((float) random.nextGaussian() * 0.05F);
 
-        AlchemyPlusPlus.LOGGER.info("Spawning potion jug item entity");
+        AlchemyPlusPlus.logger.info("Spawning potion jug item entity");
 
         super.breakBlock(world, x, y, z, block, meta);
     }

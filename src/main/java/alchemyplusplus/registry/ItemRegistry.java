@@ -113,7 +113,7 @@ public class ItemRegistry
 
         if (Config.DebugMode)
         {
-            AlchemyPlusPlus.LOGGER.info("Alchemy++ is registering its hardcore recipes! This requires modifyng vanilla recipe list.");
+            AlchemyPlusPlus.logger.info("Alchemy++ is registering its hardcore recipes! This requires modifyng vanilla recipe list.");
         }
         // first remove the standard vanilla ones!
         ArrayList list = (ArrayList) CraftingManager.getInstance().getRecipeList();
@@ -124,7 +124,7 @@ public class ItemRegistry
             {
                 if (Config.DebugMode)
                 {
-                    AlchemyPlusPlus.LOGGER.info("Alchemy++ removes \"speckeledMelon\" recipe from the recipe list! Be advised!");
+                    AlchemyPlusPlus.logger.info("Alchemy++ removes \"speckeledMelon\" recipe from the recipe list! Be advised!");
                 }
                 list.remove(i);
             }

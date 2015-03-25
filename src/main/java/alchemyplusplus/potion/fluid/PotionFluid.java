@@ -89,7 +89,7 @@ public class PotionFluid extends Fluid
             Iterator ite = this.potionEffects.iterator();
             while (ite.hasNext())
             {
-                AlchemyPlusPlus.LOGGER.info("Entry: " + ite.next().toString());
+                AlchemyPlusPlus.logger.info("Entry: " + ite.next().toString());
             }
         }
     }

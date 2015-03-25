@@ -54,7 +54,7 @@ public class PotionRegistry
 
                 if (Config.DebugMode)
                 {
-                    AlchemyPlusPlus.LOGGER.info("Registered fluid for " + potion.getName());
+                    AlchemyPlusPlus.logger.info("Registered fluid for " + potion.getName());
                 }
             }
         }
