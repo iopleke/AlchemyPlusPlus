@@ -1,31 +1,36 @@
 package alchemyplusplus.block.basic;
 
-import alchemyplusplus.registry.MaterialRegistry;
-import alchemyplusplus.block.BlockBasic;
+import alchemyplusplus.AlchemyPlusPlus;
 import alchemyplusplus.registry.CreativeTabRegistry;
+import alchemyplusplus.registry.MaterialRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import jakimbox.helper.NotificationHelper;
+import jakimbox.prefab.block.BasicBlock;
 import java.util.Random;
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-public class FleshBlock extends BlockBasic
+public class FleshBlock extends BasicBlock
 {
 
-    private IIcon iconFester;
-    private IIcon iconNormal;
+    private IIcon blockIconArray[];
     private final Random random = new Random();
 
     public FleshBlock(String blockname)
     {
-        super(MaterialRegistry.flesh, blockname);
-        this.setBlockName(blockname);
-        this.setTickRandomly(true);
-        this.setCreativeTab(CreativeTabRegistry.APP_TAB);
-        this.setHardness(3.0F).setResistance(5.0F);
+        super(AlchemyPlusPlus.ID, blockname, MaterialRegistry.flesh, Block.soundTypeCloth);
+        setCreativeTab(CreativeTabRegistry.APP_TAB);
+        setTickRandomly(true);
+        setHardness(3.0F);
+        setResistance(5.0F);
+        blockIconArray = new IIcon[10];
+
     }
 
     @Override
@@ -39,7 +44,41 @@ public class FleshBlock extends BlockBasic
     @Override
     public IIcon getIcon(int side, int meta)
     {
-        return meta == 10 ? this.iconFester : this.iconNormal;
+        if (meta > 10)
+        {
+            meta = 10;
+        }
+        if (meta > 0)
+        {
+            return blockIconArray[meta - 1];
+        }
+        return blockIconArray[0];
+    }
+
+    @Override
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
+    {
+        // @TODO - create localized progress messages using
+        // NotificationHelper.sendPlayerChatMessage(player, StatCollector.translateToLocal("fleshblock.progressMessage."+world.getBlockMetadata(x, y, z)));
+
+        if (player.capabilities.isCreativeMode)
+        {
+            if (world.getBlockMetadata(x, y, z) < blockIconArray.length)
+            {
+                world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z) + 1, 4);
+                if (world.isRemote)
+                {
+                    NotificationHelper.sendPlayerChatMessage(player, "Incrementing block metadata to " + world.getBlockMetadata(x, y, z));
+                }
+            } else
+            {
+                if (world.isRemote)
+                {
+                    NotificationHelper.sendPlayerChatMessage(player, "Block metadata is " + blockIconArray.length + " (maximum)");
+                }
+            }
+        }
+        return false;
     }
 
     @Override
@@ -70,10 +109,13 @@ public class FleshBlock extends BlockBasic
     @Override
     public void registerBlockIcons(IIconRegister iconRegister)
     {
-        this.iconNormal = iconRegister.registerIcon("AlchemyPlusPlus:flesh");
-        this.iconFester = iconRegister.registerIcon("AlchemyPlusPlus:fleshFester");
+        for (int i = 0; i < 10; i++)
+        {
+            blockIconArray[i] = iconRegister.registerIcon(AlchemyPlusPlus.ID + ":fleshBlock" + i);
+        }
     }
 
+    @Override
     public void updateTick(World world, int x, int y, int z, Random random)
     {
         if (!world.isRemote)
@@ -81,6 +123,9 @@ public class FleshBlock extends BlockBasic
             if (world.getBlockMetadata(x, y, z) == 10)
             {
                 return;
+            } else if (world.getBlockMetadata(x, y, z) > 10)
+            {
+                world.setBlockMetadataWithNotify(x, y, z, 10, 4);
             }
             if (world.getBlockLightValue(x, y + 1, z) < 4 && world.isAirBlock(x, y + 1, z))
             {
