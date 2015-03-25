@@ -79,7 +79,7 @@ public class DiffuserModel extends BasicModel
     }
 
     @Override
-    public void render(float rotation)
+    public void render(float scale)
     {
         float red, green, blue;
 
@@ -87,7 +87,7 @@ public class DiffuserModel extends BasicModel
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
-        bowl.render(rotation);
+        bowl.render(scale);
 
         // Calculate the colors
         potionColor = PotionHelper.func_77915_a(potionDamage, false);
@@ -102,13 +102,13 @@ public class DiffuserModel extends BasicModel
 
             if (this.fluidAmount > 280)
             {
-                liquidFull.render(rotation);
+                liquidFull.render(scale);
             } else if (this.fluidAmount > 160)
             {
-                liquidHalf.render(rotation);
+                liquidHalf.render(scale);
             } else if (this.fluidAmount > 0)
             {
-                liquidThird.render(rotation);
+                liquidThird.render(scale);
             }
 
         }
@@ -116,12 +116,12 @@ public class DiffuserModel extends BasicModel
         GL11.glColor3f(1f, 1f, 1f);
 
         // Bottle must render AFTER the liquid
-        bottle.render(rotation);
+        bottle.render(scale);
 
         // Don't render the stopper if the diffuser is active
         if (!isDiffusing)
         {
-            stopper.render(rotation);
+            stopper.render(scale);
         }
     }
 

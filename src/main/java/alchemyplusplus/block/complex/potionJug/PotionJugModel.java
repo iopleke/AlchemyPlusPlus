@@ -36,7 +36,7 @@ public class PotionJugModel extends BasicModel
         neck.addBox(5, 12, 5, 6, 4, 6);        //neck
     }
 
-    public void render(float f5)
+    public void render(float scale)
     {
         GL11.glEnable(GL11.GL_NORMALIZE);
         GL11.glEnable(GL11.GL_BLEND);
@@ -55,12 +55,12 @@ public class PotionJugModel extends BasicModel
             liquid.setTextureSize(64, 64);
             setRotation(liquid, 0F, 0F, 0F);
             liquid.addBox(2, 1, 2, 12, (int) (10 * percentage), 12);    //liquid where 10 - height
-            liquid.render(f5);
+            liquid.render(scale);
             GL11.glColor4f(1f, 1f, 1f, 1f);
         }
 
-        bottle.render(f5);
-        neck.render(f5);
+        bottle.render(scale);
+        neck.render(scale);
 
     }
 
@@ -71,6 +71,7 @@ public class PotionJugModel extends BasicModel
         model.rotateAngleZ = z;
     }
 
+    @Override
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity e)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, e);
