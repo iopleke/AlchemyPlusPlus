@@ -32,6 +32,19 @@ tile.fleshBlock.name=Block of Flesh
 tile.fluidMixer.name=Fluid Mixer
 tile.potionJug.name=Potion Jug
 
+fleshblock.progressMessage.raining=Precipitation dillutes the reagent
+fleshblock.progressMessage.0=The combined zombie flesh and slime is stiff and unyielding
+fleshblock.progressMessage.1=Slight color changes indicates the start of decomposition
+fleshblock.progressMessage.2=The darkness and damp is starting decompose the fleshy block
+fleshblock.progressMessage.3=The surface of the flesh block has become slightly sticky
+fleshblock.progressMessage.4=The zombie flesh is growing bits of greyish brown mold
+fleshblock.progressMessage.5=The cube has sunk in on itself as it continues to decompose
+fleshblock.progressMessage.6=Reddish green bits of zombie limbs crumble from the pile
+fleshblock.progressMessage.7=Tiny grubs wiggle in the mass, hastening the decomposition
+fleshblock.progressMessage.8=Touching the rotting pile leaves purtrid residue on your hand
+fleshblock.progressMessage.9=The pile of rotting flesh gives off a foul odor
+fleshblock.progressMessage.10=The pile of thoroughly rotted flesh oozes viscous green fluid
+
 diffuser.bottle.refill.failure=There doesn't seem to be enough to refill your bottle
 diffuser.combine.success=You refill the diffuser with the same potion
 diffuser.combine.failure=These potions are too different to mix in the diffuser. Perhaps you should try the fluid mixer...
