@@ -143,12 +143,11 @@ public class DistilleryContainer extends Container
     }
 
     @Override
-    public void addCraftingToCrafters(ICrafting par1ICrafting)
+    public void addCraftingToCrafters(ICrafting iCrafting)
     {
-        super.addCraftingToCrafters(par1ICrafting);
-        par1ICrafting.sendProgressBarUpdate(this, 0,
-                this.distillery.distillingTicks);
-        par1ICrafting.sendProgressBarUpdate(this, 1, this.distillery.fuel);
+        super.addCraftingToCrafters(iCrafting);
+        iCrafting.sendProgressBarUpdate(this, 0, this.distillery.distillingTicks);
+        iCrafting.sendProgressBarUpdate(this, 1, this.distillery.fuel);
     }
 
     @Override
@@ -169,7 +168,7 @@ public class DistilleryContainer extends Container
             if (this.distillingTicks != this.distillery.distillingTicks)
             {
                 icrafting.sendProgressBarUpdate(this, 0,
-                        this.distillery.distillingTicks);
+                    this.distillery.distillingTicks);
             }
 
             if (this.fuel != this.distillery.fuel)

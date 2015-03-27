@@ -26,30 +26,30 @@ public class DistilleryTileEntity extends BasicInventoryTileEntity implements II
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound par1NBTTagCompound)
+    public void readFromNBT(NBTTagCompound nbt)
     {
-        super.readFromNBT(par1NBTTagCompound);
+        super.readFromNBT(nbt);
 
-        this.distillingTicks = par1NBTTagCompound.getShort("distillingTicks");
-        this.fuel = par1NBTTagCompound.getShort("fuel");
+        this.distillingTicks = nbt.getShort("distillingTicks");
+        this.fuel = nbt.getShort("fuel");
 
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound par1NBTTagCompound)
+    public void writeToNBT(NBTTagCompound nbt)
     {
-        super.writeToNBT(par1NBTTagCompound);
-        par1NBTTagCompound.setShort("distillingTicks", (short) this.distillingTicks);
-        par1NBTTagCompound.setShort("fuel", (short) this.fuel);
+        super.writeToNBT(nbt);
+        nbt.setShort("distillingTicks", (short) this.distillingTicks);
+        nbt.setShort("fuel", (short) this.fuel);
 
     }
 
     @Override
     public Packet getDescriptionPacket()
     {
-        NBTTagCompound nbtTag = new NBTTagCompound();
-        this.writeToNBT(nbtTag);
-        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbtTag);
+        NBTTagCompound nbt = new NBTTagCompound();
+        this.writeToNBT(nbt);
+        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbt);
     }
 
     public boolean isActive()
