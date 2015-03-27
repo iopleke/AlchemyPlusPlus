@@ -18,6 +18,12 @@ public class DistilleryBlock extends BasicBlockContainer
     }
 
     @Override
+    public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_)
+    {
+        return new DistilleryTileEntity();
+    }
+
+    @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int meta, float b, float c, float g)
     {
         TileEntity tileEntity = world.getTileEntity(x, y, z);
@@ -30,11 +36,5 @@ public class DistilleryBlock extends BasicBlockContainer
             return true;
         }
         return false;
-    }
-
-    @Override
-    public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_)
-    {
-        return new DistilleryTileEntity();
     }
 }

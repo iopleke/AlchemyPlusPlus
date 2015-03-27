@@ -49,6 +49,13 @@ public class DistilleryModel extends BasicModel
 
     }
 
+    private void setRotation(ModelRenderer model, float x, float y, float z)
+    {
+        model.rotateAngleX = x;
+        model.rotateAngleY = y;
+        model.rotateAngleZ = z;
+    }
+
     @Override
     public void render(float scale)
     {
@@ -56,13 +63,6 @@ public class DistilleryModel extends BasicModel
         boiler.render(scale);
         tube.render(scale);
         collecter.render(scale);
-    }
-
-    private void setRotation(ModelRenderer model, float x, float y, float z)
-    {
-        model.rotateAngleX = x;
-        model.rotateAngleY = y;
-        model.rotateAngleZ = z;
     }
 
 }

@@ -26,25 +26,6 @@ public class DistilleryTileEntity extends BasicInventoryTileEntity implements II
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound nbt)
-    {
-        super.readFromNBT(nbt);
-
-        this.distillingTicks = nbt.getShort("distillingTicks");
-        this.fuel = nbt.getShort("fuel");
-
-    }
-
-    @Override
-    public void writeToNBT(NBTTagCompound nbt)
-    {
-        super.writeToNBT(nbt);
-        nbt.setShort("distillingTicks", (short) this.distillingTicks);
-        nbt.setShort("fuel", (short) this.fuel);
-
-    }
-
-    @Override
     public Packet getDescriptionPacket()
     {
         NBTTagCompound nbt = new NBTTagCompound();
@@ -80,6 +61,16 @@ public class DistilleryTileEntity extends BasicInventoryTileEntity implements II
             }
         }
         return false;
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound nbt)
+    {
+        super.readFromNBT(nbt);
+
+        this.distillingTicks = nbt.getShort("distillingTicks");
+        this.fuel = nbt.getShort("fuel");
+
     }
 
     @Override
@@ -120,5 +111,14 @@ public class DistilleryTileEntity extends BasicInventoryTileEntity implements II
         {
             fuel = 0;
         }
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound nbt)
+    {
+        super.writeToNBT(nbt);
+        nbt.setShort("distillingTicks", (short) this.distillingTicks);
+        nbt.setShort("fuel", (short) this.fuel);
+
     }
 }
