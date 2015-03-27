@@ -1,10 +1,9 @@
 package alchemyplusplus.block.complex.distillery;
 
-import net.minecraft.client.model.ModelBase;
+import jakimbox.prefab.model.BasicModel;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.entity.Entity;
 
-public class DistilleryModel extends ModelBase
+public class DistilleryModel extends BasicModel
 {
 
     ModelRenderer boiler;
@@ -33,11 +32,11 @@ public class DistilleryModel extends ModelBase
 
         tube = new ModelRenderer(this, 0, 13);
         tube.setTextureSize(textureWidth, textureHeight);
-        tube.setRotationPoint(5.7f, 13, 5);
         setRotation(tube, 0F, 0.785f, 0F);
-        tube.addBox(-6, -1, 3, 10, 1, 1);
-        tube.addBox(-6, -4, 3, 1, 3, 1);
-        tube.addBox(3, -6, 3, 1, 5, 1);
+        float distance = 11F;
+        tube.addBox(-6, 12, distance, 11, 1, 1);
+        tube.addBox(-6, 9, distance, 1, 3, 1);
+        tube.addBox(4, 7, distance, 1, 5, 1);
 
         collecter = new ModelRenderer(this, 58, 0);
         collecter.setTextureSize(textureWidth, textureWidth);
@@ -51,14 +50,12 @@ public class DistilleryModel extends ModelBase
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    public void render(float scale)
     {
-        super.render(entity, f, f1, f2, f3, f4, f5);
-        setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-        stand.render(f5);
-        boiler.render(f5);
-        tube.render(f5);
-        collecter.render(f5);
+        stand.render(scale);
+        boiler.render(scale);
+        tube.render(scale);
+        collecter.render(scale);
     }
 
     private void setRotation(ModelRenderer model, float x, float y, float z)
@@ -66,12 +63,6 @@ public class DistilleryModel extends ModelBase
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
-    }
-
-    @Override
-    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity e)
-    {
-        super.setRotationAngles(f, f1, f2, f3, f4, f5, e);
     }
 
 }
