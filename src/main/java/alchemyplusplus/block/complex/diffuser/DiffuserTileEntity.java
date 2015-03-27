@@ -1,12 +1,13 @@
 package alchemyplusplus.block.complex.diffuser;
 
 import alchemyplusplus.AlchemyPlusPlus;
+import alchemyplusplus.Config;
 import alchemyplusplus.network.MessageHandler;
 import alchemyplusplus.network.message.DiffuserUpdateMessage;
 import alchemyplusplus.potion.fluid.PotionFluid;
 import alchemyplusplus.potion.fluid.PotionFluidStack;
 import alchemyplusplus.potion.fluid.PotionFluidTank;
-import alchemyplusplus.Config;
+import alchemyplusplus.reference.Naming;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import jakimbox.prefab.tileEntity.BasicTileEntity;
 import java.util.ArrayList;
@@ -39,6 +40,7 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
 
     public DiffuserTileEntity()
     {
+        super(Naming.Blocks.DIFFUSER);
         this.bottleColor = 0;
         this.diffusingTicks = 0;
         this.fluidTank = new PotionFluidTank((int) 333);

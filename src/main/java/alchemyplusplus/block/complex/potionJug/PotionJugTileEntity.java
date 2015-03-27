@@ -1,5 +1,6 @@
 package alchemyplusplus.block.complex.potionJug;
 
+import alchemyplusplus.reference.Naming;
 import jakimbox.prefab.tileEntity.BasicTileEntity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
@@ -11,6 +12,11 @@ public class PotionJugTileEntity extends BasicTileEntity
     public int containerHas = 0;
     public final int containerMax = 16;
     public int potionID = 0;
+
+    public PotionJugTileEntity()
+    {
+        super(Naming.Blocks.POTION_JUG);
+    }
 
     @Override
     public boolean canUpdate()
