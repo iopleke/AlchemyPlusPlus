@@ -30,7 +30,7 @@ public class DiffuserBlock extends BasicBlockContainer
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world, int i)
+    public TileEntity createNewTileEntity(World world, int meta)
     {
         return new DiffuserTileEntity();
     }
