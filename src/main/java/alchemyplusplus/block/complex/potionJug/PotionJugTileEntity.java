@@ -33,21 +33,20 @@ public class PotionJugTileEntity extends BasicTileEntity
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound par1NBTTagCompound)
+    public void readFromNBT(NBTTagCompound nbt)
     {
-        super.readFromNBT(par1NBTTagCompound);
-
-        this.potionID = par1NBTTagCompound.getShort("potionID");
-        this.containerHas = par1NBTTagCompound.getShort("containerHas");
+        super.readFromNBT(nbt);
+        this.potionID = nbt.getShort("potionID");
+        this.containerHas = nbt.getShort("containerHas");
 
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound par1NBTTagCompound)
+    public void writeToNBT(NBTTagCompound nbt)
     {
-        super.writeToNBT(par1NBTTagCompound);
-        par1NBTTagCompound.setShort("potionID", (short) this.potionID);
-        par1NBTTagCompound.setShort("containerHas", (short) this.containerHas);
+        super.writeToNBT(nbt);
+        nbt.setShort("potionID", (short) this.potionID);
+        nbt.setShort("containerHas", (short) this.containerHas);
     }
 
 }
