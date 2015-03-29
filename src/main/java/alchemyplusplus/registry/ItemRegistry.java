@@ -1,7 +1,7 @@
 package alchemyplusplus.registry;
 
-import alchemyplusplus.Config;
 import alchemyplusplus.AlchemyPlusPlus;
+import alchemyplusplus.Config;
 import alchemyplusplus.item.FishOil;
 import alchemyplusplus.item.MixingFilter;
 import alchemyplusplus.item.MortarAndPestle;
@@ -50,39 +50,40 @@ public class ItemRegistry
      */
     public static void registerItems()
     {
-        confusionPotion = new BasicItem(AlchemyPlusPlus.ID, Naming.Items.CONFUSION_POTION);
+        confusionPotion = new BasicItem(AlchemyPlusPlus.ID, Naming.Items.CONFUSION_POTION).setCreativeTab(CreativeTabRegistry.APP_TAB);
         GameRegistry.registerItem(confusionPotion, confusionPotion.getUnlocalizedName());
 
-        fishOil = new FishOil(Naming.Items.FISH_OIL);
+        fishOil = new FishOil(Naming.Items.FISH_OIL).setCreativeTab(CreativeTabRegistry.APP_TAB);
         GameRegistry.registerItem(fishOil, fishOil.getUnlocalizedName());
 
-        ironPowder = new BasicItem(AlchemyPlusPlus.ID, Naming.Items.IRON_POWDER);
-        GameRegistry.registerItem(ironPowder, ironPowder.getUnlocalizedName());
-
-        mixingFilter = new MixingFilter(Naming.Items.MIXING_FILTER);
+        mixingFilter = new MixingFilter(Naming.Items.MIXING_FILTER).setCreativeTab(CreativeTabRegistry.APP_TAB);
         GameRegistry.registerItem(mixingFilter, mixingFilter.getUnlocalizedName());
 
-        springyCord = new BasicItem(AlchemyPlusPlus.ID, Naming.Items.SPRINGY_CORD);
-        GameRegistry.registerItem(springyCord, springyCord.getUnlocalizedName());
-
-        squidEye = new BasicItem(AlchemyPlusPlus.ID, Naming.Items.SQUID_EYE);
-        GameRegistry.registerItem(squidEye, squidEye.getUnlocalizedName());
-
-        woodAlcohol = new MixingFilter(Naming.Items.WOOD_ALCOHOL);
+        woodAlcohol = new MixingFilter(Naming.Items.WOOD_ALCOHOL).setCreativeTab(CreativeTabRegistry.APP_TAB);
         GameRegistry.registerItem(woodAlcohol, woodAlcohol.getUnlocalizedName());
 
-        mortarAndPestle = new MortarAndPestle(Naming.Items.MortarAndPestle);
+        mortarAndPestle = new MortarAndPestle(Naming.Items.MortarAndPestle).setCreativeTab(CreativeTabRegistry.APP_TAB);
         GameRegistry.registerItem(mortarAndPestle, mortarAndPestle.getUnlocalizedName());
 
+        // Register non-plan ingredients
+        ironPowder = new BasicItem(AlchemyPlusPlus.ID, Naming.Items.IRON_POWDER).setCreativeTab(CreativeTabRegistry.APP_TAB_FLORA);
+        GameRegistry.registerItem(ironPowder, ironPowder.getUnlocalizedName());
+
+        springyCord = new BasicItem(AlchemyPlusPlus.ID, Naming.Items.SPRINGY_CORD).setCreativeTab(CreativeTabRegistry.APP_TAB_FLORA);
+        GameRegistry.registerItem(springyCord, springyCord.getUnlocalizedName());
+
+        squidEye = new BasicItem(AlchemyPlusPlus.ID, Naming.Items.SQUID_EYE).setCreativeTab(CreativeTabRegistry.APP_TAB_FLORA);
+        GameRegistry.registerItem(squidEye, squidEye.getUnlocalizedName());
+
         // Register plant stuffs
-        crushedGrass = new BasicFlora(Naming.Items.CrushedGrass);
+        crushedGrass = new BasicFlora(Naming.Items.CrushedGrass).setCreativeTab(CreativeTabRegistry.APP_TAB_FLORA);
         GameRegistry.registerItem(crushedGrass, crushedGrass.getUnlocalizedName());
-        pasteGrass = new BasicFlora(Naming.Items.PasteGrass);
+        pasteGrass = new BasicFlora(Naming.Items.PasteGrass).setCreativeTab(CreativeTabRegistry.APP_TAB_FLORA);
         GameRegistry.registerItem(pasteGrass, pasteGrass.getUnlocalizedName());
 
-        crushedLeaves = new BasicFlora(Naming.Items.CrushedLeaves);
+        crushedLeaves = new BasicFlora(Naming.Items.CrushedLeaves).setCreativeTab(CreativeTabRegistry.APP_TAB_FLORA);
         GameRegistry.registerItem(crushedLeaves, crushedLeaves.getUnlocalizedName());
-        pasteLeaves = new BasicFlora(Naming.Items.PasteLeaves);
+        pasteLeaves = new BasicFlora(Naming.Items.PasteLeaves).setCreativeTab(CreativeTabRegistry.APP_TAB_FLORA);
         GameRegistry.registerItem(pasteLeaves, pasteLeaves.getUnlocalizedName());
 
 // @TODO - override vanilla potions
@@ -145,7 +146,7 @@ public class ItemRegistry
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockRegistry.fluidMixer), "x x", "xix", "oOo", 'x', new ItemStack(Blocks.glass_pane), 'i', new ItemStack(Items.iron_ingot), 'o', Blocks.iron_block, 'O', new ItemStack(Blocks.iron_block)));
         GameRegistry.addRecipe(new ItemStack(BlockRegistry.distillery, 1, 0), new Object[]
         {
-            "Bi-", "C-P", "F-S", Character.valueOf('B'), Items.brewing_stand, Character.valueOf('i'), Items.iron_ingot, Character.valueOf('C'), Items.cauldron, Character.valueOf('P'), BlockRegistry.potionJug, Character.valueOf('F'), Blocks.furnace, Character.valueOf('S'), Items.iron_ingot
+            "Bi-", "C-P", "F-S", 'B', Items.brewing_stand, 'i', Items.iron_ingot, 'C', Items.cauldron, 'P', BlockRegistry.potionJug, 'F', Blocks.furnace, 'S', Items.iron_ingot
         });
     }
 
