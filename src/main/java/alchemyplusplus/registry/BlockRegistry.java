@@ -34,22 +34,22 @@ public class BlockRegistry
     public static void registerBlocks()
     {
 
-        diffuser = new DiffuserBlock();
+        diffuser = new DiffuserBlock().setCreativeTab(CreativeTabRegistry.APP_TAB);
         GameRegistry.registerBlock(diffuser, diffuser.getUnlocalizedName());
         GameRegistry.registerTileEntity(DiffuserTileEntity.class, diffuser.getUnlocalizedName() + "TileEntity");
 
-        distillery = new DistilleryBlock();
+        distillery = new DistilleryBlock().setCreativeTab(CreativeTabRegistry.APP_TAB);
         GameRegistry.registerBlock(distillery, distillery.getUnlocalizedName());
         GameRegistry.registerTileEntity(DistilleryTileEntity.class, distillery.getUnlocalizedName() + "TileEntity");
 
-        fleshBlock = new FleshBlock(Naming.Blocks.FLESH);
+        fleshBlock = new FleshBlock(Naming.Blocks.FLESH).setCreativeTab(CreativeTabRegistry.APP_TAB);
         GameRegistry.registerBlock(fleshBlock, fleshBlock.getUnlocalizedName());
 
-        fluidMixer = new FluidMixerBlock(Naming.Blocks.FLUID_MIXER);
+        fluidMixer = new FluidMixerBlock(Naming.Blocks.FLUID_MIXER).setCreativeTab(CreativeTabRegistry.APP_TAB);
         GameRegistry.registerBlock(fluidMixer, fluidMixer.getUnlocalizedName());
         GameRegistry.registerTileEntity(FluidMixerTileEntity.class, fluidMixer.getUnlocalizedName() + "TileEntity");
 
-        potionJug = new PotionJugBlock(Naming.Blocks.POTION_JUG);
+        potionJug = new PotionJugBlock(Naming.Blocks.POTION_JUG).setCreativeTab(CreativeTabRegistry.APP_TAB);
         GameRegistry.registerBlock(potionJug, potionJug.getUnlocalizedName());
         GameRegistry.registerTileEntity(PotionJugTileEntity.class, potionJug.getUnlocalizedName() + "TileEntity");
     }

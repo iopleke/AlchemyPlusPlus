@@ -1,7 +1,6 @@
 package alchemyplusplus.block.basic;
 
 import alchemyplusplus.AlchemyPlusPlus;
-import alchemyplusplus.registry.CreativeTabRegistry;
 import alchemyplusplus.registry.MaterialRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -26,7 +25,6 @@ public class FleshBlock extends BasicBlock
     public FleshBlock(String blockname)
     {
         super(AlchemyPlusPlus.ID, blockname, MaterialRegistry.flesh, Block.soundTypeCloth);
-        setCreativeTab(CreativeTabRegistry.APP_TAB);
         setTickRandomly(true);
         setHardness(3.0F);
         setResistance(5.0F);

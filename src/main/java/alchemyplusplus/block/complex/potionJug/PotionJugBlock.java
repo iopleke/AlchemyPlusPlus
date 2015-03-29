@@ -3,7 +3,6 @@ package alchemyplusplus.block.complex.potionJug;
 import alchemyplusplus.AlchemyPlusPlus;
 import alchemyplusplus.reference.Textures;
 import alchemyplusplus.registry.BlockRegistry;
-import alchemyplusplus.registry.CreativeTabRegistry;
 import java.util.List;
 import java.util.Random;
 import net.minecraft.block.Block;
@@ -28,7 +27,6 @@ public class PotionJugBlock extends BlockContainer
         super(Material.glass);
         this.setStepSound(Block.soundTypeGlass);
         this.setBlockName(blockname);
-        this.setCreativeTab(CreativeTabRegistry.APP_TAB);
         this.setBlockTextureName(Textures.Icon.POTION_JUG);
     }
 
