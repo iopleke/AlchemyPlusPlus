@@ -62,9 +62,9 @@ public class PotionJugModel extends BasicModel
 
             //liquid where 10 - height
             liquid.addBox(2, 1, 2, 12, (int) (10 * percentage), 12);
-            // @TODO - figure out why using scale here causes weird rendering
-            // liquid.render(scale);
-            liquid.render(0.0625F);
+
+            liquid.render(scale);
+
             GL11.glColor4f(1f, 1f, 1f, 1f);
         }
 
