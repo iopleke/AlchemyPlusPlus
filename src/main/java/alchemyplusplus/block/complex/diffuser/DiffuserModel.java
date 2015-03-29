@@ -95,7 +95,7 @@ public class DiffuserModel extends BasicModel
         green = (potionColor >> 8 & 255) / 255f;
         blue = (potionColor & 255) / 255f;
 
-        GL11.glColor3f(red, green, blue);
+        GL11.glColor4f(red * 0.8f, green * 0.8f, blue * 0.8f, 0.8f);
         // Don't render the liquid if the color is 0
         if (this.potionColor != 0 && this.potionDamage != 0 && this.fluidAmount > 0)
         {
@@ -113,7 +113,7 @@ public class DiffuserModel extends BasicModel
 
         }
         // Set the color back to 'white'
-        GL11.glColor3f(1f, 1f, 1f);
+        GL11.glColor4f(1f, 1f, 1f, 1f);
 
         // Bottle must render AFTER the liquid
         bottle.render(scale);
