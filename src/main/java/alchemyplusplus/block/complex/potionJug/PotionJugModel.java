@@ -25,10 +25,14 @@ public class PotionJugModel extends BasicModel
 
         bottle = new ModelRenderer(this, 0, 0);
         neck = new ModelRenderer(this, 0, 0);
+        liquid = new ModelRenderer(this, 12, 26);
+
         bottle.setTextureSize(64, 64);
         neck.setTextureSize(64, 64);
         neck.setTextureOffset(0, 26);
+        liquid.setTextureSize(64, 64);
 
+        setRotation(liquid, 0F, 0F, 0F);
         setRotation(bottle, 0F, 0F, 0F);
         setRotation(neck, 0F, 0F, 0F);
 
@@ -55,8 +59,12 @@ public class PotionJugModel extends BasicModel
             liquid = new ModelRenderer(this, 12, 26);
             liquid.setTextureSize(64, 64);
             setRotation(liquid, 0F, 0F, 0F);
-            liquid.addBox(2, 1, 2, 12, (int) (10 * percentage), 12);    //liquid where 10 - height
-            liquid.render(scale);
+
+            //liquid where 10 - height
+            liquid.addBox(2, 1, 2, 12, (int) (10 * percentage), 12);
+            // @TODO - figure out why using scale here causes weird rendering
+            // liquid.render(scale);
+            liquid.render(0.0625F);
             GL11.glColor4f(1f, 1f, 1f, 1f);
         }
 
