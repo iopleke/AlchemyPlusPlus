@@ -75,7 +75,7 @@ public class DiffuserBlock extends BasicBlockContainer
                             diffuser.setDiffusingState(world.isBlockIndirectlyGettingPowered(x, y, z) || this.isGettingInput(world, x, y, z, world.getBlockMetadata(x, y, z)));
                             if (!player.capabilities.isCreativeMode && !player.isSneaking())
                             {
-                                player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack(Items.glass_bottle);
+                                player.inventory.addItemStackToInventory(new ItemStack(Items.glass_bottle));
                             }
                         } else
                         {
@@ -91,7 +91,8 @@ public class DiffuserBlock extends BasicBlockContainer
                 {
                     if (!player.capabilities.isCreativeMode)
                     {
-                        player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack(Items.glass_bottle);
+                        player.getCurrentEquippedItem().stackSize--;
+                        player.inventory.addItemStackToInventory(new ItemStack(Items.glass_bottle));
                     }
 
                     if (diffuser.fluidTank.getFluid() != null)
@@ -115,15 +116,17 @@ public class DiffuserBlock extends BasicBlockContainer
                 {
 
                     // Set item to potion
-                    ItemPotion potion = Items.potionitem;
-                    ItemStack itemStack = new ItemStack(potion);
+                    ItemStack potion = new ItemStack(Items.potionitem, 1, diffuser.potionDamageValue);
                     Iterator iter = diffuser.fluidTank.potionEffects.iterator();
                     while (iter.hasNext())
                     {
-                        MixingHelper.addEffect(itemStack, (PotionEffect) iter.next());
+                        MixingHelper.addEffect(potion, (PotionEffect) iter.next());
                     }
-                    itemStack.setItemDamage(diffuser.potionDamageValue);
-                    player.inventory.mainInventory[player.inventory.currentItem] = itemStack;
+                    if (!player.capabilities.isCreativeMode)
+                    {
+                        player.getCurrentEquippedItem().stackSize--;
+                    }
+                    player.inventory.addItemStackToInventory(potion);
 
                     // Wiping the diffuser data
                     diffuser.resetDiffuser();
