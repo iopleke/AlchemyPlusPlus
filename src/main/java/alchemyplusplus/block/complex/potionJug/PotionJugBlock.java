@@ -4,8 +4,6 @@ import alchemyplusplus.AlchemyPlusPlus;
 import alchemyplusplus.reference.Textures;
 import alchemyplusplus.registry.BlockRegistry;
 import alchemyplusplus.registry.CreativeTabRegistry;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
 import java.util.List;
 import java.util.Random;
 import net.minecraft.block.Block;
@@ -14,6 +12,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
@@ -91,67 +90,89 @@ public class PotionJugBlock extends BlockContainer
     {
         world.notifyBlockChange(x, y, z, this);
 
-        if (player.isSneaking() || player.getCurrentEquippedItem() == null)
-        {
+        TileEntity tileEntity = world.getTileEntity(x, y, z);
 
-            if (((PotionJugTileEntity) world.getTileEntity(x, y, z)).containerHas > 0)
+        if (tileEntity instanceof PotionJugTileEntity)
+        {
+            if (player.isSneaking() || player.getCurrentEquippedItem() == null)
             {
-                ((PotionJugTileEntity) world.getTileEntity(x, y, z)).containerHas--;
-
-                List effectList = PotionHelper.getPotionEffects(((PotionJugTileEntity) world.getTileEntity(x, y, z)).potionID, true);
-                for (int i = 0; i < effectList.size(); i++)
+                if (((PotionJugTileEntity) tileEntity).containerHas > 0)
                 {
-                    player.addPotionEffect((PotionEffect) effectList.get(i));
-                }
-                if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER)
-                {
-                    //PacketDispatcher.sendPacketToAllPlayers(world.getTileEntity(x, y, z).getDescriptionPacket());
-                }
+                    ((PotionJugTileEntity) tileEntity).containerHas--;
 
-            }
-        }
-
-        ItemStack stack = player.getCurrentEquippedItem();
-        PotionJugTileEntity te = (PotionJugTileEntity) world.getTileEntity(x, y, z);
-        if (stack == null)
-        {
-            return true;
-        }
-        if (stack.getItem() == Items.glass_bottle && stack.getItemDamage() == 0)
-        {
-            if (te.containerHas > 0)
+                    List effectList = PotionHelper.getPotionEffects(((PotionJugTileEntity) tileEntity).potionID, true);
+                    for (Object effect : effectList)
+                    {
+                        player.addPotionEffect((PotionEffect) effect);
+                    }
+                }
+            } else
             {
-                if (!player.capabilities.isCreativeMode)
+                ItemStack itemStack = player.getCurrentEquippedItem();
+                if (itemStack != null)
                 {
-                    stack.stackSize--;
-                }
-                te.containerHas--;
-                ItemStack potion = new ItemStack(Items.potionitem, 1, te.potionID);
-                if (!player.capabilities.isCreativeMode)
-                {
-                    player.inventory.addItemStackToInventory(potion);
+                    Item heldItem = itemStack.getItem();
+                    if (heldItem != null)
+                    {
+                        // Check if the player is holding a potion
+                        if (heldItem == Items.potionitem)
+                        {
+                            // Make sure it's not a bottle of water
+                            if (itemStack.getItemDamage() > 0)
+                            {
+                                // @TODO - allow custom potions
+                                // For now, vanilla potions only
+                                if (!itemStack.hasTagCompound())
+                                {
+                                    boolean changed = false;
+                                    // Jug doesn't have any potion in it
+                                    if (((PotionJugTileEntity) tileEntity).containerHas == 0)
+                                    {
+                                        ((PotionJugTileEntity) tileEntity).potionID = itemStack.getItemDamage();
+                                        changed = true;
+
+                                    } else if (((PotionJugTileEntity) tileEntity).potionID == itemStack.getItemDamage())
+                                    {
+                                        changed = true;
+                                    }
+                                    if (changed)
+                                    {
+                                        // Make sure the jug isn't full
+                                        if (((PotionJugTileEntity) tileEntity).containerHas < ((PotionJugTileEntity) tileEntity).containerMax)
+                                        {
+                                            ((PotionJugTileEntity) tileEntity).containerHas++;
+                                        }
+                                        if (!player.capabilities.isCreativeMode)
+                                        {
+                                            itemStack.stackSize--;
+
+                                            ItemStack potion = new ItemStack(Items.glass_bottle, 1, 0);
+                                            player.inventory.addItemStackToInventory(potion);
+                                        }
+                                    }
+                                }
+
+                            }
+
+                        } else if (heldItem == Items.glass_bottle && itemStack.getItemDamage() == 0)
+                        {
+                            // Check if the jug has anything in it
+                            if (((PotionJugTileEntity) tileEntity).containerHas > 0)
+                            {
+                                // Remove a unit of potion from the jug
+                                ((PotionJugTileEntity) tileEntity).containerHas--;
+                                ItemStack potion = new ItemStack(Items.potionitem, 1, ((PotionJugTileEntity) tileEntity).potionID);
+                                if (!player.capabilities.isCreativeMode)
+                                {
+                                    // Add it to the player's inventory if they aren't in creative mode
+                                    player.inventory.addItemStackToInventory(potion);
+                                    itemStack.stackSize--;
+                                }
+                            }
+                        }
+                    }
                 }
             }
-        } else if (stack.getItem() == Items.potionitem && stack.getItemDamage() > 0 && !stack.hasTagCompound())
-        {//Custom potions are not allowed!
-            if (te.containerHas == 0 || (stack.getItemDamage() == te.potionID && (te.containerHas < te.containerMax)))
-            {
-
-                te.potionID = stack.getItemDamage();
-
-                if (!player.capabilities.isCreativeMode)
-                {
-                    stack.stackSize--;
-
-                    ItemStack potion = new ItemStack(Items.glass_bottle, 1, 0);
-                    player.inventory.addItemStackToInventory(potion);
-                }
-                te.containerHas++;
-            }
-        }
-        if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER)
-        {
-            //PacketDispatcher.sendPacketToAllPlayers(world.getTileEntity(x, y, z).getDescriptionPacket());
         }
         return true;
     }
