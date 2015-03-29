@@ -1,7 +1,7 @@
 package alchemyplusplus.registry;
 
-import alchemyplusplus.Config;
 import alchemyplusplus.AlchemyPlusPlus;
+import alchemyplusplus.Config;
 import alchemyplusplus.handler.FluidHandler;
 import alchemyplusplus.item.PotionBucket;
 import alchemyplusplus.potion.fluid.PotionFluid;
@@ -11,6 +11,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialLiquid;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
@@ -35,7 +36,7 @@ public class PotionRegistry
 
                 //ItemRegistry.addCreativePotionBucket(block, potion);
                 PotionBucket potionBucket = new PotionBucket(block, potion);
-                potionBucket.setCreativeTab(CreativeTabRegistry.APP_TAB);
+                potionBucket.setCreativeTab(CreativeTabs.tabBrewing);
                 potionBucket.setUnlocalizedName(potion.getName());
                 GameRegistry.registerItem(potionBucket, potion.getName());
 
@@ -43,7 +44,7 @@ public class PotionRegistry
 
                 FluidHandler.INSTANCE.buckets.put(block, potionBucket);
 
-                block.setCreativeTab(CreativeTabRegistry.APP_TAB);
+                block.setCreativeTab(CreativeTabs.tabBrewing);
 
                 if (Config.PotionBucketCrafting)
                 {
