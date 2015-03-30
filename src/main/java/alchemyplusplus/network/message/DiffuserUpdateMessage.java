@@ -13,7 +13,7 @@ public class DiffuserUpdateMessage implements IMessage, IMessageHandler<Diffuser
 {
 
     private int posX, posY, posZ;
-    private int bottleColor, potionDamageValue, fluidLevel, fluidID;
+    private int potionDamageValue, fluidLevel, fluidID;
     private boolean isDiffusing;
     private int[] effectIDs;
 
@@ -28,8 +28,7 @@ public class DiffuserUpdateMessage implements IMessage, IMessageHandler<Diffuser
         this.posY = diffuser.yCoord;
         this.posZ = diffuser.zCoord;
 
-        this.bottleColor = diffuser.bottleColor;
-        this.potionDamageValue = diffuser.potionDamageValue;
+        this.potionDamageValue = diffuser.fluidTank.potionDamageValue;
         this.isDiffusing = diffuser.isDiffusing;
         this.fluidLevel = diffuser.getFluidAmount();
         if (diffuser.getFluid() != null)
@@ -44,7 +43,9 @@ public class DiffuserUpdateMessage implements IMessage, IMessageHandler<Diffuser
         int id = 0;
 
         for (PotionEffect potionEffect : diffuser.fluidTank.potionEffects)
+        {
             this.effectIDs[id++] = potionEffect.getPotionID();
+        }
 
     }
 
@@ -55,7 +56,6 @@ public class DiffuserUpdateMessage implements IMessage, IMessageHandler<Diffuser
         this.posY = buf.readInt();
         this.posZ = buf.readInt();
 
-        this.bottleColor = buf.readInt();
         this.potionDamageValue = buf.readInt();
         this.isDiffusing = buf.readBoolean();
         this.fluidLevel = buf.readInt();
@@ -65,7 +65,9 @@ public class DiffuserUpdateMessage implements IMessage, IMessageHandler<Diffuser
         this.effectIDs = new int[size];
         int id = 0;
         while (id < size)
+        {
             this.effectIDs[id++] = buf.readInt();
+        }
     }
 
     @Override
@@ -75,7 +77,6 @@ public class DiffuserUpdateMessage implements IMessage, IMessageHandler<Diffuser
         buf.writeInt(this.posY);
         buf.writeInt(this.posZ);
 
-        buf.writeInt(this.bottleColor);
         buf.writeInt(this.potionDamageValue);
         buf.writeBoolean(this.isDiffusing);
         buf.writeInt(this.fluidLevel);
@@ -83,7 +84,9 @@ public class DiffuserUpdateMessage implements IMessage, IMessageHandler<Diffuser
 
         buf.writeInt(this.effectIDs.length);
         for (int id : this.effectIDs)
+        {
             buf.writeInt(id);
+        }
     }
 
     @Override
@@ -92,10 +95,9 @@ public class DiffuserUpdateMessage implements IMessage, IMessageHandler<Diffuser
         TileEntity tile = FMLClientHandler.instance().getClient().theWorld.getTileEntity(message.posX, message.posY, message.posZ);
         if (tile instanceof DiffuserTileEntity)
         {
-            ((DiffuserTileEntity) tile).setBottleColorValue(message.bottleColor);
             ((DiffuserTileEntity) tile).setDiffusingState(message.isDiffusing);
             ((DiffuserTileEntity) tile).syncFluidAmountAt(message.fluidLevel, message.fluidID);
-            ((DiffuserTileEntity) tile).potionDamageValue = this.potionDamageValue;
+            ((DiffuserTileEntity) tile).fluidTank.potionDamageValue = this.potionDamageValue;
         }
         return null;
     }

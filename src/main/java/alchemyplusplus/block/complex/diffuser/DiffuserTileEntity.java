@@ -10,12 +10,12 @@ import alchemyplusplus.potion.fluid.PotionFluidTank;
 import alchemyplusplus.reference.Naming;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import jakimbox.prefab.tileEntity.BasicTileEntity;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemPotion;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
@@ -31,21 +31,15 @@ import net.minecraftforge.fluids.IFluidTank;
 public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler, IFluidTank
 {
 
-    private boolean updateState;
+    private boolean updateState = false;
     public PotionFluidTank fluidTank;
-    public boolean isDiffusing;
-    public int bottleColor;
-    public int diffusingTicks;
-    public int potionDamageValue;
+    public boolean isDiffusing = false;
+    public short diffusingTicks = 0;
 
     public DiffuserTileEntity()
     {
         super(Naming.Blocks.DIFFUSER);
-        this.bottleColor = 0;
-        this.diffusingTicks = 0;
         this.fluidTank = new PotionFluidTank((int) 333);
-        this.isDiffusing = false;
-        this.updateState = false;
     }
 
     public boolean canDiffuse()
@@ -69,40 +63,39 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
         return isDiffusing;
     }
 
-    public void setBottleColorValue(int bottleColor)
-    {
-        this.bottleColor = bottleColor;
-    }
-
     public void resetDiffuser()
     {
-        this.bottleColor = 0;
-        this.diffusingTicks = 0;
-        this.fluidTank = new PotionFluidTank((int) 333);
-        this.isDiffusing = false;
-        this.updateState = true;
+        diffusingTicks = 0;
+        fluidTank = new PotionFluidTank((int) 333);
+        isDiffusing = false;
+        updateState = true;
     }
 
-    public void toggleDiffusingState()
+    private void printPotionEffects()
     {
-        if (Config.DebugMode)
+        if (getFluid() != null)
         {
-            // @TODO - remove these, and/or allow player to see info
-            AlchemyPlusPlus.logger.info("Fluid level:" + this.fluidTank.getFluidAmount());
-            AlchemyPlusPlus.logger.info("Diffusing: " + isDiffusing);
-            if (this.getFluid() != null && this.getFluid().getFluid() instanceof PotionFluid)
+            if (getFluid().getFluid() instanceof PotionFluid)
             {
                 if (((PotionFluid) this.getFluid().getFluid()).potionEffects != null)
                 {
                     Iterator iter = ((PotionFluid) this.getFluid().getFluid()).potionEffects.iterator();
                     while (iter.hasNext())
                     {
-                        AlchemyPlusPlus.logger.info("Effects: " + iter.next().toString());
+                        AlchemyPlusPlus.logger.debug("Effects: " + iter.next().toString());
                     }
                 }
 
             }
         }
+    }
+
+    public void toggleDiffusingState()
+    {
+        AlchemyPlusPlus.logger.debug("Fluid level:" + this.fluidTank.getFluidAmount());
+        AlchemyPlusPlus.logger.debug("Diffusing: " + isDiffusing);
+        printPotionEffects();
+
         if (this.fluidTank.getFluidAmount() > 0)
         {
             isDiffusing = !isDiffusing;
@@ -110,13 +103,13 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
         {
             isDiffusing = false;
         }
-        this.updateState = true;
+        updateState = true;
     }
 
     public void setDiffusingState(boolean value)
     {
-        this.isDiffusing = value;
-        this.updateState = true;
+        isDiffusing = value;
+        updateState = true;
     }
 
     @Override
@@ -125,25 +118,24 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
         if (this.isDiffusing)
         {
             // Drain by 1 every # of ticks, as set in the config
-            if (this.diffusingTicks % Config.DiffusingRate == 0)
+            if (diffusingTicks % Config.DiffusingRate == 0)
             {
                 this.drain(1, true);
             }
 
             if (diffusingTicks <= 0)
             {
-                this.diffusingTicks = 20;
+                diffusingTicks = 20;
                 if (!this.fluidTank.potionEffects.isEmpty() && this.fluidTank.getFluidAmount() > 0)
                 {
                     this.applyPotionEffects();
                 }
             }
-            this.diffusingTicks--;
+            diffusingTicks--;
 
             if (this.getFluidAmount() == 0)
             {
-                this.setBottleColorValue(0);
-                this.setDiffusingState(false);
+                setDiffusingState(false);
             }
         }
 
@@ -169,27 +161,26 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
         return false;
     }
 
-    private void applyPotionEffects()
+    private List getPlayersInsideEffectRadius()
     {
-        // @TODO - figure out how to cache these numbers
-        int expandX, expandY, expandZ;
-        expandX = Config.DiffusingRadius;
-        expandY = Config.DiffusingRadius;
-        expandZ = Config.DiffusingRadius;
+        // Get the bounding box for the diffusing range
+        AxisAlignedBB boundingBox = AxisAlignedBB.getBoundingBox((double) xCoord, (double) yCoord, (double) zCoord, (double) (xCoord + 1), (double) (yCoord + 1), (double) (zCoord + 1));
         if (this.isDiffuserHeated())
         {
-            expandX = expandX * Config.DiffusingRadiusMultiplier;
-            expandY = expandY * Config.DiffusingRadiusMultiplier;
-            expandZ = expandZ * Config.DiffusingRadiusMultiplier;
+            boundingBox.expand(Config.DiffusingRadiusActive, Config.DiffusingRadiusActive, Config.DiffusingRadiusActive);
+        } else
+        {
+            boundingBox.expand(Config.DiffusingRadius, Config.DiffusingRadius, Config.DiffusingRadius);
         }
+        boundingBox.maxY = (double) this.worldObj.getHeight();
+        return this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, boundingBox);
+    }
 
-        // Get the bounding box for the diffusing range
-        AxisAlignedBB axisalignedbb = AxisAlignedBB.getBoundingBox((double) this.xCoord, (double) this.yCoord, (double) this.zCoord, (double) (this.xCoord + 1), (double) (this.yCoord + 1), (double) (this.zCoord + 1)).expand(expandX, expandY, expandZ);
-        axisalignedbb.maxY = (double) this.worldObj.getHeight();
-        List list = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
+    private void applyPotionEffects()
+    {
 
         // Iterate through all instances of EntityPlayer in the area
-        Iterator players = list.iterator();
+        Iterator players = getPlayersInsideEffectRadius().iterator();
         EntityPlayer entityplayer;
         while (players.hasNext())
         {
@@ -240,24 +231,11 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
         super.writeToNBT(nbt);
         if (this.fluidTank != null)
         {
-            nbt.setTag("diffuserTank", this.fluidTank.writeToNBT(new NBTTagCompound()));
-            nbt.setInteger("diffuserTankAmount", this.fluidTank.getFluidAmount());
-            nbt.setInteger("effectsCount", this.fluidTank.potionEffects.size());
-            nbt.setInteger("potionDamageValue", this.potionDamageValue);
-            Iterator potionEffects = this.fluidTank.potionEffects.iterator();
-            int count = 0;
-            while (potionEffects.hasNext())
-            {
-                PotionEffect effect = (PotionEffect) potionEffects.next();
-                nbt.setInteger("effect" + count, effect.getPotionID());
-                nbt.setInteger("duration" + count, effect.getDuration());
-                count++;
-            }
+            nbt.setTag("diffuserTank", fluidTank.writeToNBT(new NBTTagCompound()));
         }
 
-        nbt.setShort("diffusingTicks", (short) this.diffusingTicks);
-        nbt.setInteger("bottleColor", this.bottleColor);
-        nbt.setBoolean("isDiffusing", this.isDiffusing);
+        nbt.setShort("diffusingTicks", diffusingTicks);
+        nbt.setBoolean("isDiffusing", isDiffusing);
 
     }
 
@@ -266,40 +244,27 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
     {
         super.readFromNBT(nbt);
 
-        this.diffusingTicks = nbt.getShort("diffusingTicks");
-
-        this.isDiffusing = nbt.getBoolean("isDiffusing");
-
-        this.bottleColor = nbt.getInteger("bottleColor");
-
-        this.potionDamageValue = nbt.getInteger("potionDamageValue");
+        diffusingTicks = nbt.getShort("diffusingTicks");
+        isDiffusing = nbt.getBoolean("isDiffusing");
 
         if (this.fluidTank != null)
         {
-            this.fluidTank.readFromNBT(nbt.getCompoundTag("diffuserTank"));
-            this.fluidTank.potionEffects = new ArrayList();
-
-            int count = nbt.getInteger("effectsCount");
-            while (count >= 0)
-            {
-                int potionID = nbt.getInteger("effect" + count);
-                int duration = nbt.getInteger("duration" + count);
-                PotionEffect effect = new PotionEffect(potionID, duration, 0);
-
-                this.fluidTank.potionEffects.add(effect);
-                count--;
-            }
+            fluidTank.readFromNBT(nbt.getCompoundTag("diffuserTank"));
         }
     }
 
     public int fillWithOverRide(ItemStack heldItem)
     {
-        PotionFluid potionFluid = new PotionFluid(heldItem);
-        this.fluidTank = new PotionFluidTank(new PotionFluidStack(potionFluid, 333), 333);
-        this.potionDamageValue = heldItem.getItemDamage();
-        this.bottleColor = potionFluid.getColor();
-        this.updateState = true;
-        return this.fluidTank.getFluidAmount();
+        if (heldItem != null)
+        {
+            PotionFluid potionFluid = new PotionFluid(heldItem);
+            this.fluidTank = new PotionFluidTank(new PotionFluidStack(potionFluid, 333), 333);
+            fluidTank.potionDamageValue = heldItem.getItemDamage();
+            fluidTank.potionID = ItemPotion.getIdFromItem(heldItem.getItem());
+            this.updateState = true;
+            return this.fluidTank.getFluidAmount();
+        }
+        return 0;
     }
 
     @Override

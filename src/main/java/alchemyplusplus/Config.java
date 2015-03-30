@@ -42,6 +42,9 @@ public class Config
     // Diffuser in active mode rate multiplier
     public static int DiffusingRateMultiplier = 2;
 
+    // Diffuser in active mode radius
+    public static int DiffusingRadiusActive;
+
     // Max number of effects per diffuser
     public static int EffectsLimit = 0;
 
@@ -134,6 +137,8 @@ public class Config
         prop.setLanguageKey("config.diffuser.rate.multiplier");
         DiffusingRateMultiplier = prop.getInt();
         configList.add(prop.getName());
+
+        DiffusingRadiusActive = Config.DiffusingRadius * Config.DiffusingRadiusMultiplier;
 
         if (config.hasChanged())
         {

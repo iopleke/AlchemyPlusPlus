@@ -116,7 +116,7 @@ public class DiffuserBlock extends BasicBlockContainer
                 {
 
                     // Set item to potion
-                    ItemStack potion = new ItemStack(Items.potionitem, 1, diffuser.potionDamageValue);
+                    ItemStack potion = new ItemStack(Items.potionitem, 1, diffuser.fluidTank.potionDamageValue);
                     Iterator iter = diffuser.fluidTank.potionEffects.iterator();
                     while (iter.hasNext())
                     {

@@ -20,7 +20,7 @@ public class DiffuserTileEntityRenderer extends BasicTileEntityRenderer
         if (model instanceof DiffuserModel && tileEntity instanceof DiffuserTileEntity)
         {
             ((DiffuserModel) model).isDiffusing = ((DiffuserTileEntity) tileEntity).isDiffuserActive();
-            ((DiffuserModel) model).potionDamage = ((DiffuserTileEntity) tileEntity).bottleColor;
+            ((DiffuserModel) model).potionDamage = ((DiffuserTileEntity) tileEntity).fluidTank.potionDamageValue;
             ((DiffuserModel) model).fluidAmount = ((DiffuserTileEntity) tileEntity).getFluidAmount();
         }
     }
