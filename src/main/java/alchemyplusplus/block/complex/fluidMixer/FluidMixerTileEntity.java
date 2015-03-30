@@ -107,7 +107,7 @@ public class FluidMixerTileEntity extends TileEntity implements IInventory
     @Override
     public boolean hasCustomInventoryName()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
     public boolean isInvNameLocalized()
@@ -133,10 +133,10 @@ public class FluidMixerTileEntity extends TileEntity implements IInventory
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound par1NBTTagCompound)
+    public void readFromNBT(NBTTagCompound nbt)
     {
-        super.readFromNBT(par1NBTTagCompound);
-        NBTTagList nbttaglist = par1NBTTagCompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
+        super.readFromNBT(nbt);
+        NBTTagList nbttaglist = nbt.getTagList("Items", Constants.NBT.TAG_COMPOUND);
         this.mixerInventory = new ItemStack[this.getSizeInventory()];
 
         for (int i = 0; i < nbttaglist.tagCount(); ++i)
@@ -150,7 +150,7 @@ public class FluidMixerTileEntity extends TileEntity implements IInventory
             }
         }
 
-        this.mixingTicks = par1NBTTagCompound.getShort("mixingTicks");
+        this.mixingTicks = nbt.getShort("mixingTicks");
 
     }
 
@@ -185,10 +185,10 @@ public class FluidMixerTileEntity extends TileEntity implements IInventory
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound par1NBTTagCompound)
+    public void writeToNBT(NBTTagCompound nbt)
     {
-        super.writeToNBT(par1NBTTagCompound);
-        par1NBTTagCompound.setShort("mixingTicks", (short) this.mixingTicks);
+        super.writeToNBT(nbt);
+        nbt.setShort("mixingTicks", (short) this.mixingTicks);
         NBTTagList nbttaglist = new NBTTagList();
 
         for (int i = 0; i < this.mixerInventory.length; ++i)
@@ -202,7 +202,7 @@ public class FluidMixerTileEntity extends TileEntity implements IInventory
             }
         }
 
-        par1NBTTagCompound.setTag("Items", nbttaglist);
+        nbt.setTag("Items", nbttaglist);
 
     }
 
