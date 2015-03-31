@@ -1,10 +1,8 @@
 package alchemyplusplus.helper;
 
 import alchemyplusplus.block.complex.distillery.DistilleryTileEntity;
-import alchemyplusplus.block.complex.extractor.ExtractorTileEntity;
 import alchemyplusplus.block.complex.fluidMixer.FluidMixerTileEntity;
 import alchemyplusplus.item.MixingFilter;
-import alchemyplusplus.registry.BlockRegistry;
 import alchemyplusplus.registry.ItemRegistry;
 import java.util.ArrayList;
 import java.util.List;
@@ -198,29 +196,6 @@ public class MixingHelper
 
         }
         return false;
-    }
-
-    public static boolean extractingPossible(ExtractorTileEntity te)
-    {
-        if (te.getStackInSlot(0) != null && te.getStackInSlot(1) != null
-                && te.getStackInSlot(2) != null
-                && (isIngridient(te.getStackInSlot(0)))
-                && (te.getStackInSlot(1).getItem() == Items.potionitem)
-                && (te.getStackInSlot(1).getItemDamage() != 0)
-                && (!te.getStackInSlot(1).hasTagCompound())
-                && (te.getStackInSlot(2).getItem() == Items.glass_bottle))
-        {
-            if (te.getStackInSlot(0).getItem() == ItemRegistry.fishOil)
-            {
-                return (te.getStackInSlot(0).getItemDamage() == 100);
-            } else
-            {
-                return true;
-            }
-        } else
-        {
-            return false;
-        }
     }
 
     static public int getBoilingTemperature(ItemStack stack)
@@ -447,74 +422,6 @@ public class MixingHelper
             }
 
         }
-
-    }
-
-    public static void performExtraction(ExtractorTileEntity te)
-    {
-
-        if (te.getStackInSlot(0).getItem() == ItemRegistry.squidEye)
-        {
-            // Night vision I - 8230 || splash - 16422
-            if (te.getStackInSlot(1).getItemDamage() == 8230
-                    || te.getStackInSlot(1).getItemDamage() == 16422)
-            {
-                addEffect(te.getStackInSlot(1), new PotionEffect(15, 100));
-            }
-        } else if (te.getStackInSlot(0).getItem() == ItemRegistry.confusionPotion)
-        {
-            // Slowness I - 8234 || splash - 16426
-            if (te.getStackInSlot(1).getItemDamage() == 8234
-                    || te.getStackInSlot(1).getItemDamage() == 16426)
-            {
-                addEffect(te.getStackInSlot(1), new PotionEffect(9, 100));
-            }
-        } else if (te.getStackInSlot(0).getItem() == ItemRegistry.springyCord)
-        {
-            // Speed I - 8194 || splash - 16386
-            if (te.getStackInSlot(1).getItemDamage() == 8194
-                    || te.getStackInSlot(1).getItemDamage() == 16386)
-            {
-                addEffect(te.getStackInSlot(1), new PotionEffect(8, 100));
-            }
-        } else if (te.getStackInSlot(0).getItem() == ItemRegistry.ironPowder)
-        {
-            // Strength I - 8201 || splash - 16393
-            if (te.getStackInSlot(1).getItemDamage() == 8201
-                    || te.getStackInSlot(1).getItemDamage() == 16393)
-            {
-                addEffect(te.getStackInSlot(1), new PotionEffect(11, 100));
-            }
-        } else if (te.getStackInSlot(0).getItem() == Item.getItemFromBlock(BlockRegistry.fleshBlock))
-        {
-            // Poison I - 8196 || splash - 16388
-            if (te.getStackInSlot(1).getItemDamage() == 8196
-                    || te.getStackInSlot(1).getItemDamage() == 16388)
-            {
-                addEffect(te.getStackInSlot(1), new PotionEffect(17, 100));
-            }
-        } else if (te.getStackInSlot(0).getItem() == ItemRegistry.fishOil)
-        {
-            // Regen I - 8193 || splash 16385
-            if (te.getStackInSlot(1).getItemDamage() == 8193
-                    || te.getStackInSlot(1).getItemDamage() == 16385)
-            {
-                addEffect(te.getStackInSlot(1), new PotionEffect(13, 100));
-            }
-        } else if (te.getStackInSlot(0).getItem() == Items.nether_star)
-        {
-            // Instant Damage I - 8268 || splash 16460
-            if (te.getStackInSlot(1).getItemDamage() == 8268
-                    || te.getStackInSlot(1).getItemDamage() == 16460)
-            {
-                addEffect(te.getStackInSlot(1), new PotionEffect(20, 100));
-            }
-        }
-
-        te.decrStackSize(0, 1);
-        ItemStack stack = te.getStackInSlot(2);
-        te.setInventorySlotContents(2, te.getStackInSlot(1));
-        te.setInventorySlotContents(1, stack);
 
     }
 

@@ -3,9 +3,6 @@ package alchemyplusplus.handler;
 import alchemyplusplus.block.complex.distillery.DistilleryContainer;
 import alchemyplusplus.block.complex.distillery.DistilleryGUI;
 import alchemyplusplus.block.complex.distillery.DistilleryTileEntity;
-import alchemyplusplus.block.complex.extractor.ExtractorContainer;
-import alchemyplusplus.block.complex.extractor.ExtractorGUI;
-import alchemyplusplus.block.complex.extractor.ExtractorTileEntity;
 import alchemyplusplus.block.complex.fluidMixer.FluidMixerContainer;
 import alchemyplusplus.block.complex.fluidMixer.FluidMixerGUI;
 import alchemyplusplus.block.complex.fluidMixer.FluidMixerTileEntity;
@@ -22,6 +19,7 @@ public class GUIHandler implements IGuiHandler
     @Override
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
     {
+        // @TODO - change this to use instanceof instead of an arbitrary GUI ID
         switch (ID)
         {
             case 0:
@@ -31,8 +29,7 @@ public class GUIHandler implements IGuiHandler
             }
             case 1:
             { // Extractor
-                ExtractorTileEntity entity = (ExtractorTileEntity) world.getTileEntity(x, y, z);
-                return new ExtractorGUI(player.inventory, entity);
+                return null;
             }
             case 2:
             { // Distillery
@@ -57,8 +54,7 @@ public class GUIHandler implements IGuiHandler
             }
             case 1:
             { // Extractor
-                ExtractorTileEntity entity = (ExtractorTileEntity) world.getTileEntity(x, y, z);
-                return new ExtractorContainer(player.inventory, entity);
+                return null;
             }
             case 2:
             { // Distillery
