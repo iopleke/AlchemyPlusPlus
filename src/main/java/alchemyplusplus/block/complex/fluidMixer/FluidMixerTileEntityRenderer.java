@@ -10,7 +10,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 
-public class FluidMixerBlockRender extends TileEntitySpecialRenderer
+public class FluidMixerTileEntityRenderer extends TileEntitySpecialRenderer
 {
 
     FluidMixerModel model = new FluidMixerModel();

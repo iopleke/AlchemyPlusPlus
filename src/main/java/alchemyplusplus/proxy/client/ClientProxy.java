@@ -4,7 +4,7 @@ import alchemyplusplus.block.complex.diffuser.DiffuserTileEntity;
 import alchemyplusplus.block.complex.diffuser.DiffuserTileEntityRenderer;
 import alchemyplusplus.block.complex.distillery.DistilleryTileEntity;
 import alchemyplusplus.block.complex.distillery.DistilleryTileEntityRenderer;
-import alchemyplusplus.block.complex.fluidMixer.FluidMixerBlockRender;
+import alchemyplusplus.block.complex.fluidMixer.FluidMixerTileEntityRenderer;
 import alchemyplusplus.block.complex.fluidMixer.FluidMixerTileEntity;
 import alchemyplusplus.block.complex.potionJug.PotionJugTileEntity;
 import alchemyplusplus.block.complex.potionJug.PotionJugTileEntityRenderer;
@@ -43,7 +43,7 @@ public class ClientProxy extends CommonProxyBase
         ClientRegistry.bindTileEntitySpecialRenderer(DistilleryTileEntity.class, distilleryRenderer);
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegistry.distillery), new BasicItemRenderer(distilleryRenderer, new DistilleryTileEntity()));
 
-        ClientRegistry.bindTileEntitySpecialRenderer(FluidMixerTileEntity.class, new FluidMixerBlockRender());
+        ClientRegistry.bindTileEntitySpecialRenderer(FluidMixerTileEntity.class, new FluidMixerTileEntityRenderer());
 
         DiffuserTileEntityRenderer diffuserRenderer = new DiffuserTileEntityRenderer();
         ClientRegistry.bindTileEntitySpecialRenderer(DiffuserTileEntity.class, diffuserRenderer);
