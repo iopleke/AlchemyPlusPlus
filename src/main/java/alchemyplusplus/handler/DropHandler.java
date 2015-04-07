@@ -6,7 +6,7 @@ import java.util.Random;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.monster.EntitySlime;
-import net.minecraft.entity.passive.EntitySquid;
+import net.minecraft.entity.passive.EntityitemStack;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -29,17 +29,17 @@ public class DropHandler
     {
         if (e.entityLiving instanceof EntityPlayer && e.source == DamageSource.anvil)
         {
-            ItemStack stack = new ItemStack(ItemRegistry.confusionPotion, 1, 0);
+            ItemStack itemStack = new ItemStack(ItemRegistry.confusionPotion, 1, 0);
             Random random = new Random();
 
-            stack.stackTagCompound = new NBTTagCompound();
-            stack.getTagCompound().setString("owner", ((EntityPlayer) e.entityLiving).getDisplayName());
+            itemStack.stackTagCompound = new NBTTagCompound();
+            itemStack.getTagCompound().setString("owner", ((EntityPlayer) e.entityLiving).getDisplayName());
 
             float f = random.nextFloat() * 0.8F + 0.1F;
             float f1 = random.nextFloat() * 0.8F + 0.1F;
             float f2 = random.nextFloat() * 0.8F + 0.1F;
 
-            EntityItem entityitem = new EntityItem(e.entityLiving.worldObj, (double) ((float) e.entityLiving.posX + f), (double) ((float) e.entityLiving.posY + f1), (double) ((float) e.entityLiving.posZ + f2), stack);
+            EntityItem entityitem = new EntityItem(e.entityLiving.worldObj, (double) ((float) e.entityLiving.posX + f), (double) ((float) e.entityLiving.posY + f1), (double) ((float) e.entityLiving.posZ + f2), itemStack);
 
             entityitem.motionX = (double) ((float) random.nextGaussian() * 0.05F);
             entityitem.motionY = (double) ((float) random.nextGaussian() * 0.05F + 0.2F);
@@ -51,38 +51,40 @@ public class DropHandler
         {
             if (e.source.getSourceOfDamage() != null && e.source.getSourceOfDamage() instanceof EntityPlayer)
             {
-                ItemStack stack = (((EntityPlayer) e.source.getSourceOfDamage()).getHeldItem());
-                if (stack.getItem() == Items.shears)
-                {
-
-                    ItemStack eyeStack = new ItemStack(ItemRegistry.squidEye, 1, 0);
-                    Random random = new Random();
-                    float f = random.nextFloat() * 0.8F + 0.1F;
-                    float f1 = random.nextFloat() * 0.8F + 0.1F;
-                    float f2 = random.nextFloat() * 0.8F + 0.1F;
-
-                    EntityItem entityitem = new EntityItem(e.entityLiving.worldObj, (double) ((float) e.entityLiving.posX + f), (double) ((float) e.entityLiving.posY + f1), (double) ((float) e.entityLiving.posZ + f2), eyeStack);
-
-                    entityitem.motionX = (double) ((float) random.nextGaussian() * 0.05F);
-                    entityitem.motionY = (double) ((float) random.nextGaussian() * 0.05F + 0.2F);
-                    entityitem.motionZ = (double) ((float) random.nextGaussian() * 0.05F);
-
-                    e.entityLiving.worldObj.spawnEntityInWorld(entityitem);
-
-                    stack.damageItem(stack.getMaxDamage() + 1, e.entityLiving);
+                ItemStack itemStack = (((EntityPlayer) e.source.getSourceOfDamage()).getHeldItem());
+                if(itemStack != null){
+                    if (itemStack.getItem() == Items.shears)
+                    {
+    
+                        ItemStack eyeStack = new ItemStack(ItemRegistry.squidEye, 1, 0);
+                        Random random = new Random();
+                        float f = random.nextFloat() * 0.8F + 0.1F;
+                        float f1 = random.nextFloat() * 0.8F + 0.1F;
+                        float f2 = random.nextFloat() * 0.8F + 0.1F;
+    
+                        EntityItem entityitem = new EntityItem(e.entityLiving.worldObj, (double) ((float) e.entityLiving.posX + f), (double) ((float) e.entityLiving.posY + f1), (double) ((float) e.entityLiving.posZ + f2), eyeStack);
+    
+                        entityitem.motionX = (double) ((float) random.nextGaussian() * 0.05F);
+                        entityitem.motionY = (double) ((float) random.nextGaussian() * 0.05F + 0.2F);
+                        entityitem.motionZ = (double) ((float) random.nextGaussian() * 0.05F);
+    
+                        e.entityLiving.worldObj.spawnEntityInWorld(entityitem);
+    
+                        itemStack.damageItem(itemStack.getMaxDamage() + 1, e.entityLiving);
+                    }
                 }
             }
         } else if (e.entityLiving instanceof EntitySlime)
         {
             if (e.source == DamageSource.onFire || e.source == DamageSource.inFire || e.source == DamageSource.fall)
             {
-                ItemStack stack = new ItemStack(ItemRegistry.springyCord, 1, 0);
+                ItemStack itemStack = new ItemStack(ItemRegistry.springyCord, 1, 0);
                 Random random = new Random();
                 float f = random.nextFloat() * 0.8F + 0.1F;
                 float f1 = random.nextFloat() * 0.8F + 0.1F;
                 float f2 = random.nextFloat() * 0.8F + 0.1F;
 
-                EntityItem entityitem = new EntityItem(e.entityLiving.worldObj, (double) ((float) e.entityLiving.posX + f), (double) ((float) e.entityLiving.posY + f1), (double) ((float) e.entityLiving.posZ + f2), stack);
+                EntityItem entityitem = new EntityItem(e.entityLiving.worldObj, (double) ((float) e.entityLiving.posX + f), (double) ((float) e.entityLiving.posY + f1), (double) ((float) e.entityLiving.posZ + f2), itemStack);
 
                 entityitem.motionX = (double) ((float) random.nextGaussian() * 0.05F);
                 entityitem.motionY = (double) ((float) random.nextGaussian() * 0.05F + 0.2F);
@@ -99,14 +101,13 @@ public class DropHandler
                 Random random = new Random();
                 if (random.nextFloat() >= 0.7f)
                 {
-                    ItemStack stack = new ItemStack(ItemRegistry.ironPowder, 1, 0);
+                    ItemStack itemStack = new ItemStack(ItemRegistry.ironPowder, 1, 0);
 
                     float f = random.nextFloat() * 0.8F + 0.1F;
                     float f1 = random.nextFloat() * 0.8F + 0.1F;
                     float f2 = random.nextFloat() * 0.8F + 0.1F;
 
-                    EntityItem entityitem = new EntityItem(e.entityLiving.worldObj, (double) ((float) e.entityLiving.posX + f), (double) ((float) e.entityLiving.posY + f1), (double) ((float) e.entityLiving.posZ + f2),
-                            stack);
+                    EntityItem entityitem = new EntityItem(e.entityLiving.worldObj, (double) ((float) e.entityLiving.posX + f), (double) ((float) e.entityLiving.posY + f1), (double) ((float) e.entityLiving.posZ + f2), itemStack);
 
                     entityitem.motionX = (double) ((float) random.nextGaussian() * 0.05F);
                     entityitem.motionY = (double) ((float) random.nextGaussian() * 0.05F + 0.2F);
