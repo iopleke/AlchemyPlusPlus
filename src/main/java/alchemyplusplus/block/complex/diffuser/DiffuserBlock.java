@@ -49,13 +49,13 @@ public class DiffuserBlock extends BasicBlockContainer
                     ItemStack potionItemStack = player.getHeldItem();
                     if (potionItemStack != null)
                     {
-                        if (diffuser.fluidTank.getFluidAmount() == diffuser.fluidTank.getCapacity())
+                        if (diffuser.getFluidAmount() == diffuser.getCapacity())
                         {
                             if (!world.isRemote)
                             {
                                 NotificationHelper.sendPlayerChatMessage(player, "diffuser.full");
                             }
-                        } else if (diffuser.fluidTank.getFluidAmount() == 0 || diffuser.fluidTank.getFluid().fluidID == ItemPotion.getIdFromItem(player.getHeldItem().getItem()))
+                        } else if (diffuser.getFluidAmount() == 0 || diffuser.getFluid().fluidID == ItemPotion.getIdFromItem(player.getHeldItem().getItem()))
                         {
                             // @TODO - move potion match check to the TileEntity fill method
                             if (diffuser.getFluidAmount() != 0)
@@ -95,7 +95,7 @@ public class DiffuserBlock extends BasicBlockContainer
                         player.inventory.addItemStackToInventory(new ItemStack(Items.glass_bottle));
                     }
 
-                    if (diffuser.fluidTank.getFluid() != null)
+                    if (diffuser.getFluid() != null)
                     {
                         diffuser.resetDiffuser();
 
@@ -112,12 +112,12 @@ public class DiffuserBlock extends BasicBlockContainer
                 }
             } else if (player.getHeldItem().getItem() == Items.glass_bottle)
             {
-                if (diffuser.fluidTank.getFluidAmount() > 0)
+                if (diffuser.getFluidAmount() > 0)
                 {
 
                     // Set item to potion
-                    ItemStack potion = new ItemStack(Items.potionitem, 1, diffuser.fluidTank.potionDamageValue);
-                    Iterator iter = diffuser.fluidTank.potionEffects.iterator();
+                    ItemStack potion = new ItemStack(Items.potionitem, 1, diffuser.getPotionDamageValue());
+                    Iterator iter = diffuser.getPotionEffects().iterator();
                     while (iter.hasNext())
                     {
                         MixingHelper.addEffect(potion, (PotionEffect) iter.next());

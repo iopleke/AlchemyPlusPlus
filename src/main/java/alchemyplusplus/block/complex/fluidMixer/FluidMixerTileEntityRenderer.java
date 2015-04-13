@@ -1,7 +1,7 @@
 package alchemyplusplus.block.complex.fluidMixer;
 
-import alchemyplusplus.registry.BlockRegistry;
 import alchemyplusplus.reference.Textures;
+import alchemyplusplus.registry.BlockRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -15,7 +15,7 @@ public class FluidMixerTileEntityRenderer extends TileEntitySpecialRenderer
 
     FluidMixerModel model = new FluidMixerModel();
 
-    public void render(FluidMixerTileEntity tl, World world, int i, int j, int k, Block block)
+    public void render(FluidMixerTileEntity tileEntity, World world, int i, int j, int k, Block block)
     {
         int l = world.getLightBrightnessForSkyBlocks(i, j, k, 0);
         int l1 = l % 65536;
@@ -31,7 +31,7 @@ public class FluidMixerTileEntityRenderer extends TileEntitySpecialRenderer
 
         bindTexture(Textures.Model.FLUID_MIXER);
 
-        this.model.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, tl.mixerInventory);
+        this.model.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, tileEntity.mixerInventory, tileEntity);
 
         GL11.glPopMatrix();
     }

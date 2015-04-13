@@ -13,8 +13,7 @@ public class FluidMixerContainer extends Container
     private final FluidMixerTileEntity mixer;
     private int mixingTicks = 0;
 
-    public FluidMixerContainer(InventoryPlayer playerInv,
-            FluidMixerTileEntity mixer)
+    public FluidMixerContainer(InventoryPlayer playerInv, FluidMixerTileEntity mixer)
     {
         this.mixer = mixer;
 
@@ -31,7 +30,7 @@ public class FluidMixerContainer extends Container
             for (int j = 0; j < 9; ++j)
             {
                 this.addSlotToContainer(new Slot(playerInv, j + i * 9 + 9,
-                        8 + j * 18, 84 + i * 18));
+                    8 + j * 18, 84 + i * 18));
             }
         }
 
@@ -66,8 +65,7 @@ public class FluidMixerContainer extends Container
 
             if (this.mixingTicks != this.mixer.mixingTicks)
             {
-                icrafting
-                        .sendProgressBarUpdate(this, 0, this.mixer.mixingTicks);
+                icrafting.sendProgressBarUpdate(this, 0, this.mixer.mixingTicks);
             }
         }
 

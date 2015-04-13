@@ -5,7 +5,9 @@ import java.util.Iterator;
 import java.util.List;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidTank;
+import net.minecraftforge.fluids.FluidTankInfo;
 
 public class PotionFluidTank extends FluidTank
 {
@@ -25,6 +27,25 @@ public class PotionFluidTank extends FluidTank
     {
         super(null, capacity);
         potionEffects = new ArrayList<PotionEffect>();
+    }
+
+    public int getPotionDamageValue()
+    {
+        return potionDamageValue;
+    }
+
+    public List<PotionEffect> getPotionEffects()
+    {
+        if (potionEffects != null)
+        {
+            return potionEffects;
+        }
+        return null;
+    }
+
+    public FluidTankInfo[] getTankInfo(ForgeDirection from)
+    {
+        return null;
     }
 
     @Override

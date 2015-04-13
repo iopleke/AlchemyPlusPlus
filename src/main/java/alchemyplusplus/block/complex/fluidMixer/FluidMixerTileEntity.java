@@ -168,7 +168,6 @@ public class FluidMixerTileEntity extends TileEntity implements IInventory
     @Override
     public void updateEntity()
     {
-
         if (MixingHelper.mixingPossible(mixerInventory[0], mixerInventory[1], mixerInventory[2], mixerInventory[3], mixerInventory[4]))
         {
             this.mixingTicks += 2;
@@ -181,7 +180,6 @@ public class FluidMixerTileEntity extends TileEntity implements IInventory
             this.mixingTicks = 0;
             MixingHelper.mix(this);
         }
-
     }
 
     @Override

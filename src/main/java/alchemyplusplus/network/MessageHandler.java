@@ -15,7 +15,8 @@ public class MessageHandler implements IMessageHandler
 
     public static void init()
     {
-        INSTANCE.registerMessage(DiffuserUpdateMessage.class, DiffuserUpdateMessage.class, 1, Side.CLIENT);
+        int packetID = 0;
+        INSTANCE.registerMessage(DiffuserUpdateMessage.class, DiffuserUpdateMessage.class, packetID++, Side.SERVER);
     }
 
     @Override

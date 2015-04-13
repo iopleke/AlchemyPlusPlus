@@ -10,8 +10,7 @@ public class FluidMixerGUI extends GuiContainer
 
     private FluidMixerTileEntity tileEntity;
 
-    public FluidMixerGUI(InventoryPlayer inventoryPlayer,
-            FluidMixerTileEntity tileEntity)
+    public FluidMixerGUI(InventoryPlayer inventoryPlayer, FluidMixerTileEntity tileEntity)
     {
         //the container is instanciated and passed to the superclass for handling
         super(new FluidMixerContainer(inventoryPlayer, tileEntity));

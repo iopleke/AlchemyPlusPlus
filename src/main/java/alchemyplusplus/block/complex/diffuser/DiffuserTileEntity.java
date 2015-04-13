@@ -31,62 +31,88 @@ import net.minecraftforge.fluids.IFluidTank;
 public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler, IFluidTank
 {
 
-    private boolean updateState = false;
-    public short diffusingTicks = 0;
-    public PotionFluidTank fluidTank;
-    public boolean isDiffusing = false;
+    private short diffusingTicks;
+    private PotionFluidTank fluidTank;
+    private boolean diffusingState;
+    private boolean updateState;
 
     public DiffuserTileEntity()
     {
         super(Naming.Blocks.DIFFUSER);
-        this.fluidTank = new PotionFluidTank((int) 333);
+        resetDiffuser();
+    }
+
+    public PotionFluidTank getFluidTank()
+    {
+        return fluidTank;
+    }
+
+    public boolean getIsDiffusing()
+    {
+        return diffusingState;
     }
 
     private void applyPotionEffects()
     {
 
         // Iterate through all instances of EntityPlayer in the area
-        Iterator players = getPlayersInsideEffectRadius().iterator();
-        EntityPlayer entityplayer;
-        while (players.hasNext())
+        Iterator playerIteratorForRadius = getPlayersInsideEffectRadius().iterator();
+        EntityPlayer entityPlayer;
+        while (playerIteratorForRadius.hasNext())
         {
             // Get the next EntityPlayer
-            entityplayer = (EntityPlayer) players.next();
+            entityPlayer = (EntityPlayer) playerIteratorForRadius.next();
 
             // Iterate through all potion effects, applying each one to each EntityPlayer
-            Iterator potionEffects = this.fluidTank.potionEffects.iterator();
+            Iterator potionEffects = fluidTank.potionEffects.iterator();
 
             while (potionEffects.hasNext())
             {
                 int potionID = ((PotionEffect) potionEffects.next()).getPotionID();
                 int duration = Config.DiffusingRate * Config.DiffusingRateMultiplier;
-                if (potionID != 0)
-                {
-                    entityplayer.addPotionEffect(new PotionEffect(potionID, duration + 2));
-                }
+                applyPotionEffectFromID(entityPlayer, potionID, duration);
             }
         }
 
+    }
+
+    /**
+     * Apply an effect to a player for a given potion ID
+     *
+     * @param player
+     * @param potionID
+     * @param duration
+     * @return true if effect is applied
+     */
+    private boolean applyPotionEffectFromID(EntityPlayer player, int potionID, int duration)
+    {
+        if (player != null && potionID > 0 && duration > 0)
+        {
+            int overlap = 4;
+            player.addPotionEffect(new PotionEffect(potionID, duration + overlap));
+            return true;
+        }
+        return false;
     }
 
     private List getPlayersInsideEffectRadius()
     {
         // Get the bounding box for the diffusing range
         AxisAlignedBB boundingBox = AxisAlignedBB.getBoundingBox((double) xCoord, (double) yCoord, (double) zCoord, (double) (xCoord + 1), (double) (yCoord + 1), (double) (zCoord + 1));
-        if (this.isDiffuserHeated())
+        if (isDiffuserHeated())
         {
             boundingBox.expand(Config.DiffusingRadiusActive, Config.DiffusingRadiusActive, Config.DiffusingRadiusActive);
         } else
         {
             boundingBox.expand(Config.DiffusingRadius, Config.DiffusingRadius, Config.DiffusingRadius);
         }
-        boundingBox.maxY = (double) this.worldObj.getHeight();
-        return this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, boundingBox);
+        boundingBox.maxY = (double) worldObj.getHeight();
+        return worldObj.getEntitiesWithinAABB(EntityPlayer.class, boundingBox);
     }
 
     private boolean isDiffuserHeated()
     {
-        Block belowBlock = this.worldObj.getBlock(this.xCoord, this.yCoord - 1, this.zCoord);
+        Block belowBlock = worldObj.getBlock(xCoord, yCoord - 1, zCoord);
         if (belowBlock != null)
         {
             // @TODO - check for lava, blocks on fire, etc
@@ -104,9 +130,9 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
         {
             if (getFluid().getFluid() instanceof PotionFluid)
             {
-                if (((PotionFluid) this.getFluid().getFluid()).potionEffects != null)
+                if (((PotionFluid) getFluid().getFluid()).potionEffects != null)
                 {
-                    Iterator iter = ((PotionFluid) this.getFluid().getFluid()).potionEffects.iterator();
+                    Iterator iter = ((PotionFluid) getFluid().getFluid()).potionEffects.iterator();
                     while (iter.hasNext())
                     {
                         AlchemyPlusPlus.logger.debug("Effects: " + iter.next().toString());
@@ -119,7 +145,7 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
 
     public boolean canDiffuse()
     {
-        if (this.fluidTank.getFluidAmount() > 0)
+        if (getFluidAmount() > 0)
         {
             return true;
         }
@@ -129,7 +155,7 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
     @Override
     public boolean canDrain(ForgeDirection from, Fluid fluid)
     {
-        if (this.fluidTank != null && this.fluidTank.getFluidAmount() > 0)
+        if (fluidTank != null && getFluidAmount() > 0)
         {
             return true;
         }
@@ -139,7 +165,7 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
     @Override
     public boolean canFill(ForgeDirection from, Fluid fluid)
     {
-        if (this.fluidTank != null && this.fluidTank.getFluidAmount() < this.fluidTank.getCapacity())
+        if (fluidTank != null && getFluidAmount() < getCapacity())
         {
             return true;
         }
@@ -151,7 +177,7 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
     {
         if (maxDrain > 0)
         {
-            return this.fluidTank.drain(maxDrain, doDrain);
+            return fluidTank.drain(maxDrain, doDrain);
         }
         return null;
     }
@@ -161,7 +187,7 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
     {
         if (resource != null)
         {
-            return this.fluidTank.drain(resource.amount, doDrain);
+            return fluidTank.drain(resource.amount, doDrain);
         }
         return null;
     }
@@ -169,7 +195,7 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
     @Override
     public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
     {
-        return this.fluidTank.drain(maxDrain, doDrain);
+        return fluidTank.drain(maxDrain, doDrain);
     }
 
     @Override
@@ -177,7 +203,7 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
     {
         if (resource != null)
         {
-            return this.fluidTank.fill(resource, doFill);
+            return fluidTank.fill(resource, doFill);
         }
         return 0;
     }
@@ -187,7 +213,7 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
     {
         if (resource != null)
         {
-            return this.fluidTank.fill(resource, doFill);
+            return fluidTank.fill(resource, doFill);
         }
         return 0;
     }
@@ -197,11 +223,11 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
         if (heldItem != null)
         {
             PotionFluid potionFluid = new PotionFluid(heldItem);
-            this.fluidTank = new PotionFluidTank(new PotionFluidStack(potionFluid, 333), 333);
+            fluidTank = new PotionFluidTank(new PotionFluidStack(potionFluid, 333), 333);
             fluidTank.potionDamageValue = heldItem.getItemDamage();
             fluidTank.potionID = ItemPotion.getIdFromItem(heldItem.getItem());
-            this.updateState = true;
-            return this.fluidTank.getFluidAmount();
+            updateState = true;
+            return getFluidAmount();
         }
         return 0;
     }
@@ -210,9 +236,9 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
     public int getCapacity()
     {
 
-        if (this.fluidTank != null)
+        if (fluidTank != null)
         {
-            return this.fluidTank.getCapacity();
+            return fluidTank.getCapacity();
         }
         return 0;
     }
@@ -220,28 +246,37 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
     @Override
     public Packet getDescriptionPacket()
     {
-        this.writeToNBT(new NBTTagCompound());
+        writeToNBT(new NBTTagCompound());
         return MessageHandler.INSTANCE.getPacketFrom(new DiffuserUpdateMessage(this));
     }
 
     @Override
     public FluidStack getFluid()
     {
-        if (this.fluidTank != null)
+        if (fluidTank != null)
         {
-            return this.fluidTank.getFluid();
+            return fluidTank.getFluid();
         }
         return null;
 
+    }
+
+    public List<PotionEffect> getPotionEffects()
+    {
+        if (fluidTank != null)
+        {
+            return fluidTank.getPotionEffects();
+        }
+        return null;
     }
 
     @Override
     public int getFluidAmount()
     {
 
-        if (this.fluidTank != null)
+        if (fluidTank != null)
         {
-            return this.fluidTank.getFluidAmount();
+            return fluidTank.getFluidAmount();
         }
         return 0;
     }
@@ -249,18 +284,36 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
     @Override
     public FluidTankInfo getInfo()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (fluidTank != null)
+        {
+            return fluidTank.getInfo();
+        }
+        return null;
     }
 
     @Override
     public FluidTankInfo[] getTankInfo(ForgeDirection from)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        if (fluidTank != null)
+        {
+            return fluidTank.getTankInfo(from);
+        }
+        return null;
     }
 
     public boolean isDiffuserActive()
     {
-        return isDiffusing;
+        return diffusingState;
+    }
+
+    public int getPotionDamageValue()
+    {
+        if (fluidTank != null)
+        {
+            return fluidTank.getPotionDamageValue();
+        }
+        return 0;
     }
 
     @Override
@@ -269,62 +322,71 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
         super.readFromNBT(nbt);
 
         diffusingTicks = nbt.getShort("diffusingTicks");
-        isDiffusing = nbt.getBoolean("isDiffusing");
+        diffusingState = nbt.getBoolean("isDiffusing");
 
-        if (this.fluidTank != null)
+        if (fluidTank != null)
         {
             fluidTank.readFromNBT(nbt.getCompoundTag("diffuserTank"));
         }
     }
 
-    public void resetDiffuser()
+    public final void resetDiffuser()
     {
-        diffusingTicks = 0;
+        setDiffusingTicks((short) 0);
         fluidTank = new PotionFluidTank((int) 333);
-        isDiffusing = false;
-        updateState = true;
+        setDiffusingState(false);
     }
 
-    public void setDiffusingState(boolean value)
+    private void setUpdateState(boolean state)
     {
-        isDiffusing = value;
-        updateState = true;
+        updateState = state;
+    }
+
+    private void setDiffusingTicks(short ticks)
+    {
+        diffusingTicks = ticks;
+    }
+
+    public void setDiffusingState(boolean state)
+    {
+        diffusingState = state;
+        setUpdateState(true);
     }
 
     public void syncFluidAmountAt(int amount, int fluidID)
     {
-        if (this.fluidTank != null)
+        if (fluidTank != null)
         {
-            if (this.getFluid() != null)
+            if (getFluid() != null)
             {
-                if (this.getFluidAmount() > amount)
+                if (getFluidAmount() > amount)
                 {
-                    this.drain(this.getFluidAmount() - amount, true);
-                } else if (this.getFluidAmount() < amount)
+                    drain(getFluidAmount() - amount, true);
+                } else if (getFluidAmount() < amount)
                 {
-                    this.fill(new FluidStack(this.getFluid(), amount - this.getFluidAmount()), true);
+                    fill(new FluidStack(getFluid(), amount - getFluidAmount()), true);
                 }
             } else
             {
                 FluidStack tankFluid = new FluidStack(fluidID, amount);
-                this.fill(tankFluid, true);
+                fill(tankFluid, true);
             }
         }
-        this.updateState = false;
+        updateState = false;
     }
 
     public void toggleDiffusingState()
     {
-        AlchemyPlusPlus.logger.debug("Fluid level:" + this.fluidTank.getFluidAmount());
-        AlchemyPlusPlus.logger.debug("Diffusing: " + isDiffusing);
+        AlchemyPlusPlus.logger.debug("Fluid level:" + getFluidAmount());
+        AlchemyPlusPlus.logger.debug("Diffusing: " + diffusingState);
         printPotionEffects();
 
-        if (this.fluidTank.getFluidAmount() > 0)
+        if (getFluidAmount() > 0)
         {
-            isDiffusing = !isDiffusing;
+            diffusingState = !diffusingState;
         } else
         {
-            isDiffusing = false;
+            diffusingState = false;
         }
         updateState = true;
     }
@@ -332,35 +394,35 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
     @Override
     public void updateEntity()
     {
-        if (this.isDiffusing)
+        if (diffusingState)
         {
             // Drain by 1 every # of ticks, as set in the config
             if (diffusingTicks % Config.DiffusingRate == 0)
             {
-                this.drain(1, true);
+                drain(1, true);
             }
 
             if (diffusingTicks <= 0)
             {
                 diffusingTicks = 20;
-                if (!this.fluidTank.potionEffects.isEmpty() && this.fluidTank.getFluidAmount() > 0)
+                if (!fluidTank.potionEffects.isEmpty() && getFluidAmount() > 0)
                 {
-                    this.applyPotionEffects();
+                    applyPotionEffects();
                 }
             }
             diffusingTicks--;
 
-            if (this.getFluidAmount() == 0)
+            if (getFluidAmount() == 0)
             {
                 setDiffusingState(false);
             }
         }
 
-        if (this.updateState)
+        if (updateState)
         {
-            MessageHandler.INSTANCE.sendToAllAround(new DiffuserUpdateMessage(this), new NetworkRegistry.TargetPoint(worldObj.provider.dimensionId, this.xCoord, this.yCoord, this.zCoord, 20));
-            this.markDirty();
-            this.updateState = false;
+            MessageHandler.INSTANCE.sendToAllAround(new DiffuserUpdateMessage(this), new NetworkRegistry.TargetPoint(worldObj.provider.dimensionId, xCoord, yCoord, zCoord, 20));
+            markDirty();
+            updateState = false;
         }
     }
 
@@ -368,13 +430,13 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
     public void writeToNBT(NBTTagCompound nbt)
     {
         super.writeToNBT(nbt);
-        if (this.fluidTank != null)
+        if (fluidTank != null)
         {
             nbt.setTag("diffuserTank", fluidTank.writeToNBT(new NBTTagCompound()));
         }
 
         nbt.setShort("diffusingTicks", diffusingTicks);
-        nbt.setBoolean("isDiffusing", isDiffusing);
+        nbt.setBoolean("isDiffusing", diffusingState);
 
     }
 }

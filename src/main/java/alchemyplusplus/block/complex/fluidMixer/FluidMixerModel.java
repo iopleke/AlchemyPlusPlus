@@ -7,6 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionHelper;
+import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
 
 public class FluidMixerModel extends ModelBase
@@ -149,7 +150,7 @@ public class FluidMixerModel extends ModelBase
 
     }
 
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5, ItemStack[] stacks)
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5, ItemStack[] stacks, TileEntity te)
     {
 
         GL11.glEnable(GL11.GL_NORMALIZE);

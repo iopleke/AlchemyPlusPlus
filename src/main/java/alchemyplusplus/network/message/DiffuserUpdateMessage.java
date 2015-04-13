@@ -1,7 +1,7 @@
 package alchemyplusplus.network.message;
 
 import alchemyplusplus.block.complex.diffuser.DiffuserTileEntity;
-import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -28,8 +28,8 @@ public class DiffuserUpdateMessage implements IMessage, IMessageHandler<Diffuser
         this.posY = diffuser.yCoord;
         this.posZ = diffuser.zCoord;
 
-        this.potionDamageValue = diffuser.fluidTank.potionDamageValue;
-        this.isDiffusing = diffuser.isDiffusing;
+        this.potionDamageValue = diffuser.getFluidTank().potionDamageValue;
+        this.isDiffusing = diffuser.getIsDiffusing();
         this.fluidLevel = diffuser.getFluidAmount();
         if (diffuser.getFluid() != null)
         {
@@ -39,10 +39,10 @@ public class DiffuserUpdateMessage implements IMessage, IMessageHandler<Diffuser
             this.fluidID = 0;
         }
 
-        this.effectIDs = new int[diffuser.fluidTank.potionEffects.size()];
+        this.effectIDs = new int[diffuser.getFluidTank().potionEffects.size()];
         int id = 0;
 
-        for (PotionEffect potionEffect : diffuser.fluidTank.potionEffects)
+        for (PotionEffect potionEffect : diffuser.getFluidTank().potionEffects)
         {
             this.effectIDs[id++] = potionEffect.getPotionID();
         }
@@ -92,12 +92,12 @@ public class DiffuserUpdateMessage implements IMessage, IMessageHandler<Diffuser
     @Override
     public IMessage onMessage(DiffuserUpdateMessage message, MessageContext ctx)
     {
-        TileEntity tile = FMLClientHandler.instance().getClient().theWorld.getTileEntity(message.posX, message.posY, message.posZ);
+        TileEntity tile = FMLCommonHandler.instance().getMinecraftServerInstance().getEntityWorld().getTileEntity(message.posX, message.posY, message.posZ);
         if (tile instanceof DiffuserTileEntity)
         {
             ((DiffuserTileEntity) tile).setDiffusingState(message.isDiffusing);
             ((DiffuserTileEntity) tile).syncFluidAmountAt(message.fluidLevel, message.fluidID);
-            ((DiffuserTileEntity) tile).fluidTank.potionDamageValue = this.potionDamageValue;
+            ((DiffuserTileEntity) tile).getFluidTank().potionDamageValue = this.potionDamageValue;
         }
         return null;
     }
