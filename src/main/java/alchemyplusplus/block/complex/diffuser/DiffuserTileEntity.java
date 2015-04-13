@@ -30,10 +30,10 @@ import net.minecraftforge.fluids.IFluidTank;
 
 public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler, IFluidTank
 {
+    private boolean diffusingState;
 
     private short diffusingTicks;
     private PotionFluidTank fluidTank;
-    private boolean diffusingState;
     private boolean updateState;
 
     public DiffuserTileEntity()
@@ -42,14 +42,23 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
         resetDiffuser();
     }
 
-    public PotionFluidTank getFluidTank()
+    /**
+     * Apply an effect to a player for a given potion ID
+     *
+     * @param player
+     * @param potionID
+     * @param duration
+     * @return true if effect is applied
+     */
+    private boolean applyPotionEffectFromID(EntityPlayer player, int potionID, int duration)
     {
-        return fluidTank;
-    }
-
-    public boolean getIsDiffusing()
-    {
-        return diffusingState;
+        if (player != null && potionID > 0 && duration > 0)
+        {
+            int overlap = 4;
+            player.addPotionEffect(new PotionEffect(potionID, duration + overlap));
+            return true;
+        }
+        return false;
     }
 
     private void applyPotionEffects()
@@ -74,25 +83,6 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
             }
         }
 
-    }
-
-    /**
-     * Apply an effect to a player for a given potion ID
-     *
-     * @param player
-     * @param potionID
-     * @param duration
-     * @return true if effect is applied
-     */
-    private boolean applyPotionEffectFromID(EntityPlayer player, int potionID, int duration)
-    {
-        if (player != null && potionID > 0 && duration > 0)
-        {
-            int overlap = 4;
-            player.addPotionEffect(new PotionEffect(potionID, duration + overlap));
-            return true;
-        }
-        return false;
     }
 
     private List getPlayersInsideEffectRadius()
@@ -141,6 +131,16 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
 
             }
         }
+    }
+
+    private void setDiffusingTicks(short ticks)
+    {
+        diffusingTicks = ticks;
+    }
+
+    private void setUpdateState(boolean state)
+    {
+        updateState = state;
     }
 
     public boolean canDiffuse()
@@ -261,15 +261,6 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
 
     }
 
-    public List<PotionEffect> getPotionEffects()
-    {
-        if (fluidTank != null)
-        {
-            return fluidTank.getPotionEffects();
-        }
-        return null;
-    }
-
     @Override
     public int getFluidAmount()
     {
@@ -281,12 +272,40 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
         return 0;
     }
 
+    public PotionFluidTank getFluidTank()
+    {
+        return fluidTank;
+    }
+
     @Override
     public FluidTankInfo getInfo()
     {
         if (fluidTank != null)
         {
             return fluidTank.getInfo();
+        }
+        return null;
+    }
+
+    public boolean getIsDiffusing()
+    {
+        return diffusingState;
+    }
+
+    public int getPotionDamageValue()
+    {
+        if (fluidTank != null)
+        {
+            return fluidTank.getPotionDamageValue();
+        }
+        return 0;
+    }
+
+    public List<PotionEffect> getPotionEffects()
+    {
+        if (fluidTank != null)
+        {
+            return fluidTank.getPotionEffects();
         }
         return null;
     }
@@ -305,15 +324,6 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
     public boolean isDiffuserActive()
     {
         return diffusingState;
-    }
-
-    public int getPotionDamageValue()
-    {
-        if (fluidTank != null)
-        {
-            return fluidTank.getPotionDamageValue();
-        }
-        return 0;
     }
 
     @Override
@@ -335,16 +345,6 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
         setDiffusingTicks((short) 0);
         fluidTank = new PotionFluidTank((int) 333);
         setDiffusingState(false);
-    }
-
-    private void setUpdateState(boolean state)
-    {
-        updateState = state;
-    }
-
-    private void setDiffusingTicks(short ticks)
-    {
-        diffusingTicks = ticks;
     }
 
     public void setDiffusingState(boolean state)
