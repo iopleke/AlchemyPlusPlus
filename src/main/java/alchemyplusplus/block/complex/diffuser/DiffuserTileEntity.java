@@ -8,7 +8,6 @@ import alchemyplusplus.potion.fluid.PotionFluid;
 import alchemyplusplus.potion.fluid.PotionFluidStack;
 import alchemyplusplus.potion.fluid.PotionFluidTank;
 import alchemyplusplus.reference.Naming;
-import cpw.mods.fml.common.network.NetworkRegistry;
 import jakimbox.prefab.tileEntity.BasicTileEntity;
 import java.util.Iterator;
 import java.util.List;
@@ -247,7 +246,8 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
     public Packet getDescriptionPacket()
     {
         writeToNBT(new NBTTagCompound());
-        return MessageHandler.INSTANCE.getPacketFrom(new DiffuserUpdateMessage(this));
+        MessageHandler.INSTANCE.sendToServer(new DiffuserUpdateMessage(this));
+        return null;
     }
 
     @Override
@@ -324,6 +324,13 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
     public boolean isDiffuserActive()
     {
         return diffusingState;
+    }
+
+    @Override
+    public void markDirty()
+    {
+        super.markDirty();
+        getDescriptionPacket();
     }
 
     @Override
@@ -420,7 +427,6 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
 
         if (updateState)
         {
-            MessageHandler.INSTANCE.sendToAllAround(new DiffuserUpdateMessage(this), new NetworkRegistry.TargetPoint(worldObj.provider.dimensionId, xCoord, yCoord, zCoord, 20));
             markDirty();
             updateState = false;
         }
