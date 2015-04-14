@@ -90,10 +90,10 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
         AxisAlignedBB boundingBox = AxisAlignedBB.getBoundingBox((double) xCoord, (double) yCoord, (double) zCoord, (double) (xCoord + 1), (double) (yCoord + 1), (double) (zCoord + 1));
         if (isDiffuserHeated())
         {
-            boundingBox.expand(Config.DiffusingRadiusActive, Config.DiffusingRadiusActive, Config.DiffusingRadiusActive);
+            boundingBox = boundingBox.expand(Config.DiffusingRadiusActive, Config.DiffusingRadiusActive, Config.DiffusingRadiusActive);
         } else
         {
-            boundingBox.expand(Config.DiffusingRadius, Config.DiffusingRadius, Config.DiffusingRadius);
+            boundingBox = boundingBox.expand(20, 20, 20);
         }
         boundingBox.maxY = (double) worldObj.getHeight();
         return worldObj.getEntitiesWithinAABB(EntityPlayer.class, boundingBox);
@@ -234,7 +234,6 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
     @Override
     public int getCapacity()
     {
-
         if (fluidTank != null)
         {
             return fluidTank.getCapacity();
