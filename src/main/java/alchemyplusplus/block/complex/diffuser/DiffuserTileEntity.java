@@ -95,7 +95,10 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
         {
             boundingBox = boundingBox.expand(20, 20, 20);
         }
-        boundingBox.maxY = (double) worldObj.getHeight();
+        if (boundingBox.maxY > worldObj.getHeight())
+        {
+            boundingBox.maxY = (double) worldObj.getHeight();
+        }
         return worldObj.getEntitiesWithinAABB(EntityPlayer.class, boundingBox);
     }
 
