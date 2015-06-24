@@ -6,7 +6,7 @@ Playing AlchemyPlusPlus
 ========================
 For the moment, it's possible to brew a number of otherwise impossible-to-obtain potions, such as blindness and Resistance. You can also mix and enhance potions to create some rather interesting effects.
 
-See the [original mod topic](http://www.minecraftforum.net/topic/1909298-162152forge-alchemy-get-drunk-in-the-lab/) on the MinecraftForums, or check out the [new forum thread](http://goo.gl/vryzC4) for ongoing updates and discussion.
+The [original mod topic](http://www.minecraftforum.net/topic/1909298-162152forge-alchemy-get-drunk-in-the-lab/) on the MinecraftForums has some info, as does the [new forum thread](http://goo.gl/vryzC4), but if you've got questions, please post them on the [AlchemyPlusPlus CurseForge page](http://minecraft.curseforge.com/mc-mods/62428-alchemyplusplus), as I'll get an email notification about it there.
 
 Getting AlchemyPlusPlus
 ========================
