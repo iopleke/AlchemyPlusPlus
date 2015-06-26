@@ -76,6 +76,7 @@ minecraft {
     {
         replace "@BUILD@", "ManuallyBuilt"
     }
+    srgExtra "PK: jakimbox alchemyplusplus/jakimbox"
 }
 
 processResources {
