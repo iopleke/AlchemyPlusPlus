@@ -92,7 +92,6 @@ allprojects {
     }
 
     jar {
-        dependsOn ":copyBuildXml"
         destinationDir = file (rootProject.getRootDir().getPath() + '/output')
     }
 
@@ -117,10 +116,3 @@ sourceSets {
         }
     }
 }
-
-task copyBuildXml(type: Copy) {
-    from 'build.properties'
-    into 'output'
-}
-
-build.dependsOn "copyBuildXml"
