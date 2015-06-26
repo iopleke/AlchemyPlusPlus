@@ -65,7 +65,7 @@ public class AlchemyPlusPlus
     public static ModMetadata metadata;
 
     // Logging
-    public static final LogHelper logger = new LogHelper(AlchemyPlusPlus.ID);
+    public static final LogHelper logger = new LogHelper();
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)

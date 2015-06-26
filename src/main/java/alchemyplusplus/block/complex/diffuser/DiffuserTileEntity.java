@@ -8,6 +8,7 @@ import alchemyplusplus.potion.fluid.PotionFluid;
 import alchemyplusplus.potion.fluid.PotionFluidStack;
 import alchemyplusplus.potion.fluid.PotionFluidTank;
 import alchemyplusplus.reference.Naming;
+import jakimbox.helper.LogHelper;
 import jakimbox.prefab.tileEntity.BasicTileEntity;
 import java.util.Iterator;
 import java.util.List;
@@ -386,8 +387,8 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
 
     public void toggleDiffusingState()
     {
-        AlchemyPlusPlus.logger.debug("Fluid level:" + getFluidAmount());
-        AlchemyPlusPlus.logger.debug("Diffusing: " + diffusingState);
+        LogHelper.debug("Fluid level:" + getFluidAmount());
+        LogHelper.debug("Diffusing: " + diffusingState);
         printPotionEffects();
 
         if (getFluidAmount() > 0)
