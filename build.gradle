@@ -62,7 +62,7 @@ group = "alchemyplusplus"
 archivesBaseName = "AlchemyPlusPlus"
 
 minecraft {
-    version = "${config.version.minecraft}-${config.version.forge}"
+    version = "${config.version.forge}-${config.version.minecraft}"
 
     replaceIn "AlchemyPlusPlus.java"
     replace "@MAJOR@", config.version.mod.major
@@ -82,29 +82,27 @@ processResources {
     from 'build.properties'
 }
 
-allprojects {
-    version = "${config.version.minecraft}-${config.version.mod.major}.${config.version.mod.minor}.${config.version.mod.revis}"
+version = "${config.version.minecraft}-${config.version.mod.major}.${config.version.mod.minor}.${config.version.mod.revis}"
 
-    if (System.getenv("BUILD_NUMBER") != null) {
-        version += ".${System.getenv("BUILD_NUMBER")}"
-    } else {
-        version += "-ManuallyBuilt"
-    }
+if (System.getenv("BUILD_NUMBER") != null) {
+    version += ".${System.getenv("BUILD_NUMBER")}"
+} else {
+    version += "-ManuallyBuilt"
+}
 
-    jar {
-        destinationDir = file (rootProject.getRootDir().getPath() + '/output')
-    }
+jar {
+    destinationDir = file (rootProject.getRootDir().getPath() + '/output')
+}
 
-    publishing {
-        publications {
-            mavenJava(MavenPublication) {
-                artifact jar
-            }
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact jar
         }
-        repositories {
-            maven {
-                url "file://var/www/maven"
-            }
+    }
+    repositories {
+        maven {
+            url "file://var/www/maven"
         }
     }
 }
