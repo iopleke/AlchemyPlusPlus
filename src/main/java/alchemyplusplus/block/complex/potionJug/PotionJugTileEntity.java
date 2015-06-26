@@ -42,6 +42,11 @@ public class PotionJugTileEntity extends BasicTileEntity
     }
 
     @Override
+    public void updateEntity()
+    {
+    }
+
+    @Override
     public void writeToNBT(NBTTagCompound nbt)
     {
         super.writeToNBT(nbt);
