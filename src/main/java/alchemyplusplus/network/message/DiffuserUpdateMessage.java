@@ -33,7 +33,7 @@ public class DiffuserUpdateMessage implements IMessage, IMessageHandler<Diffuser
         this.fluidLevel = diffuser.getFluidAmount();
         if (diffuser.getFluid() != null)
         {
-            this.fluidID = diffuser.getFluid().fluidID;
+            this.fluidID = diffuser.getFluid().getFluidID();
         } else
         {
             this.fluidID = 0;

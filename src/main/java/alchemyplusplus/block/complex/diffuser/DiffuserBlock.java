@@ -55,7 +55,7 @@ public class DiffuserBlock extends BasicBlockContainer
                             {
                                 NotificationHelper.sendPlayerChatMessage(player, "diffuser.full");
                             }
-                        } else if (diffuser.getFluidAmount() == 0 || diffuser.getFluid().fluidID == ItemPotion.getIdFromItem(player.getHeldItem().getItem()))
+                        } else if (diffuser.getFluidAmount() == 0 || diffuser.getFluid().getFluidID() == ItemPotion.getIdFromItem(player.getHeldItem().getItem()))
                         {
                             // @TODO - move potion match check to the TileEntity fill method
                             if (diffuser.getFluidAmount() != 0)
