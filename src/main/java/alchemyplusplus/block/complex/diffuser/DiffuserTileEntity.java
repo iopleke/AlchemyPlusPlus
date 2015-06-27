@@ -23,6 +23,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
@@ -378,7 +379,7 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
                 }
             } else
             {
-                FluidStack tankFluid = new FluidStack(fluidID, amount);
+                FluidStack tankFluid = new FluidStack(FluidRegistry.getFluid(fluidID), amount);
                 fill(tankFluid, true);
             }
         }
