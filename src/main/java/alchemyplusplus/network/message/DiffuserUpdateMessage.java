@@ -95,9 +95,12 @@ public class DiffuserUpdateMessage implements IMessage, IMessageHandler<Diffuser
         TileEntity tile = FMLCommonHandler.instance().getMinecraftServerInstance().getEntityWorld().getTileEntity(message.posX, message.posY, message.posZ);
         if (tile instanceof DiffuserTileEntity)
         {
-            ((DiffuserTileEntity) tile).setDiffusingState(message.isDiffusing);
-            ((DiffuserTileEntity) tile).syncFluidAmountAt(message.fluidLevel, message.fluidID);
-            ((DiffuserTileEntity) tile).getFluidTank().potionDamageValue = this.potionDamageValue;
+            if (message.fluidID != 0)
+            {
+                ((DiffuserTileEntity) tile).setDiffusingState(message.isDiffusing);
+                ((DiffuserTileEntity) tile).syncFluidAmountAt(message.fluidLevel, message.fluidID);
+                ((DiffuserTileEntity) tile).getFluidTank().potionDamageValue = this.potionDamageValue;
+            }
         }
         return null;
     }
