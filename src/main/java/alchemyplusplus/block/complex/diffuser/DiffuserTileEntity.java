@@ -440,7 +440,7 @@ public class DiffuserTileEntity extends BasicTileEntity implements IFluidHandler
     public void writeToNBT(NBTTagCompound nbt)
     {
         super.writeToNBT(nbt);
-        if (fluidTank != null)
+        if (fluidTank != null && fluidTank.getFluid() != null)
         {
             nbt.setTag("diffuserTank", fluidTank.writeToNBT(new NBTTagCompound()));
         }
