@@ -76,7 +76,6 @@ minecraft {
     {
         replace "@BUILD@", "ManuallyBuilt"
     }
-    srgExtra "PK: jakimbox alchemyplusplus/jakimbox"
 }
 
 processResources {
@@ -112,9 +111,6 @@ sourceSets {
     main {
         resources {
             exclude '**/xcf/*'
-        }
-        java {
-            srcDir 'src/jakimbox/src/main/java'
         }
     }
 }
