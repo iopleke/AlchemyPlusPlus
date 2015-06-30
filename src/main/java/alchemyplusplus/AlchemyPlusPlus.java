@@ -24,7 +24,7 @@ import jakimbox.helper.LogHelper;
 import jakimbox.proxy.CommonProxyBase;
 import net.minecraftforge.common.MinecraftForge;
 
-@Mod(modid = AlchemyPlusPlus.ID, name = AlchemyPlusPlus.NAME, version = AlchemyPlusPlus.VERSION_FULL, useMetadata = false, guiFactory = "alchemyplusplus.gui.GUIFactory", acceptedMinecraftVersions = "[1.7.10,)", dependencies = "required-after:Forge@[10.13.2.1291,);required-after:jakimbox")
+@Mod(modid = AlchemyPlusPlus.ID, name = AlchemyPlusPlus.NAME, version = AlchemyPlusPlus.VERSION_FULL, useMetadata = false, guiFactory = "alchemyplusplus.gui.GUIFactory", acceptedMinecraftVersions = "[1.7.10,)", dependencies = "required-after:Forge@[10.13.2.1291,);required-after:jakimbox@[0.1.27,)")
 public class AlchemyPlusPlus
 {
 
